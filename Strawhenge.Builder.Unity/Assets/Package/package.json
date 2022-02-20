@@ -1,0 +1,9 @@
+{
+  "name": "com.strawhenge.builder",
+  "version": "1.0.0",
+  "displayName": "Strawhenge Builder",
+  "unity": "2020.3",
+  "author": {
+    "name": "Matt Bristow"
+  }
+}
