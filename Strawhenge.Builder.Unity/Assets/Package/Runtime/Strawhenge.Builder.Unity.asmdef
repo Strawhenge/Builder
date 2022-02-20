@@ -1,16 +1,13 @@
 {
     "name": "Strawhenge.Builder.Unity",
     "rootNamespace": "Strawhenge.Builder.Unity",
-    "references": [
-        "GUID:5c666a710e6c44d4c8cf960afd58d5fb",
-        "GUID:449cf412aadd82a49a2d6e6c2648158b"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],
-    "autoReferenced": false,
+    "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
