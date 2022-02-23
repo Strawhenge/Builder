@@ -5,5 +5,12 @@
   "unity": "2020.3",
   "author": {
     "name": "Matt Bristow"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Builder sample",
+      "description": "Builder sample",
+      "path": "Samples~"
+    }
+  ]
 }
