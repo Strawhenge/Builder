@@ -40,20 +40,20 @@ public class Context : MonoBehaviour
     {
         SelectBlueprint();
 
-        if (verticalSnap != null)
-        {
-            HandleVerticalSnap();
-            return;
-        }
-
-        if (horizontalSnap != null)
-        {
-            HandleHorizontalSnap();
-            return;
-        }
-
         blueprintManager.Preview.Do(blueprint =>
         {
+            if (verticalSnap != null)
+            {
+                HandleVerticalSnap();
+                return;
+            }
+
+            if (horizontalSnap != null)
+            {
+                HandleHorizontalSnap();
+                return;
+            }
+
             ManageBlueprintMovement(blueprint);
             ManageBlueprintSnapping(blueprint);
         });
@@ -125,15 +125,14 @@ public class Context : MonoBehaviour
             return;
         }
 
-        var x = Input.GetAxis("Horizontal");
-        var y = Input.GetAxis("Vertical");
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (Mathf.Abs(x) >= 0.1)
-                horizontalSnap.Flip();
+            horizontalSnap.Flip();
             return;
         }
+
+        var x = Input.GetAxis("Horizontal");
+        var y = Input.GetAxis("Vertical");
 
         if (Mathf.Abs(y) > 0.1f)
         {
@@ -154,19 +153,14 @@ public class Context : MonoBehaviour
             return;
         }
 
-        var x = Input.GetAxis("Horizontal");
-        var y = Input.GetAxis("Vertical");
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (x >= 0.1)
-                verticalSnap.TurnPrevious();
-
-            if (x <= 0.1)
-                verticalSnap.TurnNext();
-
+            verticalSnap.TurnNext();
             return;
         }
+
+        var x = Input.GetAxis("Horizontal");
+        var y = Input.GetAxis("Vertical");
 
         if (Mathf.Abs(x) > 0.1f)
         {
