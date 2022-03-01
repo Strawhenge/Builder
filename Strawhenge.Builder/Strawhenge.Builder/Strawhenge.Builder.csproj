@@ -5,7 +5,7 @@
 	</PropertyGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy /Y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\..\Strawhenge.Builder.Unity\Assets\Package\Runtime&quot;" />
+		<Exec Condition="'$(SolutionDir)' != '*Undefined*'" Command="xcopy /Y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\..\Strawhenge.Builder.Unity\Assets\Package\Runtime&quot;" />
 	</Target>
 
 </Project>
