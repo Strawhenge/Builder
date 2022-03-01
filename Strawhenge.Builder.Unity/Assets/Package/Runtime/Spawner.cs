@@ -11,15 +11,13 @@ namespace Strawhenge.Builder.Unity
 
         public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation)
         {
-            var result = Object.Instantiate(prefab);
-            result.transform.SetPositionAndRotation(position, rotation);
+            var result = Object.Instantiate(prefab, position, rotation);
             return result;
         }
 
         public T Spawn<T>(T prefab, Vector3 position, Quaternion rotation) where T : MonoBehaviour
         {
-            var result = Object.Instantiate(prefab);
-            result.transform.SetPositionAndRotation(position, rotation);
+            var result = Object.Instantiate(prefab, position, rotation);
             return result;
         }
     }
