@@ -1,0 +1,11 @@
+{
+  "stryker-config": {
+    "project": "Strawhenge.Builder.csproj",
+    "ignore-methods": [
+      "*LogInformation",
+      "*LogWarning",
+      "*LogError",
+      "*Exception.ctor"
+    ]
+  }
+}
