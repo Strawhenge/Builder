@@ -28,5 +28,17 @@ namespace Strawhenge.Builder.Tests.UnitTests
 
             Assert.False(component1.Is(component2));
         }
+
+        [Theory]
+        [InlineData(null, "")]
+        [InlineData("", "")]
+        [InlineData(" ", "")]
+        [InlineData("Wood", "Wood")]
+        public void Identifier_ShouldBeExpected(string identifier, string expected)
+        {
+            var component = new Component(identifier);
+
+            Assert.Equal(expected, component.Identifier);
+        }
     }
 }
