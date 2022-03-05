@@ -5,18 +5,23 @@ namespace Strawhenge.Builder
 {
     public class ComponentInventory : IComponentInventory
     {
-        private readonly ILogger logger;
-        private readonly List<ComponentCounter> componentCounters = new List<ComponentCounter>();
+        readonly List<ComponentCounter> componentCounters = new List<ComponentCounter>();
+        readonly ILogger logger;
 
         public ComponentInventory(ILogger logger)
         {
             this.logger = logger;
         }
 
-        public int CountTotal() => componentCounters.Sum(x => x.CurrentCount);
+        public bool InfiniteComponents { get; set; }
+
+        public int CountTotal() => InfiniteComponents ? int.MaxValue : componentCounters.Sum(x => x.CurrentCount);
 
         public int Count(Component component)
         {
+            if (InfiniteComponents)
+                return int.MaxValue;
+
             var counter = componentCounters.SingleOrDefault(x => x.Component.Is(component));
 
             if (counter == null)
@@ -50,6 +55,9 @@ namespace Strawhenge.Builder
                     $"Cannot remove less than 1 component. [{nameof(quantity)}: {quantity}, {nameof(component)}: {component.Identifier}]");
                 return;
             }
+
+            if (InfiniteComponents)
+                return;
 
             var componentCounter = GetOrCreateComponentCounter(component);
             componentCounter.Substract(quantity);
