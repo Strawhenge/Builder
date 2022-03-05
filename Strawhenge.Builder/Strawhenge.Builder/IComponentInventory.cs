@@ -2,6 +2,8 @@
 {
     public interface IComponentInventory
     {
+        bool InfiniteComponents { get; set; }
+
         void AddComponent(Component component);
 
         void AddComponent(Component component, int quantity);
