@@ -3,9 +3,9 @@ using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public class ComponentInventory_TestCase5 : ComponentInventory_Tests
+    public class ComponentInventory_TestCase05 : ComponentInventory_Tests
     {
-        public ComponentInventory_TestCase5(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public ComponentInventory_TestCase05(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
 
