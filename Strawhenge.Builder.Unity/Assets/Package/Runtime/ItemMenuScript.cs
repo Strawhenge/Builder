@@ -6,9 +6,16 @@ namespace Strawhenge.Builder.Unity
 {
     public class ItemMenuScript : MonoBehaviour
     {
+        [SerializeField] Button _exitButton;
+        [SerializeField] Button _backButton;
         [SerializeField] Transform _buttonParent;
-        [SerializeField] Button _categoryButtonTemplate;
-        [SerializeField] Button _itemButtonTemplate;
+        [SerializeField] Button _categoryButtonPrefab;
+        [SerializeField] Button _itemButtonPrefab;
+
+        void Awake()
+        {
+            _backButton.gameObject.SetActive(false);
+        }
 
         void Start()
         {
@@ -22,9 +29,9 @@ namespace Strawhenge.Builder.Unity
             AddItem("Toilet");
         }
 
-        void AddItem(string itemName) => AddButton(itemName, _itemButtonTemplate);
+        void AddItem(string itemName) => AddButton(itemName, _itemButtonPrefab);
 
-        void AddCategory(string categoryName) => AddButton(categoryName, _categoryButtonTemplate);
+        void AddCategory(string categoryName) => AddButton(categoryName, _categoryButtonPrefab);
 
         void AddButton(string buttonText, Button buttonPrefab)
         {
