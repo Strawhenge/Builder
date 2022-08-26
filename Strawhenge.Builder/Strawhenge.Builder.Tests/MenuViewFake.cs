@@ -12,9 +12,9 @@ namespace Strawhenge.Builder.Tests
 
         internal bool IsShowing { get; private set; }
 
-        internal IReadOnlyList<IMenuCategory> DisplayedCategories { get; private set; }
+        internal IReadOnlyList<IMenuCategory> DisplayedCategories { get; private set; } = new List<IMenuCategory>();
 
-        internal IReadOnlyList<IMenuItem> DisplayedItems { get; private set; }
+        internal IReadOnlyList<IMenuItem> DisplayedItems { get; private set; } = new List<IMenuItem>();
 
         internal bool IsBackButtonEnabled { get; private set; }
 
