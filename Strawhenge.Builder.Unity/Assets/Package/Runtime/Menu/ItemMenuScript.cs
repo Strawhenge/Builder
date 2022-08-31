@@ -20,7 +20,7 @@ namespace Strawhenge.Builder.Unity
             gameObject.SetActive(false);
         }
 
-        public void Show(IEnumerable<string> categories, IEnumerable<string> items)
+        public void Show(IEnumerable<string> categories, IEnumerable<string> items, bool enableBack)
         {
             RemoveAll();
 
@@ -31,6 +31,7 @@ namespace Strawhenge.Builder.Unity
                 AddItem(item);
 
             gameObject.SetActive(true);
+            _backButton.gameObject.SetActive(enableBack);
         }
 
         public void Hide()

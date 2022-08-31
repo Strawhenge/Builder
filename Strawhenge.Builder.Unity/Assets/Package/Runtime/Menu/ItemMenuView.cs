@@ -6,12 +6,12 @@ namespace Strawhenge.Builder.Unity
     {
         ItemMenuScript _script;
 
-        public void Set(ItemMenuScript script) => _script = script;
+        public void Setup(ItemMenuScript script) => _script = script;
 
-        public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items)
+        public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
         {
             if (_script != null)
-                _script.Show(categories, items);
+                _script.Show(categories, items, enableBack);
         }
 
         public void Hide()
