@@ -1,31 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Strawhenge.Builder.Menu
 {
     public class BuilderMenu
     {
         readonly Stack<MenuCategory> _previousCategories = new Stack<MenuCategory>();
-        readonly IMenuItemsProvider _items;
         readonly IMenuView _view;
 
         MenuCategory _currentCategory;
 
-        public BuilderMenu(IMenuItemsProvider items, IMenuView view)
+        public BuilderMenu(IMenuView view)
         {
-            _items = items;
             _view = view;
         }
 
-        public void Show()
+        public void Show(MenuCategory mainCategory)
         {
             _view.SelectCategory += OnCategorySelected;
             _view.SelectItem += OnItemSelected;
             _view.SelectBack += OnBackSelected;
 
-            SetCurrentCategory(_items.GetMainCategory());
+            SetCurrentCategory(mainCategory);
         }
 
         public void Hide()

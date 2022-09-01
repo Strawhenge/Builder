@@ -1,5 +1,4 @@
-﻿using Moq;
-using Strawhenge.Builder.Menu;
+﻿using Strawhenge.Builder.Menu;
 using System;
 using System.Collections.Generic;
 
@@ -16,15 +15,7 @@ namespace Strawhenge.Builder.Tests.Menu
         const string Utility = "Utility";
         const string Chair = "Chair";
         const string Table = "Table";
-        const string Furniture = "Furniture";
-
-        IMenuItemsProvider CreateMenuItemsProvider()
-        {
-            var mock = new Mock<IMenuItemsProvider>();
-            mock.Setup(x => x.GetMainCategory()).Returns(CreateMainCategory());
-
-            return mock.Object;
-        }
+        const string Furniture = "Furniture";        
 
         MenuCategory CreateMainCategory()
         {

@@ -5,13 +5,15 @@ namespace Strawhenge.Builder.Tests.Menu
 {
     public partial class BuilderMenuTests
     {
+        readonly MenuCategory _mainCategory;
         readonly BuilderMenu _menu;
         readonly MenuViewFake _menuView;
 
         public BuilderMenuTests()
         {
+            _mainCategory = CreateMainCategory();
             _menuView = new MenuViewFake();
-            _menu = new BuilderMenu(CreateMenuItemsProvider(), _menuView);
+            _menu = new BuilderMenu(_menuView);
         }
 
         /*
@@ -31,7 +33,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void Show()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
 
             AssertMenuIsShowingMainCategory();
         }
@@ -39,7 +41,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void Hide()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menu.Hide();
 
             AssertMenuIsHidden();
@@ -48,7 +50,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectCategory()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
 
             AssertMenuIsShowingFurnitureCategory();
@@ -57,7 +59,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectCategoryThenAnotherCategory()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
             _menuView.InvokeSelectCategory(Utility);
 
@@ -67,7 +69,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectCategoryThenGoBack()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
             _menuView.InvokeSelectBack();
 
@@ -77,7 +79,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectCategoryThenAnotherCategoryThenGoBack()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
             _menuView.InvokeSelectCategory(Utility);
             _menuView.InvokeSelectBack();
@@ -88,7 +90,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectCategoryThenAnotherCategoryThenGoBackThenGoBackAgain()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
             _menuView.InvokeSelectCategory(Utility);
             _menuView.InvokeSelectBack();
@@ -100,7 +102,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectCategoryThenAnotherCategoryThenGoBackThenGoBackAgainThenSelectAnotherCategory()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
             _menuView.InvokeSelectCategory(Utility);
             _menuView.InvokeSelectBack();
@@ -113,7 +115,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectItem()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
             _menuView.InvokeSelectItem(Table);
 
@@ -124,7 +126,7 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void SelectCategoryThenAnotherCategoryThenGoBackThenSelectItem()
         {
-            _menu.Show();
+            _menu.Show(_mainCategory);
             _menuView.InvokeSelectCategory(Furniture);
             _menuView.InvokeSelectCategory(Utility);
             _menuView.InvokeSelectBack();
