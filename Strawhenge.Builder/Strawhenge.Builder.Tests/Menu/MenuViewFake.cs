@@ -1,10 +1,13 @@
 ﻿using Strawhenge.Builder.Menu;
+using System;
 using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Tests.Menu
 {
     class MenuViewFake : IMenuView
     {
+        public event Action<string> SelectCategory;
+
         public bool IsShowing { get; private set; }
 
         public IReadOnlyList<string> CurrentCategories { get; private set; }
@@ -12,6 +15,8 @@ namespace Strawhenge.Builder.Tests.Menu
         public IReadOnlyList<string> CurrentItems { get; private set; }
 
         public bool IsBackEnabled { get; private set; }
+
+        public void InvokeSelectCategory(string category) => SelectCategory?.Invoke(category);
 
         void IMenuView.Hide() => IsShowing = false;
 

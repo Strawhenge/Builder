@@ -29,6 +29,25 @@ namespace Strawhenge.Builder.Tests.Menu
             _menu.Hide();
 
             AssertMenuIsHidden();
-        }      
+        }
+
+        [Fact]
+        public void SelectCategory()
+        {
+            _menu.Show();
+            _menuView.InvokeSelectCategory(Furniture);
+
+            AssertMenuIsShowingFurnitureCategory();
+        }
+
+        [Fact]
+        public void SelectCategoryThenAnotherCategory()
+        {
+            _menu.Show();
+            _menuView.InvokeSelectCategory(Furniture);
+            _menuView.InvokeSelectCategory(Utility);
+
+            AssertMenuIsShowingUtilityCategory();
+        }
     }
 }
