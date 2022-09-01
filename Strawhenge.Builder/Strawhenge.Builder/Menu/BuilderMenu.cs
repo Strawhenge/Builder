@@ -17,20 +17,25 @@ namespace Strawhenge.Builder.Menu
         {
             _items = items;
             _view = view;
-
-            _view.SelectCategory += OnCategorySelected;
-            _view.SelectItem += OnItemSelected;
-            _view.SelectBack += OnBackSelected;
         }
 
         public void Show()
         {
+            _view.SelectCategory += OnCategorySelected;
+            _view.SelectItem += OnItemSelected;
+            _view.SelectBack += OnBackSelected;
+
             SetCurrentCategory(_items.GetMainCategory());
         }
 
         public void Hide()
         {
+            _view.SelectCategory -= OnCategorySelected;
+            _view.SelectItem -= OnItemSelected;
+            _view.SelectBack -= OnBackSelected;
+
             _view.Hide();
+
             _currentCategory = null;
             _previousCategories.Clear();
         }
