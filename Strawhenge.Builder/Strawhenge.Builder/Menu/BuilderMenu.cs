@@ -31,6 +31,8 @@ namespace Strawhenge.Builder.Menu
         public void Hide()
         {
             _view.Hide();
+            _currentCategory = null;
+            _previousCategories.Clear();
         }
 
         void SetCurrentCategory(MenuCategory category)
