@@ -7,7 +7,6 @@ public class MenuExample : MonoBehaviour
 {
     MenuView _menuView;
     BuilderMenu _menu;
-    bool _isShowing;
     MenuCategory _mainCategory;
 
     void Awake()
@@ -29,12 +28,10 @@ public class MenuExample : MonoBehaviour
         if (!Input.GetKeyUp(KeyCode.Escape))
             return;
 
-        if (_isShowing)
+        if (_menu.IsShowing)
             _menu.Hide();
         else
             _menu.Show(_mainCategory);
-
-        _isShowing = !_isShowing;
     }
 
     const string Wall = "Wall";

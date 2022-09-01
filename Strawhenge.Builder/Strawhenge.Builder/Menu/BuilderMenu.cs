@@ -15,20 +15,32 @@ namespace Strawhenge.Builder.Menu
             _view = view;
         }
 
+        public bool IsShowing { get; private set; }
+
         public void Show(MenuCategory mainCategory)
         {
+            if (IsShowing)
+                Hide();
+
             _view.SelectCategory += OnCategorySelected;
             _view.SelectItem += OnItemSelected;
             _view.SelectBack += OnBackSelected;
+
+            IsShowing = true;
 
             SetCurrentCategory(mainCategory);
         }
 
         public void Hide()
         {
+            if (!IsShowing)
+                return;
+
             _view.SelectCategory -= OnCategorySelected;
             _view.SelectItem -= OnItemSelected;
             _view.SelectBack -= OnBackSelected;
+
+            IsShowing = false;
 
             _view.Hide();
 
