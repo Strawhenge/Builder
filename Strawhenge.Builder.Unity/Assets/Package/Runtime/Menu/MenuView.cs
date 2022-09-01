@@ -21,9 +21,9 @@ namespace Strawhenge.Builder.Unity
         public void Setup(MenuScript script)
         {
             _script = script;
-            _script.SelectCategory = SelectCategory;
-            _script.SelectItem = SelectItem;
-            _script.SelectBack = SelectBack;
+            _script.SelectCategory = x => SelectCategory?.Invoke(x);
+            _script.SelectItem = x => SelectItem?.Invoke(x);
+            _script.SelectBack = () => SelectBack?.Invoke();
         }
 
         public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
