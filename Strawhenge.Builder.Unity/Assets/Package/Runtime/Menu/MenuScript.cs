@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class ItemMenuScript : MonoBehaviour
+    public class MenuScript : MonoBehaviour
     {
         [SerializeField] Button _exitButton;
         [SerializeField] Button _backButton;
@@ -19,6 +20,12 @@ namespace Strawhenge.Builder.Unity
             _backButton.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
+
+        public Action<string> SelectCategory { private get; set; }
+
+        public Action<string> SelectItem { private get; set; }
+
+        public Action SelectBack { private get; set; }
 
         public void Show(IEnumerable<string> categories, IEnumerable<string> items, bool enableBack)
         {
@@ -47,7 +54,6 @@ namespace Strawhenge.Builder.Unity
         {
             var button = Instantiate(buttonPrefab, parent: _buttonParent);
             button.GetComponentInChildren<Text>().text = buttonText;
-
             _currentButtons.Add(button.gameObject);
         }
 

@@ -7,18 +7,18 @@ public class MenuExample : MonoBehaviour
     [SerializeField] string[] _items;
     [SerializeField] bool _enableBack;
 
-    ItemMenuView _menuView;
+    MenuView _menuView;
     bool _isShowing;
 
     void Awake()
     {
-        _menuView = new ItemMenuView();
+        _menuView = new MenuView();
     }
 
     void Start()
     {
         _menuView.Setup(
-            FindObjectOfType<ItemMenuScript>(includeInactive: true));
+            FindObjectOfType<MenuScript>(includeInactive: true));
     }
 
     void Update()

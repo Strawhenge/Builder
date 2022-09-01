@@ -1,12 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using Strawhenge.Builder.Menu;
+using System;
+using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class ItemMenuView
+    public class MenuView : IMenuView
     {
-        ItemMenuScript _script;
+        MenuScript _script;
 
-        public void Setup(ItemMenuScript script) => _script = script;
+        public event Action<string> SelectCategory;
+        public event Action<string> SelectItem;
+        public event Action SelectBack;
+
+        public void Setup(MenuScript script) => _script = script;
 
         public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
         {
