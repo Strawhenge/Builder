@@ -14,6 +14,20 @@ namespace Strawhenge.Builder.Tests.Menu
             _menu = new BuilderMenu(CreateMenuItemsProvider(), _menuView);
         }
 
+        /*
+         EXPECTED MENU LAYOUT:
+          
+         * Main
+            * Furniture
+                * Utility
+                    * Workbench [item]
+                * Chair [item]
+                * Table [item]
+            * Structure
+                * Walls [item]
+                * Floor [item]
+         */
+
         [Fact]
         public void Show()
         {
