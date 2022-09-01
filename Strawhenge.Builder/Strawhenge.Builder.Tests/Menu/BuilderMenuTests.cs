@@ -135,5 +135,14 @@ namespace Strawhenge.Builder.Tests.Menu
             AssertMenuIsHidden();
             AssertItemSelected(Chair);
         }
+
+        [Fact]
+        public void SelectExit()
+        {
+            _menu.Show(_mainCategory);
+            _menuView.InvokeSelectExit();
+
+            AssertMenuIsHidden();
+        }
     }
 }

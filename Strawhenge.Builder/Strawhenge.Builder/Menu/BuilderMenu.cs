@@ -25,6 +25,7 @@ namespace Strawhenge.Builder.Menu
             _view.SelectCategory += OnCategorySelected;
             _view.SelectItem += OnItemSelected;
             _view.SelectBack += OnBackSelected;
+            _view.SelectExit += OnExitSelected;
 
             IsShowing = true;
 
@@ -39,6 +40,7 @@ namespace Strawhenge.Builder.Menu
             _view.SelectCategory -= OnCategorySelected;
             _view.SelectItem -= OnItemSelected;
             _view.SelectBack -= OnBackSelected;
+            _view.SelectExit -= OnExitSelected;
 
             IsShowing = false;
 
@@ -84,6 +86,11 @@ namespace Strawhenge.Builder.Menu
         {
             if (_previousCategories.Any())
                 SetCurrentCategory(_previousCategories.Pop());
+        }
+
+        void OnExitSelected()
+        {
+            Hide();
         }
     }
 }

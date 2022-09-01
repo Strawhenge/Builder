@@ -8,6 +8,7 @@ namespace Strawhenge.Builder.Menu
         event Action<string> SelectCategory;
         event Action<string> SelectItem;
         event Action SelectBack;
+        event Action SelectExit;
 
         void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack);
 
