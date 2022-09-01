@@ -1,11 +1,14 @@
 ﻿using Moq;
 using Strawhenge.Builder.Menu;
 using System;
+using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Tests.Menu
 {
     public partial class BuilderMenuTests
     {
+        readonly List<string> _selectedItems = new List<string>();
+
         const string Wall = "Wall";
         const string Floor = "Floor";
         const string Structure = "Structure";
@@ -43,6 +46,6 @@ namespace Strawhenge.Builder.Tests.Menu
         }
 
         MenuItem CreateMenuItem(string name) =>
-            new MenuItem(name, () => { });
+            new MenuItem(name, () => _selectedItems.Add(name));
     }
 }

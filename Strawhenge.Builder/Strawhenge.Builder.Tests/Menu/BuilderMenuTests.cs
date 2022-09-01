@@ -109,5 +109,17 @@ namespace Strawhenge.Builder.Tests.Menu
 
             AssertMenuIsShowingStructureCategory();
         }
+
+        [Fact]
+        public void SelectItem()
+        {
+            _menu.Show();
+            _menuView.InvokeSelectCategory(Furniture);
+            _menuView.InvokeSelectItem(Table);
+
+            Assert.Equal(Table, Assert.Single(_selectedItems));
+
+            AssertMenuIsHidden();
+        }
     }
 }
