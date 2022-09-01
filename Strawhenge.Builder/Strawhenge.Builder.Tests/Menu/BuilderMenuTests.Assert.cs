@@ -57,5 +57,8 @@ namespace Strawhenge.Builder.Tests.Menu
         void AssertNoCategories() => Assert.Empty(_menuView.CurrentCategories);
 
         void AssertNoItems() => Assert.Empty(_menuView.CurrentItems);
+
+        void AssertItemSelected(string item) => 
+            Assert.Equal(item, Assert.Single(_selectedItems));
     }
 }
