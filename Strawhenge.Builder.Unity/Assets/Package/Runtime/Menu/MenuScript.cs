@@ -20,6 +20,9 @@ namespace Strawhenge.Builder.Unity
         {
             _backButton.gameObject.SetActive(false);
             _backButton.onClick.AddListener(() => SelectBack?.Invoke());
+
+            _exitButton.onClick.AddListener(() => SelectExit?.Invoke());
+
             gameObject.SetActive(false);
         }
 
@@ -28,6 +31,8 @@ namespace Strawhenge.Builder.Unity
         public Action<string> SelectItem { private get; set; }
 
         public Action SelectBack { private get; set; }
+        
+        public Action SelectExit { private get; set; }
 
         public void Show(IEnumerable<string> categories, IEnumerable<string> items, bool enableBack)
         {

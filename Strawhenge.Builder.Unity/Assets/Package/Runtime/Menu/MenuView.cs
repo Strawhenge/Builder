@@ -17,6 +17,7 @@ namespace Strawhenge.Builder.Unity
         public event Action<string> SelectCategory;
         public event Action<string> SelectItem;
         public event Action SelectBack;
+        public event Action SelectExit;
 
         public void Setup(MenuScript script)
         {
@@ -24,6 +25,7 @@ namespace Strawhenge.Builder.Unity
             _script.SelectCategory = x => SelectCategory?.Invoke(x);
             _script.SelectItem = x => SelectItem?.Invoke(x);
             _script.SelectBack = () => SelectBack?.Invoke();
+            _script.SelectExit = () => SelectExit?.Invoke();
         }
 
         public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
