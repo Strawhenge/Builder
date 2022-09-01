@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -6,6 +7,7 @@ namespace Strawhenge.Builder.Menu
 {
     public class BuilderMenu
     {
+        readonly Stack<MenuCategory> _previousCategories = new Stack<MenuCategory>();
         readonly IMenuItemsProvider _items;
         readonly IMenuView _view;
 
@@ -17,11 +19,12 @@ namespace Strawhenge.Builder.Menu
             _view = view;
 
             _view.SelectCategory += OnCategorySelected;
+            _view.SelectBack += OnBackSelected;
         }
 
         public void Show()
         {
-            SetCurrentCategory(_items.GetMainCategory(), enableBack: false);
+            SetCurrentCategory(_items.GetMainCategory());
         }
 
         public void Hide()
@@ -29,22 +32,31 @@ namespace Strawhenge.Builder.Menu
             _view.Hide();
         }
 
-        void SetCurrentCategory(MenuCategory category, bool enableBack = true)
+        void SetCurrentCategory(MenuCategory category)
         {
             _currentCategory = category;
 
             _view.Show(
                 categories: _currentCategory.Subcategories.Select(x => x.Name).ToArray(),
                 items: _currentCategory.Items.Select(x => x.Name).ToArray(),
-                enableBack);
+                enableBack: _previousCategories.Any());
         }
 
         void OnCategorySelected(string categoryName)
         {
+            if (_currentCategory != null)
+                _previousCategories.Push(_currentCategory);
+
             var category = _currentCategory.Subcategories.FirstOrDefault(x => x.Name == categoryName);
 
             if (category != null)
                 SetCurrentCategory(category);
+        }
+
+        void OnBackSelected()
+        {
+            if (_previousCategories.Any())
+                SetCurrentCategory(_previousCategories.Pop());
         }
     }
 }

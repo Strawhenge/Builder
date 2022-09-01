@@ -30,6 +30,14 @@ namespace Strawhenge.Builder.Tests.Menu
             Assert.True(_menuView.IsBackEnabled);
         }
 
+        void AssertMenuIsShowingStructureCategory()
+        {
+            Assert.True(_menuView.IsShowing);
+            AssertNoCategories();
+            AssertItems(Wall, Floor);
+            Assert.True(_menuView.IsBackEnabled);
+        }
+
         void AssertCategories(params string[] categories)
         {
             Assert.Equal(categories.Length, _menuView.CurrentCategories.Count);

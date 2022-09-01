@@ -7,6 +7,7 @@ namespace Strawhenge.Builder.Tests.Menu
     class MenuViewFake : IMenuView
     {
         public event Action<string> SelectCategory;
+        public event Action SelectBack;
 
         public bool IsShowing { get; private set; }
 
@@ -17,6 +18,8 @@ namespace Strawhenge.Builder.Tests.Menu
         public bool IsBackEnabled { get; private set; }
 
         public void InvokeSelectCategory(string category) => SelectCategory?.Invoke(category);
+
+        public void InvokeSelectBack() => SelectBack?.Invoke();
 
         void IMenuView.Hide() => IsShowing = false;
 

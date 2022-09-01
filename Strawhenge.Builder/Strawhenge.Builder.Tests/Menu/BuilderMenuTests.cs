@@ -49,5 +49,51 @@ namespace Strawhenge.Builder.Tests.Menu
 
             AssertMenuIsShowingUtilityCategory();
         }
+
+        [Fact]
+        public void SelectCategoryThenGoBack()
+        {
+            _menu.Show();
+            _menuView.InvokeSelectCategory(Furniture);
+            _menuView.InvokeSelectBack();
+
+            AssertMenuIsShowingMainCategory();
+        }
+
+        [Fact]
+        public void SelectCategoryThenAnotherCategoryThenGoBack()
+        {
+            _menu.Show();
+            _menuView.InvokeSelectCategory(Furniture);
+            _menuView.InvokeSelectCategory(Utility);
+            _menuView.InvokeSelectBack();
+
+            AssertMenuIsShowingFurnitureCategory();
+        }
+
+        [Fact]
+        public void SelectCategoryThenAnotherCategoryThenGoBackThenGoBackAgain()
+        {
+            _menu.Show();
+            _menuView.InvokeSelectCategory(Furniture);
+            _menuView.InvokeSelectCategory(Utility);
+            _menuView.InvokeSelectBack();
+            _menuView.InvokeSelectBack();
+
+            AssertMenuIsShowingMainCategory();
+        }
+
+        [Fact]
+        public void SelectCategoryThenAnotherCategoryThenGoBackThenGoBackAgainThenSelectAnotherCategory()
+        {
+            _menu.Show();
+            _menuView.InvokeSelectCategory(Furniture);
+            _menuView.InvokeSelectCategory(Utility);
+            _menuView.InvokeSelectBack();
+            _menuView.InvokeSelectBack();
+            _menuView.InvokeSelectCategory(Structure);
+
+            AssertMenuIsShowingStructureCategory();
+        }
     }
 }
