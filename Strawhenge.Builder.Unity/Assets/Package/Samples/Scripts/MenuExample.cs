@@ -12,7 +12,7 @@ public class MenuExample : MonoBehaviour
 
     void Awake()
     {
-        _menuView = new MenuView();
+        _menuView = new MenuView(new UnityLogger(gameObject));
     }
 
     void Start()

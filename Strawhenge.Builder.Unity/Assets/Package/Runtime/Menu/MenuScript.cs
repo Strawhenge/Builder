@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity
@@ -18,6 +19,7 @@ namespace Strawhenge.Builder.Unity
         void Awake()
         {
             _backButton.gameObject.SetActive(false);
+            _backButton.onClick.AddListener(() => SelectBack?.Invoke());
             gameObject.SetActive(false);
         }
 
@@ -46,14 +48,17 @@ namespace Strawhenge.Builder.Unity
             gameObject.SetActive(false);
         }
 
-        void AddItem(string itemName) => Add(itemName, _itemButtonPrefab);
+        void AddItem(string itemName) =>
+            Add(itemName, _itemButtonPrefab, () => SelectItem?.Invoke(itemName));
 
-        void AddCategory(string categoryName) => Add(categoryName, _categoryButtonPrefab);
+        void AddCategory(string categoryName) =>
+            Add(categoryName, _categoryButtonPrefab, () => SelectCategory?.Invoke(categoryName));
 
-        void Add(string buttonText, Button buttonPrefab)
+        void Add(string buttonText, Button buttonPrefab, UnityAction onClick)
         {
             var button = Instantiate(buttonPrefab, parent: _buttonParent);
             button.GetComponentInChildren<Text>().text = buttonText;
+            button.onClick.AddListener(onClick);
             _currentButtons.Add(button.gameObject);
         }
 
