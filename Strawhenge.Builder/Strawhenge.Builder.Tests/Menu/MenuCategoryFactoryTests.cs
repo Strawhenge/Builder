@@ -48,6 +48,29 @@ namespace Strawhenge.Builder.Tests.Menu
             AssertMenuItemsAreListed(items, structures);
         }
 
+        [Fact]
+        public void ItemsShouldBeListedInCategories()
+        {
+            var structureItems = SampleBuildItem.GetItemsInStructureCategory();
+            var furnitureItems = SampleBuildItem.GetItemsInFurnitureCategory();
+
+            var items = structureItems.Concat(furnitureItems);
+            var category = _sut.Create(items);
+
+            Assert.NotNull(category);
+            Assert.Empty(category.Items);
+
+            Assert.Equal(2, category.Subcategories.Count);
+
+            var structures = category.Subcategories[0];
+            Assert.Equal(SampleBuildItem.STRUCTURE, structures.Name);
+            AssertMenuItemsAreListed(structureItems, structures);
+
+            var furniture = category.Subcategories[1];
+            Assert.Equal(SampleBuildItem.FURNITURE, furniture.Name);
+            AssertMenuItemsAreListed(furnitureItems, furniture);
+        }
+
         void AssertMenuItemsAreListed(SampleBuildItem[] items, MenuCategory category)
         {
             Assert.Equal(items.Length, category.Items.Count);
@@ -60,12 +83,17 @@ namespace Strawhenge.Builder.Tests.Menu
     class SampleBuildItem : ICategorizable
     {
         public const string STRUCTURE = "Structure";
+        public const string FURNITURE = "Furniture";
 
         public static SampleBuildItem Wall { get; } = new SampleBuildItem { Name = nameof(Wall) };
 
         public static SampleBuildItem Floor { get; } = new SampleBuildItem { Name = nameof(Floor) };
 
         public static SampleBuildItem Roof { get; } = new SampleBuildItem { Name = nameof(Roof) };
+
+        public static SampleBuildItem Chair { get; } = new SampleBuildItem { Name = nameof(Chair) };
+
+        public static SampleBuildItem Table { get; } = new SampleBuildItem { Name = nameof(Table) };
 
         public string Name { get; set; }
 
@@ -83,7 +111,9 @@ namespace Strawhenge.Builder.Tests.Menu
             {
                 Wall,
                 Floor,
-                Roof
+                Roof,
+                Chair,
+                Table
             };
         }
 
@@ -94,6 +124,15 @@ namespace Strawhenge.Builder.Tests.Menu
                 Wall.InCategory(STRUCTURE),
                 Floor.InCategory(STRUCTURE),
                 Roof.InCategory(STRUCTURE)
+            };
+        }
+
+        public static SampleBuildItem[] GetItemsInFurnitureCategory()
+        {
+            return new SampleBuildItem[]
+            {
+                Chair.InCategory(FURNITURE),
+                Table.InCategory(FURNITURE)
             };
         }
     }
