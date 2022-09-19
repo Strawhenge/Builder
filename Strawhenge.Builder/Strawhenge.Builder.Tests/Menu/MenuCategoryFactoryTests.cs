@@ -28,13 +28,9 @@ namespace Strawhenge.Builder.Tests.Menu
             var category = _sut.Create(items);
 
             Assert.NotNull(category);
-
-            Assert.Equal(items.Length, category.Items.Count);
-
-            for (int i = 0; i < items.Length; i++)
-                Assert.Equal(items[i].Name, category.Items[i].Name);
-
             Assert.Empty(category.Subcategories);
+
+            AssertMenuItemsAreListed(items, category);
         }
 
         [Fact]
@@ -49,10 +45,15 @@ namespace Strawhenge.Builder.Tests.Menu
             var structures = Assert.Single(category.Subcategories);
             Assert.Equal(SampleBuildItem.STRUCTURE, structures.Name);
 
-            Assert.Equal(items.Length, structures.Items.Count);
+            AssertMenuItemsAreListed(items, structures);
+        }
+
+        void AssertMenuItemsAreListed(SampleBuildItem[] items, MenuCategory category)
+        {
+            Assert.Equal(items.Length, category.Items.Count);
 
             for (int i = 0; i < items.Length; i++)
-                Assert.Equal(items[i].Name, structures.Items[i].Name);
+                Assert.Equal(items[i].Name, category.Items[i].Name);
         }
     }
 
