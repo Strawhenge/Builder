@@ -1,5 +1,6 @@
 ﻿using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity.Data;
+using Strawhenge.Builder.Unity.Monobehaviours;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.ScriptableObjects
@@ -7,7 +8,7 @@ namespace Strawhenge.Builder.Unity.ScriptableObjects
     [CreateAssetMenu(menuName = "Strawhenge/Builder/Blueprint")]
     public class BlueprintScriptableObject : ScriptableObject, ICategorizable
     {
-        public BuildItemScriptableObject BuildItem;
+        public BuildItemScript BuildItem;
         public SerializableComponentQuantity[] Recipe;
 
         [SerializeField, Tooltip("Optional")]

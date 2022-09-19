@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7121e2565af24ed408832b58d5d4055b, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
-  BuildItem: {fileID: 11400000, guid: 26c40214d908bec459f591bce8468ed0, type: 2}
+  BuildItem: {fileID: 1868320131971839266, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
   Recipe: []
   _category: {fileID: 11400000, guid: 16024496e232de1489f26e225c02b9cf, type: 2}

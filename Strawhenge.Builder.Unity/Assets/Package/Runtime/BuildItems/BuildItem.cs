@@ -1,42 +1,42 @@
 ﻿using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class BuildItem : IBuildItem
     {
-        private readonly BuildItemScriptableObject prefabs;
+        readonly BuildItemScript _prefab;
 
-        private BuildItemScript currentPreview;
+        BuildItemScript _currentPreview;
 
-        public BuildItem(BuildItemScriptableObject prefabs)
+        public BuildItem(BuildItemScript prefab)
         {
-            this.prefabs = prefabs;
+            _prefab = prefab;
         }
 
         public IBuildItemPreview SpawnPreviewItem(Vector3 position, Quaternion rotation)
         {
-            if (currentPreview != null)
+            if (_currentPreview != null)
             {
-                return currentPreview.BuildItemPreview;
+                return _currentPreview.BuildItemPreview;
             }
 
-            currentPreview = Object.Instantiate(prefabs.PreviewItem, position, rotation);
+            _currentPreview = Object.Instantiate(_prefab, position, rotation);
 
-            return currentPreview.BuildItemPreview;
+            return _currentPreview.BuildItemPreview;
         }
 
         public void DespawnPreviewItem()
         {
-            if (currentPreview == null) return;
+            if (_currentPreview == null)
+                return;
 
-            Object.Destroy(currentPreview.gameObject);
+            Object.Destroy(_currentPreview.gameObject);
         }
 
         public void SpawnFinalItem(Vector3 position, Quaternion rotation)
         {
-            Object.Instantiate(prefabs.FinalItem, position, rotation);
+            Object.Instantiate(_prefab, position, rotation);
         }
     }
 }
