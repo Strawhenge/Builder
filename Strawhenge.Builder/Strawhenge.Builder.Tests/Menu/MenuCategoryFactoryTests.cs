@@ -11,35 +11,35 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void CreateEmptyCategory()
         {
-            var category = _sut.Create(Enumerable.Empty<SampleBuildItem>());
+            var mainCategory = _sut.Create(Enumerable.Empty<SampleBuildItem>());
 
-            Assert.NotNull(category);
-            Assert.Empty(category.Items);
-            Assert.Empty(category.Subcategories);
+            Assert.NotNull(mainCategory);
+            Assert.Empty(mainCategory.Items);
+            Assert.Empty(mainCategory.Subcategories);
         }
 
         [Fact]
         public void ItemsShouldBeListed()
         {
             var items = SampleBuildItem.GetItemsWithoutCategories();
-            var category = _sut.Create(items);
+            var mainCategory = _sut.Create(items);
 
-            Assert.NotNull(category);
-            Assert.Empty(category.Subcategories);
+            Assert.NotNull(mainCategory);
+            Assert.Empty(mainCategory.Subcategories);
 
-            VerifyCategory(items, category, string.Empty);
+            VerifyCategory(items, mainCategory, string.Empty);
         }
 
         [Fact]
         public void ItemsShouldBeListedInCategory()
         {
             var items = SampleBuildItem.GetItemsInStructureCategory();
-            var category = _sut.Create(items);
+            var mainCategory = _sut.Create(items);
 
-            Assert.NotNull(category);
-            Assert.Empty(category.Items);
+            Assert.NotNull(mainCategory);
+            Assert.Empty(mainCategory.Items);
 
-            var structures = Assert.Single(category.Subcategories);
+            var structures = Assert.Single(mainCategory.Subcategories);
             VerifyCategory(items, structures, SampleBuildItem.STRUCTURE);
         }
 
@@ -50,17 +50,17 @@ namespace Strawhenge.Builder.Tests.Menu
             var furnitureItems = SampleBuildItem.GetItemsInFurnitureCategory();
 
             var items = structureItems.Concat(furnitureItems);
-            var category = _sut.Create(items);
+            var mainCategory = _sut.Create(items);
 
-            Assert.NotNull(category);
-            Assert.Empty(category.Items);
+            Assert.NotNull(mainCategory);
+            Assert.Empty(mainCategory.Items);
 
-            Assert.Equal(2, category.Subcategories.Count);
+            Assert.Equal(2, mainCategory.Subcategories.Count);
 
-            var structures = category.Subcategories[0];
+            var structures = mainCategory.Subcategories[0];
             VerifyCategory(structureItems, structures, SampleBuildItem.STRUCTURE);
 
-            var furniture = category.Subcategories[1];
+            var furniture = mainCategory.Subcategories[1];
             VerifyCategory(furnitureItems, furniture, SampleBuildItem.FURNITURE);
         }
 
@@ -68,18 +68,49 @@ namespace Strawhenge.Builder.Tests.Menu
         public void ItemsShouldBeListedInSubCategories()
         {
             var items = SampleBuildItem.GetItemsInDecorativeFurnitureCategory();
-            var category = _sut.Create(items);
+            var mainCategory = _sut.Create(items);
 
-            Assert.NotNull(category);
-            Assert.Empty(category.Items);
+            Assert.NotNull(mainCategory);
+            Assert.Empty(mainCategory.Items);
 
-            var furniture = Assert.Single(category.Subcategories);
+            var furniture = Assert.Single(mainCategory.Subcategories);
             Assert.Equal(SampleBuildItem.FURNITURE, furniture.Name);
             Assert.Empty(furniture.Items);
 
             var decorativeFurniture = Assert.Single(furniture.Subcategories);
             Assert.Empty(decorativeFurniture.Subcategories);
             VerifyCategory(items, decorativeFurniture, SampleBuildItem.DECORATIVE_FURNITURE);
+        }
+
+        [Fact]
+        public void ItemsShouldBeListedWithItemInCategoriesAndWithSubCategories()
+        {
+            var uncategorizedItems = SampleBuildItem.GetItemsWithoutCategories();
+            var structureItems = SampleBuildItem.GetItemsInStructureCategory();
+            var furnitureItems = SampleBuildItem.GetItemsInFurnitureCategory();
+            var decorativeFurnitureItems = SampleBuildItem.GetItemsInDecorativeFurnitureCategory();
+
+            var items = uncategorizedItems
+                .Concat(structureItems)
+                .Concat(furnitureItems)
+                .Concat(decorativeFurnitureItems)
+                .ToArray();
+
+            var mainCategory = _sut.Create(items);
+
+            Assert.NotNull(mainCategory);
+            Assert.Equal(2, mainCategory.Subcategories.Count);
+            VerifyCategory(uncategorizedItems, mainCategory, string.Empty);
+
+            var structures = mainCategory.Subcategories[0];
+            VerifyCategory(structureItems, structures, SampleBuildItem.STRUCTURE);
+
+            var furniture = mainCategory.Subcategories[1];
+            VerifyCategory(furnitureItems, furniture, SampleBuildItem.FURNITURE);
+
+            var decorativeFurniture = Assert.Single(furniture.Subcategories);
+            Assert.Empty(decorativeFurniture.Subcategories);
+            VerifyCategory(decorativeFurnitureItems, decorativeFurniture, SampleBuildItem.DECORATIVE_FURNITURE);
         }
 
         void VerifyCategory(SampleBuildItem[] items, MenuCategory category, string expectedName)
