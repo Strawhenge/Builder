@@ -1,8 +1,5 @@
 ﻿using Strawhenge.Builder.Menu;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace Strawhenge.Builder.Tests.Menu
@@ -30,7 +27,7 @@ namespace Strawhenge.Builder.Tests.Menu
             Assert.NotNull(category);
             Assert.Empty(category.Subcategories);
 
-            AssertMenuItemsAreListed(items, category);
+            VerifyCategory(items, category, string.Empty);
         }
 
         [Fact]
@@ -43,9 +40,7 @@ namespace Strawhenge.Builder.Tests.Menu
             Assert.Empty(category.Items);
 
             var structures = Assert.Single(category.Subcategories);
-            Assert.Equal(SampleBuildItem.STRUCTURE, structures.Name);
-
-            AssertMenuItemsAreListed(items, structures);
+            VerifyCategory(items, structures, SampleBuildItem.STRUCTURE);
         }
 
         [Fact]
@@ -63,16 +58,15 @@ namespace Strawhenge.Builder.Tests.Menu
             Assert.Equal(2, category.Subcategories.Count);
 
             var structures = category.Subcategories[0];
-            Assert.Equal(SampleBuildItem.STRUCTURE, structures.Name);
-            AssertMenuItemsAreListed(structureItems, structures);
+            VerifyCategory(structureItems, structures, SampleBuildItem.STRUCTURE);
 
             var furniture = category.Subcategories[1];
-            Assert.Equal(SampleBuildItem.FURNITURE, furniture.Name);
-            AssertMenuItemsAreListed(furnitureItems, furniture);
+            VerifyCategory(furnitureItems, furniture, SampleBuildItem.FURNITURE);
         }
 
-        void AssertMenuItemsAreListed(SampleBuildItem[] items, MenuCategory category)
+        void VerifyCategory(SampleBuildItem[] items, MenuCategory category, string expectedName)
         {
+            Assert.Equal(expectedName, category.Name);
             Assert.Equal(items.Length, category.Items.Count);
 
             for (int i = 0; i < items.Length; i++)
@@ -95,6 +89,10 @@ namespace Strawhenge.Builder.Tests.Menu
 
         public static SampleBuildItem Table { get; } = new SampleBuildItem { Name = nameof(Table) };
 
+        public static SampleBuildItem Box { get; } = new SampleBuildItem { Name = nameof(Box) };
+
+        public static SampleBuildItem Barrel { get; } = new SampleBuildItem { Name = nameof(Barrel) };
+
         public string Name { get; set; }
 
         public Maybe<Category> Category { get; set; } = Maybe.None<Category>();
@@ -109,11 +107,8 @@ namespace Strawhenge.Builder.Tests.Menu
         {
             return new SampleBuildItem[]
             {
-                Wall,
-                Floor,
-                Roof,
-                Chair,
-                Table
+                Box,
+                Barrel
             };
         }
 
