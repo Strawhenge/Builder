@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Strawhenge.Builder.Menu
 {
@@ -9,63 +8,85 @@ namespace Strawhenge.Builder.Menu
     {
         public MainCategory CreateMainCategory(IEnumerable<T> items, Action<T> onSelect)
         {
-            List<MenuItem> menuItems = new List<MenuItem>();
-            Dictionary<string, List<MenuItem>> menuItemsByCategory = new Dictionary<string, List<MenuItem>>();
-            Dictionary<string, List<string>> subCategories = new Dictionary<string, List<string>>();
-            List<string> parentCategories = new List<string>();
+            MainCategoryBuilder builder = new MainCategoryBuilder();
 
             foreach (var item in items)
             {
+                var menuItem = new MenuItem(item.Name, () => onSelect(item));
+
                 if (item.Category.HasSome(out var category))
                 {
-                    if (!menuItemsByCategory.ContainsKey(category.Name))
-                        menuItemsByCategory.Add(category.Name, new List<MenuItem>());
-
-                    menuItemsByCategory[category.Name].Add(new MenuItem(item.Name, () => onSelect(item)));
-
-                    AddCategory(category, parentCategories, subCategories);
+                    builder.AddCategorized(category, menuItem);
                 }
                 else
                 {
-                    menuItems.Add(new MenuItem(item.Name, () => onSelect(item)));
+                    builder.AddUncategorized(menuItem);
                 }
             }
 
+            return builder.Build();
+        }
+    }
+
+    class MainCategoryBuilder
+    {
+        readonly List<MenuItem> _uncategorizedMenuItems = new List<MenuItem>();
+        readonly List<string> _topLevelCategories = new List<string>();
+        readonly Dictionary<string, List<MenuItem>> _menuItemsByCategory = new Dictionary<string, List<MenuItem>>();
+        readonly Dictionary<string, List<string>> _categoriesByParent = new Dictionary<string, List<string>>();
+
+        public MainCategory Build()
+        {
             List<MenuCategory> categories = new List<MenuCategory>();
 
-            foreach (var parentCategory in parentCategories)
+            foreach (var parentCategory in _topLevelCategories)
             {
-                categories.Add(CreateCategory(parentCategory, menuItemsByCategory, subCategories));
+                categories.Add(CreateCategory(parentCategory));
             }
 
-            return new MainCategory(categories, menuItems);
+            return new MainCategory(categories, _uncategorizedMenuItems);
         }
 
-        MenuCategory CreateCategory(string categoryName, Dictionary<string, List<MenuItem>> menuItemsByCategory, Dictionary<string, List<string>> subCategoriesByCategory)
+        public void AddUncategorized(MenuItem menuItem)
         {
-            var subCategories = subCategoriesByCategory.ContainsKey(categoryName)
-                ? subCategoriesByCategory[categoryName].Select(x => CreateCategory(x, menuItemsByCategory, subCategoriesByCategory)).ToArray()
+            _uncategorizedMenuItems.Add(menuItem);
+        }
+
+        public void AddCategorized(Category category, MenuItem menuItem)
+        {
+            if (!_menuItemsByCategory.ContainsKey(category.Name))
+                _menuItemsByCategory.Add(category.Name, new List<MenuItem>());
+
+            _menuItemsByCategory[category.Name].Add(menuItem);
+
+            AddCategory(category);
+        }
+
+        MenuCategory CreateCategory(string categoryName)
+        {
+            var subCategories = _categoriesByParent.ContainsKey(categoryName)
+                ? _categoriesByParent[categoryName].Select(x => CreateCategory(x)).ToArray()
                 : Array.Empty<MenuCategory>();
 
-            return new MenuCategory(categoryName, subCategories, menuItemsByCategory.ContainsKey(categoryName) ? menuItemsByCategory[categoryName].ToArray() : Array.Empty<MenuItem>());
+            return new MenuCategory(categoryName, subCategories, _menuItemsByCategory.ContainsKey(categoryName) ? _menuItemsByCategory[categoryName].ToArray() : Array.Empty<MenuItem>());
         }
 
-        void AddCategory(Category category, List<string> parentCategories, Dictionary<string, List<string>> subCategories)
+        void AddCategory(Category category)
         {
             if (!category.Parent.HasSome(out var parent))
             {
-                if (!parentCategories.Contains(category.Name))
-                    parentCategories.Add(category.Name);
+                if (!_topLevelCategories.Contains(category.Name))
+                    _topLevelCategories.Add(category.Name);
                 return;
             }
 
-            if (!subCategories.ContainsKey(parent.Name))
-                subCategories.Add(parent.Name, new List<string>());
+            if (!_categoriesByParent.ContainsKey(parent.Name))
+                _categoriesByParent.Add(parent.Name, new List<string>());
 
-            if (!subCategories[parent.Name].Contains(category.Name))
-                subCategories[parent.Name].Add(category.Name);
+            if (!_categoriesByParent[parent.Name].Contains(category.Name))
+                _categoriesByParent[parent.Name].Add(category.Name);
 
-            AddCategory(parent, parentCategories, subCategories);
+            AddCategory(parent);
         }
     }
 }
