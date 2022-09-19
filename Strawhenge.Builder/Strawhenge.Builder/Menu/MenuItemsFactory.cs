@@ -7,7 +7,7 @@ namespace Strawhenge.Builder.Menu
     {
         public MainCategory CreateMainCategory(IEnumerable<T> items, Action<T> onSelect)
         {
-            MainCategoryBuilder builder = new MainCategoryBuilder();
+            var builder = new MainCategoryBuilder();
 
             foreach (var item in items)
             {

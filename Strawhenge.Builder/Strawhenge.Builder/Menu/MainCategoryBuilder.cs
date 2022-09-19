@@ -13,12 +13,9 @@ namespace Strawhenge.Builder.Menu
 
         public MainCategory Build()
         {
-            List<MenuCategory> categories = new List<MenuCategory>();
-
-            foreach (var parentCategory in _topLevelCategories)
-            {
-                categories.Add(CreateCategory(parentCategory));
-            }
+            var categories = _topLevelCategories
+                .Select(CreateCategory)
+                .ToArray();
 
             return new MainCategory(categories, _uncategorizedMenuItems);
         }
