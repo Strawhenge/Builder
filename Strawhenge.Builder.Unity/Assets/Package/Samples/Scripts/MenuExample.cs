@@ -28,10 +28,9 @@ public class MenuExample : MonoBehaviour
         var logger = new UnityLogger(gameObject);
         var inventory = new ComponentInventory(logger);
         var buildItemController = new BuildItemController();
-        var recipeFactory = new RecipeFactory();
-        var spawner = new Spawner();
+        var recipeFactory = new RecipeFactory();     
 
-        _blueprintFactory = new BlueprintFactory(recipeFactory, spawner, logger);
+        _blueprintFactory = new BlueprintFactory(recipeFactory, logger);
         _blueprintManager = new BlueprintManager(inventory, buildItemController, new NullRecipeUI())
         {
             DefaultPosition = transform.position

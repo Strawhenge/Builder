@@ -7,16 +7,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
     public class BuildItem : IBuildItem
     {
         private readonly BuildItemScriptableObject prefabs;
-        private readonly ISpawner spawner;
 
         private BuildItemScript currentPreview;
 
-        public BuildItem(
-            BuildItemScriptableObject prefabs,
-            ISpawner spawner)
+        public BuildItem(BuildItemScriptableObject prefabs)
         {
             this.prefabs = prefabs;
-            this.spawner = spawner;
         }
 
         public IBuildItemPreview SpawnPreviewItem(Vector3 position, Quaternion rotation)
@@ -26,8 +22,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 return currentPreview.BuildItemPreview;
             }
 
-            currentPreview = spawner
-                .Spawn(prefabs.PreviewItem, position, rotation);
+            currentPreview = Object.Instantiate(prefabs.PreviewItem, position, rotation);
 
             return currentPreview.BuildItemPreview;
         }
@@ -36,13 +31,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             if (currentPreview == null) return;
 
-            spawner.Despawn(currentPreview.gameObject);
+            Object.Destroy(currentPreview.gameObject);
         }
 
         public void SpawnFinalItem(Vector3 position, Quaternion rotation)
         {
-            spawner
-                .Spawn(prefabs.FinalItem, position, rotation);
+            Object.Instantiate(prefabs.FinalItem, position, rotation);
         }
     }
 }

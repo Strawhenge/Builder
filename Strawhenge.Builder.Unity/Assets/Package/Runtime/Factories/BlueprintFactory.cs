@@ -7,16 +7,13 @@ namespace Strawhenge.Builder.Unity.Factories
     public class BlueprintFactory
     {
         private readonly RecipeFactory recipeFactory;
-        private readonly ISpawner spawner;
         private readonly ILogger logger;
 
         public BlueprintFactory(
             RecipeFactory recipeFactory,
-            ISpawner spawner,
             ILogger logger)
         {
             this.recipeFactory = recipeFactory;
-            this.spawner = spawner;
             this.logger = logger;
         }
 
@@ -36,7 +33,7 @@ namespace Strawhenge.Builder.Unity.Factories
                 return new NullBuildItem();
             }
 
-            return new BuildItem(scriptableObject.BuildItem, spawner);
+            return new BuildItem(scriptableObject.BuildItem);
         }
 
         private Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
