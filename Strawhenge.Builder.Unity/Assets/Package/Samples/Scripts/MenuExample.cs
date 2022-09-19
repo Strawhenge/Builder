@@ -7,7 +7,7 @@ public class MenuExample : MonoBehaviour
 {
     MenuView _menuView;
     BuilderMenu _menu;
-    MenuCategory _mainCategory;
+    MainCategory _mainCategory;
 
     void Awake()
     {
@@ -43,7 +43,7 @@ public class MenuExample : MonoBehaviour
     const string Table = "Table";
     const string Furniture = "Furniture";
 
-    MenuCategory CreateMainCategory()
+    MainCategory CreateMainCategory()
     {
         var wall = CreateMenuItem(Wall);
         var floor = CreateMenuItem(Floor);
@@ -59,7 +59,7 @@ public class MenuExample : MonoBehaviour
 
         var furniture = new MenuCategory(Furniture, new MenuCategory[] { utility }, new MenuItem[] { chair, table });
 
-        return new MenuCategory(string.Empty, new MenuCategory[] { structure, furniture }, Array.Empty<MenuItem>());
+        return new MainCategory(new MenuCategory[] { structure, furniture }, Array.Empty<MenuItem>());
     }
 
     MenuItem CreateMenuItem(string name) =>
