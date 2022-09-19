@@ -507,6 +507,10 @@ MonoBehaviour:
   _blueprints:
   - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
   - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
+  - {fileID: 11400000, guid: 5c8051852dc5aeb42906dbf546564f9e, type: 2}
+  - {fileID: 11400000, guid: 4dd91844b3ef58f40a79b41691f4685a, type: 2}
+  - {fileID: 11400000, guid: 77f65c1590c79b8498b2c1bd9a6ba58e, type: 2}
+  - {fileID: 11400000, guid: 1968798576057f249807222f8c74b4ed, type: 2}
 --- !u!1001 &3111595907733491642
 PrefabInstance:
   m_ObjectHideFlags: 0
