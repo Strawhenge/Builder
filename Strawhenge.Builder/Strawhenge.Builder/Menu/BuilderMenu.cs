@@ -17,7 +17,7 @@ namespace Strawhenge.Builder.Menu
 
         public bool IsShowing { get; private set; }
 
-        public void Show(MenuCategory mainCategory)
+        public void Show(MainCategory mainCategory)
         {
             if (IsShowing)
                 Hide();

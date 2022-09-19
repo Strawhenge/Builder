@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Tests.Menu
 {
     public partial class BuilderMenuTests
     {
-        readonly MenuCategory _mainCategory;
+        readonly MainCategory _mainCategory;
         readonly BuilderMenu _menu;
         readonly MenuViewFake _menuView;
 

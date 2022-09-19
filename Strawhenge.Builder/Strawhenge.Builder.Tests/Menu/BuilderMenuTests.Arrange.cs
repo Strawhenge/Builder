@@ -15,9 +15,9 @@ namespace Strawhenge.Builder.Tests.Menu
         const string Utility = "Utility";
         const string Chair = "Chair";
         const string Table = "Table";
-        const string Furniture = "Furniture";        
+        const string Furniture = "Furniture";
 
-        MenuCategory CreateMainCategory()
+        MainCategory CreateMainCategory()
         {
             var wall = CreateMenuItem(Wall);
             var floor = CreateMenuItem(Floor);
@@ -33,7 +33,7 @@ namespace Strawhenge.Builder.Tests.Menu
 
             var furniture = new MenuCategory(Furniture, new MenuCategory[] { utility }, new MenuItem[] { chair, table });
 
-            return new MenuCategory(string.Empty, new MenuCategory[] { structure, furniture }, Array.Empty<MenuItem>());
+            return new MainCategory(new MenuCategory[] { structure, furniture }, Array.Empty<MenuItem>());
         }
 
         MenuItem CreateMenuItem(string name) =>

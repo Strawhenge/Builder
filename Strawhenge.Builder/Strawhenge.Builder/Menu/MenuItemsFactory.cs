@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Strawhenge.Builder.Menu
 {
-    public class MenuCategoryFactory<T> where T : ICategorizable
+    public class MenuItemsFactory<T> where T : ICategorizable
     {
-        public MenuCategory Create(IEnumerable<T> items, Action<T> onSelect)
+        public MainCategory CreateMainCategory(IEnumerable<T> items, Action<T> onSelect)
         {
             List<MenuItem> menuItems = new List<MenuItem>();
             Dictionary<string, List<MenuItem>> menuItemsByCategory = new Dictionary<string, List<MenuItem>>();
@@ -38,10 +38,7 @@ namespace Strawhenge.Builder.Menu
                 categories.Add(CreateCategory(parentCategory, menuItemsByCategory, subCategories));
             }
 
-            return new MenuCategory(
-                string.Empty,
-                categories,
-                menuItems);
+            return new MainCategory(categories, menuItems);
         }
 
         MenuCategory CreateCategory(string categoryName, Dictionary<string, List<MenuItem>> menuItemsByCategory, Dictionary<string, List<string>> subCategoriesByCategory)

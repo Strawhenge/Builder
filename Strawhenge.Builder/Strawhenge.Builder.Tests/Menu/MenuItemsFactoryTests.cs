@@ -5,22 +5,22 @@ using Xunit;
 
 namespace Strawhenge.Builder.Tests.Menu
 {
-    public class MenuCategoryFactoryTests
+    public class MenuItemsFactoryTests
     {
-        readonly MenuCategoryFactory<SampleBuildItem> _sut = new MenuCategoryFactory<SampleBuildItem>();
+        readonly MenuItemsFactory<SampleBuildItem> _sut = new MenuItemsFactory<SampleBuildItem>();
         readonly Action<SampleBuildItem> _onSelect;
         SampleBuildItem _selectedItem;
 
-        public MenuCategoryFactoryTests()
+        public MenuItemsFactoryTests()
         {
-            _sut = new MenuCategoryFactory<SampleBuildItem>();
+            _sut = new MenuItemsFactory<SampleBuildItem>();
             _onSelect = x => _selectedItem = x;
         }
 
         [Fact]
         public void CreateEmptyCategory()
         {
-            var mainCategory = _sut.Create(Enumerable.Empty<SampleBuildItem>(), x => { });
+            var mainCategory = _sut.CreateMainCategory(Enumerable.Empty<SampleBuildItem>(), x => { });
 
             Assert.NotNull(mainCategory);
             Assert.Empty(mainCategory.Items);
@@ -31,7 +31,7 @@ namespace Strawhenge.Builder.Tests.Menu
         public void ItemsShouldBeListed()
         {
             var items = SampleBuildItem.GetItemsWithoutCategories();
-            var mainCategory = _sut.Create(items, _onSelect);
+            var mainCategory = _sut.CreateMainCategory(items, _onSelect);
 
             Assert.NotNull(mainCategory);
             Assert.Empty(mainCategory.Subcategories);
@@ -43,7 +43,7 @@ namespace Strawhenge.Builder.Tests.Menu
         public void ItemsShouldBeListedInCategory()
         {
             var items = SampleBuildItem.GetItemsInStructureCategory();
-            var mainCategory = _sut.Create(items, _onSelect);
+            var mainCategory = _sut.CreateMainCategory(items, _onSelect);
 
             Assert.NotNull(mainCategory);
             Assert.Empty(mainCategory.Items);
@@ -59,7 +59,7 @@ namespace Strawhenge.Builder.Tests.Menu
             var furnitureItems = SampleBuildItem.GetItemsInFurnitureCategory();
 
             var items = structureItems.Concat(furnitureItems);
-            var mainCategory = _sut.Create(items, _onSelect);
+            var mainCategory = _sut.CreateMainCategory(items, _onSelect);
 
             Assert.NotNull(mainCategory);
             Assert.Empty(mainCategory.Items);
@@ -77,7 +77,7 @@ namespace Strawhenge.Builder.Tests.Menu
         public void ItemsShouldBeListedInSubCategories()
         {
             var items = SampleBuildItem.GetItemsInDecorativeFurnitureCategory();
-            var mainCategory = _sut.Create(items, _onSelect);
+            var mainCategory = _sut.CreateMainCategory(items, _onSelect);
 
             Assert.NotNull(mainCategory);
             Assert.Empty(mainCategory.Items);
@@ -105,7 +105,7 @@ namespace Strawhenge.Builder.Tests.Menu
                 .Concat(decorativeFurnitureItems)
                 .ToArray();
 
-            var mainCategory = _sut.Create(items, _onSelect);
+            var mainCategory = _sut.CreateMainCategory(items, _onSelect);
 
             Assert.NotNull(mainCategory);
             Assert.Equal(2, mainCategory.Subcategories.Count);
@@ -131,7 +131,7 @@ namespace Strawhenge.Builder.Tests.Menu
                 .Concat(SampleBuildItem.GetItemsInDecorativeFurnitureCategory())
                 .ToArray();
 
-            var mainCategory = _sut.Create(items, _onSelect);
+            var mainCategory = _sut.CreateMainCategory(items, _onSelect);
 
             mainCategory
                 .Items
