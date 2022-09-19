@@ -9,6 +9,8 @@ namespace Strawhenge.Builder
         public abstract Maybe<TNew> Map<TNew>(Func<T, TNew> mapping);
 
         public abstract T Reduce(Func<T> reducer);
+
+        public abstract bool HasSome(out T value);
     }
 
     public static class Maybe
@@ -27,6 +29,12 @@ namespace Strawhenge.Builder
         public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping) => new None<TNew>();
 
         public override T Reduce(Func<T> fallback) => fallback();
+
+        public override bool HasSome(out T value)
+        {
+            value = default;
+            return false;
+        }
     }
 
     sealed class Some<T> : Maybe<T>
@@ -45,5 +53,11 @@ namespace Strawhenge.Builder
         public override Maybe<TNew> Map<TNew>(Func<T, TNew> mapping) => new Some<TNew>(mapping(value));
 
         public override T Reduce(Func<T> fallback) => value;
+
+        public override bool HasSome(out T value)
+        {
+            value = this.value;
+            return true;
+        }
     }
 }
