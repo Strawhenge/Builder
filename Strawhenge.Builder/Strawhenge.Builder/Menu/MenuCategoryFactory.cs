@@ -7,7 +7,7 @@ namespace Strawhenge.Builder.Menu
 {
     public class MenuCategoryFactory<T> where T : ICategorizable
     {
-        public MenuCategory Create(IEnumerable<T> items)
+        public MenuCategory Create(IEnumerable<T> items, Action<T> onSelect)
         {
             List<MenuItem> menuItems = new List<MenuItem>();
             Dictionary<string, List<MenuItem>> menuItemsByCategory = new Dictionary<string, List<MenuItem>>();
@@ -21,13 +21,13 @@ namespace Strawhenge.Builder.Menu
                     if (!menuItemsByCategory.ContainsKey(category.Name))
                         menuItemsByCategory.Add(category.Name, new List<MenuItem>());
 
-                    menuItemsByCategory[category.Name].Add(new MenuItem(item.Name, () => { }));
+                    menuItemsByCategory[category.Name].Add(new MenuItem(item.Name, () => onSelect(item)));
 
                     AddCategory(category, parentCategories, subCategories);
                 }
                 else
                 {
-                    menuItems.Add(new MenuItem(item.Name, () => { }));
+                    menuItems.Add(new MenuItem(item.Name, () => onSelect(item)));
                 }
             }
 
