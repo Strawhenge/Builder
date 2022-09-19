@@ -10,8 +10,13 @@ namespace Strawhenge.Builder.Unity.ScriptableObjects
         public BuildItemScriptableObject BuildItem;
         public SerializableComponentQuantity[] Recipe;
 
+        [SerializeField, Tooltip("Optional")]
+        CategoryScriptableObject _category;
+
         string ICategorizable.Name => name;
 
-        Maybe<Category> ICategorizable.Category => Maybe.None<Category>();
+        Maybe<ICategory> ICategorizable.Category => _category == null
+            ? Maybe.None<ICategory>()
+            : Maybe.Some<ICategory>(_category);
     }
 }
