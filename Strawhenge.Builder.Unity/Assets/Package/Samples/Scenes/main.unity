@@ -470,6 +470,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1745532029}
+  - component: {fileID: 1745532028}
   - component: {fileID: 1745532030}
   m_Layer: 0
   m_Name: Manager
@@ -478,6 +479,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1745532028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8dae4f3e7b5232419b5e70e286cab28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 3
+  _turnSpeed: 50
 --- !u!4 &1745532029
 Transform:
   m_ObjectHideFlags: 0
@@ -501,16 +516,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745532027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a3c8b957550f6446a945c6aa6b3c007, type: 3}
+  m_Script: {fileID: 11500000, guid: 10eaae07e90371b40bd60cf07e68891b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _blueprints:
+  - {fileID: 11400000, guid: 4dd91844b3ef58f40a79b41691f4685a, type: 2}
+  - {fileID: 11400000, guid: 1968798576057f249807222f8c74b4ed, type: 2}
+  - {fileID: 11400000, guid: 5c8051852dc5aeb42906dbf546564f9e, type: 2}
+  - {fileID: 11400000, guid: 77f65c1590c79b8498b2c1bd9a6ba58e, type: 2}
   - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
   - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
-  - {fileID: 11400000, guid: 5c8051852dc5aeb42906dbf546564f9e, type: 2}
-  - {fileID: 11400000, guid: 4dd91844b3ef58f40a79b41691f4685a, type: 2}
-  - {fileID: 11400000, guid: 77f65c1590c79b8498b2c1bd9a6ba58e, type: 2}
-  - {fileID: 11400000, guid: 1968798576057f249807222f8c74b4ed, type: 2}
 --- !u!1001 &3111595907733491642
 PrefabInstance:
   m_ObjectHideFlags: 0
