@@ -11,7 +11,7 @@ namespace Strawhenge.Builder.Menu
         {
             List<MenuItem> menuItems = new List<MenuItem>();
             Dictionary<string, List<MenuItem>> menuItemsByCategory = new Dictionary<string, List<MenuItem>>();
-
+         
             foreach (var item in items)
             {
                 if (item.Category.HasSome(out var category))
@@ -36,22 +36,5 @@ namespace Strawhenge.Builder.Menu
                 categories,
                 menuItems);
         }
-    }
-
-    public interface ICategorizable
-    {
-        string Name { get; }
-
-        Maybe<Category> Category { get; }
-    }
-
-    public class Category
-    {
-        public Category(string name)
-        {
-            Name = name;
-        }
-
-        public string Name { get; }
     }
 }
