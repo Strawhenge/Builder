@@ -31,7 +31,7 @@ public class Context : MonoBehaviour
         var recipeFactory = new RecipeFactory();
 
         _blueprintFactory = new BlueprintFactory(recipeFactory, logger);
-        
+
         BlueprintManager = new BlueprintManager(inventory, buildItemController, new NullRecipeUI())
         {
             DefaultPosition = transform.position
@@ -58,6 +58,9 @@ public class Context : MonoBehaviour
         if (_menu.IsShowing)
             _menu.Hide();
         else
+        {
+            BlueprintManager.Unset();
             _menu.Show(_mainCategory);
+        }
     }
 }
