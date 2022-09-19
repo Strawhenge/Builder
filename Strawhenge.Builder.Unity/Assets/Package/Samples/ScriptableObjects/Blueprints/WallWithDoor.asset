@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BuildItem: {fileID: 11400000, guid: b2e2abba53a9d0444bf313a6ddfcf91b, type: 2}
   Recipe: []
+  _category: {fileID: 11400000, guid: 16024496e232de1489f26e225c02b9cf, type: 2}

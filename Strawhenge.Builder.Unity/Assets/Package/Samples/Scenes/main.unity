@@ -470,7 +470,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1745532029}
-  - component: {fileID: 1745532028}
   - component: {fileID: 1745532030}
   m_Layer: 0
   m_Name: Manager
@@ -479,21 +478,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1745532028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745532027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10eaae07e90371b40bd60cf07e68891b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blueprint: {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
-  moveSpeed: 3
-  turnSpeed: 0
 --- !u!4 &1745532029
 Transform:
   m_ObjectHideFlags: 0
