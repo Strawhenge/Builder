@@ -1,16 +1,21 @@
 using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity;
+using Strawhenge.Builder.Unity.ScriptableObjects;
 using System;
 using UnityEngine;
 
 public class MenuExample : MonoBehaviour
 {
+    [SerializeField] BlueprintScriptableObject[] _blueprints;
+
     MenuView _menuView;
     BuilderMenu _menu;
+    MenuItemsFactory<BlueprintScriptableObject> _menuItemsFactory;
     MainCategory _mainCategory;
 
     void Awake()
     {
+        _menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
         _menuView = new MenuView(new UnityLogger(gameObject));
         _menu = new BuilderMenu(_menuView);
     }
@@ -20,7 +25,7 @@ public class MenuExample : MonoBehaviour
         _menuView.Setup(
             FindObjectOfType<MenuScript>(includeInactive: true));
 
-        _mainCategory = CreateMainCategory();
+        _mainCategory = _menuItemsFactory.CreateMainCategory(_blueprints, x => print(x));
     }
 
     void Update()
@@ -33,36 +38,5 @@ public class MenuExample : MonoBehaviour
         else
             _menu.Show(_mainCategory);
     }
-
-    const string Wall = "Wall";
-    const string Floor = "Floor";
-    const string Structure = "Structure";
-    const string Workbench = "Workbench";
-    const string Utility = "Utility";
-    const string Chair = "Chair";
-    const string Table = "Table";
-    const string Furniture = "Furniture";
-
-    MainCategory CreateMainCategory()
-    {
-        var wall = CreateMenuItem(Wall);
-        var floor = CreateMenuItem(Floor);
-
-        var structure = new MenuCategory(Structure, Array.Empty<MenuCategory>(), new MenuItem[] { wall, floor });
-
-        var workbench = CreateMenuItem(Workbench);
-
-        var utility = new MenuCategory(Utility, Array.Empty<MenuCategory>(), new MenuItem[] { workbench });
-
-        var chair = CreateMenuItem(Chair);
-        var table = CreateMenuItem(Table);
-
-        var furniture = new MenuCategory(Furniture, new MenuCategory[] { utility }, new MenuItem[] { chair, table });
-
-        return new MainCategory(new MenuCategory[] { structure, furniture }, Array.Empty<MenuItem>());
-    }
-
-    MenuItem CreateMenuItem(string name) =>
-            new MenuItem(name, () => Debug.Log(name));
 }
 

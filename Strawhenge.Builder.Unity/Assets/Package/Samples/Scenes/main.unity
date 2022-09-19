@@ -520,15 +520,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3c8b957550f6446a945c6aa6b3c007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _categories:
-  - Walls
-  - Floors
-  - Stairs
-  - Furniture
-  _items:
-  - Chair
-  - Table
-  - Toilet
+  _blueprints:
+  - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
+  - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
 --- !u!1001 &3111595907733491642
 PrefabInstance:
   m_ObjectHideFlags: 0
