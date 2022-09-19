@@ -64,6 +64,24 @@ namespace Strawhenge.Builder.Tests.Menu
             VerifyCategory(furnitureItems, furniture, SampleBuildItem.FURNITURE);
         }
 
+        [Fact]
+        public void ItemsShouldBeListedInSubCategories()
+        {
+            var items = SampleBuildItem.GetItemsInDecorativeFurnitureCategory();
+            var category = _sut.Create(items);
+
+            Assert.NotNull(category);
+            Assert.Empty(category.Items);
+
+            var furniture = Assert.Single(category.Subcategories);
+            Assert.Equal(SampleBuildItem.FURNITURE, furniture.Name);
+            Assert.Empty(furniture.Items);
+
+            var decorativeFurniture = Assert.Single(furniture.Subcategories);
+            Assert.Empty(decorativeFurniture.Subcategories);
+            VerifyCategory(items, decorativeFurniture, SampleBuildItem.DECORATIVE_FURNITURE);
+        }
+
         void VerifyCategory(SampleBuildItem[] items, MenuCategory category, string expectedName)
         {
             Assert.Equal(expectedName, category.Name);
@@ -78,6 +96,7 @@ namespace Strawhenge.Builder.Tests.Menu
     {
         public const string STRUCTURE = "Structure";
         public const string FURNITURE = "Furniture";
+        public const string DECORATIVE_FURNITURE = "Decorative Furniture";
 
         public static SampleBuildItem Wall { get; } = new SampleBuildItem { Name = nameof(Wall) };
 
@@ -93,6 +112,10 @@ namespace Strawhenge.Builder.Tests.Menu
 
         public static SampleBuildItem Barrel { get; } = new SampleBuildItem { Name = nameof(Barrel) };
 
+        public static SampleBuildItem Poster { get; } = new SampleBuildItem { Name = nameof(Poster) };
+
+        public static SampleBuildItem Painting { get; } = new SampleBuildItem { Name = nameof(Painting) };
+
         public string Name { get; set; }
 
         public Maybe<Category> Category { get; set; } = Maybe.None<Category>();
@@ -100,6 +123,12 @@ namespace Strawhenge.Builder.Tests.Menu
         public SampleBuildItem InCategory(string category)
         {
             Category = Maybe.Some(new Category(category));
+            return this;
+        }
+
+        public SampleBuildItem InCategory(string category, string parentCategory)
+        {
+            Category = Maybe.Some(new Category(category, new Category(parentCategory)));
             return this;
         }
 
@@ -128,6 +157,15 @@ namespace Strawhenge.Builder.Tests.Menu
             {
                 Chair.InCategory(FURNITURE),
                 Table.InCategory(FURNITURE)
+            };
+        }
+
+        public static SampleBuildItem[] GetItemsInDecorativeFurnitureCategory()
+        {
+            return new SampleBuildItem[]
+            {
+                Poster.InCategory(DECORATIVE_FURNITURE, parentCategory: FURNITURE),
+                Painting.InCategory(DECORATIVE_FURNITURE, parentCategory: FURNITURE)
             };
         }
     }
