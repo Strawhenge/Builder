@@ -190,17 +190,17 @@ namespace Strawhenge.Builder.Tests.Menu
 
         public string Name { get; set; }
 
-        public Maybe<Category> Category { get; set; } = Maybe.None<Category>();
+        public Maybe<ICategory> Category { get; set; } = Maybe.None<ICategory>();
 
         public SampleBuildItem InCategory(string category)
         {
-            Category = Maybe.Some(new Category(category));
+            Category = Maybe.Some<ICategory>(new Category(category));
             return this;
         }
 
         public SampleBuildItem InCategory(string category, string parentCategory)
         {
-            Category = Maybe.Some(new Category(category, new Category(parentCategory)));
+            Category = Maybe.Some<ICategory>(new Category(category, new Category(parentCategory)));
             return this;
         }
 

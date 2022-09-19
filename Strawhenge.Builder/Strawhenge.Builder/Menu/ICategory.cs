@@ -1,9 +1,9 @@
 ﻿namespace Strawhenge.Builder.Menu
 {
-    public interface ICategorizable
+    public interface ICategory
     {
         string Name { get; }
 
-        Maybe<ICategory> Category { get; }
+        Maybe<ICategory> Parent { get; }
     }
 }
