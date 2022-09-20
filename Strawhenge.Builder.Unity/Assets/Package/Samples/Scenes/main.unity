@@ -470,10 +470,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1745532029}
-  - component: {fileID: 1745532028}
   - component: {fileID: 1745532030}
+  - component: {fileID: 1745532028}
+  - component: {fileID: 1745532031}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: Context
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -526,6 +527,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77f65c1590c79b8498b2c1bd9a6ba58e, type: 2}
   - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
   - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
+--- !u!114 &1745532031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a49b8937451bd974986c5d90469e75d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1332150398}
 --- !u!1001 &3111595907733491642
 PrefabInstance:
   m_ObjectHideFlags: 0

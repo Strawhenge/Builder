@@ -15,9 +15,10 @@ public class Context : MonoBehaviour
     BuilderMenu _menu;
     MenuItemsFactory<BlueprintScriptableObject> _menuItemsFactory;
     MainCategory _mainCategory;
-    BlueprintFactory _blueprintFactory;
 
     public BlueprintManager BlueprintManager { get; private set; }
+
+    public BlueprintFactory BlueprintFactory { get; private set; }
 
     void Awake()
     {
@@ -30,7 +31,7 @@ public class Context : MonoBehaviour
         var buildItemController = new BuildItemController();
         var recipeFactory = new RecipeFactory();
 
-        _blueprintFactory = new BlueprintFactory(recipeFactory, logger);
+        BlueprintFactory = new BlueprintFactory(recipeFactory, logger);
 
         BlueprintManager = new BlueprintManager(inventory, buildItemController, new NullRecipeUI())
         {
@@ -46,7 +47,7 @@ public class Context : MonoBehaviour
         _mainCategory = _menuItemsFactory.CreateMainCategory(_blueprints, selectedBlueprint =>
         {
             BlueprintManager.Set(
-                _blueprintFactory.Create(selectedBlueprint));
+                BlueprintFactory.Create(selectedBlueprint));
         });
     }
 
