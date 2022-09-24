@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
@@ -8,7 +9,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void PreviewOff();
 
-        void PreviewOn(IBuildItem buildItem);
+        void PreviewOn(IBuildItem buildItem, Func<bool> canPlaceFinalItem = null, Action onPlacedFinalItem = null, Action onCancelled = null);
 
         void SpawnFinalItem();
     }
