@@ -37,8 +37,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             CurrentPreview = Maybe.None<IBuildItemPreview>();
 
-            _onCancelled();
+            var callback = _onCancelled;
             ResetCallbacks();
+            callback();
         }
 
         public void SpawnFinalItem() => CurrentPreview.Do(SpawnFinalItem);
@@ -53,8 +54,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             CurrentPreview = Maybe.None<IBuildItemPreview>();
 
-            _onPlacedFinalItem();
+            var callback = _onPlacedFinalItem;
             ResetCallbacks();
+            callback();
         }
 
         void ResetCallbacks()
