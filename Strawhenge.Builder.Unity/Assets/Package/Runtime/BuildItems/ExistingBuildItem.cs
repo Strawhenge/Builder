@@ -25,6 +25,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Finalize(Vector3 position, Quaternion rotation)
         {
+            _script.transform.SetPositionAndRotation(position, rotation);
+
             _initialPosition = _script.transform.position;
             _initialRotation = _script.transform.rotation;
         }
