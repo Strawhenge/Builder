@@ -28,8 +28,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Cancel() => DestroyPreviewObject();
 
-        public void Finalize(Vector3 position, Quaternion rotation)
+        public void PlaceFinal()
         {
+            var position = _currentPreview.transform.position;
+            var rotation = _currentPreview.transform.rotation;
+
             DestroyPreviewObject();
 
             Object.Instantiate(_prefab, position, rotation);

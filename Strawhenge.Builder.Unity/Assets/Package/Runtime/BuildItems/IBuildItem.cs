@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         void Cancel();
 
-        void Finalize(Vector3 position, Quaternion rotation);
+        void PlaceFinal();
 
         IBuildItemPreview Preview(Vector3 position, Quaternion rotation);
     }

@@ -32,10 +32,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             if (currentBuildItem == null) return;
 
-            currentBuildItem.Finalize(
-                preview.Position,
-                preview.Rotation);
-
+            currentBuildItem.PlaceFinal();
             currentBuildItem = null;
 
             CurrentPreview = Maybe.None<IBuildItemPreview>();
