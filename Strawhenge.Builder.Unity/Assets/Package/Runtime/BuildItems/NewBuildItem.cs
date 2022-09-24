@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public class BuildItem : IBuildItem
+    public class NewBuildItem : IBuildItem
     {
         readonly BuildItemScript _prefab;
 
         BuildItemScript _currentPreview;
 
-        public BuildItem(BuildItemScript prefab)
+        public NewBuildItem(BuildItemScript prefab)
         {
             _prefab = prefab;
         }
 
-        public IBuildItemPreview SpawnPreviewItem(Vector3 position, Quaternion rotation)
+        public IBuildItemPreview Preview(Vector3 position, Quaternion rotation)
         {
             if (_currentPreview != null)
             {
@@ -26,7 +26,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             return _currentPreview.BuildItemPreview;
         }
 
-        public void DespawnPreviewItem()
+        public void Cancel()
         {
             if (_currentPreview == null)
                 return;
@@ -34,7 +34,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Object.Destroy(_currentPreview.gameObject);
         }
 
-        public void SpawnFinalItem(Vector3 position, Quaternion rotation)
+        public void Finalize(Vector3 position, Quaternion rotation)
         {
             Object.Instantiate(_prefab, position, rotation);
         }

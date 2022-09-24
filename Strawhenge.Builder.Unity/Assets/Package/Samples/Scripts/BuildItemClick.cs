@@ -1,3 +1,4 @@
+using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Factories;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using System.Collections;
@@ -10,14 +11,13 @@ namespace Strawhenge.Builder.Unity
     {
         [SerializeField] Camera _camera;
 
-        BlueprintManager _blueprintManager;
-        BlueprintFactory _blueprintFactory;
+        IBuildItemController _buildItemController;
 
         void Start()
         {
             var context = FindObjectOfType<Context>();
-            _blueprintManager = context.BlueprintManager;
-            _blueprintFactory = context.BlueprintFactory;
+
+            _buildItemController = context.BuildItemController;
         }
 
         void Update()
@@ -25,11 +25,14 @@ namespace Strawhenge.Builder.Unity
             if (Input.GetMouseButtonDown(0) &&
                 Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
             {
-                var buildItem = hit.transform.root.GetComponentInChildren<BuildItemScript>();
+                var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();
 
-                if (buildItem != null)
+                if (buildItemScript != null)
                 {
+                    var buildItem = new ExistingBuildItem(buildItemScript);
 
+                    _buildItemController
+                        .PreviewOn(buildItem, buildItemScript.transform.position, buildItemScript.transform.rotation);
                 }
             }
         }

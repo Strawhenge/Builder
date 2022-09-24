@@ -10,17 +10,17 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void PreviewOn(IBuildItem buildItem, Vector3 position, Quaternion rotation)
         {
-            currentBuildItem?.DespawnPreviewItem();
+            currentBuildItem?.Cancel();
             currentBuildItem = buildItem;
 
-            var preview = buildItem.SpawnPreviewItem(position, rotation);
+            var preview = buildItem.Preview(position, rotation);
 
             CurrentPreview = Maybe.Some(preview);
         }
 
         public void PreviewOff()
         {
-            currentBuildItem?.DespawnPreviewItem();
+            currentBuildItem?.Cancel();
             currentBuildItem = null;
 
             CurrentPreview = Maybe.None<IBuildItemPreview>();
@@ -32,7 +32,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             if (currentBuildItem == null) return;
 
-            currentBuildItem.SpawnFinalItem(
+            currentBuildItem.Finalize(
                 preview.Position,
                 preview.Rotation);
         }

@@ -4,10 +4,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public interface IBuildItem
     {
-        void DespawnPreviewItem();
+        void Cancel();
 
-        void SpawnFinalItem(Vector3 position, Quaternion rotation);
+        void Finalize(Vector3 position, Quaternion rotation);
 
-        IBuildItemPreview SpawnPreviewItem(Vector3 position, Quaternion rotation);
+        IBuildItemPreview Preview(Vector3 position, Quaternion rotation);
     }
 }

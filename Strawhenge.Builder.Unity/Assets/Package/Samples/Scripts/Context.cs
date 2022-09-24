@@ -20,6 +20,8 @@ public class Context : MonoBehaviour
 
     public BlueprintFactory BlueprintFactory { get; private set; }
 
+    public BuildItemController BuildItemController { get; private set; }
+
     void Awake()
     {
         _menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
@@ -28,12 +30,12 @@ public class Context : MonoBehaviour
 
         var logger = new UnityLogger(gameObject);
         var inventory = new ComponentInventory(logger);
-        var buildItemController = new BuildItemController();
         var recipeFactory = new RecipeFactory();
 
+        BuildItemController = new BuildItemController();
         BlueprintFactory = new BlueprintFactory(recipeFactory, logger);
 
-        BlueprintManager = new BlueprintManager(inventory, buildItemController, new NullRecipeUI())
+        BlueprintManager = new BlueprintManager(inventory, BuildItemController, new NullRecipeUI())
         {
             DefaultPosition = transform.position
         };

@@ -33,7 +33,7 @@ namespace Strawhenge.Builder.Unity.Factories
                 return new NullBuildItem();
             }
 
-            return new BuildItem(scriptableObject.BuildItem);
+            return new NewBuildItem(scriptableObject.BuildItem);
         }
 
         private Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
