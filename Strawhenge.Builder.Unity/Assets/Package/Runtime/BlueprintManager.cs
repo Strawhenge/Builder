@@ -25,8 +25,6 @@ namespace Strawhenge.Builder.Unity
 
         public Maybe<IBuildItemPreview> Preview => buildItemController.CurrentPreview;
 
-        public Vector3 DefaultPosition { get; set; } = Vector3.zero;
-
         public void Build()
         {
             if (currentBlueprint == null || !currentBlueprint.Recipe.HasRequiredComponents(componentInventory))
@@ -57,15 +55,7 @@ namespace Strawhenge.Builder.Unity
 
         private void ShowBuildItemPreview()
         {
-            var point = buildItemController.CurrentPreview
-                .Map(x => x.Position)
-                .Reduce(() => DefaultPosition);
-
-            var rotation = buildItemController.CurrentPreview
-                .Map(x => x.Rotation)
-                .Reduce(() => new Quaternion());
-
-            buildItemController.PreviewOn(currentBlueprint.BuildItem, point, rotation);
+            buildItemController.PreviewOn(currentBlueprint.BuildItem);
         }
 
         private void UpdateRecipeUI()

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Strawhenge.Builder.Unity.BuildItems
+﻿namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NullBuildItem : IBuildItem
     {
@@ -8,10 +6,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
         }
 
-        public void Finalize(Vector3 position, Quaternion rotation)
+        public void PlaceFinal()
         {
         }
 
-        public IBuildItemPreview Preview(Vector3 position, Quaternion rotation) => new NullBuildItemPreview();
+        public IBuildItemPreview Preview() => new NullBuildItemPreview();
     }
 }

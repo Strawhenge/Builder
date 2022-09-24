@@ -8,12 +8,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public Maybe<IBuildItemPreview> CurrentPreview { get; private set; } = Maybe.None<IBuildItemPreview>();
 
-        public void PreviewOn(IBuildItem buildItem, Vector3 position, Quaternion rotation)
+        public void PreviewOn(IBuildItem buildItem)
         {
             currentBuildItem?.Cancel();
             currentBuildItem = buildItem;
 
-            var preview = buildItem.Preview(position, rotation);
+            var preview = buildItem.Preview();
 
             CurrentPreview = Maybe.Some(preview);
         }

@@ -32,7 +32,7 @@ namespace Strawhenge.Builder.Unity
                     var buildItem = new ExistingBuildItem(buildItemScript);
 
                     _buildItemController
-                        .PreviewOn(buildItem, buildItemScript.transform.position, buildItemScript.transform.rotation);
+                        .PreviewOn(buildItem);
                 }
             }
         }

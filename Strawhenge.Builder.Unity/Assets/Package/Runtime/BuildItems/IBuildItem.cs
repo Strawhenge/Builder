@@ -8,6 +8,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void PlaceFinal();
 
-        IBuildItemPreview Preview(Vector3 position, Quaternion rotation);
+        IBuildItemPreview Preview();
     }
 }

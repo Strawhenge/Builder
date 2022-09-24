@@ -29,10 +29,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _initialRotation = _script.transform.rotation;
         }
 
-        public IBuildItemPreview Preview(Vector3 position, Quaternion rotation)
+        public IBuildItemPreview Preview()
         {
-            _script.transform.SetPositionAndRotation(position, rotation);
-
             return _script.BuildItemPreview;
         }
     }

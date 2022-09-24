@@ -8,7 +8,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void PreviewOff();
 
-        void PreviewOn(IBuildItem buildItem, Vector3 position, Quaternion rotation);
+        void PreviewOn(IBuildItem buildItem);
 
         void SpawnFinalItem();
     }

@@ -31,14 +31,12 @@ public class Context : MonoBehaviour
         var logger = new UnityLogger(gameObject);
         var inventory = new ComponentInventory(logger);
         var recipeFactory = new RecipeFactory();
+        var defaultPositionAccessor = new FixedPosition(transform.position, transform.rotation);
 
+        BlueprintFactory = new BlueprintFactory(recipeFactory, defaultPositionAccessor, logger);
         BuildItemController = new BuildItemController();
-        BlueprintFactory = new BlueprintFactory(recipeFactory, logger);
 
-        BlueprintManager = new BlueprintManager(inventory, BuildItemController, new NullRecipeUI())
-        {
-            DefaultPosition = transform.position
-        };
+        BlueprintManager = new BlueprintManager(inventory, BuildItemController, new NullRecipeUI());
     }
 
     void Start()
