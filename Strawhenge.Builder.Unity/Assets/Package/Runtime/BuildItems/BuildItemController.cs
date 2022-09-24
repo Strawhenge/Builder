@@ -28,13 +28,17 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void SpawnFinalItem() => CurrentPreview.Do(SpawnFinalItem);
 
-        private void SpawnFinalItem(IBuildItemPreview preview)
+        void SpawnFinalItem(IBuildItemPreview preview)
         {
             if (currentBuildItem == null) return;
 
             currentBuildItem.Finalize(
                 preview.Position,
                 preview.Rotation);
+
+            currentBuildItem = null;
+
+            CurrentPreview = Maybe.None<IBuildItemPreview>();
         }
     }
 }

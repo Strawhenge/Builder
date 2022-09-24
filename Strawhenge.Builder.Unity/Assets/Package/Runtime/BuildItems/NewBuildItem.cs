@@ -26,17 +26,22 @@ namespace Strawhenge.Builder.Unity.BuildItems
             return _currentPreview.BuildItemPreview;
         }
 
-        public void Cancel()
+        public void Cancel() => DestroyPreviewObject();
+
+        public void Finalize(Vector3 position, Quaternion rotation)
+        {
+            DestroyPreviewObject();
+
+            Object.Instantiate(_prefab, position, rotation);
+        }
+
+        void DestroyPreviewObject()
         {
             if (_currentPreview == null)
                 return;
 
             Object.Destroy(_currentPreview.gameObject);
-        }
-
-        public void Finalize(Vector3 position, Quaternion rotation)
-        {
-            Object.Instantiate(_prefab, position, rotation);
+            _currentPreview = null;
         }
     }
 }

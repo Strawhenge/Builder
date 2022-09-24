@@ -35,6 +35,7 @@ namespace Strawhenge.Builder.Unity
             buildItemController.SpawnFinalItem();
             currentBlueprint.Recipe.DeductRequiredComponents(componentInventory);
 
+            ShowBuildItemPreview();
             UpdateRecipeUI();
         }
 
