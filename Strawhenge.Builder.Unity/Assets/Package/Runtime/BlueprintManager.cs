@@ -1,75 +1,65 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.UI;
 using System.Linq;
-using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
     public class BlueprintManager
     {
-        private readonly IComponentInventory componentInventory;
-        private readonly IBuildItemController buildItemController;
-        private readonly IRecipeUI recipeUI;
+        readonly IComponentInventory _componentInventory;
+        readonly IBuildItemController _buildItemController;
+        readonly IRecipeUI _recipeUI;
 
-        private Blueprint currentBlueprint;
+        Blueprint currentBlueprint;
 
         public BlueprintManager(
             IComponentInventory componentInventory,
             IBuildItemController buildItemController,
             IRecipeUI recipeUI)
         {
-            this.componentInventory = componentInventory;
-            this.buildItemController = buildItemController;
-            this.recipeUI = recipeUI;
-        }
-
-        public Maybe<IBuildItemPreview> Preview => buildItemController.CurrentPreview;
-
-        public Vector3 DefaultPosition { get; set; } = Vector3.zero;
-
-        public void Build()
-        {
-            if (currentBlueprint == null || !currentBlueprint.Recipe.HasRequiredComponents(componentInventory))
-                return;
-
-            buildItemController.SpawnFinalItem();
-            currentBlueprint.Recipe.DeductRequiredComponents(componentInventory);
-
-            UpdateRecipeUI();
-        }
-
-        public void Unset()
-        {
-            recipeUI.Hide();
-            buildItemController.PreviewOff();
-
-            currentBlueprint = null;
+            _componentInventory = componentInventory;
+            _buildItemController = buildItemController;
+            _recipeUI = recipeUI;
         }
 
         public void Set(Blueprint blueprint)
         {
             currentBlueprint = blueprint;
 
-            ShowBuildItemPreview();
+            ShowBuildItemPreview();          
+        }
+
+        public void Unset()
+        {
+            _recipeUI.Hide();
+            _buildItemController.PreviewOff();
+
+            currentBlueprint = null;
+        }
+
+        void ShowBuildItemPreview()
+        {
             UpdateRecipeUI();
+
+            _buildItemController.PreviewOn(
+                currentBlueprint.BuildItem,
+                canPlaceFinalItem: () => currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
+                onPlacedFinalItem: () =>
+                {
+                    currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
+
+                    ShowBuildItemPreview();                    
+                },
+                onCancelled: () =>
+                {
+                    _recipeUI.Hide();
+                    currentBlueprint = null;
+                });
         }
 
-        private void ShowBuildItemPreview()
+        void UpdateRecipeUI()
         {
-            var point = buildItemController.CurrentPreview
-                .Map(x => x.Position)
-                .Reduce(() => DefaultPosition);
-
-            var rotation = buildItemController.CurrentPreview
-                .Map(x => x.Rotation)
-                .Reduce(() => new Quaternion());
-
-            buildItemController.PreviewOn(currentBlueprint.BuildItem, point, rotation);
-        }
-
-        private void UpdateRecipeUI()
-        {
-            var requirements = currentBlueprint.Recipe.GetRequirements(componentInventory);
+            var requirements = currentBlueprint.Recipe.GetRequirements(_componentInventory);
 
             var uiModel = new RecipeUIModel
             {
@@ -82,7 +72,7 @@ namespace Strawhenge.Builder.Unity
                 })
             };
 
-            recipeUI.Show(uiModel);
+            _recipeUI.Show(uiModel);
         }
     }
 }

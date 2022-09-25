@@ -10,19 +10,19 @@ namespace Strawhenge.Builder.Unity
         [SerializeField] float _moveSpeed;
         [SerializeField] float _turnSpeed;
 
-        BlueprintManager _blueprintManager;
+        IBuildItemController _buildItemController;
 
         VerticalSnap _verticalSnap;
         HorizontalSnap _horizontalSnap;
 
         void Start()
         {
-            _blueprintManager = FindObjectOfType<Context>().BlueprintManager;
+            _buildItemController = FindObjectOfType<Context>().BuildItemController;
         }
 
         void Update()
         {
-            _blueprintManager.Preview.Do(blueprint =>
+            _buildItemController.CurrentPreview.Do(blueprint =>
             {
                 if (_verticalSnap != null)
                 {
@@ -41,7 +41,7 @@ namespace Strawhenge.Builder.Unity
             });
 
             if (Input.GetKeyDown(KeyCode.Return))
-                _blueprintManager.Build();
+                _buildItemController.SpawnFinalItem();
         }
 
         void ManageBlueprintMovement(IBuildItemPreview blueprint)

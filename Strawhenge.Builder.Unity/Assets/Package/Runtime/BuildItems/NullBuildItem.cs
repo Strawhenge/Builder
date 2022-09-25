@@ -1,17 +1,15 @@
-﻿using UnityEngine;
-
-namespace Strawhenge.Builder.Unity.BuildItems
+﻿namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NullBuildItem : IBuildItem
     {
-        public void DespawnPreviewItem()
+        public void Cancel()
         {
         }
 
-        public void SpawnFinalItem(Vector3 position, Quaternion rotation)
+        public void PlaceFinal()
         {
         }
 
-        public IBuildItemPreview SpawnPreviewItem(Vector3 position, Quaternion rotation) => new NullBuildItemPreview();
+        public IBuildItemPreview Preview() => new NullBuildItemPreview();
     }
 }

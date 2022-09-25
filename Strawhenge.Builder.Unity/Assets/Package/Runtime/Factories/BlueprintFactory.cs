@@ -6,15 +6,18 @@ namespace Strawhenge.Builder.Unity.Factories
 {
     public class BlueprintFactory
     {
-        private readonly RecipeFactory recipeFactory;
-        private readonly ILogger logger;
+        readonly RecipeFactory _recipeFactory;
+        readonly IDefaultPositionAccessor _initialPositionAccessor;
+        readonly ILogger _logger;
 
         public BlueprintFactory(
             RecipeFactory recipeFactory,
+            IDefaultPositionAccessor initialPositionAccessor,
             ILogger logger)
         {
-            this.recipeFactory = recipeFactory;
-            this.logger = logger;
+            _recipeFactory = recipeFactory;
+            _initialPositionAccessor = initialPositionAccessor;
+            _logger = logger;
         }
 
         public Blueprint Create(BlueprintScriptableObject scriptableObject)
@@ -29,11 +32,11 @@ namespace Strawhenge.Builder.Unity.Factories
         {
             if (scriptableObject.BuildItem == null)
             {
-                logger.LogError($"Missing build item on '{scriptableObject.name}'.");
+                _logger.LogError($"Missing build item on '{scriptableObject.name}'.");
                 return new NullBuildItem();
             }
 
-            return new BuildItem(scriptableObject.BuildItem);
+            return new NewBuildItem(_initialPositionAccessor, scriptableObject.BuildItem);
         }
 
         private Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
@@ -43,7 +46,7 @@ namespace Strawhenge.Builder.Unity.Factories
                     component: new Component(x.Component.Identifier),
                     quantity: x.Quantity));
 
-            return recipeFactory.Create(recipeComponents);
+            return _recipeFactory.Create(recipeComponents);
         }
     }
 }
