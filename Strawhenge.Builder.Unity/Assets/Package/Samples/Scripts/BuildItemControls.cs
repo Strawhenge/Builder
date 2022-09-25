@@ -1,11 +1,12 @@
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
+using System;
 using System.Linq;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BlueprintControls : MonoBehaviour
+    public class BuildItemControls : MonoBehaviour
     {
         [SerializeField] float _moveSpeed;
         [SerializeField] float _turnSpeed;
