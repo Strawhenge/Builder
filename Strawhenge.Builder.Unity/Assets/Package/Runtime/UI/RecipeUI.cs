@@ -13,6 +13,8 @@ namespace Strawhenge.Builder.Unity.UI
 
             if (_script == null)
                 logger.LogError($"Cannot find {nameof(RecipeUIScript)}.");
+
+            Hide();
         }
 
         public void Hide()
