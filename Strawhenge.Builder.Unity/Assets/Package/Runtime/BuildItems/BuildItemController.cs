@@ -16,6 +16,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public Maybe<IBuildItemPreview> CurrentPreview { get; private set; } = Maybe.None<IBuildItemPreview>();
 
+        public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
+
         public void PreviewOn(IBuildItem buildItem, Func<bool> canPlaceFinalItem = null, Action onPlacedFinalItem = null, Action onCancelled = null)
         {
             _currentBuildItem?.Cancel();
@@ -51,6 +53,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             _currentBuildItem.PlaceFinal();
             _currentBuildItem = null;
+
+            LastPlacedPosition.Update(preview.Position, preview.Rotation);
 
             CurrentPreview = Maybe.None<IBuildItemPreview>();
 
