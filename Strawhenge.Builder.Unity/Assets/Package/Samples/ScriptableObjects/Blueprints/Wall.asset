@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Wall
   m_EditorClassIdentifier: 
   BuildItem: {fileID: 1868320131971839266, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
-  Recipe: []
+  Recipe:
+  - Component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
+    Quantity: 10
   _category: {fileID: 11400000, guid: 16024496e232de1489f26e225c02b9cf, type: 2}

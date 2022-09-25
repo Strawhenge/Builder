@@ -1,43 +1,34 @@
-﻿using Strawhenge.Builder.Unity.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
-    public class RecipeUIScript : MonoBehaviour, IRecipeUI
+    public class RecipeUIScript : MonoBehaviour
     {
-        public Text TitleText;
-        public Text ComponentsText;
+        [SerializeField] Text _titleText;
+        [SerializeField] Transform _componentsParent;
+        [SerializeField] RecipeUIComponentScript _componentPrefab;
 
-        private void Start()
+        readonly List<GameObject> _currentComponents = new List<GameObject>();
+
+        public void SetTitle(string title) => _titleText.text = title;
+
+        public void ClearComponents()
         {
-            Hide();
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
-
-        public void Show(RecipeUIModel recipe)
-        {
-            TitleText.text = recipe.RecipeTitle;
-            ComponentsText.text = BuildRequirementsString(recipe.Requirements);
-
-            gameObject.SetActive(true);
-        }
-
-        private string BuildRequirementsString(IEnumerable<RecipeRequirementUIModel> requirements)
-        {
-            return string.Join(Environment.NewLine, requirements.Select(Stringify));
-
-            string Stringify(RecipeRequirementUIModel requirement)
+            foreach (var component in _currentComponents.ToArray())
             {
-                return $"{requirement.ComponentName} - {requirement.QuantityInInventory}/{requirement.QuantityRequired}";
+                _currentComponents.Remove(component);
+                Destroy(component);
             }
+        }
+
+        public void AddComponent(string name, int amountRequired, int amountInInventory)
+        {
+            var component = Instantiate(_componentPrefab, parent: _componentsParent);
+            component.Set(name, amountRequired, amountInInventory);
+
+            _currentComponents.Add(component.gameObject);
         }
     }
 }

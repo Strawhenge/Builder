@@ -30,12 +30,12 @@ public class Context : MonoBehaviour
 
         var logger = new UnityLogger(gameObject);
         var inventory = new ComponentInventory(logger);
-        var recipeFactory = new RecipeFactory();      
+        var recipeFactory = new RecipeFactory();
 
         BuildItemController = new BuildItemController();
         BlueprintFactory = new BlueprintFactory(recipeFactory, BuildItemController.LastPlacedPosition, logger);
 
-        BlueprintManager = new BlueprintManager(inventory, BuildItemController, new NullRecipeUI());
+        BlueprintManager = new BlueprintManager(inventory, BuildItemController, new RecipeUI(logger));
     }
 
     void Start()

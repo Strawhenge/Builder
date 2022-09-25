@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: WallWithDoor
   m_EditorClassIdentifier: 
   BuildItem: {fileID: 2815715627842772492, guid: ea2730186ba667c4abf75c3175692aa2, type: 3}
-  Recipe: []
+  Recipe:
+  - Component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
+    Quantity: 7
+  - Component: {fileID: 11400000, guid: aa3affef97bf59b49ad527bdedf9c357, type: 2}
+    Quantity: 1
   _category: {fileID: 11400000, guid: 16024496e232de1489f26e225c02b9cf, type: 2}
