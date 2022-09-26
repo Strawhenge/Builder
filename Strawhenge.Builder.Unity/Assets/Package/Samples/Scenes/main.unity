@@ -571,7 +571,6 @@ GameObject:
   - component: {fileID: 1745532029}
   - component: {fileID: 1745532030}
   - component: {fileID: 1745532028}
-  - component: {fileID: 1745532031}
   - component: {fileID: 1745532032}
   m_Layer: 0
   m_Name: Context
@@ -620,6 +619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eaae07e90371b40bd60cf07e68891b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 1332150398}
   _blueprints:
   - {fileID: 11400000, guid: 4dd91844b3ef58f40a79b41691f4685a, type: 2}
   - {fileID: 11400000, guid: 1968798576057f249807222f8c74b4ed, type: 2}
@@ -632,19 +632,6 @@ MonoBehaviour:
     Quantity: 2
   - Component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
     Quantity: 20
---- !u!114 &1745532031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745532027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a49b8937451bd974986c5d90469e75d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camera: {fileID: 1332150398}
 --- !u!114 &1745532032
 MonoBehaviour:
   m_ObjectHideFlags: 0

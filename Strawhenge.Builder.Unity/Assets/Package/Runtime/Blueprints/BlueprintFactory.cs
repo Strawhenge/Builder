@@ -2,7 +2,7 @@
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Linq;
 
-namespace Strawhenge.Builder.Unity.Factories
+namespace Strawhenge.Builder.Unity
 {
     public class BlueprintFactory
     {
