@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.Monobehaviours;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.UI
@@ -25,16 +26,16 @@ namespace Strawhenge.Builder.Unity.UI
             _script.gameObject.SetActive(false);
         }
 
-        public void Show(RecipeUIModel recipe)
+        public void Show(string recipeName, IEnumerable<RecipeRequirement> requirements)
         {
             if (_script == null)
                 return;
 
-            _script.SetTitle(recipe.RecipeTitle);
+            _script.SetTitle(recipeName);
             _script.ClearComponents();
 
-            foreach (var requirement in recipe.Requirements)
-                _script.AddComponent(requirement.ComponentName, requirement.QuantityRequired, requirement.QuantityInInventory);
+            foreach (var requirement in requirements)
+                _script.AddComponent(requirement.Component.Identifier, requirement.QuantityRequired, requirement.QuantityInInventory);
 
             _script.gameObject.SetActive(true);
         }

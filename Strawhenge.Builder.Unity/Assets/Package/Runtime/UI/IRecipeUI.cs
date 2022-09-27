@@ -1,8 +1,10 @@
-﻿namespace Strawhenge.Builder.Unity.UI
+﻿using System.Collections.Generic;
+
+namespace Strawhenge.Builder.Unity.UI
 {
     public interface IRecipeUI
     {
-        void Show(RecipeUIModel recipe);
+        void Show(string recipeName, IEnumerable<RecipeRequirement> requirements);
 
         void Hide();
     }

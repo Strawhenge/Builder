@@ -26,7 +26,7 @@ namespace Strawhenge.Builder.Unity
         {
             currentBlueprint = blueprint;
 
-            ShowBuildItemPreview();          
+            ShowBuildItemPreview();
         }
 
         public void Unset()
@@ -48,7 +48,7 @@ namespace Strawhenge.Builder.Unity
                 {
                     currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
 
-                    ShowBuildItemPreview();                    
+                    ShowBuildItemPreview();
                 },
                 onCancelled: () =>
                 {
@@ -61,18 +61,7 @@ namespace Strawhenge.Builder.Unity
         {
             var requirements = currentBlueprint.Recipe.GetRequirements(_componentInventory);
 
-            var uiModel = new RecipeUIModel
-            {
-                RecipeTitle = currentBlueprint.Identifier,
-                Requirements = requirements.Select(x => new RecipeRequirementUIModel
-                {
-                    ComponentName = x.Component.Identifier,
-                    QuantityInInventory = x.QuantityInInventory,
-                    QuantityRequired = x.QuantityRequired
-                })
-            };
-
-            _recipeUI.Show(uiModel);
+            _recipeUI.Show(currentBlueprint.Identifier, requirements);          
         }
     }
 }
