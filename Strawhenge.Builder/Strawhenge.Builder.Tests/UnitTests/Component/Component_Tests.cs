@@ -1,15 +1,12 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
     public class Component_Tests
     {
         [Theory]
-        [InlineData("", null)]
-        [InlineData("", "")]
-        [InlineData("Wood", "Wood")]
-        [InlineData("Wood", "wood")]
-        [InlineData("Wood", "Wood ")]
+        [MemberData(nameof(MatchingComponentNames))]
         public void Is_ShouldBeTrue(string identifier1, string identifier2)
         {
             var component1 = new Component(identifier1);
@@ -19,8 +16,7 @@ namespace Strawhenge.Builder.Tests.UnitTests
         }
 
         [Theory]
-        [InlineData("Wood", null)]
-        [InlineData("Wood", "Metal")]
+        [MemberData(nameof(NonMatchingComponentNames))]
         public void Is_ShouldBeFalse(string identifier1, string identifier2)
         {
             var component1 = new Component(identifier1);
@@ -40,5 +36,22 @@ namespace Strawhenge.Builder.Tests.UnitTests
 
             Assert.Equal(expected, component.Identifier);
         }
+
+        public static IEnumerable<object[]> MatchingComponentNames => new object[][]
+        {
+            Case("", null),
+            Case("", ""),
+            Case("Wood", "Wood"),
+            Case("Wood", "wood"),
+            Case("Wood", "Wood ")
+        };
+
+        public static IEnumerable<object[]> NonMatchingComponentNames => new object[][]
+        {
+            Case("Wood", null),
+            Case("Wood", "Metal")
+        };
+
+        static object[] Case(params object[] objects) => objects;
     }
 }
