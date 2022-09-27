@@ -47,7 +47,7 @@ public class Context : MonoBehaviour
         BlueprintManager = new BlueprintManager(Inventory, BuildItemController, new RecipeUI(logger));
 
         ExistingBlueprintFactory = new ExistingBlueprintFactory();
-        ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController);
+        ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController, new NullScrapUI());
     }
 
     void Start()
