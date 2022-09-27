@@ -17,5 +17,16 @@ namespace Strawhenge.Builder
             foreach (var component in _components)
                 inventory.AddComponent(component);
         }
+
+        public IEnumerable<ScrapAddition> GetAdditions(IComponentInventory inventory)
+        {
+            foreach (var componentQuantity in _components)
+            {
+                yield return new ScrapAddition(
+                    componentQuantity.Component,
+                    componentQuantity.Quantity,
+                    inventory.Count(componentQuantity.Component));
+            }
+        }
     }
 }
