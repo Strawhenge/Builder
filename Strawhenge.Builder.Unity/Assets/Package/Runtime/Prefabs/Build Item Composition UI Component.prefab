@@ -168,8 +168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5340146134228317292}
   - component: {fileID: 2062664628934885841}
+  - component: {fileID: 1084459358712243293}
   m_Layer: 5
-  m_Name: Recipe Display Component
+  m_Name: Build Item Composition UI Component
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,6 +207,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a31c0527bb67214b805735800cbdb6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentName: {fileID: 9146308649161738045}
+  _componentAmount: {fileID: 2565300199356819775}
+--- !u!114 &1084459358712243293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880637976872054605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285c9baf13ff73c42bb7262410912737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _componentName: {fileID: 9146308649161738045}

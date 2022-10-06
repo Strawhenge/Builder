@@ -2,20 +2,17 @@
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Linq;
 
-namespace Strawhenge.Builder.Unity.Factories
+namespace Strawhenge.Builder.Unity
 {
     public class BlueprintFactory
     {
-        readonly RecipeFactory _recipeFactory;
         readonly IDefaultPositionAccessor _initialPositionAccessor;
         readonly ILogger _logger;
 
         public BlueprintFactory(
-            RecipeFactory recipeFactory,
             IDefaultPositionAccessor initialPositionAccessor,
             ILogger logger)
         {
-            _recipeFactory = recipeFactory;
             _initialPositionAccessor = initialPositionAccessor;
             _logger = logger;
         }
@@ -46,7 +43,7 @@ namespace Strawhenge.Builder.Unity.Factories
                     component: new Component(x.Component.Identifier),
                     quantity: x.Quantity));
 
-            return _recipeFactory.Create(recipeComponents);
+            return new Recipe(recipeComponents);
         }
     }
 }

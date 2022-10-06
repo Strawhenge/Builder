@@ -3,7 +3,7 @@ using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Data;
-using Strawhenge.Builder.Unity.Factories;
+using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using UnityEngine;
@@ -11,6 +11,7 @@ using Component = Strawhenge.Builder.Component;
 
 public class Context : MonoBehaviour
 {
+    [SerializeField] Camera _camera;
     [SerializeField] BlueprintScriptableObject[] _blueprints;
     [SerializeField] SerializableComponentQuantity[] _inventory;
 
@@ -23,6 +24,10 @@ public class Context : MonoBehaviour
 
     public BlueprintFactory BlueprintFactory { get; private set; }
 
+    public ExistingBlueprintManager ExistingBlueprintManager { get; private set; }
+
+    public ExistingBlueprintFactory ExistingBlueprintFactory { get; private set; }
+
     public BuildItemController BuildItemController { get; private set; }
 
     public ComponentInventory Inventory { get; private set; }
@@ -34,13 +39,17 @@ public class Context : MonoBehaviour
         _menu = new BuilderMenu(_menuView);
 
         var logger = new UnityLogger(gameObject);
-        var recipeFactory = new RecipeFactory();
 
         Inventory = new ComponentInventory(logger);
         BuildItemController = new BuildItemController();
-        BlueprintFactory = new BlueprintFactory(recipeFactory, BuildItemController.LastPlacedPosition, logger);
+        BlueprintFactory = new BlueprintFactory(BuildItemController.LastPlacedPosition, logger);
 
-        BlueprintManager = new BlueprintManager(Inventory, BuildItemController, new RecipeUI(logger));
+        var buildItemCompositionUI = new BuildItemCompositionUI(logger);
+
+        BlueprintManager = new BlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
+
+        ExistingBlueprintFactory = new ExistingBlueprintFactory();
+        ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
     }
 
     void Start()
@@ -60,6 +69,13 @@ public class Context : MonoBehaviour
 
     void Update()
     {
+        HandleMenuToggle();
+        HandleExistingItemClick();
+        HandleScrapTrigger();
+    }
+
+    void HandleMenuToggle()
+    {
         if (!Input.GetKeyUp(KeyCode.Escape))
             return;
 
@@ -70,5 +86,26 @@ public class Context : MonoBehaviour
             BlueprintManager.Unset();
             _menu.Show(_mainCategory);
         }
+    }
+
+    void HandleExistingItemClick()
+    {
+        if (Input.GetMouseButtonDown(0) &&
+                Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
+        {
+            var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();
+
+            if (buildItemScript != null)
+            {
+                ExistingBlueprintManager.Set(
+                    ExistingBlueprintFactory.Create(buildItemScript));
+            }
+        }
+    }
+
+    void HandleScrapTrigger()
+    {
+        if (Input.GetKeyDown(KeyCode.Backspace))
+            ExistingBlueprintManager.Scrap();
     }
 }

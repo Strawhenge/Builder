@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 2093134071354938683}
   - component: {fileID: 720682707739310152}
   m_Layer: 5
-  m_Name: Recipe Display
+  m_Name: Build Item Composition UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,9 +270,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b379dba5ca0d94fbaceb782495906b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _titleText: {fileID: 2093134071166169664}
+  _title: {fileID: 2093134071166169664}
+  _subtitle: {fileID: 2093134071972479805}
+  _recipeSubtitleText: Requirements
+  _scrapSubtitleText: Scrap
   _componentsParent: {fileID: 4776719514897295700}
-  _componentPrefab: {fileID: 2062664628934885841, guid: c7b0313ecaa6d304793d830135a4cb11, type: 3}
+  _recipeComponentPrefab: {fileID: 2062664628934885841, guid: c7b0313ecaa6d304793d830135a4cb11, type: 3}
+  _scrapComponentPrefab: {fileID: 1084459358712243293, guid: c7b0313ecaa6d304793d830135a4cb11, type: 3}
 --- !u!1 &2093134071972479807
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +289,7 @@ GameObject:
   - component: {fileID: 2093134071972479804}
   - component: {fileID: 2093134071972479805}
   m_Layer: 5
-  m_Name: Requirements
+  m_Name: Subtitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

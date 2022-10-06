@@ -33,5 +33,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             return _script.BuildItemPreview;
         }
+
+        public void Scrap()
+        {
+            Object.Destroy(_script.gameObject);
+        }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Strawhenge.Builder.Unity.UI
 {
-    public class NullRecipeUI : IRecipeUI
-    {
-        public void Show(string recipeName, IEnumerable<RecipeRequirement> requirements)
+    public class NullScrapUI : IScrapUI
+    {   
+        public void Show(string scrapName, IEnumerable<ScrapAddition> additions)
         {
         }
 

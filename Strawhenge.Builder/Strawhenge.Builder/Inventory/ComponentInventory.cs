@@ -30,8 +30,6 @@ namespace Strawhenge.Builder
             return counter.CurrentCount;
         }
 
-        public void AddComponent(Component component) => AddComponent(component, 1);
-
         public void AddComponent(Component component, int quantity)
         {
             if (quantity < 1)
@@ -44,8 +42,6 @@ namespace Strawhenge.Builder
             var componentCounter = GetOrCreateComponentCounter(component);
             componentCounter.Add(quantity);
         }
-
-        public void RemoveComponent(Component component) => RemoveComponent(component, 1);
 
         public void RemoveComponent(Component component, int quantity)
         {

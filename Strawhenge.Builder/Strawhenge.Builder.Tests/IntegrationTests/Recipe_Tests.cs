@@ -8,7 +8,6 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
 {
     public class Recipe_Tests
     {
-        private readonly RecipeFactory factory;
         private readonly IComponentInventory inventory;
 
         public Recipe_Tests(ITestOutputHelper testOutputHelper)
@@ -21,7 +20,6 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
                 builder.RegisterInstance(logger).As<ILogger>().SingleInstance();
             });
 
-            factory = mocker.Create<RecipeFactory>();
             inventory = mocker.Create<IComponentInventory>();
         }
 
@@ -34,7 +32,7 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
                 Components.Plastic.Quantity(10)
             };
 
-            var recipe = factory.Create(requiredComponents);
+            var recipe = new Recipe(requiredComponents);
 
             Assert.False(
                 recipe.HasRequiredComponents(inventory));
