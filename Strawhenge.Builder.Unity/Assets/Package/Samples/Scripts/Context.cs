@@ -44,10 +44,12 @@ public class Context : MonoBehaviour
         BuildItemController = new BuildItemController();
         BlueprintFactory = new BlueprintFactory(BuildItemController.LastPlacedPosition, logger);
 
-        BlueprintManager = new BlueprintManager(Inventory, BuildItemController, new RecipeUI(logger));
+        var buildItemCompositionUI = new BuildItemCompositionUI(logger);
+
+        BlueprintManager = new BlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
 
         ExistingBlueprintFactory = new ExistingBlueprintFactory();
-        ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController, new NullScrapUI());
+        ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
     }
 
     void Start()
