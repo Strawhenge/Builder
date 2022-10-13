@@ -31,18 +31,15 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _onCancelled = onCancelled ?? (() => { });
 
             _currentPreview = buildItem.Preview();
-
-            _buildItemControls.PlaceBuildItem += SpawnFinalItem;
-            _buildItemControls.ControlOn(_currentPreview);
-        }
+            ControlsOn();
+        }      
 
         public void PreviewOff()
         {
             _currentBuildItem?.Cancel();
             _currentBuildItem = null;
 
-            _buildItemControls.PlaceBuildItem -= SpawnFinalItem;
-            _buildItemControls.ControlOff();
+            ControlsOff();
 
             var callback = _onCancelled;
             ResetCallbacks();
@@ -57,14 +54,25 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _currentBuildItem.PlaceFinal();
             _currentBuildItem = null;
 
-            _buildItemControls.PlaceBuildItem -= SpawnFinalItem;
-            _buildItemControls.ControlOff();
+            ControlsOff();
 
             LastPlacedPosition.Update(_currentPreview.Position, _currentPreview.Rotation);
 
             var callback = _onPlacedFinalItem;
             ResetCallbacks();
             callback();
+        }
+
+        void ControlsOn()
+        {
+            _buildItemControls.PlaceBuildItem += SpawnFinalItem;
+            _buildItemControls.ControlOn(_currentPreview);
+        }
+
+        void ControlsOff()
+        {
+            _buildItemControls.PlaceBuildItem -= SpawnFinalItem;
+            _buildItemControls.ControlOff();
         }
 
         void ResetCallbacks()
