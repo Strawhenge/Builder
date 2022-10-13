@@ -4,17 +4,20 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class BuildItemController : IBuildItemController
     {
+        readonly IBuildItemControls _buildItemControls;
+
         IBuildItem _currentBuildItem;
+        IBuildItemPreview _currentPreview;
         Func<bool> _canPlaceFinalItem;
         Action _onPlacedFinalItem;
         Action _onCancelled;
 
-        public BuildItemController()
+        public BuildItemController(IBuildItemControls buildItemControls)
         {
+            _buildItemControls = buildItemControls;
+
             ResetCallbacks();
         }
-
-        public Maybe<IBuildItemPreview> CurrentPreview { get; private set; } = Maybe.None<IBuildItemPreview>();
 
         public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
 
@@ -27,9 +30,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _onPlacedFinalItem = onPlacedFinalItem ?? (() => { });
             _onCancelled = onCancelled ?? (() => { });
 
-            var preview = buildItem.Preview();
+            _currentPreview = buildItem.Preview();
 
-            CurrentPreview = Maybe.Some(preview);
+            _buildItemControls.PlaceBuildItem += SpawnFinalItem;
+            _buildItemControls.ControlOn(_currentPreview);
         }
 
         public void PreviewOff()
@@ -37,26 +41,26 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _currentBuildItem?.Cancel();
             _currentBuildItem = null;
 
-            CurrentPreview = Maybe.None<IBuildItemPreview>();
+            _buildItemControls.PlaceBuildItem -= SpawnFinalItem;
+            _buildItemControls.ControlOff();
 
             var callback = _onCancelled;
             ResetCallbacks();
             callback();
         }
 
-        public void SpawnFinalItem() => CurrentPreview.Do(SpawnFinalItem);
-
-        void SpawnFinalItem(IBuildItemPreview preview)
+        void SpawnFinalItem()
         {
-            if (_currentBuildItem == null || !_canPlaceFinalItem())
+            if (_currentBuildItem == null || _currentPreview == null || !_canPlaceFinalItem())
                 return;
 
             _currentBuildItem.PlaceFinal();
             _currentBuildItem = null;
 
-            LastPlacedPosition.Update(preview.Position, preview.Rotation);
+            _buildItemControls.PlaceBuildItem -= SpawnFinalItem;
+            _buildItemControls.ControlOff();
 
-            CurrentPreview = Maybe.None<IBuildItemPreview>();
+            LastPlacedPosition.Update(_currentPreview.Position, _currentPreview.Rotation);
 
             var callback = _onPlacedFinalItem;
             ResetCallbacks();

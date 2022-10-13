@@ -41,7 +41,7 @@ public class Context : MonoBehaviour
         var logger = new UnityLogger(gameObject);
 
         Inventory = new ComponentInventory(logger);
-        BuildItemController = new BuildItemController();
+        BuildItemController = new BuildItemController(FindObjectOfType<BuildItemControls>(includeInactive: true));
         BlueprintFactory = new BlueprintFactory(BuildItemController.LastPlacedPosition, logger);
 
         var buildItemCompositionUI = new BuildItemCompositionUI(logger);

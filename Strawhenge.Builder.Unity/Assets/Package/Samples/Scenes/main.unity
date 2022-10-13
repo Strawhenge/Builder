@@ -593,6 +593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _turnSpeed: 50
+  _cameraDistance: 5
 --- !u!4 &1745532029
 Transform:
   m_ObjectHideFlags: 0
