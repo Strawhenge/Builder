@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class BuildItemController : IBuildItemController
     {
-        readonly IBuildItemControls _buildItemControls;
+        readonly ControlsToggle _controls;
 
         IBuildItem _currentBuildItem;
         IBuildItemPreview _currentPreview;
@@ -12,9 +13,19 @@ namespace Strawhenge.Builder.Unity.BuildItems
         Action _onPlacedFinalItem;
         Action _onCancelled;
 
-        public BuildItemController(IBuildItemControls buildItemControls)
+        public BuildItemController(
+            IBuildItemControls buildItemControls,
+            IVerticalSnapControls verticalSnapControls,
+            IHorizontalSnapControls horizontalSnapControls)
         {
-            _buildItemControls = buildItemControls;
+            _controls = new ControlsToggle(
+                buildItemControls,
+                verticalSnapControls,
+                horizontalSnapControls);
+
+            _controls.Place += SpawnFinalItem;
+            _controls.Snap += OnSnap;
+            _controls.ReleaseSnap += OnReleaseSnap;
 
             ResetCallbacks();
         }
@@ -31,15 +42,15 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _onCancelled = onCancelled ?? (() => { });
 
             _currentPreview = buildItem.Preview();
-            ControlsOn();
-        }      
+            _controls.BuildControlsOn(_currentPreview);
+        }
 
         public void PreviewOff()
         {
             _currentBuildItem?.Cancel();
             _currentBuildItem = null;
 
-            ControlsOff();
+            _controls.ControlsOff();
 
             var callback = _onCancelled;
             ResetCallbacks();
@@ -54,7 +65,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _currentBuildItem.PlaceFinal();
             _currentBuildItem = null;
 
-            ControlsOff();
+            _controls.ControlsOff();
 
             LastPlacedPosition.Update(_currentPreview.Position, _currentPreview.Rotation);
 
@@ -63,16 +74,30 @@ namespace Strawhenge.Builder.Unity.BuildItems
             callback();
         }
 
-        void ControlsOn()
+        void OnSnap()
         {
-            _buildItemControls.PlaceBuildItem += SpawnFinalItem;
-            _buildItemControls.ControlOn(_currentPreview);
+            var verticalSnap = _currentPreview.GetAvailableVerticalSnaps().FirstOrDefault();
+
+            if (verticalSnap != null)
+            {
+                verticalSnap.Snap();
+                _controls.VerticalSnapControlsOn(verticalSnap);
+                return;
+            }
+
+            var horizontalSnap = _currentPreview.GetAvailableHorizontalSnaps().FirstOrDefault();
+
+            if (horizontalSnap != null)
+            {
+                horizontalSnap.Snap();
+                _controls.HorizontalSnapControlsOn(horizontalSnap);
+                return;
+            }
         }
 
-        void ControlsOff()
+        void OnReleaseSnap()
         {
-            _buildItemControls.PlaceBuildItem -= SpawnFinalItem;
-            _buildItemControls.ControlOff();
+            _controls.BuildControlsOn(_currentPreview);
         }
 
         void ResetCallbacks()

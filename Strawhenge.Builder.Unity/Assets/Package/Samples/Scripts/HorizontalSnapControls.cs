@@ -35,7 +35,7 @@ namespace Strawhenge.Builder.Unity
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.RightShift))
             {
                 Release?.Invoke();
                 return;
