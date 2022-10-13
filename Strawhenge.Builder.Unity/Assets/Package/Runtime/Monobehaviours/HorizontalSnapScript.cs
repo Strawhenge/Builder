@@ -13,8 +13,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField]
         HorizontalSnapSettingsScriptableObject settings;
 
-        public IBuilderSnapLayerAccessor BuilderSnapLayerAccessor { private get; set; }
-
         SnapPoint snapPoint;
         List<Collider> collidingWith;
         FloatRange turnRange;
@@ -40,8 +38,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             snapPoint = new SnapPoint(transform);
             collidingWith = new List<Collider>();
             turnRange = GetTurnRangeFromSettings();
-
-            gameObject.layer = BuilderSnapLayerAccessor.HorizontalLayer;
         }
 
         void OnTriggerEnter(Collider other)

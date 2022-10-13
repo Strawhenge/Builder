@@ -9,8 +9,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     [RequireComponent(typeof(Rigidbody))]
     public class VerticalSnapScript : MonoBehaviour
     {
-        public IBuilderSnapLayerAccessor BuilderSnapLayerAccessor { private get; set; }
-
         SnapPoint snapPoint;
         List<Collider> collidingWith;
 
@@ -34,8 +32,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         {
             snapPoint = new SnapPoint(transform);
             collidingWith = new List<Collider>();
-
-            gameObject.layer = BuilderSnapLayerAccessor.VerticalLayer;
         }
 
         void OnTriggerEnter(Collider other)
