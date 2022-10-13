@@ -14,6 +14,7 @@ namespace Strawhenge.Builder.Unity
         IBuildItemPreview _buildItem;
 
         public event Action PlaceBuildItem;
+        public event Action Snap;
 
         public void ControlOn(IBuildItemPreview buildItem)
         {
@@ -45,6 +46,9 @@ namespace Strawhenge.Builder.Unity
 
             if (Input.GetKeyDown(KeyCode.Return))
                 PlaceBuildItem?.Invoke();
+
+            if (Input.GetKeyDown(KeyCode.RightShift))
+                Snap?.Invoke();
         }
 
         void ManageBlueprintMovement()
