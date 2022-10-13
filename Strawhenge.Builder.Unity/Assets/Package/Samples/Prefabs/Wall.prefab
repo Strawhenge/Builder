@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6701759064681133529}
   - component: {fileID: 4785052808251326019}
   - component: {fileID: 8789534475210534446}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: HorizontalSnap2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 4134438854181525581}
   - component: {fileID: 7297853526850302672}
   - component: {fileID: 2617659733506787111}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: HorizontalSnap1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
