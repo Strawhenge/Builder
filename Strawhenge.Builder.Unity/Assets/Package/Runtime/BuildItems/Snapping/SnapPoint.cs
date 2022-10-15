@@ -4,33 +4,33 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     public class SnapPoint
     {
-        private readonly Transform transform;
-        private readonly Transform root;
+        readonly Transform _transform;
+        readonly Transform _root;
 
         public SnapPoint(Transform point)
         {
-            transform = point;
-            root = point.root;
+            _transform = point;
+            _root = point.root;
         }
 
-        public Vector3 Position => transform.position;
+        public Vector3 Position => _transform.position;
 
-        public Quaternion Rotation => transform.rotation;
+        public Quaternion Rotation => _transform.rotation;
 
         public void SetPosition(Vector3 position)
         {
-            var directionToRoot = transform.position - root.position;
+            var directionToRoot = _transform.position - _root.position;
             var targetPositionForRoot = position - directionToRoot;
 
-            root.position = targetPositionForRoot;
+            _root.position = targetPositionForRoot;
         }
 
         public void SetRotation(Quaternion rotation)
         {
-            var currentPosition = transform.position;
+            var currentPosition = _transform.position;
 
-            var relativeRotation = Quaternion.Inverse(transform.rotation) * root.rotation;
-            root.rotation = rotation * relativeRotation;
+            var relativeRotation = Quaternion.Inverse(_transform.rotation) * _root.rotation;
+            _root.rotation = rotation * relativeRotation;
 
             SetPosition(currentPosition);
         }

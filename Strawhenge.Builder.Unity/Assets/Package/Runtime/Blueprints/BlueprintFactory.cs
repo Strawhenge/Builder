@@ -25,7 +25,7 @@ namespace Strawhenge.Builder.Unity
             return new Blueprint(scriptableObject.name, buildItem, recipe);
         }
 
-        private IBuildItem CreateBuildItem(BlueprintScriptableObject scriptableObject)
+        IBuildItem CreateBuildItem(BlueprintScriptableObject scriptableObject)
         {
             if (scriptableObject.BuildItem == null)
             {
@@ -36,7 +36,7 @@ namespace Strawhenge.Builder.Unity
             return new NewBuildItem(_initialPositionAccessor, scriptableObject.BuildItem);
         }
 
-        private Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
+        Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
         {
             var recipeComponents = scriptableObject.Recipe
                 .Select(x => new ComponentQuantity(

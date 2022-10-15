@@ -34,19 +34,18 @@ public class Context : MonoBehaviour
 
     void Awake()
     {
-        _menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
-        _menuView = new MenuView(new UnityLogger(gameObject));
-        _menu = new BuilderMenu(_menuView);
-
         var logger = new UnityLogger(gameObject);
+
+        _menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
+        _menuView = new MenuView(logger);
+        _menu = new BuilderMenu(_menuView);
 
         Inventory = new ComponentInventory(logger);
 
         BuildItemController = new BuildItemController(
             FindObjectOfType<BuildItemControls>(includeInactive: true),
             FindObjectOfType<VerticalSnapControls>(includeInactive: true),
-            FindObjectOfType<HorizontalSnapControls>(includeInactive: true)
-            );
+            FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
 
         BlueprintFactory = new BlueprintFactory(BuildItemController.LastPlacedPosition, logger);
 
@@ -97,7 +96,7 @@ public class Context : MonoBehaviour
     void HandleExistingItemClick()
     {
         if (Input.GetMouseButtonDown(0) &&
-                Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
+            Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
         {
             var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();
 

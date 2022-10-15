@@ -10,7 +10,7 @@ namespace Strawhenge.Builder.Unity
         [SerializeField] float _turnSpeed;
         [SerializeField] float _cameraDistance;
 
-        Camera _camera;
+        Transform _cameraTransform;
         IBuildItemPreview _buildItem;
 
         public event Action Place;
@@ -30,7 +30,7 @@ namespace Strawhenge.Builder.Unity
 
         void Awake()
         {
-            _camera = FindObjectOfType<Camera>();
+            _cameraTransform = FindObjectOfType<Camera>().transform;
         }
 
         void OnEnable()
@@ -69,9 +69,9 @@ namespace Strawhenge.Builder.Unity
 
         void UpdateCamera()
         {
-            var direction = _camera.transform.forward.normalized * -1;
+            var direction = _cameraTransform.forward.normalized * -1;
 
-            _camera.transform.position = _buildItem.Position + direction * _cameraDistance;
+            _cameraTransform.position = _buildItem.Position + direction * _cameraDistance;
         }
     }
 }

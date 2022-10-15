@@ -8,13 +8,13 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class BuildItemPreview : IBuildItemPreview
     {
-        readonly Transform transform;
-        readonly FloatRange tiltRange;
-        readonly Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps;
-        readonly Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps;
+        readonly Transform _transform;
+        readonly FloatRange _tiltRange;
+        readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
+        readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
 
-        float turnAngle;
-        float tiltAngle;
+        float _turnAngle;
+        float _tiltAngle;
 
         public BuildItemPreview(
             Transform transform,
@@ -22,42 +22,43 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps,
             Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
         {
-            this.transform = transform;
-            this.tiltRange = tiltRange;
-            this.getAvailableVerticalSnaps = getAvailableVerticalSnaps;
-            this.getAvailableHorizontalSnaps = getAvailableHorizontalSnaps;
+            _transform = transform;
+            _tiltRange = tiltRange;
+            _getAvailableVerticalSnaps = getAvailableVerticalSnaps;
+            _getAvailableHorizontalSnaps = getAvailableHorizontalSnaps;
         }
 
-        public Vector3 Position => transform.position;
+        public Vector3 Position => _transform.position;
 
-        public Quaternion Rotation => transform.rotation;
+        public Quaternion Rotation => _transform.rotation;
 
         public IEnumerable<VerticalSnap> GetAvailableVerticalSnaps() =>
-            getAvailableVerticalSnaps().ToArray();
+            _getAvailableVerticalSnaps().ToArray();
 
         public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() =>
-            getAvailableHorizontalSnaps().ToArray();
+            _getAvailableHorizontalSnaps().ToArray();
 
         public void Move(Vector3 velocity)
         {
-            transform.position += velocity;
+            _transform.position += velocity;
         }
 
         public void Turn(float amount)
         {
-            turnAngle += amount;
+            _turnAngle += amount;
             UpdateRotation();
         }
 
         public void Tilt(float amount)
         {
-            tiltAngle = tiltRange.Clamp(tiltAngle + amount);
+            _tiltAngle = _tiltRange.Clamp(_tiltAngle + amount);
             UpdateRotation();
         }
 
         void UpdateRotation()
         {
-            transform.rotation = Quaternion.AngleAxis(turnAngle, Vector3.up) * Quaternion.AngleAxis(tiltAngle, Vector3.right);
+            _transform.rotation = Quaternion.AngleAxis(_turnAngle, Vector3.up) *
+                                  Quaternion.AngleAxis(_tiltAngle, Vector3.right);
         }
     }
 }

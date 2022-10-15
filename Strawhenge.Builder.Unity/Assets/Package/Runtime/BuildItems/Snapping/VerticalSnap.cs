@@ -4,54 +4,54 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     public class VerticalSnap
     {
-        readonly SnapPoint snapPoint;
-        readonly Transform snappedTo;
-        readonly Cycle<float> presetAngles;
+        readonly SnapPoint _snapPoint;
+        readonly Transform _snappedTo;
+        readonly Cycle<float> _presetAngles;
 
-        float angle;
+        float _angle;
 
         public VerticalSnap(SnapPoint snapPoint, Transform snappedTo)
         {
-            this.snapPoint = snapPoint;
-            this.snappedTo = snappedTo;
+            _snapPoint = snapPoint;
+            _snappedTo = snappedTo;
 
-            presetAngles = new Cycle<float>(0, 90, 270);
+            _presetAngles = new Cycle<float>(0, 90, 270);
         }
 
         public void Snap()
         {
-            snapPoint.SetPosition(snappedTo.position);
-            snapPoint.SetRotation(snappedTo.rotation);
+            _snapPoint.SetPosition(_snappedTo.position);
+            _snapPoint.SetRotation(_snappedTo.rotation);
         }
 
         public void Slide(float amount)
         {
-            snapPoint.SetPosition(
-                snapPoint.Position + snappedTo.up * amount);
+            _snapPoint.SetPosition(
+                _snapPoint.Position + _snappedTo.up * amount);
         }
 
         public void Turn(float amount)
         {
-            angle += amount;
+            _angle += amount;
             ApplyRotationAngle();
         }
 
         public void TurnPrevious()
         {
-            angle = presetAngles.Previous();
+            _angle = _presetAngles.Previous();
             ApplyRotationAngle();
         }
 
         public void TurnNext()
         {
-            angle = presetAngles.Next();
+            _angle = _presetAngles.Next();
             ApplyRotationAngle();
         }
 
         void ApplyRotationAngle()
         {
-            var rotation = snappedTo.rotation * Quaternion.AngleAxis(angle, Vector3.up);
-            snapPoint.SetRotation(rotation);
+            var rotation = _snappedTo.rotation * Quaternion.AngleAxis(_angle, Vector3.up);
+            _snapPoint.SetRotation(rotation);
         }
     }
 }
