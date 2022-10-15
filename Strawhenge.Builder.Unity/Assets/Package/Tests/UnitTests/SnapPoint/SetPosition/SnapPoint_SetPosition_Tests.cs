@@ -6,14 +6,14 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
 {
     public abstract class SnapPoint_SetPosition_Tests
     {
-        Transform transform;
-        SnapPoint sut;
+        Transform _transform;
+        SnapPoint _sut;
 
         [SetUp]
         public void SetUp()
         {
-            transform = CreateSubject().transform;
-            sut = new SnapPoint(transform);
+            _transform = CreateSubject().transform;
+            _sut = new SnapPoint(_transform);
         }
 
         [Test]
@@ -21,7 +21,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         {
             SetPosition();
 
-            Assert.AreEqual(PositionToSet, transform.position);
+            Assert.AreEqual(PositionToSet, _transform.position);
         }
 
         [Test]
@@ -29,27 +29,27 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         {
             SetPosition();
 
-            Assert.AreEqual(ExpectedRootPosition, transform.root.position);
+            Assert.AreEqual(ExpectedRootPosition, _transform.root.position);
         }
 
         [Test]
         public void SetPosition_RotationShouldNotChange()
         {
-            var rotation = transform.rotation;
+            var rotation = _transform.rotation;
 
             SetPosition();
 
-            Assert.AreEqual(rotation, transform.rotation);
+            Assert.AreEqual(rotation, _transform.rotation);
         }
 
         [Test]
         public void SetPosition_RootRotationShouldNotChange()
         {
-            var rotation = transform.root.rotation;
+            var rotation = _transform.root.rotation;
 
             SetPosition();
 
-            Assert.AreEqual(rotation, transform.root.rotation);
+            Assert.AreEqual(rotation, _transform.root.rotation);
         }
 
         protected abstract Vector3 PositionToSet { get; }
@@ -60,7 +60,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
 
         void SetPosition()
         {
-            sut.SetPosition(PositionToSet);
+            _sut.SetPosition(PositionToSet);
         }
     }
 }

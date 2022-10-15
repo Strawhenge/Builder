@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Strawhenge.Builder.Unity.BuildItems
+﻿namespace Strawhenge.Builder.Unity.BuildItems
 {
     public interface IBuildItem
     {
