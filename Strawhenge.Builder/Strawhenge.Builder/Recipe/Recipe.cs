@@ -5,16 +5,16 @@ namespace Strawhenge.Builder
 {
     public class Recipe
     {
-        private readonly ComponentQuantity[] requiredComponents;
+        readonly ComponentQuantity[] _requiredComponents;
 
         public Recipe(IEnumerable<ComponentQuantity> requiredComponents)
         {
-            this.requiredComponents = requiredComponents.ToArray();
+            _requiredComponents = requiredComponents.ToArray();
         }
 
         public void DeductRequiredComponents(IComponentInventory inventory)
         {
-            foreach (var requiredComponent in requiredComponents)
+            foreach (var requiredComponent in _requiredComponents)
             {
                 inventory.RemoveComponent(
                     requiredComponent.Component,
@@ -24,7 +24,7 @@ namespace Strawhenge.Builder
 
         public IEnumerable<RecipeRequirement> GetRequirements(IComponentInventory inventory)
         {
-            return requiredComponents
+            return _requiredComponents
                 .Select(ConvertToRequirement)
                 .ToArray();
 

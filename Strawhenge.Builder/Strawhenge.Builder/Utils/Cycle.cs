@@ -6,9 +6,9 @@ namespace Strawhenge.Builder
 {
     public class Cycle<T>
     {
-        private readonly T[] all;
+        readonly T[] _all;
 
-        private int currentIndex;
+        int _currentIndex;
 
         public Cycle(T initial, params T[] others) : this(initial, (IEnumerable<T>)others)
         {
@@ -19,35 +19,35 @@ namespace Strawhenge.Builder
             if (initial == null) throw new ArgumentNullException(nameof(initial));
             if (others == null) throw new ArgumentNullException(nameof(others));
 
-            currentIndex = 0;
+            _currentIndex = 0;
 
-            all = new T[] { initial }
+            _all = new T[] { initial }
                 .Concat(others)
                 .ToArray();
         }
 
-        public T Current => all[currentIndex];
+        public T Current => _all[_currentIndex];
 
         public T Next()
         {
-            currentIndex++;
+            _currentIndex++;
 
-            if (currentIndex >= all.Length)
-                currentIndex = 0;
+            if (_currentIndex >= _all.Length)
+                _currentIndex = 0;
 
             return Current;
         }
 
         public T Previous()
         {
-            currentIndex--;
+            _currentIndex--;
 
-            if (currentIndex < 0)
-                currentIndex = all.Length - 1;
+            if (_currentIndex < 0)
+                _currentIndex = _all.Length - 1;
 
             return Current;
         }
 
-        public IEnumerable<T> AsEnumerable() => all;
+        public IEnumerable<T> AsEnumerable() => _all;
     }
 }
