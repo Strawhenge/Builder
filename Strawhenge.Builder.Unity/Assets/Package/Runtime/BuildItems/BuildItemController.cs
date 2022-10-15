@@ -32,7 +32,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
 
-        public void PreviewOn(IBuildItem buildItem, Func<bool> canPlaceFinalItem = null, Action onPlacedFinalItem = null, Action onCancelled = null)
+        public void PreviewOn(IBuildItem buildItem, Func<bool> canPlaceFinalItem = null,
+            Action onPlacedFinalItem = null, Action onCancelled = null)
         {
             _currentBuildItem?.Cancel();
             _currentBuildItem = buildItem;
@@ -87,12 +88,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             var horizontalSnap = _currentPreview.GetAvailableHorizontalSnaps().FirstOrDefault();
 
-            if (horizontalSnap != null)
-            {
-                horizontalSnap.Snap();
-                _controls.HorizontalSnapControlsOn(horizontalSnap);
+            if (horizontalSnap == null)
                 return;
-            }
+
+            horizontalSnap.Snap();
+            _controls.HorizontalSnapControlsOn(horizontalSnap);
         }
 
         void OnReleaseSnap()

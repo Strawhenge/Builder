@@ -9,7 +9,7 @@ namespace Strawhenge.Builder.Unity
         readonly IBuildItemController _buildItemController;
         readonly IRecipeUI _recipeUI;
 
-        Blueprint currentBlueprint;
+        Blueprint _currentBlueprint;
 
         public BlueprintManager(
             IComponentInventory componentInventory,
@@ -23,7 +23,7 @@ namespace Strawhenge.Builder.Unity
 
         public void Set(Blueprint blueprint)
         {
-            currentBlueprint = blueprint;
+            _currentBlueprint = blueprint;
 
             ShowBuildItemPreview();
         }
@@ -33,7 +33,7 @@ namespace Strawhenge.Builder.Unity
             _recipeUI.Hide();
             _buildItemController.PreviewOff();
 
-            currentBlueprint = null;
+            _currentBlueprint = null;
         }
 
         void ShowBuildItemPreview()
@@ -41,26 +41,26 @@ namespace Strawhenge.Builder.Unity
             UpdateRecipeUI();
 
             _buildItemController.PreviewOn(
-                currentBlueprint.BuildItem,
-                canPlaceFinalItem: () => currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
+                _currentBlueprint.BuildItem,
+                canPlaceFinalItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
                 onPlacedFinalItem: () =>
                 {
-                    currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
+                    _currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
 
                     ShowBuildItemPreview();
                 },
                 onCancelled: () =>
                 {
                     _recipeUI.Hide();
-                    currentBlueprint = null;
+                    _currentBlueprint = null;
                 });
         }
 
         void UpdateRecipeUI()
         {
-            var requirements = currentBlueprint.Recipe.GetRequirements(_componentInventory);
+            var requirements = _currentBlueprint.Recipe.GetRequirements(_componentInventory);
 
-            _recipeUI.Show(currentBlueprint.Identifier, requirements);          
+            _recipeUI.Show(_currentBlueprint.Identifier, requirements);          
         }
     }
 }

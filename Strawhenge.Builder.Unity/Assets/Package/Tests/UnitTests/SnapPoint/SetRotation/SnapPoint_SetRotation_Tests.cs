@@ -6,14 +6,14 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
 {
     public abstract class SnapPoint_SetRotation_Tests
     {
-        Transform transform;
-        SnapPoint sut;
+        Transform _transform;
+        SnapPoint _sut;
 
         [SetUp]
         public void SetUp()
         {
-            transform = CreateSubject().transform;
-            sut = new SnapPoint(transform);
+            _transform = CreateSubject().transform;
+            _sut = new SnapPoint(_transform);
         }
 
         [Test]
@@ -21,17 +21,17 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         {
             SetRotation();
 
-            UnityAssert.AreEqual(RotationToSet, transform.rotation);
+            UnityAssert.AreEqual(RotationToSet, _transform.rotation);
         }
 
         [Test]
         public void SetRotation_PositionShouldNotHaveChanged()
         {
-            var position = transform.position;
+            var position = _transform.position;
 
             SetRotation();
 
-            UnityAssert.AreEqual(position, transform.position);
+            UnityAssert.AreEqual(position, _transform.position);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         {
             SetRotation();
 
-            UnityAssert.AreEqual(ExpectedRootRotation, transform.root.rotation);
+            UnityAssert.AreEqual(ExpectedRootRotation, _transform.root.rotation);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         {
             SetRotation();
 
-            UnityAssert.AreEqual(ExpectedRootPosition, transform.root.position);
+            UnityAssert.AreEqual(ExpectedRootPosition, _transform.root.position);
         }
 
         protected abstract Quaternion RotationToSet { get; }
@@ -60,7 +60,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
 
         void SetRotation()
         {
-            sut.SetRotation(RotationToSet);
+            _sut.SetRotation(RotationToSet);
         }
     }
 }
