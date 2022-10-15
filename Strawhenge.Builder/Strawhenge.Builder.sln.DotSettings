@@ -7,7 +7,6 @@
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/DEFAULT_INTERNAL_MODIFIER/@EntryValue">Implicit</s:String>
 	<s:String x:Key="/Default/CodeStyle/CodeFormatting/CSharpCodeStyle/DEFAULT_PRIVATE_MODIFIER/@EntryValue">Implicit</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=3B56AF736EEB1F4E9D301DC8590D446B/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=3B56AF736EEB1F4E9D301DC8590D446B/AbsolutePath/@EntryValue">C:\Projects\Builder\Strawhenge.Builder\Strawhenge.Builder.Tests\Strawhenge.Builder.Tests.csproj.DotSettings</s:String>
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=3B56AF736EEB1F4E9D301DC8590D446B/RelativePath/@EntryValue">..\Strawhenge.Builder.Tests\Strawhenge.Builder.Tests.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File3B56AF736EEB1F4E9D301DC8590D446B/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File3B56AF736EEB1F4E9D301DC8590D446B/IsOn/@EntryValue">False</s:Boolean>
