@@ -74,6 +74,7 @@ crashlytics-build.properties
 # Custom
 /[Aa]ssets/*
 !Strawhenge.Builder.Unity.sln.DotSettings
+!Strawhenge.Builder.Unity.Tests.csproj.DotSettings
 !/[Aa]ssets/Package/
 !/[Aa]ssets/Package.meta
 
