@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Tests.UnitTests
 {
     public partial class Component_Tests
     {
-        public static IEnumerable<object[]> MatchingComponentNames => new object[][]
+        public static IEnumerable<object[]> MatchingComponentNames => new[]
         {
             Case("", null),
             Case("", ""),

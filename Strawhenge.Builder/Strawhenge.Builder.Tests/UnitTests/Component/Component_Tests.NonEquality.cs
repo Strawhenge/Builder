@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Tests.UnitTests
 {
     public partial class Component_Tests
     {
-        public static IEnumerable<object[]> NonMatchingComponentNames => new object[][]
+        public static IEnumerable<object[]> NonMatchingComponentNames => new[]
         {
             Case("Wood", null),
             Case("Wood", "Metal")

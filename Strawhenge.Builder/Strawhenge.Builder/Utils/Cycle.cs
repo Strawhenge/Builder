@@ -21,7 +21,7 @@ namespace Strawhenge.Builder
 
             _currentIndex = 0;
 
-            _all = new T[] { initial }
+            _all = new[] { initial }
                 .Concat(others)
                 .ToArray();
         }

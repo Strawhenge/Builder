@@ -22,18 +22,18 @@ namespace Strawhenge.Builder.Tests.Menu
             var wall = CreateMenuItem(Wall);
             var floor = CreateMenuItem(Floor);
 
-            var structure = new MenuCategory(Structure, Array.Empty<MenuCategory>(), new MenuItem[] { wall, floor });
+            var structure = new MenuCategory(Structure, Array.Empty<MenuCategory>(), new[] { wall, floor });
 
             var workbench = CreateMenuItem(Workbench);
 
-            var utility = new MenuCategory(Utility, Array.Empty<MenuCategory>(), new MenuItem[] { workbench });
+            var utility = new MenuCategory(Utility, Array.Empty<MenuCategory>(), new[] { workbench });
 
             var chair = CreateMenuItem(Chair);
             var table = CreateMenuItem(Table);
 
-            var furniture = new MenuCategory(Furniture, new MenuCategory[] { utility }, new MenuItem[] { chair, table });
+            var furniture = new MenuCategory(Furniture, new[] { utility }, new[] { chair, table });
 
-            return new MainCategory(new MenuCategory[] { structure, furniture }, Array.Empty<MenuItem>());
+            return new MainCategory(new[] { structure, furniture }, Array.Empty<MenuItem>());
         }
 
         MenuItem CreateMenuItem(string name) =>

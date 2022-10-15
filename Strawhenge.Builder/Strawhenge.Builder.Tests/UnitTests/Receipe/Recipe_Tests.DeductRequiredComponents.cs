@@ -10,7 +10,8 @@ namespace Strawhenge.Builder.Tests.UnitTests
     {
         [Theory]
         [ClassData(typeof(DeductRequiredComponents_ShouldRemoveComponentsFromInventory_Data))]
-        public void DeductRequiredComponents_ShouldRemoveComponentsFromInventory(IEnumerable<ComponentQuantity> recipeComponents)
+        public void DeductRequiredComponents_ShouldRemoveComponentsFromInventory(
+            IEnumerable<ComponentQuantity> recipeComponents)
         {
             var inventoryMock = new Mock<IComponentInventory>();
 
@@ -20,7 +21,8 @@ namespace Strawhenge.Builder.Tests.UnitTests
             foreach (var componentQuantity in recipeComponents)
             {
                 inventoryMock.Verify(
-                    x => x.RemoveComponent(It.Is<Component>(x => x.Is(componentQuantity.Component)), componentQuantity.Quantity),
+                    x => x.RemoveComponent(It.Is<Component>(y => y.Is(componentQuantity.Component)),
+                        componentQuantity.Quantity),
                     Times.Once);
             }
         }
@@ -39,7 +41,7 @@ namespace Strawhenge.Builder.Tests.UnitTests
                 var components = GetComponents();
                 var data = new object[] { components };
 
-                return new object[][] { data }
+                return new[] { data }
                     .AsEnumerable()
                     .GetEnumerator();
             }

@@ -26,7 +26,7 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
         [Fact]
         public void Test()
         {
-            var requiredComponents = new ComponentQuantity[]
+            var requiredComponents = new[]
             {
                 Components.Metal.Quantity(5),
                 Components.Plastic.Quantity(10)
@@ -73,7 +73,8 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
             AssertRequirement(plasticRequirement, 10, 0);
         }
 
-        private void AssertRequirement(RecipeRequirement recipeRequirement, int expectedRequiredQuantity, int expectedInventoryQuantity)
+        private void AssertRequirement(RecipeRequirement recipeRequirement, int expectedRequiredQuantity,
+            int expectedInventoryQuantity)
         {
             Assert.NotNull(recipeRequirement);
             Assert.Equal(expectedRequiredQuantity, recipeRequirement.QuantityRequired);
