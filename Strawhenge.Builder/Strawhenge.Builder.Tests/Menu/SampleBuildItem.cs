@@ -4,9 +4,9 @@ namespace Strawhenge.Builder.Tests.Menu
 {
     class SampleBuildItem : ICategorizable
     {
-        public const string STRUCTURE = "Structure";
-        public const string FURNITURE = "Furniture";
-        public const string DECORATIVE_FURNITURE = "Decorative Furniture";
+        public const string Structure = "Structure";
+        public const string Furniture = "Furniture";
+        public const string DecorativeFurniture = "Decorative Furniture";
 
         public static SampleBuildItem Wall { get; } = new SampleBuildItem { Name = nameof(Wall) };
 
@@ -44,7 +44,7 @@ namespace Strawhenge.Builder.Tests.Menu
 
         public static SampleBuildItem[] GetItemsWithoutCategories()
         {
-            return new SampleBuildItem[]
+            return new[]
             {
                 Box,
                 Barrel
@@ -53,29 +53,29 @@ namespace Strawhenge.Builder.Tests.Menu
 
         public static SampleBuildItem[] GetItemsInStructureCategory()
         {
-            return new SampleBuildItem[]
+            return new[]
             {
-                Wall.InCategory(STRUCTURE),
-                Floor.InCategory(STRUCTURE),
-                Roof.InCategory(STRUCTURE)
+                Wall.InCategory(Structure),
+                Floor.InCategory(Structure),
+                Roof.InCategory(Structure)
             };
         }
 
         public static SampleBuildItem[] GetItemsInFurnitureCategory()
         {
-            return new SampleBuildItem[]
+            return new[]
             {
-                Chair.InCategory(FURNITURE),
-                Table.InCategory(FURNITURE)
+                Chair.InCategory(Furniture),
+                Table.InCategory(Furniture)
             };
         }
 
         public static SampleBuildItem[] GetItemsInDecorativeFurnitureCategory()
         {
-            return new SampleBuildItem[]
+            return new[]
             {
-                Poster.InCategory(DECORATIVE_FURNITURE, parentCategory: FURNITURE),
-                Painting.InCategory(DECORATIVE_FURNITURE, parentCategory: FURNITURE)
+                Poster.InCategory(DecorativeFurniture, parentCategory: Furniture),
+                Painting.InCategory(DecorativeFurniture, parentCategory: Furniture)
             };
         }
     }

@@ -49,7 +49,7 @@ namespace Strawhenge.Builder.Tests.Menu
             Assert.Empty(mainCategory.Items);
 
             var structures = Assert.Single(mainCategory.Subcategories);
-            VerifyCategory(items, structures, SampleBuildItem.STRUCTURE);
+            VerifyCategory(items, structures, SampleBuildItem.Structure);
         }
 
         [Fact]
@@ -67,10 +67,10 @@ namespace Strawhenge.Builder.Tests.Menu
             Assert.Equal(2, mainCategory.Subcategories.Count);
 
             var structures = mainCategory.Subcategories[0];
-            VerifyCategory(structureItems, structures, SampleBuildItem.STRUCTURE);
+            VerifyCategory(structureItems, structures, SampleBuildItem.Structure);
 
             var furniture = mainCategory.Subcategories[1];
-            VerifyCategory(furnitureItems, furniture, SampleBuildItem.FURNITURE);
+            VerifyCategory(furnitureItems, furniture, SampleBuildItem.Furniture);
         }
 
         [Fact]
@@ -83,12 +83,12 @@ namespace Strawhenge.Builder.Tests.Menu
             Assert.Empty(mainCategory.Items);
 
             var furniture = Assert.Single(mainCategory.Subcategories);
-            Assert.Equal(SampleBuildItem.FURNITURE, furniture.Name);
+            Assert.Equal(SampleBuildItem.Furniture, furniture.Name);
             Assert.Empty(furniture.Items);
 
             var decorativeFurniture = Assert.Single(furniture.Subcategories);
             Assert.Empty(decorativeFurniture.Subcategories);
-            VerifyCategory(items, decorativeFurniture, SampleBuildItem.DECORATIVE_FURNITURE);
+            VerifyCategory(items, decorativeFurniture, SampleBuildItem.DecorativeFurniture);
         }
 
         [Fact]
@@ -112,14 +112,14 @@ namespace Strawhenge.Builder.Tests.Menu
             VerifyCategory(uncategorizedItems, mainCategory, string.Empty);
 
             var structures = mainCategory.Subcategories[0];
-            VerifyCategory(structureItems, structures, SampleBuildItem.STRUCTURE);
+            VerifyCategory(structureItems, structures, SampleBuildItem.Structure);
 
             var furniture = mainCategory.Subcategories[1];
-            VerifyCategory(furnitureItems, furniture, SampleBuildItem.FURNITURE);
+            VerifyCategory(furnitureItems, furniture, SampleBuildItem.Furniture);
 
             var decorativeFurniture = Assert.Single(furniture.Subcategories);
             Assert.Empty(decorativeFurniture.Subcategories);
-            VerifyCategory(decorativeFurnitureItems, decorativeFurniture, SampleBuildItem.DECORATIVE_FURNITURE);
+            VerifyCategory(decorativeFurnitureItems, decorativeFurniture, SampleBuildItem.DecorativeFurniture);
         }
 
         [Fact]
@@ -141,7 +141,7 @@ namespace Strawhenge.Builder.Tests.Menu
             VerifySelectedItem(SampleBuildItem.Barrel);
 
             mainCategory.Subcategories
-                .Single(x => x.Name == SampleBuildItem.FURNITURE)
+                .Single(x => x.Name == SampleBuildItem.Furniture)
                 .Items
                 .Single(x => x.Name == SampleBuildItem.Table.Name)
                 .Select();
