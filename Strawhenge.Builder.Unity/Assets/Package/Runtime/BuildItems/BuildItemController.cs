@@ -1,20 +1,34 @@
 ﻿using System;
+using System.Linq;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class BuildItemController : IBuildItemController
     {
+        readonly ControlsToggle _controls;
+
         IBuildItem _currentBuildItem;
+        IBuildItemPreview _currentPreview;
         Func<bool> _canPlaceFinalItem;
         Action _onPlacedFinalItem;
         Action _onCancelled;
 
-        public BuildItemController()
+        public BuildItemController(
+            IBuildItemControls buildItemControls,
+            IVerticalSnapControls verticalSnapControls,
+            IHorizontalSnapControls horizontalSnapControls)
         {
+            _controls = new ControlsToggle(
+                buildItemControls,
+                verticalSnapControls,
+                horizontalSnapControls);
+
+            _controls.Place += SpawnFinalItem;
+            _controls.Snap += OnSnap;
+            _controls.ReleaseSnap += OnReleaseSnap;
+
             ResetCallbacks();
         }
-
-        public Maybe<IBuildItemPreview> CurrentPreview { get; private set; } = Maybe.None<IBuildItemPreview>();
 
         public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
 
@@ -27,9 +41,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _onPlacedFinalItem = onPlacedFinalItem ?? (() => { });
             _onCancelled = onCancelled ?? (() => { });
 
-            var preview = buildItem.Preview();
-
-            CurrentPreview = Maybe.Some(preview);
+            _currentPreview = buildItem.Preview();
+            _controls.BuildControlsOn(_currentPreview);
         }
 
         public void PreviewOff()
@@ -37,30 +50,54 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _currentBuildItem?.Cancel();
             _currentBuildItem = null;
 
-            CurrentPreview = Maybe.None<IBuildItemPreview>();
+            _controls.ControlsOff();
 
             var callback = _onCancelled;
             ResetCallbacks();
             callback();
         }
 
-        public void SpawnFinalItem() => CurrentPreview.Do(SpawnFinalItem);
-
-        void SpawnFinalItem(IBuildItemPreview preview)
+        void SpawnFinalItem()
         {
-            if (_currentBuildItem == null || !_canPlaceFinalItem())
+            if (_currentBuildItem == null || _currentPreview == null || !_canPlaceFinalItem())
                 return;
 
             _currentBuildItem.PlaceFinal();
             _currentBuildItem = null;
 
-            LastPlacedPosition.Update(preview.Position, preview.Rotation);
+            _controls.ControlsOff();
 
-            CurrentPreview = Maybe.None<IBuildItemPreview>();
+            LastPlacedPosition.Update(_currentPreview.Position, _currentPreview.Rotation);
 
             var callback = _onPlacedFinalItem;
             ResetCallbacks();
             callback();
+        }
+
+        void OnSnap()
+        {
+            var verticalSnap = _currentPreview.GetAvailableVerticalSnaps().FirstOrDefault();
+
+            if (verticalSnap != null)
+            {
+                verticalSnap.Snap();
+                _controls.VerticalSnapControlsOn(verticalSnap);
+                return;
+            }
+
+            var horizontalSnap = _currentPreview.GetAvailableHorizontalSnaps().FirstOrDefault();
+
+            if (horizontalSnap != null)
+            {
+                horizontalSnap.Snap();
+                _controls.HorizontalSnapControlsOn(horizontalSnap);
+                return;
+            }
+        }
+
+        void OnReleaseSnap()
+        {
+            _controls.BuildControlsOn(_currentPreview);
         }
 
         void ResetCallbacks()

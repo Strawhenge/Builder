@@ -1,142 +1,77 @@
 using Strawhenge.Builder.Unity.BuildItems;
-using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using System;
-using System.Linq;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BuildItemControls : MonoBehaviour
+    public class BuildItemControls : MonoBehaviour, IBuildItemControls
     {
         [SerializeField] float _moveSpeed;
         [SerializeField] float _turnSpeed;
+        [SerializeField] float _cameraDistance;
 
-        IBuildItemController _buildItemController;
+        Camera _camera;
+        IBuildItemPreview _buildItem;
 
-        VerticalSnap _verticalSnap;
-        HorizontalSnap _horizontalSnap;
+        public event Action Place;
+        public event Action Snap;
 
-        void Start()
+        public void ControlOn(IBuildItemPreview buildItem)
         {
-            _buildItemController = FindObjectOfType<Context>().BuildItemController;
+            _buildItem = buildItem;
+            enabled = true;
+        }
+
+        public void ControlOff()
+        {
+            enabled = false;
+            _buildItem = null;
+        }
+
+        void Awake()
+        {
+            _camera = FindObjectOfType<Camera>();
+        }
+
+        void OnEnable()
+        {
+            if (_buildItem == null)
+                enabled = false;
         }
 
         void Update()
         {
-            _buildItemController.CurrentPreview.Do(blueprint =>
-            {
-                if (_verticalSnap != null)
-                {
-                    HandleVerticalSnap();
-                    return;
-                }
-
-                if (_horizontalSnap != null)
-                {
-                    HandleHorizontalSnap();
-                    return;
-                }
-
-                ManageBlueprintMovement(blueprint);
-                ManageBlueprintSnapping(blueprint);
-            });
+            UpdateCamera();
+            ManageBlueprintMovement();
 
             if (Input.GetKeyDown(KeyCode.Return))
-                _buildItemController.SpawnFinalItem();
+                Place?.Invoke();
+
+            if (Input.GetKeyDown(KeyCode.RightShift))
+                Snap?.Invoke();
         }
 
-        void ManageBlueprintMovement(IBuildItemPreview blueprint)
+        void ManageBlueprintMovement()
         {
             var x = Input.GetAxis("Horizontal");
             var y = Input.GetAxis("Vertical");
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                blueprint.Move(_moveSpeed * Time.deltaTime * new Vector3(0, y, 0).normalized);
-                blueprint.Turn(_turnSpeed * x * Time.deltaTime);
+                _buildItem.Move(_moveSpeed * Time.deltaTime * new Vector3(0, y, 0).normalized);
+                _buildItem.Turn(_turnSpeed * x * Time.deltaTime);
                 return;
             }
 
             var direction = new Vector3(x, 0, y).normalized;
-            blueprint.Move(_moveSpeed * Time.deltaTime * direction);
+            _buildItem.Move(_moveSpeed * Time.deltaTime * direction);
         }
 
-        void ManageBlueprintSnapping(IBuildItemPreview blueprint)
+        void UpdateCamera()
         {
-            if (!Input.GetKey(KeyCode.RightShift))
-                return;
+            var direction = _camera.transform.forward.normalized * -1;
 
-            _verticalSnap = blueprint.GetAvailableVerticalSnaps().FirstOrDefault();
-
-            if (_verticalSnap != null)
-            {
-                _verticalSnap.Snap();
-                return;
-            }
-
-            _horizontalSnap = blueprint.GetAvailableHorizontalSnaps().FirstOrDefault();
-
-            if (_horizontalSnap != null)
-            {
-                _horizontalSnap.Snap();
-                return;
-            }
-        }
-
-        void HandleHorizontalSnap()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                _horizontalSnap = null;
-                return;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _horizontalSnap.Flip();
-                return;
-            }
-
-            var x = Input.GetAxis("Horizontal");
-            var y = Input.GetAxis("Vertical");
-
-            if (Mathf.Abs(y) > 0.1f)
-            {
-                _horizontalSnap.Turn(-y * Time.deltaTime * _turnSpeed);
-            }
-
-            if (Mathf.Abs(x) > 0.01f)
-            {
-                _horizontalSnap.Slide(x * _moveSpeed * Time.deltaTime);
-            }
-        }
-
-        void HandleVerticalSnap()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                _verticalSnap = null;
-                return;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _verticalSnap.TurnNext();
-                return;
-            }
-
-            var x = Input.GetAxis("Horizontal");
-            var y = Input.GetAxis("Vertical");
-
-            if (Mathf.Abs(x) > 0.1f)
-            {
-                _verticalSnap.Turn(x * Time.deltaTime * _turnSpeed);
-            }
-
-            if (Mathf.Abs(y) > 0.01f)
-            {
-                _verticalSnap.Slide(y * _moveSpeed * Time.deltaTime);
-            }
+            _camera.transform.position = _buildItem.Position + direction * _cameraDistance;
         }
     }
 }
