@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ba307dbeb47384fa28fbef46eaffe5, type: 3}
   m_Name: Horizontal Snap Settings Scriptable Object
   m_EditorClassIdentifier: 
-  minTurnAngle: -30
-  maxTurnAngle: 30
+  _minTurnAngle: -30
+  _maxTurnAngle: 30

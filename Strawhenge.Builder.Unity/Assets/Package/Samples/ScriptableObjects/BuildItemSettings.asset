@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46a5b8be1b82318428afc167521bcb42, type: 3}
   m_Name: BuildItemSettings
   m_EditorClassIdentifier: 
-  minTiltAngle: 30
-  maxTiltAngle: 30
+  _minTiltAngle: 30
+  _maxTiltAngle: 30
