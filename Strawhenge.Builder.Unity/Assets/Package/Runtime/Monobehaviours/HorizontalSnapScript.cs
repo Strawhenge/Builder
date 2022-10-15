@@ -3,7 +3,6 @@ using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
@@ -52,7 +51,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         FloatRange GetTurnRangeFromSettings()
         {
-            var settings = this._settings as IHorizontalSnapSettings;
+            var settings = _settings as IHorizontalSnapSettings;
 
             if (!FloatRange.IsValidRange(settings.MinTurnAngle, settings.MaxTurnAngle))
             {

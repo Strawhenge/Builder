@@ -1,6 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Strawhenge.Builder.Unity.ScriptableObjects
 {
