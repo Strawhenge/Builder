@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Tests.UnitTests
 {
     public class ComponentExtensions_Tests
     {
-        readonly Component component = Components.Metal;
+        readonly Component _component = Components.Metal;
 
         [Theory]
         [InlineData(0)]
@@ -14,13 +14,13 @@ namespace Strawhenge.Builder.Tests.UnitTests
         [InlineData(int.MaxValue)]
         public void Quantity_ShouldReturnComponentQuantity(int quantity)
         {
-            var componentQuantity = component.Quantity(quantity);
+            var componentQuantity = _component.Quantity(quantity);
 
             Assert.NotNull(componentQuantity);
             Assert.Equal(quantity, componentQuantity.Quantity);
             Assert.NotNull(componentQuantity.Component);
             Assert.True(
-                componentQuantity.Component.Is(component));
+                componentQuantity.Component.Is(_component));
         }
 
         [Fact]
