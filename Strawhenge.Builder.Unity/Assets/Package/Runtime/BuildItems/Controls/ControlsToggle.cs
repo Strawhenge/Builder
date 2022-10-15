@@ -29,13 +29,13 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             ControlsOff();
 
-            _buildItemControls.PlaceBuildItem += InvokePlace;
+            _buildItemControls.Place += InvokePlace;
             _buildItemControls.Snap += InvokeSnap;
             _buildItemControls.ControlOn(buildItem);
 
             _controlsOffStrategy = () =>
             {
-                _buildItemControls.PlaceBuildItem -= InvokePlace;
+                _buildItemControls.Place -= InvokePlace;
                 _buildItemControls.Snap -= InvokeSnap;
                 _buildItemControls.ControlOff();
             };
