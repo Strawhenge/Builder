@@ -7,6 +7,8 @@
 	<s:String x:Key="/Default/Environment/InjectedLayers/FileInjectedLayer/=3B56AF736EEB1F4E9D301DC8590D446B/RelativePath/@EntryValue">..\Strawhenge.Builder.Tests\Strawhenge.Builder.Tests.csproj.DotSettings</s:String>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File3B56AF736EEB1F4E9D301DC8590D446B/@KeyIndexDefined">True</s:Boolean>
 	<s:Boolean x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File3B56AF736EEB1F4E9D301DC8590D446B/IsOn/@EntryValue">False</s:Boolean>
+	
+	
 	<s:Double x:Key="/Default/Environment/InjectedLayers/InjectedLayerCustomization/=File3B56AF736EEB1F4E9D301DC8590D446B/RelativePriority/@EntryValue">1</s:Double>
 	
 	
