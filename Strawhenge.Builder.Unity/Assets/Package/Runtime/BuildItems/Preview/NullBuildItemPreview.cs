@@ -7,9 +7,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NullBuildItemPreview : IBuildItemPreview
     {
-        public Vector3 Position { get; }
+        public Vector3 Position { get; } = Vector3.zero;
 
-        public Quaternion Rotation { get; }
+        public Quaternion Rotation { get; } = new Quaternion();
 
         public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() => Enumerable.Empty<HorizontalSnap>();
 

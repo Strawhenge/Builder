@@ -4,53 +4,53 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     public class HorizontalSnap
     {
-        readonly SnapPoint snapPoint;
-        readonly Transform snappedTo;
-        readonly FloatRange turnRange;
+        readonly SnapPoint _snapPoint;
+        readonly Transform _snappedTo;
+        readonly FloatRange _turnRange;
 
-        float angle;
-        bool isFlipped;
+        float _angle;
+        bool _isFlipped;
 
         public HorizontalSnap(SnapPoint snapPoint, Transform snappedTo, FloatRange turnRange)
         {
-            this.snapPoint = snapPoint;
-            this.snappedTo = snappedTo;
-            this.turnRange = turnRange;
+            _snapPoint = snapPoint;
+            _snappedTo = snappedTo;
+            _turnRange = turnRange;
         }
 
         public void Snap()
         {
-            snapPoint.SetPosition(snappedTo.position);
-            snapPoint.SetRotation(snappedTo.rotation);
+            _snapPoint.SetPosition(_snappedTo.position);
+            _snapPoint.SetRotation(_snappedTo.rotation);
         }
 
         public void Slide(float amount)
         {
-            snapPoint.SetPosition(
-                snapPoint.Position + snappedTo.right * amount);
+            _snapPoint.SetPosition(
+                _snapPoint.Position + _snappedTo.right * amount);
         }
 
         public void Turn(float amount)
         {
-            angle = turnRange.Clamp(angle + amount);
+            _angle = _turnRange.Clamp(_angle + amount);
             ApplyRotationAngle();
         }
 
         public void Flip()
         {
-            isFlipped = !isFlipped;
+            _isFlipped = !_isFlipped;
             ApplyRotationAngle();
         }
 
         void ApplyRotationAngle()
         {
-            var relativeAngle = angle + Vector3.Angle(snappedTo.forward, Vector3.up) - 90;
+            var relativeAngle = _angle + Vector3.Angle(_snappedTo.forward, Vector3.up) - 90;
 
-            var rotation = snappedTo.rotation *
-                Quaternion.AngleAxis(isFlipped ? -relativeAngle : relativeAngle, Vector3.right) *
-                Quaternion.AngleAxis(isFlipped ? 180 : 0, Vector3.up);
+            var rotation = _snappedTo.rotation *
+                           Quaternion.AngleAxis(_isFlipped ? -relativeAngle : relativeAngle, Vector3.right) *
+                           Quaternion.AngleAxis(_isFlipped ? 180 : 0, Vector3.up);
 
-            snapPoint.SetRotation(rotation);
+            _snapPoint.SetRotation(rotation);
         }
     }
 }

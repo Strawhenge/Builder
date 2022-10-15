@@ -14,8 +14,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             _script = script;
 
-            _initialPosition = _script.transform.position;
-            _initialRotation = _script.transform.rotation;
+            var transform = _script.transform;
+            _initialPosition = transform.position;
+            _initialRotation = transform.rotation;
         }
 
         public void Cancel()
@@ -25,8 +26,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void PlaceFinal()
         {
-            _initialPosition = _script.transform.position;
-            _initialRotation = _script.transform.rotation;
+            var transform = _script.transform;
+            _initialPosition = transform.position;
+            _initialRotation = transform.rotation;
         }
 
         public IBuildItemPreview Preview()

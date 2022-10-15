@@ -35,8 +35,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void PlaceFinal()
         {
-            var position = _currentPreview.transform.position;
-            var rotation = _currentPreview.transform.rotation;
+            var transform = _currentPreview.transform;
+            var position = transform.position;
+            var rotation = transform.rotation;
 
             DestroyPreviewObject();
 
