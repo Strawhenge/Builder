@@ -9,13 +9,13 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     [RequireComponent(typeof(Rigidbody))]
     public class VerticalSnapScript : MonoBehaviour
     {
-        SnapPoint snapPoint;
-        List<Collider> collidingWith;
+        SnapPoint _snapPoint;
+        List<Collider> _collidingWith;
 
         public IEnumerable<VerticalSnap> GetAvailableSnaps()
         {
-            return collidingWith
-                .Select(x => new VerticalSnap(snapPoint, x.transform))
+            return _collidingWith
+                .Select(x => new VerticalSnap(_snapPoint, x.transform))
                 .ToArray();
         }
 
@@ -30,18 +30,18 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Start()
         {
-            snapPoint = new SnapPoint(transform);
-            collidingWith = new List<Collider>();
+            _snapPoint = new SnapPoint(transform);
+            _collidingWith = new List<Collider>();
         }
 
         void OnTriggerEnter(Collider other)
         {
-            collidingWith.Add(other);
+            _collidingWith.Add(other);
         }
 
         void OnTriggerExit(Collider other)
         {
-            collidingWith.Remove(other);
+            _collidingWith.Remove(other);
         }
     }
 }

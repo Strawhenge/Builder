@@ -3,6 +3,7 @@ using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
@@ -10,8 +11,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     [RequireComponent(typeof(Rigidbody))]
     public class HorizontalSnapScript : MonoBehaviour
     {
-        [SerializeField]
-        HorizontalSnapSettingsScriptableObject settings;
+        [SerializeField] HorizontalSnapSettingsScriptableObject _settings;
 
         SnapPoint snapPoint;
         List<Collider> collidingWith;
@@ -52,7 +52,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         FloatRange GetTurnRangeFromSettings()
         {
-            var settings = this.settings as IHorizontalSnapSettings;
+            var settings = this._settings as IHorizontalSnapSettings;
 
             if (!FloatRange.IsValidRange(settings.MinTurnAngle, settings.MaxTurnAngle))
             {
