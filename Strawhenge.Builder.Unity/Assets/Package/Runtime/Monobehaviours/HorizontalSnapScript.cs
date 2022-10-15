@@ -12,14 +12,14 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     {
         [SerializeField] HorizontalSnapSettingsScriptableObject _settings;
 
-        SnapPoint snapPoint;
-        List<Collider> collidingWith;
-        FloatRange turnRange;
+        SnapPoint _snapPoint;
+        List<Collider> _collidingWith;
+        FloatRange _turnRange;
 
         public IEnumerable<HorizontalSnap> GetAvailableSnaps()
         {
-            return collidingWith
-                .Select(x => new HorizontalSnap(snapPoint, x.transform, turnRange))
+            return _collidingWith
+                .Select(x => new HorizontalSnap(_snapPoint, x.transform, _turnRange))
                 .ToArray();
         }
 
@@ -34,19 +34,19 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Start()
         {
-            snapPoint = new SnapPoint(transform);
-            collidingWith = new List<Collider>();
-            turnRange = GetTurnRangeFromSettings();
+            _snapPoint = new SnapPoint(transform);
+            _collidingWith = new List<Collider>();
+            _turnRange = GetTurnRangeFromSettings();
         }
 
         void OnTriggerEnter(Collider other)
         {
-            collidingWith.Add(other);
+            _collidingWith.Add(other);
         }
 
         void OnTriggerExit(Collider other)
         {
-            collidingWith.Remove(other);
+            _collidingWith.Remove(other);
         }
 
         FloatRange GetTurnRangeFromSettings()

@@ -6,14 +6,11 @@ namespace Strawhenge.Builder.Unity.ScriptableObjects
     [CreateAssetMenu(menuName = "Strawhenge/Builder/HorizontalSnapSettings")]
     public class HorizontalSnapSettingsScriptableObject : ScriptableObject, IHorizontalSnapSettings
     {
-        [SerializeField]
-        float minTurnAngle;
+        [SerializeField] float _minTurnAngle;
+        [SerializeField] float _maxTurnAngle;
 
-        [SerializeField]
-        float maxTurnAngle;
+        float IHorizontalSnapSettings.MinTurnAngle => _minTurnAngle;
 
-        float IHorizontalSnapSettings.MinTurnAngle => minTurnAngle;
-
-        float IHorizontalSnapSettings.MaxTurnAngle => maxTurnAngle;
+        float IHorizontalSnapSettings.MaxTurnAngle => _maxTurnAngle;
     }
 }

@@ -7,11 +7,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 {
     public class ComponentsScript : MonoBehaviour
     {
-        [SerializeField] SerializableComponentQuantity[] components;
+        [SerializeField] SerializableComponentQuantity[] _components;
 
         public IEnumerable<ComponentQuantity> GetComponents()
         {
-            foreach (var component in components.Where(x => x != null && x.Component != null))
+            foreach (var component in _components.Where(x => x != null && x.Component != null))
             {
                 yield return new ComponentQuantity(
                     component: new Component(component.Component.Identifier),
