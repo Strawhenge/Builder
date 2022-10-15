@@ -6,14 +6,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
     [Serializable]
     public class SerializedBuildItemSettings : IBuildItemSettings
     {
-        [SerializeField]
-        float minTiltAngle;
+        [SerializeField] float _minTiltAngle;
+        [SerializeField] float _maxTiltAngle;
 
-        [SerializeField]
-        float maxTiltAngle;
+        float IBuildItemSettings.MinTiltAngle => _minTiltAngle;
 
-        float IBuildItemSettings.MinTiltAngle => minTiltAngle;
-
-        float IBuildItemSettings.MaxTiltAngle => maxTiltAngle;
+        float IBuildItemSettings.MaxTiltAngle => _maxTiltAngle;
     }
 }

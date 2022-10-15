@@ -4,7 +4,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 {
     public class ComponentInventoryScript : MonoBehaviour
     {
-        [SerializeField] bool infiniteComponents;
+        [SerializeField] bool _infiniteComponents;
 
         public IComponentInventory Inventory { private get; set; }
 
@@ -19,7 +19,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [ContextMenu("Infinite Components On")]
         public void InfiniteComponentsOn()
         {
-            infiniteComponents = true;
+            _infiniteComponents = true;
 
             if (Inventory != null)
                 Inventory.InfiniteComponents = true;
@@ -28,7 +28,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [ContextMenu("Infinite Components Off")]
         public void InfiniteComponentsOff()
         {
-            infiniteComponents = false;
+            _infiniteComponents = false;
 
             if (Inventory != null)
                 Inventory.InfiniteComponents = false;
@@ -36,7 +36,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Start()
         {
-            Inventory.InfiniteComponents = infiniteComponents;
+            Inventory.InfiniteComponents = _infiniteComponents;
         }
     }
 }
