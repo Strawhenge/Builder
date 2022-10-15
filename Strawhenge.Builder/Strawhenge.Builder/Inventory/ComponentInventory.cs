@@ -5,24 +5,24 @@ namespace Strawhenge.Builder
 {
     public class ComponentInventory : IComponentInventory
     {
-        readonly List<ComponentCounter> componentCounters = new List<ComponentCounter>();
-        readonly ILogger logger;
+        readonly List<ComponentCounter> _componentCounters = new List<ComponentCounter>();
+        readonly ILogger _logger;
 
         public ComponentInventory(ILogger logger)
         {
-            this.logger = logger;
+            this._logger = logger;
         }
 
         public bool InfiniteComponents { get; set; }
 
-        public int CountTotal() => InfiniteComponents ? int.MaxValue : componentCounters.Sum(x => x.CurrentCount);
+        public int CountTotal() => InfiniteComponents ? int.MaxValue : _componentCounters.Sum(x => x.CurrentCount);
 
         public int Count(Component component)
         {
             if (InfiniteComponents)
                 return int.MaxValue;
 
-            var counter = componentCounters.SingleOrDefault(x => x.Component.Is(component));
+            var counter = _componentCounters.SingleOrDefault(x => x.Component.Is(component));
 
             if (counter == null)
                 return 0;
@@ -34,7 +34,7 @@ namespace Strawhenge.Builder
         {
             if (quantity < 1)
             {
-                logger.LogError(
+                _logger.LogError(
                     $"Cannot add less than 1 component. [{nameof(quantity)}: {quantity}, {nameof(component)}: {component.Identifier}]");
                 return;
             }
@@ -47,7 +47,7 @@ namespace Strawhenge.Builder
         {
             if (quantity < 1)
             {
-                logger.LogError(
+                _logger.LogError(
                     $"Cannot remove less than 1 component. [{nameof(quantity)}: {quantity}, {nameof(component)}: {component.Identifier}]");
                 return;
             }
@@ -61,13 +61,13 @@ namespace Strawhenge.Builder
 
         ComponentCounter GetOrCreateComponentCounter(Component component)
         {
-            return componentCounters
+            return _componentCounters
                 .SingleOrDefault(x => x.Component.Is(component)) ?? CreateComponentCounter();
 
             ComponentCounter CreateComponentCounter()
             {
                 var componentQuantity = new ComponentCounter(component);
-                componentCounters.Add(componentQuantity);
+                _componentCounters.Add(componentQuantity);
                 return componentQuantity;
             }
         }

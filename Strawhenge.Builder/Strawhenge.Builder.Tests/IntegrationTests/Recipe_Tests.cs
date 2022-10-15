@@ -8,7 +8,7 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
 {
     public class Recipe_Tests
     {
-        private readonly IComponentInventory inventory;
+        private readonly IComponentInventory _inventory;
 
         public Recipe_Tests(ITestOutputHelper testOutputHelper)
         {
@@ -20,7 +20,7 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
                 builder.RegisterInstance(logger).As<ILogger>().SingleInstance();
             });
 
-            inventory = mocker.Create<IComponentInventory>();
+            _inventory = mocker.Create<IComponentInventory>();
         }
 
         [Fact]
@@ -35,9 +35,9 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
             var recipe = new Recipe(requiredComponents);
 
             Assert.False(
-                recipe.HasRequiredComponents(inventory));
+                recipe.HasRequiredComponents(_inventory));
 
-            var requirements = recipe.GetRequirements(inventory);
+            var requirements = recipe.GetRequirements(_inventory);
 
             Assert.Equal(2, requirements.Count());
 
@@ -47,12 +47,12 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
             var plasticRequirement = requirements.SingleOrDefault(x => x.Component.Is(Components.Plastic));
             AssertRequirement(plasticRequirement, 10, 0);
 
-            inventory.AddComponent(Components.Metal, 10);
-            inventory.AddComponent(Components.Plastic, 10);
+            _inventory.AddComponent(Components.Metal, 10);
+            _inventory.AddComponent(Components.Plastic, 10);
 
-            Assert.True(recipe.HasRequiredComponents(inventory));
+            Assert.True(recipe.HasRequiredComponents(_inventory));
 
-            requirements = recipe.GetRequirements(inventory);
+            requirements = recipe.GetRequirements(_inventory);
 
             metalRequirement = requirements.SingleOrDefault(x => x.Component.Is(Components.Metal));
             AssertRequirement(metalRequirement, 5, 10);
@@ -60,11 +60,11 @@ namespace Strawhenge.Builder.Tests.IntegrationTests
             plasticRequirement = requirements.SingleOrDefault(x => x.Component.Is(Components.Plastic));
             AssertRequirement(plasticRequirement, 10, 10);
 
-            recipe.DeductRequiredComponents(inventory);
+            recipe.DeductRequiredComponents(_inventory);
 
-            Assert.False(recipe.HasRequiredComponents(inventory));
+            Assert.False(recipe.HasRequiredComponents(_inventory));
 
-            requirements = recipe.GetRequirements(inventory);
+            requirements = recipe.GetRequirements(_inventory);
 
             metalRequirement = requirements.SingleOrDefault(x => x.Component.Is(Components.Metal));
             AssertRequirement(metalRequirement, 5, 5);
