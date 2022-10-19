@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity.UI
 {
@@ -35,7 +36,8 @@ namespace Strawhenge.Builder.Unity.UI
             _script.ClearComponents();
 
             foreach (var requirement in requirements)
-                _script.AddRecipeComponent(requirement.Component.Identifier, requirement.QuantityRequired, requirement.QuantityInInventory);
+                _script.AddRecipeComponent(requirement.Component.Identifier, requirement.QuantityRequired,
+                    requirement.QuantityInInventory);
 
             _script.gameObject.SetActive(true);
         }
@@ -50,7 +52,8 @@ namespace Strawhenge.Builder.Unity.UI
             _script.ClearComponents();
 
             foreach (var addition in additions)
-                _script.AddScrapComponent(addition.Component.Identifier, addition.AdditionalQuantity, addition.QuantityInInventory);
+                _script.AddScrapComponent(addition.Component.Identifier, addition.AdditionalQuantity,
+                    addition.QuantityInInventory);
 
             _script.gameObject.SetActive(true);
         }

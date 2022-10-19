@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
+using Strawhenge.Common.Ranges;
 using System;
 using System.Collections.Generic;
 using System.Linq;

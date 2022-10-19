@@ -6,6 +6,7 @@ using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
+using Strawhenge.Common.Unity;
 using UnityEngine;
 using Component = Strawhenge.Builder.Component;
 
