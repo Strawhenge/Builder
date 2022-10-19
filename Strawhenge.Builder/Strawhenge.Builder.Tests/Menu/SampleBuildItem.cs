@@ -1,4 +1,5 @@
-﻿using Strawhenge.Builder.Menu;
+﻿using FunctionalUtilities;
+using Strawhenge.Builder.Menu;
 
 namespace Strawhenge.Builder.Tests.Menu
 {

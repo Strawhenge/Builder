@@ -1,4 +1,5 @@
 ﻿using System;
+using Strawhenge.Common.Logging;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests
@@ -9,7 +10,7 @@ namespace Strawhenge.Builder.Tests
 
         public TestOutputLogger(ITestOutputHelper testOutput)
         {
-            this._testOutput = testOutput;
+            _testOutput = testOutput;
         }
 
         public void LogError(string message) => _testOutput.WriteLine($"[Error] {message}");

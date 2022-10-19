@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.Moq;
 using System.Linq;
+using Strawhenge.Common.Logging;
 using Xunit;
 using Xunit.Abstractions;
 
