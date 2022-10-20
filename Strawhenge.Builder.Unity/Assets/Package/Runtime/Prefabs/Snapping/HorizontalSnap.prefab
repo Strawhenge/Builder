@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 192747501637921141}
   - component: {fileID: 8601144538819946615}
   - component: {fileID: 5105270537936169582}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HorizontalSnap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,6 +88,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnapMarker
       objectReference: {fileID: 0}
+    - target: {fileID: 2110471674730037280, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3696009524704403279, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -131,6 +135,10 @@ PrefabInstance:
     - target: {fileID: 3696009524704403279, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209119308772123118, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
