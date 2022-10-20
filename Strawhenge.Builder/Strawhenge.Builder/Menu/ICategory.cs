@@ -1,4 +1,6 @@
-﻿namespace Strawhenge.Builder.Menu
+﻿using FunctionalUtilities;
+
+namespace Strawhenge.Builder.Menu
 {
     public interface ICategory
     {

@@ -1,4 +1,5 @@
-﻿using Strawhenge.Builder.Menu;
+﻿using FunctionalUtilities;
+using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using System.Collections.Generic;

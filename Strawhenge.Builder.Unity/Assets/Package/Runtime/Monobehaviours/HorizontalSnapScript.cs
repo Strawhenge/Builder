@@ -1,5 +1,6 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Common.Ranges;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

@@ -1,6 +1,7 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Common.Ranges;
 using System.Linq;
 using UnityEngine;
 

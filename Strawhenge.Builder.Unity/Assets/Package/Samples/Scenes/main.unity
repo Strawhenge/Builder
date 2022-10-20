@@ -630,10 +630,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
   - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
   _inventory:
-  - Component: {fileID: 11400000, guid: aa3affef97bf59b49ad527bdedf9c357, type: 2}
-    Quantity: 2
-  - Component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
-    Quantity: 20
+  - _component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
+    _quantity: 25
 --- !u!114 &1745532031
 MonoBehaviour:
   m_ObjectHideFlags: 0

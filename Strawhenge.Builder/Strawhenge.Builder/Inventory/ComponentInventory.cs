@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Strawhenge.Common.Logging;
 
 namespace Strawhenge.Builder
 {
@@ -10,7 +11,7 @@ namespace Strawhenge.Builder
 
         public ComponentInventory(ILogger logger)
         {
-            this._logger = logger;
+            _logger = logger;
         }
 
         public bool InfiniteComponents { get; set; }

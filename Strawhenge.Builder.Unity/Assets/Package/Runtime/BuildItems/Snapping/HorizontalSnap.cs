@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Strawhenge.Common.Ranges;
+using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {

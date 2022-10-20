@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Menu;
+using Strawhenge.Common.Logging;
 using System;
 using System.Collections.Generic;
 
