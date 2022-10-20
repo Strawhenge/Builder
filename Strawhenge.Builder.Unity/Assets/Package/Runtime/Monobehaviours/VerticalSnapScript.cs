@@ -9,6 +9,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     [RequireComponent(typeof(Rigidbody))]
     public class VerticalSnapScript : MonoBehaviour
     {
+        Transform _root;
         SnapPoint _snapPoint;
         List<Collider> _collidingWith;
 
@@ -21,6 +22,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Awake()
         {
+            _root = transform.root;
+
             var rigidbody = GetComponent<Rigidbody>();
             rigidbody.isKinematic = true;
 
@@ -36,12 +39,14 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void OnTriggerEnter(Collider other)
         {
-            _collidingWith.Add(other);
+            if (other.transform.root != _root)
+                _collidingWith.Add(other);
         }
 
         void OnTriggerExit(Collider other)
         {
-            _collidingWith.Remove(other);
+            if (_collidingWith.Contains(other))
+                _collidingWith.Remove(other);
         }
     }
 }
