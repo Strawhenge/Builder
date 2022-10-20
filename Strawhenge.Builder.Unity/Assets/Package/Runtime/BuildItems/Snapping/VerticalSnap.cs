@@ -22,7 +22,8 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         public void Snap()
         {
             _snapPoint.SetPosition(_snappedTo.position);
-            _snapPoint.SetRotation(_snappedTo.rotation);
+            _snapPoint.SetRotation(
+                _snappedTo.rotation * Quaternion.AngleAxis(180, Vector3.up));
         }
 
         public void Slide(float amount)
@@ -51,7 +52,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         void ApplyRotationAngle()
         {
-            var rotation = _snappedTo.rotation * Quaternion.AngleAxis(_angle, Vector3.up);
+            var rotation = _snappedTo.rotation * Quaternion.AngleAxis(_angle + 180, Vector3.up);
             _snapPoint.SetRotation(rotation);
         }
     }
