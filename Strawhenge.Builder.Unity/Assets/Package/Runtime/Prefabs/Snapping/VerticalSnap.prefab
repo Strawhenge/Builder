@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8060554173785173098}
   - component: {fileID: 1387214750133975817}
   - component: {fileID: 2379535662192084453}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: VerticalSnap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2110471674730037280, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3696009524704403279, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
       propertyPath: m_RootOrder
@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5209119308772123118, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9cde9ace888d9e418ebb963156ceeb1, type: 3}

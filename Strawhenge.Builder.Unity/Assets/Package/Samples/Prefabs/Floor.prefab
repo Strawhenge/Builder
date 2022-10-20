@@ -161,6 +161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HorizontalSnap1
       objectReference: {fileID: 0}
+    - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
       value: 
@@ -226,6 +230,10 @@ PrefabInstance:
     - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_Name
       value: HorizontalSnap2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
@@ -293,6 +301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HorizontalSnap4
       objectReference: {fileID: 0}
+    - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
       value: 
@@ -358,6 +370,10 @@ PrefabInstance:
     - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_Name
       value: HorizontalSnap3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
