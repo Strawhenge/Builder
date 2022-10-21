@@ -7,58 +7,21 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
-    [RequireComponent(typeof(CapsuleCollider))]
-    [RequireComponent(typeof(Rigidbody))]
-    public class HorizontalSnapScript : MonoBehaviour
+    public class HorizontalSnapScript : BaseSnapScript<HorizontalSnap>
     {
         [SerializeField] HorizontalSnapSettingsScriptableObject _settings;
-
-        Transform _root;
-        SnapPoint _snapPoint;
-        List<Collider> _collidingWith;
         FloatRange _turnRange;
 
-        public IEnumerable<HorizontalSnap> GetAvailableSnaps()
+        protected override HorizontalSnap Map(SnapPoint snapPoint, Transform snapSlot) =>
+            new HorizontalSnap(snapPoint, snapSlot, _turnRange);
+
+        protected override void AfterAwake()
         {
-            return _collidingWith
-                .Select(x => new HorizontalSnap(_snapPoint, x.transform, _turnRange))
-                .ToArray();
+            _turnRange = GetTurnRangeFromSettings(_settings);
         }
 
-        void Awake()
+        FloatRange GetTurnRangeFromSettings(IHorizontalSnapSettings settings)
         {
-            _root = transform.root;
-
-            var rigidbody = GetComponent<Rigidbody>();
-            rigidbody.isKinematic = true;
-
-            var collider = GetComponent<CapsuleCollider>();
-            collider.isTrigger = true;
-        }
-
-        void Start()
-        {
-            _snapPoint = new SnapPoint(transform);
-            _collidingWith = new List<Collider>();
-            _turnRange = GetTurnRangeFromSettings();
-        }
-
-        void OnTriggerEnter(Collider other)
-        {
-            if (other.transform.root != _root)
-                _collidingWith.Add(other);
-        }
-
-        void OnTriggerExit(Collider other)
-        {
-            if (_collidingWith.Contains(other))
-                _collidingWith.Remove(other);
-        }
-
-        FloatRange GetTurnRangeFromSettings()
-        {
-            var settings = _settings as IHorizontalSnapSettings;
-
             if (!FloatRange.IsValidRange(settings.MinTurnAngle, settings.MaxTurnAngle))
             {
                 Debug.LogWarning(
