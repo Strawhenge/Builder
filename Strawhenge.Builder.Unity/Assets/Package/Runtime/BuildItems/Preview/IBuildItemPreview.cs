@@ -16,8 +16,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void Tilt(float amount);
 
-        IEnumerable<WallSideSnap> GetAvailableVerticalSnaps();
+        IEnumerable<WallSideSnap> GetAvailableWallSideSnaps();
 
-        IEnumerable<FloorEdgeSnap> GetAvailableHorizontalSnaps();
+        IEnumerable<FloorEdgeSnap> GetAvailableFloorEdgeSnaps();
     }
 }

@@ -6,15 +6,15 @@ namespace Strawhenge.Builder.Unity.BuildItems
     class ControlsToggle
     {
         readonly IBuildItemControls _buildItemControls;
-        readonly IVerticalSnapControls _verticalSnapControls;
-        readonly IHorizontalSnapControls _horizontalSnapControls;
+        readonly IWallSideSnapControls _verticalSnapControls;
+        readonly IFloorEdgeSnapControls _horizontalSnapControls;
 
         Action _controlsOffStrategy = () => { };
 
         public ControlsToggle(
             IBuildItemControls buildItemControls,
-            IVerticalSnapControls verticalSnapControls,
-            IHorizontalSnapControls horizontalSnapControls)
+            IWallSideSnapControls verticalSnapControls,
+            IFloorEdgeSnapControls horizontalSnapControls)
         {
             _buildItemControls = buildItemControls;
             _verticalSnapControls = verticalSnapControls;

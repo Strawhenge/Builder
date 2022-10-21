@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class VerticalSnapControls : MonoBehaviour, IVerticalSnapControls
+    public class VerticalSnapControls : MonoBehaviour, IWallSideSnapControls
     {
         [SerializeField] float _turnSpeed;
         [SerializeField] float _moveSpeed;

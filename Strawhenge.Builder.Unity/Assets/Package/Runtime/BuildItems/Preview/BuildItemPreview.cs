@@ -33,10 +33,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public Quaternion Rotation => _transform.rotation;
 
-        public IEnumerable<WallSideSnap> GetAvailableVerticalSnaps() =>
+        public IEnumerable<WallSideSnap> GetAvailableWallSideSnaps() =>
             _getAvailableVerticalSnaps().ToArray();
 
-        public IEnumerable<FloorEdgeSnap> GetAvailableHorizontalSnaps() =>
+        public IEnumerable<FloorEdgeSnap> GetAvailableFloorEdgeSnaps() =>
             _getAvailableHorizontalSnaps().ToArray();
 
         public void Move(Vector3 velocity)

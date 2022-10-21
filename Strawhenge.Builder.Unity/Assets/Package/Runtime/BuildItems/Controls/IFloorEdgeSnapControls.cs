@@ -3,12 +3,12 @@ using System;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public interface IVerticalSnapControls
+    public interface IFloorEdgeSnapControls
     {
         event Action Place;
         event Action Release;
 
-        void ControlOn(WallSideSnap snap);
+        void ControlOn(FloorEdgeSnap snap);
 
         void ControlOff();
     }
