@@ -1,19 +1,17 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Common.Ranges;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
-    public class HorizontalSnapScript : BaseSnapScript<HorizontalSnap>
+    public class HorizontalSnapScript : BaseSnapScript<HorizontalSnap, FloorEdgeSlotScript>
     {
         [SerializeField] HorizontalSnapSettingsScriptableObject _settings;
         FloatRange _turnRange;
 
-        protected override HorizontalSnap Map(SnapPoint snapPoint, Transform snapSlot) =>
-            new HorizontalSnap(snapPoint, snapSlot, _turnRange);
+        protected override HorizontalSnap Map(SnapPoint snapPoint, FloorEdgeSlotScript snapSlotScript) =>
+            new HorizontalSnap(snapPoint, snapSlotScript.transform, _turnRange);
 
         protected override void AfterAwake()
         {

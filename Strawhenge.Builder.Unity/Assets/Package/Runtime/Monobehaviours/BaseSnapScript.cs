@@ -6,7 +6,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 {
     [RequireComponent(typeof(CapsuleCollider))]
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class BaseSnapScript<TSnap> : MonoBehaviour
+    public abstract class BaseSnapScript<TSnap, TSnapSlotScript> : MonoBehaviour
+        where TSnapSlotScript : MonoBehaviour
     {
         readonly List<Collider> _collidingWith = new List<Collider>();
 
@@ -17,11 +18,12 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         {
             foreach (var collider in _collidingWith)
             {
-                yield return Map(_snapPoint, collider.transform);
+                if (collider.TryGetComponent<TSnapSlotScript>(out var snapSlotScript))
+                    yield return Map(_snapPoint, snapSlotScript);
             }
         }
 
-        protected abstract TSnap Map(SnapPoint snapPoint, Transform snapSlot);
+        protected abstract TSnap Map(SnapPoint snapPoint, TSnapSlotScript snapSlotScript);
 
         protected virtual void AfterAwake()
         {
