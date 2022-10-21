@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
-    public class FloorEdgeSnap
+    public class HorizontalSnap
     {
         readonly SnapPoint _snapPoint;
         readonly Transform _snappedTo;
@@ -12,7 +12,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         float _angle;
         bool _isFlipped;
 
-        public FloorEdgeSnap(SnapPoint snapPoint, Transform snappedTo, FloatRange turnRange, bool canFlip)
+        public HorizontalSnap(SnapPoint snapPoint, Transform snappedTo, FloatRange turnRange, bool canFlip)
         {
             _snapPoint = snapPoint;
             _snappedTo = snappedTo;

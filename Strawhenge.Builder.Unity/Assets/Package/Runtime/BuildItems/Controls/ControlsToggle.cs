@@ -6,15 +6,15 @@ namespace Strawhenge.Builder.Unity.BuildItems
     class ControlsToggle
     {
         readonly IBuildItemControls _buildItemControls;
-        readonly IWallSideSnapControls _verticalSnapControls;
-        readonly IFloorEdgeSnapControls _horizontalSnapControls;
+        readonly IVerticalSnapControls _verticalSnapControls;
+        readonly IHorizontalSnapControls _horizontalSnapControls;
 
         Action _controlsOffStrategy = () => { };
 
         public ControlsToggle(
             IBuildItemControls buildItemControls,
-            IWallSideSnapControls verticalSnapControls,
-            IFloorEdgeSnapControls horizontalSnapControls)
+            IVerticalSnapControls verticalSnapControls,
+            IHorizontalSnapControls horizontalSnapControls)
         {
             _buildItemControls = buildItemControls;
             _verticalSnapControls = verticalSnapControls;
@@ -41,7 +41,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             };
         }
 
-        internal void VerticalSnapControlsOn(WallSideSnap snap)
+        internal void VerticalSnapControlsOn(VerticalSnap snap)
         {
             ControlsOff();
 
@@ -57,7 +57,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             };
         }
 
-        internal void HorizontalSnapControlsOn(FloorEdgeSnap snap)
+        internal void HorizontalSnapControlsOn(HorizontalSnap snap)
         {
             ControlsOff();
 

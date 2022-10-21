@@ -11,9 +11,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public Quaternion Rotation { get; } = new Quaternion();
 
-        public IEnumerable<FloorEdgeSnap> GetAvailableFloorEdgeSnaps() => Enumerable.Empty<FloorEdgeSnap>();
+        public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() => Enumerable.Empty<HorizontalSnap>();
 
-        public IEnumerable<WallSideSnap> GetAvailableWallSideSnaps() => Enumerable.Empty<WallSideSnap>();
+        public IEnumerable<VerticalSnap> GetAvailableVerticalSnaps() => Enumerable.Empty<VerticalSnap>();
 
         public void Move(Vector3 velocity)
         {

@@ -5,12 +5,12 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class HorizontalSnapControls : MonoBehaviour, IFloorEdgeSnapControls
+    public class HorizontalSnapControls : MonoBehaviour, IHorizontalSnapControls
     {
         [SerializeField] float _turnSpeed;
         [SerializeField] float _moveSpeed;
 
-        FloorEdgeSnap _snap;
+        HorizontalSnap _snap;
 
         public event Action Place;
         public event Action Release;
@@ -21,7 +21,7 @@ namespace Strawhenge.Builder.Unity
             _snap = null;
         }
 
-        public void ControlOn(FloorEdgeSnap snap)
+        public void ControlOn(HorizontalSnap snap)
         {
             _snap = snap;
             enabled = true;

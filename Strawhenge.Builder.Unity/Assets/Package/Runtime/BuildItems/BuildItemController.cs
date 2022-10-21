@@ -15,8 +15,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public BuildItemController(
             IBuildItemControls buildItemControls,
-            IWallSideSnapControls verticalSnapControls,
-            IFloorEdgeSnapControls horizontalSnapControls)
+            IVerticalSnapControls verticalSnapControls,
+            IHorizontalSnapControls horizontalSnapControls)
         {
             _controls = new ControlsToggle(
                 buildItemControls,
@@ -77,7 +77,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void OnSnap()
         {
-            var verticalSnap = _currentPreview.GetAvailableWallSideSnaps().FirstOrDefault();
+            var verticalSnap = _currentPreview.GetAvailableVerticalSnaps().FirstOrDefault();
 
             if (verticalSnap != null)
             {
@@ -86,7 +86,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 return;
             }
 
-            var horizontalSnap = _currentPreview.GetAvailableFloorEdgeSnaps().FirstOrDefault();
+            var horizontalSnap = _currentPreview.GetAvailableHorizontalSnaps().FirstOrDefault();
 
             if (horizontalSnap == null)
                 return;

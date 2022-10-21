@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
-    public class WallSideSnapScript : BaseSnapScript<WallSideSnap, WallSideSlotScript>
+    public class WallSideSnapScript : BaseSnapScript<VerticalSnap, WallSideSlotScript>
     {
-        protected override WallSideSnap Map(SnapPoint snapPoint, WallSideSlotScript snapSlotScript) =>
-            new WallSideSnap(snapPoint, snapSlotScript.SnapSlotAnchor);
+        protected override VerticalSnap Map(SnapPoint snapPoint, WallSideSlotScript snapSlotScript) =>
+            new VerticalSnap(snapPoint, snapSlotScript.SnapSlotAnchor);
     }
 }
