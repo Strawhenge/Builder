@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
-    public class HorizontalSnapScript : BaseSnapScript<HorizontalSnap, FloorEdgeSlotScript>
+    public class FloorEdgeSnapScript : BaseSnapScript<FloorEdgeSnap, FloorEdgeSlotScript>
     {
         [SerializeField] HorizontalSnapSettingsScriptableObject _settings;
         FloatRange _turnRange;
 
-        protected override HorizontalSnap Map(SnapPoint snapPoint, FloorEdgeSlotScript snapSlotScript) =>
-            new HorizontalSnap(snapPoint, snapSlotScript.transform, _turnRange);
+        protected override FloorEdgeSnap Map(SnapPoint snapPoint, FloorEdgeSlotScript snapSlotScript) =>
+            new FloorEdgeSnap(snapPoint, snapSlotScript.transform, _turnRange);
 
         protected override void AfterAwake()
         {

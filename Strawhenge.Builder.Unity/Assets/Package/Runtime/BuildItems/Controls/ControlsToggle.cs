@@ -41,7 +41,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             };
         }
 
-        internal void VerticalSnapControlsOn(VerticalSnap snap)
+        internal void VerticalSnapControlsOn(WallSideSnap snap)
         {
             ControlsOff();
 
@@ -57,7 +57,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             };
         }
 
-        internal void HorizontalSnapControlsOn(HorizontalSnap snap)
+        internal void HorizontalSnapControlsOn(FloorEdgeSnap snap)
         {
             ControlsOff();
 

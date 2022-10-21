@@ -18,8 +18,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Awake()
         {
-            var verticalSnapPoints = GetComponentsInChildren<VerticalSnapScript>();
-            var horizontalSnapPoints = GetComponentsInChildren<HorizontalSnapScript>();
+            var verticalSnapPoints = GetComponentsInChildren<WallSideSnapScript>();
+            var horizontalSnapPoints = GetComponentsInChildren<FloorEdgeSnapScript>();
 
             BuildItemPreview = new BuildItemPreview(
                 transform,

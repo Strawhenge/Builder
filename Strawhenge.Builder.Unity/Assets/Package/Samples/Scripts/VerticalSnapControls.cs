@@ -13,7 +13,7 @@ namespace Strawhenge.Builder.Unity
         public event Action Place;
         public event Action Release;
 
-        VerticalSnap _snap;
+        WallSideSnap _snap;
 
         public void ControlOff()
         {
@@ -21,7 +21,7 @@ namespace Strawhenge.Builder.Unity
             _snap = null;
         }
 
-        public void ControlOn(VerticalSnap snap)
+        public void ControlOn(WallSideSnap snap)
         {
             _snap = snap;
             enabled = true;

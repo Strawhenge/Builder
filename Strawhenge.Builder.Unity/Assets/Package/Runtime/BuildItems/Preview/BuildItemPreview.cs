@@ -11,8 +11,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         readonly Transform _transform;
         readonly FloatRange _tiltRange;
-        readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
-        readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
+        readonly Func<IEnumerable<WallSideSnap>> _getAvailableVerticalSnaps;
+        readonly Func<IEnumerable<FloorEdgeSnap>> _getAvailableHorizontalSnaps;
 
         float _turnAngle;
         float _tiltAngle;
@@ -20,8 +20,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public BuildItemPreview(
             Transform transform,
             FloatRange tiltRange,
-            Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps,
-            Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
+            Func<IEnumerable<WallSideSnap>> getAvailableVerticalSnaps,
+            Func<IEnumerable<FloorEdgeSnap>> getAvailableHorizontalSnaps)
         {
             _transform = transform;
             _tiltRange = tiltRange;
@@ -33,10 +33,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public Quaternion Rotation => _transform.rotation;
 
-        public IEnumerable<VerticalSnap> GetAvailableVerticalSnaps() =>
+        public IEnumerable<WallSideSnap> GetAvailableVerticalSnaps() =>
             _getAvailableVerticalSnaps().ToArray();
 
-        public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() =>
+        public IEnumerable<FloorEdgeSnap> GetAvailableHorizontalSnaps() =>
             _getAvailableHorizontalSnaps().ToArray();
 
         public void Move(Vector3 velocity)

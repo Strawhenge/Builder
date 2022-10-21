@@ -10,7 +10,7 @@ namespace Strawhenge.Builder.Unity
         [SerializeField] float _turnSpeed;
         [SerializeField] float _moveSpeed;
 
-        HorizontalSnap _snap;
+        FloorEdgeSnap _snap;
 
         public event Action Place;
         public event Action Release;
@@ -21,7 +21,7 @@ namespace Strawhenge.Builder.Unity
             _snap = null;
         }
 
-        public void ControlOn(HorizontalSnap snap)
+        public void ControlOn(FloorEdgeSnap snap)
         {
             _snap = snap;
             enabled = true;
