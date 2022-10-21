@@ -38,7 +38,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3508313899639759246}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WallSideSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 677858998061195501, guid: 7277364efd2c09b4892311f3672e0498, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6659514936727568675, guid: 7277364efd2c09b4892311f3672e0498, type: 3}
       propertyPath: m_Name
@@ -77,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6659514936727568675, guid: 7277364efd2c09b4892311f3672e0498, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8243947246970183244, guid: 7277364efd2c09b4892311f3672e0498, type: 3}
       propertyPath: m_RootOrder

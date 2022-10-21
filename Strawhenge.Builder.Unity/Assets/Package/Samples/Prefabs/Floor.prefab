@@ -368,9 +368,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1122781942836839860}
     m_Modifications:
+    - target: {fileID: 3396242682310109050, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4271908362742918185, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
       propertyPath: m_Name
       value: FloorEdgeSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271908362742918185, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6009074958845914019, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
       propertyPath: m_RootOrder
@@ -415,6 +423,10 @@ PrefabInstance:
     - target: {fileID: 6009074958845914019, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800741887514134196, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}

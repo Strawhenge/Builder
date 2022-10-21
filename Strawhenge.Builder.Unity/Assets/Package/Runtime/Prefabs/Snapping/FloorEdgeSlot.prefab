@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 81868963048634389}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SnapSlotMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6009074958845914019}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FloorEdgeSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4311637095837708950}
   - component: {fileID: 2632337332511127549}
   - component: {fileID: 4986508250445374685}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
