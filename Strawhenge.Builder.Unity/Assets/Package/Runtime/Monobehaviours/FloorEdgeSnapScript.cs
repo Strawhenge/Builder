@@ -11,7 +11,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         FloatRange _turnRange;
 
         protected override FloorEdgeSnap Map(SnapPoint snapPoint, FloorEdgeSlotScript snapSlotScript) =>
-            new FloorEdgeSnap(snapPoint, snapSlotScript.SnapSlotAnchor, _turnRange);
+            new FloorEdgeSnap(snapPoint, snapSlotScript.SnapSlotAnchor, _turnRange, snapSlotScript.CanFlip);
 
         protected override void AfterAwake()
         {

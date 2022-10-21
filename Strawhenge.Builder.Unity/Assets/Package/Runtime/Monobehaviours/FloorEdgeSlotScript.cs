@@ -7,10 +7,13 @@ namespace Strawhenge.Builder.Unity
     public class FloorEdgeSlotScript : MonoBehaviour
     {
         [SerializeField] Transform _snapSlotAnchor;
+        [SerializeField] bool _canFlip;
 
         public Transform SnapSlotAnchor => _snapSlotAnchor == null
             ? transform
             : _snapSlotAnchor;
+
+        public bool CanFlip => _canFlip;
 
         void Awake()
         {

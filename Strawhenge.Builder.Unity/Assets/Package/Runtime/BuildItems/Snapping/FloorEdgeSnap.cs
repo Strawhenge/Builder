@@ -12,12 +12,16 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         float _angle;
         bool _isFlipped;
 
-        public FloorEdgeSnap(SnapPoint snapPoint, Transform snappedTo, FloatRange turnRange)
+        public FloorEdgeSnap(SnapPoint snapPoint, Transform snappedTo, FloatRange turnRange, bool canFlip)
         {
             _snapPoint = snapPoint;
             _snappedTo = snappedTo;
             _turnRange = turnRange;
+
+            CanFlip = canFlip;
         }
+
+        public bool CanFlip { get; }
 
         public void Snap()
         {
@@ -40,6 +44,9 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         public void Flip()
         {
+            if (!CanFlip)
+                return;
+
             _isFlipped = !_isFlipped;
             ApplyRotationAngle();
         }
