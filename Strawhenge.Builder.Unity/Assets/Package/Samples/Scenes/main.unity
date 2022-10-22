@@ -413,6 +413,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5398693399376138997, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
+      propertyPath: _presetAngles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5398693399376138997, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
+      propertyPath: _presetAngles.Array.data[2]
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 5568609431914992703, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
       propertyPath: m_Name
       value: Wall

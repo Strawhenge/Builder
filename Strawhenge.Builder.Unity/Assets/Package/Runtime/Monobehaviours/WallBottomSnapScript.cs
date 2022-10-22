@@ -7,7 +7,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     {
         protected override HorizontalSnap Map(SnapPoint snapPoint, WallBottomSlotScript snapSlotScript)
         {
-            return new HorizontalSnap(snapPoint, snapSlotScript.SnapSlotAnchor, FloatRange.Zero, canFlip: true);
+            return new HorizontalSnap(
+                snapPoint,
+                snapSlotScript.SnapSlotAnchor,
+                snapSlotScript.TiltRange,
+                canFlip: true);
         }
     }
 }

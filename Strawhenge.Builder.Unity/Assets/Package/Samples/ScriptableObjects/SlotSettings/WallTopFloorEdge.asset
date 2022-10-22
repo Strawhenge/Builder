@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e523195121bc4e59b4bad725d8c7ae37, type: 3}
-  m_Name: FloorEdge
+  m_Name: WallTopFloorEdge
   m_EditorClassIdentifier: 
-  _canFlip: 0
+  _canFlip: 1
   _minTiltAngle: -30
   _maxTiltAngle: 30
