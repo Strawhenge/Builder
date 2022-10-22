@@ -542,6 +542,10 @@ PrefabInstance:
       propertyPath: _canFlip
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4986508250445374685, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: _settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b4ef4b5c4044044f857af3a9874baf3, type: 2}
     - target: {fileID: 6009074958845914019, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
       propertyPath: m_RootOrder
       value: 4
