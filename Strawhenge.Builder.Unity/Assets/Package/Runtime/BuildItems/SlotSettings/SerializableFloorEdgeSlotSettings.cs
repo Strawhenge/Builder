@@ -1,16 +1,16 @@
-using Strawhenge.Builder.Unity.BuildItems.SlotSettings;
 using Strawhenge.Common.Ranges;
 using Strawhenge.Common.Unity.Serialization;
+using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.ScriptableObjects
+namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
 {
-    [CreateAssetMenu(menuName = "Strawhenge/Builder/SlotSettings/FloorEdge")]
-    public class FloorEdgeSlotSettingsScriptableObject : ScriptableObject, IFloorEdgeSlotSettings
+    [Serializable]
+    public class SerializableFloorEdgeSlotSettings : IFloorEdgeSlotSettings
     {
         [SerializeField] bool _canFlip;
         [SerializeField] SerializedFloatRange _tiltRange;
-
+        
         public bool CanFlip => _canFlip;
 
         public FloatRange TiltRange => _tiltRange.Value;
