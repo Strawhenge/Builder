@@ -10,6 +10,6 @@ namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
     {
         [SerializeField] SerializedFloatRange _tiltRange;
 
-        public FloatRange TiltRange => _tiltRange.Value;
+        public FloatRange TiltRange => _tiltRange?.Value ?? FloatRange.Zero;
     }
 }

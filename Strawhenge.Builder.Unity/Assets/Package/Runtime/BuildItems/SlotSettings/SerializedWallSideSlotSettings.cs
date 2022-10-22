@@ -12,6 +12,6 @@ namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
 
         public bool CanRotate => _canRotate;
 
-        public IEnumerable<float> PresetAngles => _presetAngles;
+        public IEnumerable<float> PresetAngles => _presetAngles ?? Array.Empty<float>();
     }
 }

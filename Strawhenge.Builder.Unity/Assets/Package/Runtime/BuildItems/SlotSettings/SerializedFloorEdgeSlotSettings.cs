@@ -13,6 +13,6 @@ namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
 
         public bool CanFlip => _canFlip;
 
-        public FloatRange TiltRange => _tiltRange.Value;
+        public FloatRange TiltRange => _tiltRange?.Value ?? FloatRange.Zero;
     }
 }
