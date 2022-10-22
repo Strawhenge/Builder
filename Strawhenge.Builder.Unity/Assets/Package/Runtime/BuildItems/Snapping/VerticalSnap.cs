@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Common.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping
@@ -11,13 +12,21 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         float _angle;
 
-        public VerticalSnap(SnapPoint snapPoint, Transform snappedTo)
+        public VerticalSnap(
+            SnapPoint snapPoint,
+            Transform snappedTo,
+            bool canRotate,
+            IEnumerable<float> presetAngles)
         {
             _snapPoint = snapPoint;
             _snappedTo = snappedTo;
 
-            _presetAngles = new Cycle<float>(0, 90, 270);
+            _presetAngles = new Cycle<float>(0, presetAngles);
+
+            CanRotate = canRotate;
         }
+
+        public bool CanRotate { get; }
 
         public void Snap()
         {
@@ -34,6 +43,9 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         public void Turn(float amount)
         {
+            if (!CanRotate)
+                return;
+
             _angle += amount;
             ApplyRotationAngle();
         }
