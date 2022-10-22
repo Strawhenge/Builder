@@ -18,15 +18,17 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Awake()
         {
-            var verticalSnapPoints = GetComponentsInChildren<VerticalSnapScript>();
-            var horizontalSnapPoints = GetComponentsInChildren<HorizontalSnapScript>();
+            var wallSideSnapPoints = GetComponentsInChildren<WallSideSnapScript>();
+            var wallBottomSnapPoints = GetComponentsInChildren<WallBottomSnapScript>();
+            var floorEdgeSnapPoints = GetComponentsInChildren<FloorEdgeSnapScript>();
 
             BuildItemPreview = new BuildItemPreview(
                 transform,
                 GetTiltRangeFromSettings(),
-                getAvailableVerticalSnaps: () => verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
+                getAvailableVerticalSnaps: () => wallSideSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
                 getAvailableHorizontalSnaps: () =>
-                    horizontalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray());
+                    wallBottomSnapPoints.SelectMany(x => x.GetAvailableSnaps()).Concat(
+                        floorEdgeSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray()));
 
             ScrapValue = new ScrapValue(_scrapComponents.Select(
                 x => new ComponentQuantity(new Component(x.Component.Identifier), x.Quantity)));
