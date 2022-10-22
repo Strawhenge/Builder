@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
 {
     [Serializable]
-    public class SerializableWallSideSlotSettings : IWallSideSlotSettings
+    public class SerializedWallSideSlotSettings : IWallSideSlotSettings
     {
         [SerializeField] bool _canRotate;
         [SerializeField] float[] _presetAngles;

@@ -6,11 +6,11 @@ using UnityEngine;
 namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
 {
     [Serializable]
-    public class SerializableFloorEdgeSlotSettings : IFloorEdgeSlotSettings
+    public class SerializedFloorEdgeSlotSettings : IFloorEdgeSlotSettings
     {
         [SerializeField] bool _canFlip;
         [SerializeField] SerializedFloatRange _tiltRange;
-        
+
         public bool CanFlip => _canFlip;
 
         public FloatRange TiltRange => _tiltRange.Value;

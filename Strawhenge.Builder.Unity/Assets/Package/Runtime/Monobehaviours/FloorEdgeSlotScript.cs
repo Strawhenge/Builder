@@ -9,7 +9,7 @@ namespace Strawhenge.Builder.Unity
     public class FloorEdgeSlotScript : BaseSlotScript
     {
         [SerializeField] SerializedSource<
-            IFloorEdgeSlotSettings, SerializableFloorEdgeSlotSettings, FloorEdgeSlotSettingsScriptableObject> _settings;
+            IFloorEdgeSlotSettings, SerializedFloorEdgeSlotSettings, FloorEdgeSlotSettingsScriptableObject> _settings;
 
         public bool CanFlip => _settings.GetValue().CanFlip;
 

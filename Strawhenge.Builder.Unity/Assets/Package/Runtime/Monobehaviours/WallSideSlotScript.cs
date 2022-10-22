@@ -9,7 +9,7 @@ namespace Strawhenge.Builder.Unity
     public class WallSideSlotScript : BaseSlotScript
     {
         [SerializeField] SerializedSource<
-            IWallSideSlotSettings, SerializableWallSideSlotSettings, WallSideSlotSettingsScriptableObject> _settings;
+            IWallSideSlotSettings, SerializedWallSideSlotSettings, WallSideSlotSettingsScriptableObject> _settings;
 
         public bool CanRotate => _settings.GetValue().CanRotate;
 
