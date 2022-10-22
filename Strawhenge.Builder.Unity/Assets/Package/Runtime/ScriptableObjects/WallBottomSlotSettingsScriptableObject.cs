@@ -1,15 +1,15 @@
+using Strawhenge.Builder.Unity.BuildItems.SlotSettings;
+using Strawhenge.Common.Ranges;
+using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.ScriptableObjects
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/SlotSettings/WallBottom")]
-    public class WallBottomSlotSettingsScriptableObject : ScriptableObject
+    public class WallBottomSlotSettingsScriptableObject : ScriptableObject, IWallBottomSlotSettings
     {
-        [SerializeField] float _minTiltAngle;
-        [SerializeField] float _maxTiltAngle;
+        [SerializeField] SerializedFloatRange _tiltRange;
 
-        public float MinTiltAngle => _minTiltAngle;
-
-        public float MaxTiltAngle => _maxTiltAngle;
+        public FloatRange TiltRange => _tiltRange.Value;
     }
 }
