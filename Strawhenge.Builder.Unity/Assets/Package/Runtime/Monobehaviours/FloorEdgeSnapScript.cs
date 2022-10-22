@@ -7,28 +7,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 {
     public class FloorEdgeSnapScript : BaseSnapScript<HorizontalSnap, FloorEdgeSlotScript>
     {
-        [SerializeField] HorizontalSnapSettingsScriptableObject _settings;
-        FloatRange _turnRange;
-
         protected override HorizontalSnap Map(SnapPoint snapPoint, FloorEdgeSlotScript snapSlotScript) =>
-            new HorizontalSnap(snapPoint, snapSlotScript.SnapSlotAnchor, _turnRange, snapSlotScript.CanFlip);
-
-        protected override void AfterAwake()
-        {
-            _turnRange = GetTurnRangeFromSettings(_settings);
-        }
-
-        FloatRange GetTurnRangeFromSettings(IHorizontalSnapSettings settings)
-        {
-            if (!FloatRange.IsValidRange(settings.MinTurnAngle, settings.MaxTurnAngle))
-            {
-                Debug.LogWarning(
-                    $"Invalid tilt angle settings. {nameof(settings.MinTurnAngle)}: {settings.MinTurnAngle}, {nameof(settings.MaxTurnAngle)}: {settings.MaxTurnAngle}",
-                    context: this);
-                return (0, 0);
-            }
-
-            return (settings.MinTurnAngle, settings.MaxTurnAngle);
-        }
+            new HorizontalSnap(snapPoint, snapSlotScript.SnapSlotAnchor, FloatRange.Zero, snapSlotScript.CanFlip);
     }
 }

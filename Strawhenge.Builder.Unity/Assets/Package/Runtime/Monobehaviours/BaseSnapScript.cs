@@ -25,10 +25,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         protected abstract TSnap Map(SnapPoint snapPoint, TSnapSlotScript snapSlotScript);
 
-        protected virtual void AfterAwake()
-        {
-        }
-
         void Awake()
         {
             var t = transform;
@@ -40,8 +36,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var collider = GetComponent<CapsuleCollider>();
             collider.isTrigger = true;
-
-            AfterAwake();
         }
 
         void OnTriggerEnter(Collider other)
