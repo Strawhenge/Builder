@@ -4,12 +4,14 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
-    [RequireComponent(typeof(CapsuleCollider))]
+    [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
     public abstract class BaseSnapScript<TSnap, TSnapSlotScript> : MonoBehaviour
         where TSnapSlotScript : MonoBehaviour
     {
         readonly List<Collider> _collidingWith = new List<Collider>();
+
+        [SerializeField] Transform _snapPointAnchor;
 
         Transform _root;
         SnapPoint _snapPoint;
@@ -29,12 +31,15 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         {
             var t = transform;
             _root = t.root;
-            _snapPoint = new SnapPoint(t);
+
+            _snapPoint = _snapPointAnchor == null
+                ? new SnapPoint(t)
+                : new SnapPoint(_snapPointAnchor);
 
             var rigidbody = GetComponent<Rigidbody>();
             rigidbody.isKinematic = true;
 
-            var collider = GetComponent<CapsuleCollider>();
+            var collider = GetComponent<Collider>();
             collider.isTrigger = true;
         }
 

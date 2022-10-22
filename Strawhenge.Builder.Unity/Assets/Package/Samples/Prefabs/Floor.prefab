@@ -158,6 +158,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1122781942836839860}
     m_Modifications:
+    - target: {fileID: 2117405281878690882, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_Name
       value: HorizontalSnap1
@@ -169,7 +173,11 @@ PrefabInstance:
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
       value: 
-      objectReference: {fileID: 11400000, guid: d4ba3f38c8f87374db06b58c3e269235, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215709625925053836, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6407581895639833347, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -228,6 +236,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1122781942836839860}
     m_Modifications:
+    - target: {fileID: 2117405281878690882, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_Name
       value: HorizontalSnap2
@@ -239,7 +251,11 @@ PrefabInstance:
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
       value: 
-      objectReference: {fileID: 11400000, guid: d4ba3f38c8f87374db06b58c3e269235, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215709625925053836, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6407581895639833347, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -298,6 +314,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1122781942836839860}
     m_Modifications:
+    - target: {fileID: 2117405281878690882, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_Name
       value: HorizontalSnap4
@@ -309,7 +329,11 @@ PrefabInstance:
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
       value: 
-      objectReference: {fileID: 11400000, guid: d4ba3f38c8f87374db06b58c3e269235, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215709625925053836, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6407581895639833347, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -442,6 +466,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1122781942836839860}
     m_Modifications:
+    - target: {fileID: 2117405281878690882, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_Name
       value: HorizontalSnap3
@@ -453,7 +481,11 @@ PrefabInstance:
     - target: {fileID: 5105270537936169582, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: _settings
       value: 
-      objectReference: {fileID: 11400000, guid: d4ba3f38c8f87374db06b58c3e269235, type: 2}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5215709625925053836, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6407581895639833347, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_RootOrder
       value: 3
