@@ -1,5 +1,6 @@
+using Strawhenge.Builder.Unity.BuildItems.SlotSettings;
 using Strawhenge.Builder.Unity.ScriptableObjects;
-using System;
+using Strawhenge.Common.Unity.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,11 @@ namespace Strawhenge.Builder.Unity
 {
     public class WallSideSlotScript : BaseSlotScript
     {
-        [SerializeField] WallSideSlotSettingsScriptableObject _settings;
+        [SerializeField] SerializedSource<
+            IWallSideSlotSettings, SerializableWallSideSlotSettings, WallSideSlotSettingsScriptableObject> _settings;
 
-        public bool CanRotate => _settings != null && _settings.CanRotate;
+        public bool CanRotate => _settings.GetValue().CanRotate;
 
-        public IEnumerable<float> PresetAngles => _settings == null
-            ? Array.Empty<float>()
-            : _settings.PresetAngles;
+        public IEnumerable<float> PresetAngles => _settings.GetValue().PresetAngles;
     }
 }
