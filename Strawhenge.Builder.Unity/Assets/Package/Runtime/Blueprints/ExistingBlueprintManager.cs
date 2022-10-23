@@ -25,7 +25,7 @@ namespace Strawhenge.Builder.Unity
         {
             _currentBlueprint = blueprint;
 
-            _buildItemController.PreviewOn(
+            _buildItemController.On(
                 blueprint.BuildItem,
                 onPlacedFinalItem: OnBuildItemPreviewEnded,
                 onCancelled: OnBuildItemPreviewEnded);
@@ -40,7 +40,7 @@ namespace Strawhenge.Builder.Unity
             if (_currentBlueprint == null)
                 return;
 
-            _buildItemController.PreviewOff();
+            _buildItemController.Off();
         }
 
         public void Scrap()
@@ -50,7 +50,7 @@ namespace Strawhenge.Builder.Unity
 
             _currentBlueprint.BuildItem.Scrap();
             _currentBlueprint.ScrapValue.AddComponentsTo(_componentInventory);
-            _buildItemController.PreviewOff();
+            _buildItemController.Off();
         }
 
         void OnBuildItemPreviewEnded()

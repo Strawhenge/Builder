@@ -31,7 +31,7 @@ namespace Strawhenge.Builder.Unity
         public void Unset()
         {
             _recipeUI.Hide();
-            _buildItemController.PreviewOff();
+            _buildItemController.Off();
 
             _currentBlueprint = null;
         }
@@ -40,7 +40,7 @@ namespace Strawhenge.Builder.Unity
         {
             UpdateRecipeUI();
 
-            _buildItemController.PreviewOn(
+            _buildItemController.On(
                 _currentBlueprint.BuildItem,
                 canPlaceFinalItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
                 onPlacedFinalItem: () =>
