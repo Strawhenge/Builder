@@ -10,6 +10,6 @@
         {
         }
 
-        public IArrangeBuildItem Preview() => new NullArrangeBuildItem();
+        public IArrangeBuildItem Arrange() => new NullArrangeBuildItem();
     }
 }

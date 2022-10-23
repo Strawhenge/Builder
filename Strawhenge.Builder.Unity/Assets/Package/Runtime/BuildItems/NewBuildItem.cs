@@ -16,11 +16,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _prefab = prefab;
         }
 
-        public IArrangeBuildItem Preview()
+        public IArrangeBuildItem Arrange()
         {
             if (_currentPreview != null)
             {
-                return _currentPreview.BuildItemPreview;
+                return _currentPreview.Arrange;
             }
 
             _currentPreview = Object.Instantiate(
@@ -28,7 +28,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _initialPosition.GetPosition(), 
                 _initialPosition.GetRotation());
 
-            return _currentPreview.BuildItemPreview;
+            return _currentPreview.Arrange;
         }
 
         public void Cancel() => DestroyPreviewObject();
