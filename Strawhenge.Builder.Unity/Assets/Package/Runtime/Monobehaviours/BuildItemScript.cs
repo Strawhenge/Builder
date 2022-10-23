@@ -19,6 +19,18 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         public ScrapValue ScrapValue { get; private set; }
 
+        public void SetArranging()
+        {
+            foreach (var @event in _onArrangeEvents)
+                @event.Invoke(gameObject);
+        }
+
+        public void SetPlaced()
+        {
+            foreach (var @event in _onPlaceEvents)
+                @event.Invoke(gameObject);
+        }
+
         void Awake()
         {
             var wallSideSnapPoints = GetComponentsInChildren<WallSideSnapScript>();

@@ -21,11 +21,13 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Cancel()
         {
+            _script.SetPlaced();
             _script.transform.SetPositionAndRotation(_initialPosition, _initialRotation);
         }
 
         public void PlaceFinal()
         {
+            _script.SetPlaced();
             var transform = _script.transform;
             _initialPosition = transform.position;
             _initialRotation = transform.rotation;
@@ -33,6 +35,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public IArrangeBuildItem Arrange()
         {
+            _script.SetArranging();
             return _script.Arrange;
         }
 

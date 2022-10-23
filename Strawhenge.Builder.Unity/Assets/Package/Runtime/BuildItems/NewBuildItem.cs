@@ -28,6 +28,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _initialPosition.GetPosition(),
                 _initialPosition.GetRotation());
 
+            _current.SetArranging();
             return _current.Arrange;
         }
 
@@ -35,6 +36,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void PlaceFinal()
         {
+            _current.SetPlaced();
             var transform = _current.transform;
             var position = transform.position;
             var rotation = transform.rotation;
