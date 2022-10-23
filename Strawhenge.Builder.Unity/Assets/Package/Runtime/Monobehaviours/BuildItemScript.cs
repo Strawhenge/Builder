@@ -2,6 +2,7 @@
 using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Common.Ranges;
+using Strawhenge.Common.Unity;
 using System.Linq;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     {
         [SerializeField] SerializableComponentQuantity[] _scrapComponents;
         [SerializeField] BuildItemSettingsScriptableObject _settings;
+        [SerializeField] EventScriptableObject[] _onArrangeEvents;
+        [SerializeField] EventScriptableObject[] _onPlaceEvents;
 
         public IArrangeBuildItem Arrange { get; private set; }
 
