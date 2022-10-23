@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Common.Ranges;
@@ -33,17 +34,14 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Awake()
         {
-            var wallSideSnapPoints = GetComponentsInChildren<WallSideSnapScript>();
-            var wallBottomSnapPoints = GetComponentsInChildren<WallBottomSnapScript>();
-            var floorEdgeSnapPoints = GetComponentsInChildren<FloorEdgeSnapScript>();
+            var verticalSnapPoints = GetComponentsInChildren<BaseSnapScript<VerticalSnap>>();
+            var horizontalSnapPoints = GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>();
 
             Arrange = new ArrangeBuildItem(
                 transform,
                 GetTiltRangeFromSettings(),
-                getAvailableVerticalSnaps: () => wallSideSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
-                getAvailableHorizontalSnaps: () =>
-                    wallBottomSnapPoints.SelectMany(x => x.GetAvailableSnaps()).Concat(
-                        floorEdgeSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray()));
+                getAvailableVerticalSnaps: () => verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
+                getAvailableHorizontalSnaps: () => horizontalSnapPoints.SelectMany(x => x.GetAvailableSnaps()));
 
             ScrapValue = new ScrapValue(_scrapComponents.Select(
                 x => new ComponentQuantity(new Component(x.Component.Identifier), x.Quantity)));
