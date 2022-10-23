@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public class NullBuildItemPreview : IBuildItemPreview
+    public class NullArrangeBuildItem : IArrangeBuildItem
     {
         public Vector3 Position { get; } = Vector3.zero;
 

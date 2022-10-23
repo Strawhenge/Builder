@@ -25,29 +25,29 @@ namespace Strawhenge.Builder.Unity
         {
             _currentBlueprint = blueprint;
 
-            ShowBuildItemPreview();
+            ArrangeCurrentBlueprintBuildItem();
         }
 
         public void Unset()
         {
             _recipeUI.Hide();
-            _buildItemController.PreviewOff();
+            _buildItemController.Off();
 
             _currentBlueprint = null;
         }
 
-        void ShowBuildItemPreview()
+        void ArrangeCurrentBlueprintBuildItem()
         {
             UpdateRecipeUI();
 
-            _buildItemController.PreviewOn(
+            _buildItemController.On(
                 _currentBlueprint.BuildItem,
                 canPlaceFinalItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
                 onPlacedFinalItem: () =>
                 {
                     _currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
 
-                    ShowBuildItemPreview();
+                    ArrangeCurrentBlueprintBuildItem();
                 },
                 onCancelled: () =>
                 {

@@ -1,7 +1,9 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Common.Ranges;
+using Strawhenge.Common.Unity;
 using System.Linq;
 using UnityEngine;
 
@@ -11,24 +13,44 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     {
         [SerializeField] SerializableComponentQuantity[] _scrapComponents;
         [SerializeField] BuildItemSettingsScriptableObject _settings;
+        [SerializeField] EventScriptableObject[] _onArrangeEvents;
+        [SerializeField] EventScriptableObject[] _onPlaceEvents;
 
-        public IBuildItemPreview BuildItemPreview { get; private set; }
+        SnapSlotToggle _snapSlotToggle;
+
+        public IArrangeBuildItem Arrange { get; private set; }
 
         public ScrapValue ScrapValue { get; private set; }
 
+        public void SetArranging()
+        {
+            _snapSlotToggle.Snaps();
+
+            foreach (var @event in _onArrangeEvents)
+                @event.Invoke(gameObject);
+        }
+
+        public void SetPlaced()
+        {
+            _snapSlotToggle.Slots();
+
+            foreach (var @event in _onPlaceEvents)
+                @event.Invoke(gameObject);
+        }
+
         void Awake()
         {
-            var wallSideSnapPoints = GetComponentsInChildren<WallSideSnapScript>();
-            var wallBottomSnapPoints = GetComponentsInChildren<WallBottomSnapScript>();
-            var floorEdgeSnapPoints = GetComponentsInChildren<FloorEdgeSnapScript>();
+            var verticalSnapPoints = GetComponentsInChildren<BaseSnapScript<VerticalSnap>>();
+            var horizontalSnapPoints = GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>();
+            var slotPoints = GetComponentsInChildren<BaseSlotScript>();
 
-            BuildItemPreview = new BuildItemPreview(
+            _snapSlotToggle = new SnapSlotToggle(verticalSnapPoints, horizontalSnapPoints, slotPoints);
+
+            Arrange = new ArrangeBuildItem(
                 transform,
                 GetTiltRangeFromSettings(),
-                getAvailableVerticalSnaps: () => wallSideSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
-                getAvailableHorizontalSnaps: () =>
-                    wallBottomSnapPoints.SelectMany(x => x.GetAvailableSnaps()).Concat(
-                        floorEdgeSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray()));
+                getAvailableVerticalSnaps: () => verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
+                getAvailableHorizontalSnaps: () => horizontalSnapPoints.SelectMany(x => x.GetAvailableSnaps()));
 
             ScrapValue = new ScrapValue(_scrapComponents.Select(
                 x => new ComponentQuantity(new Component(x.Component.Identifier), x.Quantity)));

@@ -21,19 +21,22 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Cancel()
         {
+            _script.SetPlaced();
             _script.transform.SetPositionAndRotation(_initialPosition, _initialRotation);
         }
 
         public void PlaceFinal()
         {
+            _script.SetPlaced();
             var transform = _script.transform;
             _initialPosition = transform.position;
             _initialRotation = transform.rotation;
         }
 
-        public IBuildItemPreview Preview()
+        public IArrangeBuildItem Arrange()
         {
-            return _script.BuildItemPreview;
+            _script.SetArranging();
+            return _script.Arrange;
         }
 
         public void Scrap()

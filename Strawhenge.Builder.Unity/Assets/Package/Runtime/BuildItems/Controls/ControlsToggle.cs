@@ -25,7 +25,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         internal event Action Snap;
         internal event Action ReleaseSnap;
 
-        internal void BuildControlsOn(IBuildItemPreview buildItem)
+        internal void BuildControlsOn(IArrangeBuildItem buildItem)
         {
             ControlsOff();
 

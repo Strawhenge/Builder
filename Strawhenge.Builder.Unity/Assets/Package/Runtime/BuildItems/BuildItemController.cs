@@ -8,7 +8,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         readonly ControlsToggle _controls;
 
         IBuildItem _currentBuildItem;
-        IBuildItemPreview _currentPreview;
+        IArrangeBuildItem _arrangeCurrentBuildItem;
         Func<bool> _canPlaceFinalItem;
         Action _onPlacedFinalItem;
         Action _onCancelled;
@@ -32,8 +32,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
 
-        public void PreviewOn(IBuildItem buildItem, Func<bool> canPlaceFinalItem = null,
-            Action onPlacedFinalItem = null, Action onCancelled = null)
+        public void On(
+            IBuildItem buildItem,
+            Func<bool> canPlaceFinalItem = null,
+            Action onPlacedFinalItem = null,
+            Action onCancelled = null)
         {
             _currentBuildItem?.Cancel();
             _currentBuildItem = buildItem;
@@ -42,11 +45,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _onPlacedFinalItem = onPlacedFinalItem ?? (() => { });
             _onCancelled = onCancelled ?? (() => { });
 
-            _currentPreview = buildItem.Preview();
-            _controls.BuildControlsOn(_currentPreview);
+            _arrangeCurrentBuildItem = buildItem.Arrange();
+            _controls.BuildControlsOn(_arrangeCurrentBuildItem);
         }
 
-        public void PreviewOff()
+        public void Off()
         {
             _currentBuildItem?.Cancel();
             _currentBuildItem = null;
@@ -60,7 +63,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void SpawnFinalItem()
         {
-            if (_currentBuildItem == null || _currentPreview == null || !_canPlaceFinalItem())
+            if (_currentBuildItem == null || _arrangeCurrentBuildItem == null || !_canPlaceFinalItem())
                 return;
 
             _currentBuildItem.PlaceFinal();
@@ -68,7 +71,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             _controls.ControlsOff();
 
-            LastPlacedPosition.Update(_currentPreview.Position, _currentPreview.Rotation);
+            LastPlacedPosition.Update(_arrangeCurrentBuildItem.Position, _arrangeCurrentBuildItem.Rotation);
 
             var callback = _onPlacedFinalItem;
             ResetCallbacks();
@@ -77,7 +80,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void OnSnap()
         {
-            var verticalSnap = _currentPreview.GetAvailableVerticalSnaps().FirstOrDefault();
+            var verticalSnap = _arrangeCurrentBuildItem.GetAvailableVerticalSnaps().FirstOrDefault();
 
             if (verticalSnap != null)
             {
@@ -86,7 +89,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 return;
             }
 
-            var horizontalSnap = _currentPreview.GetAvailableHorizontalSnaps().FirstOrDefault();
+            var horizontalSnap = _arrangeCurrentBuildItem.GetAvailableHorizontalSnaps().FirstOrDefault();
 
             if (horizontalSnap == null)
                 return;
@@ -97,7 +100,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void OnReleaseSnap()
         {
-            _controls.BuildControlsOn(_currentPreview);
+            _controls.BuildControlsOn(_arrangeCurrentBuildItem);
         }
 
         void ResetCallbacks()

@@ -4,8 +4,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public interface IBuildItemController
     {
-        void PreviewOff();
+        void Off();
 
-        void PreviewOn(IBuildItem buildItem, Func<bool> canPlaceFinalItem = null, Action onPlacedFinalItem = null, Action onCancelled = null);
+        void On(
+            IBuildItem buildItem,
+            Func<bool> canPlaceFinalItem = null,
+            Action onPlacedFinalItem = null,
+            Action onCancelled = null);
     }
 }

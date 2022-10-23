@@ -4,9 +4,14 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
+    public abstract class BaseSnapScript<TSnap> : MonoBehaviour
+    {
+        public abstract IEnumerable<TSnap> GetAvailableSnaps();
+    }
+
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(Rigidbody))]
-    public abstract class BaseSnapScript<TSnap, TSnapSlotScript> : MonoBehaviour
+    public abstract class BaseSnapScript<TSnap, TSnapSlotScript> : BaseSnapScript<TSnap>
         where TSnapSlotScript : MonoBehaviour
     {
         readonly List<Collider> _collidingWith = new List<Collider>();
@@ -16,7 +21,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         Transform _root;
         SnapPoint _snapPoint;
 
-        public IEnumerable<TSnap> GetAvailableSnaps()
+        public override IEnumerable<TSnap> GetAvailableSnaps()
         {
             foreach (var collider in _collidingWith)
             {

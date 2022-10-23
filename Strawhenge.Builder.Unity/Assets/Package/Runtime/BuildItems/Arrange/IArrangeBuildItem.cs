@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public interface IBuildItemPreview
+    public interface IArrangeBuildItem
     {
         Vector3 Position { get; }
 
