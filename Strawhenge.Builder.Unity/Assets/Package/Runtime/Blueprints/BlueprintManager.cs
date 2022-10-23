@@ -25,7 +25,7 @@ namespace Strawhenge.Builder.Unity
         {
             _currentBlueprint = blueprint;
 
-            ShowBuildItemPreview();
+            ArrangeCurrentBlueprintBuildItem();
         }
 
         public void Unset()
@@ -36,7 +36,7 @@ namespace Strawhenge.Builder.Unity
             _currentBlueprint = null;
         }
 
-        void ShowBuildItemPreview()
+        void ArrangeCurrentBlueprintBuildItem()
         {
             UpdateRecipeUI();
 
@@ -47,7 +47,7 @@ namespace Strawhenge.Builder.Unity
                 {
                     _currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
 
-                    ShowBuildItemPreview();
+                    ArrangeCurrentBlueprintBuildItem();
                 },
                 onCancelled: () =>
                 {

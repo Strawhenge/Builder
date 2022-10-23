@@ -27,8 +27,8 @@ namespace Strawhenge.Builder.Unity
 
             _buildItemController.On(
                 blueprint.BuildItem,
-                onPlacedFinalItem: OnBuildItemPreviewEnded,
-                onCancelled: OnBuildItemPreviewEnded);
+                onPlacedFinalItem: OnBuildItemArrangeEnded,
+                onCancelled: OnBuildItemArrangeEnded);
 
             var additions = blueprint.ScrapValue.GetAdditions(_componentInventory);
 
@@ -53,7 +53,7 @@ namespace Strawhenge.Builder.Unity
             _buildItemController.Off();
         }
 
-        void OnBuildItemPreviewEnded()
+        void OnBuildItemArrangeEnded()
         {
             _currentBlueprint = null;
             _scrapUI.Hide();
