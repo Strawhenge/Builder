@@ -8,7 +8,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         readonly ControlsToggle _controls;
 
         IBuildItem _currentBuildItem;
-        IBuildItemPreview _currentPreview;
+        IArrangeBuildItem _currentPreview;
         Func<bool> _canPlaceFinalItem;
         Action _onPlacedFinalItem;
         Action _onCancelled;

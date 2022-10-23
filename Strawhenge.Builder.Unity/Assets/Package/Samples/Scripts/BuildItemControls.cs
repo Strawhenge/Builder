@@ -11,12 +11,12 @@ namespace Strawhenge.Builder.Unity
         [SerializeField] float _cameraDistance;
 
         Transform _cameraTransform;
-        IBuildItemPreview _buildItem;
+        IArrangeBuildItem _buildItem;
 
         public event Action Place;
         public event Action Snap;
 
-        public void ControlOn(IBuildItemPreview buildItem)
+        public void ControlOn(IArrangeBuildItem buildItem)
         {
             _buildItem = buildItem;
             enabled = true;

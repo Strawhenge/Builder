@@ -31,7 +31,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _initialRotation = transform.rotation;
         }
 
-        public IBuildItemPreview Preview()
+        public IArrangeBuildItem Preview()
         {
             return _script.BuildItemPreview;
         }

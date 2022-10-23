@@ -6,6 +6,6 @@
 
         void PlaceFinal();
 
-        IBuildItemPreview Preview();
+        IArrangeBuildItem Preview();
     }
 }

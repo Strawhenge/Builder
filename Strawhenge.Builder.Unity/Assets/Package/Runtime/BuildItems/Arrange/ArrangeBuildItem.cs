@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public class BuildItemPreview : IBuildItemPreview
+    public class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
         readonly FloatRange _tiltRange;
@@ -17,7 +17,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         float _turnAngle;
         float _tiltAngle;
 
-        public BuildItemPreview(
+        public ArrangeBuildItem(
             Transform transform,
             FloatRange tiltRange,
             Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps,

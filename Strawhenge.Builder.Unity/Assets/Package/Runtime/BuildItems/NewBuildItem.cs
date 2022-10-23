@@ -16,7 +16,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _prefab = prefab;
         }
 
-        public IBuildItemPreview Preview()
+        public IArrangeBuildItem Preview()
         {
             if (_currentPreview != null)
             {

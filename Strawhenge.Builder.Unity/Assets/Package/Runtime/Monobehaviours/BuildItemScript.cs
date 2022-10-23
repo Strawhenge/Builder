@@ -12,7 +12,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] SerializableComponentQuantity[] _scrapComponents;
         [SerializeField] BuildItemSettingsScriptableObject _settings;
 
-        public IBuildItemPreview BuildItemPreview { get; private set; }
+        public IArrangeBuildItem BuildItemPreview { get; private set; }
 
         public ScrapValue ScrapValue { get; private set; }
 
@@ -22,7 +22,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             var wallBottomSnapPoints = GetComponentsInChildren<WallBottomSnapScript>();
             var floorEdgeSnapPoints = GetComponentsInChildren<FloorEdgeSnapScript>();
 
-            BuildItemPreview = new BuildItemPreview(
+            BuildItemPreview = new ArrangeBuildItem(
                 transform,
                 GetTiltRangeFromSettings(),
                 getAvailableVerticalSnaps: () => wallSideSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
