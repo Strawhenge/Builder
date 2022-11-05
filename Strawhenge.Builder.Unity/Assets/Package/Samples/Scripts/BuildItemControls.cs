@@ -58,13 +58,13 @@ namespace Strawhenge.Builder.Unity
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                _buildItem.Move(_moveSpeed * Time.deltaTime * new Vector3(0, y, 0).normalized);
-                _buildItem.Turn(_turnSpeed * x * Time.deltaTime);
+                _buildItem.Move(_moveSpeed * new Vector3(0, y, 0).normalized);
+                _buildItem.Turn(_turnSpeed * x);
                 return;
             }
 
             var direction = new Vector3(x, 0, y).normalized;
-            _buildItem.Move(_moveSpeed * Time.deltaTime * direction);
+            _buildItem.Move(_moveSpeed * direction);
         }
 
         void UpdateCamera()

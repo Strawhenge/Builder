@@ -1,5 +1,6 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Common.Ranges;
+using Strawhenge.Common.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
     public class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
+        readonly ArrangeBuildItemScript _script;
         readonly FloatRange _tiltRange;
         readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
         readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
@@ -24,6 +26,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
         {
             _transform = transform;
+            _script = transform.GetOrAddComponent<ArrangeBuildItemScript>();
             _tiltRange = tiltRange;
             _getAvailableVerticalSnaps = getAvailableVerticalSnaps;
             _getAvailableHorizontalSnaps = getAvailableHorizontalSnaps;
@@ -39,27 +42,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() =>
             _getAvailableHorizontalSnaps().ToArray();
 
-        public void Move(Vector3 velocity)
-        {
-            _transform.position += velocity;
-        }
+        public void Move(Vector3 velocity) => _script.Move(velocity);
 
-        public void Turn(float amount)
-        {
-            _turnAngle += amount;
-            UpdateRotation();
-        }
+        public void Turn(float amount) => _script.Turn(amount);
 
         public void Tilt(float amount)
         {
-            _tiltAngle = _tiltRange.Clamp(_tiltAngle + amount);
-            UpdateRotation();
-        }
-
-        void UpdateRotation()
-        {
-            _transform.rotation = Quaternion.AngleAxis(_turnAngle, Vector3.up) *
-                                  Quaternion.AngleAxis(_tiltAngle, Vector3.right);
         }
     }
 }
