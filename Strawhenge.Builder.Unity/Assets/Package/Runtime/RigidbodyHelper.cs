@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Unity
     {
         // ReSharper disable BitwiseOperatorOnEnumWithoutFlags
         // These ARE flags, but they are missing the [Flags] attribute in the Unity library.
-        public static RigidbodyConstraints FreezeAllButRotationY =>
+        public const RigidbodyConstraints FreezeAllButRotationY =
             RigidbodyConstraints.FreezePosition |
             RigidbodyConstraints.FreezeRotationX |
             RigidbodyConstraints.FreezeRotationZ;
