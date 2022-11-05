@@ -17,6 +17,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
 
         ArrangeBuildItemScript _script;
+        bool _isEnabled;
 
         float _turnAngle;
         float _tiltAngle;
@@ -45,27 +46,28 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Enable()
         {
-            if (_script != null)
-                Object.Destroy(_script);
+            if (_isEnabled)
+                Disable();
 
+            _isEnabled = true;
             _script = _transform.GetOrAddComponent<ArrangeBuildItemScript>();
         }
 
         public void Disable()
         {
             Object.Destroy(_script);
-            _script = null;
+            _isEnabled = false;
         }
 
         public void Move(Vector3 velocity)
         {
-            if (_script != null)
+            if (_isEnabled)
                 _script.Move(velocity);
         }
 
         public void Turn(float amount)
         {
-            if (_script != null)
+            if (_isEnabled)
                 _script.Turn(amount);
         }
 

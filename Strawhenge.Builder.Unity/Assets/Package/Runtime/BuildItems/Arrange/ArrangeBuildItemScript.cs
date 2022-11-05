@@ -1,5 +1,4 @@
 using Strawhenge.Common.Unity;
-using System;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
@@ -39,10 +38,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             if (Mathf.Abs(_turnAmount) > 0.01f)
             {
-                _rigidbody.constraints = RigidbodyConstraints.FreezePosition |
-                                         RigidbodyConstraints.FreezeRotationX |
-                                         RigidbodyConstraints.FreezeRotationZ;
-
+                _rigidbody.constraints = RigidbodyHelper.FreezeAllButRotationY;
                 _rigidbody.angularVelocity = Vector3.up * _turnAmount;
                 _turnAmount = 0;
                 return;

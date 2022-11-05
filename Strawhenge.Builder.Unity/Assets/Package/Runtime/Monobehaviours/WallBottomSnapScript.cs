@@ -1,5 +1,4 @@
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
-using Strawhenge.Common.Ranges;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
