@@ -17,8 +17,9 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] EventScriptableObject[] _onPlaceEvents;
 
         SnapSlotToggle _snapSlotToggle;
+        ArrangeBuildItem _arrangeBuildItem;
 
-        public IArrangeBuildItem Arrange { get; private set; }
+        public IArrangeBuildItem Arrange => _arrangeBuildItem;
 
         public ScrapValue ScrapValue { get; private set; }
 
@@ -28,10 +29,13 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             foreach (var @event in _onArrangeEvents)
                 @event.Invoke(gameObject);
+
+            _arrangeBuildItem.Enable();
         }
 
         public void SetPlaced()
         {
+            _arrangeBuildItem.Disable();
             _snapSlotToggle.Slots();
 
             foreach (var @event in _onPlaceEvents)
@@ -46,7 +50,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             _snapSlotToggle = new SnapSlotToggle(verticalSnapPoints, horizontalSnapPoints, slotPoints);
 
-            Arrange = new ArrangeBuildItem(
+            _arrangeBuildItem = new ArrangeBuildItem(
                 transform,
                 GetTiltRangeFromSettings(),
                 getAvailableVerticalSnaps: () => verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),

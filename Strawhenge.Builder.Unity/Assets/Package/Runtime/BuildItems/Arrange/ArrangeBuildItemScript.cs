@@ -23,18 +23,13 @@ namespace Strawhenge.Builder.Unity.BuildItems
         void Awake()
         {
             _rigidbody = this.GetOrAddComponent<Rigidbody>();
-            _rigidbody.isKinematic = true;
+            _rigidbody.isKinematic = false;
             _rigidbody.useGravity = false;
             _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        }
-
-        void OnEnable()
-        {
-            _rigidbody.isKinematic = false;
             _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         }
 
-        void OnDisable()
+        void OnDestroy()
         {
             _rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
             _rigidbody.isKinematic = true;

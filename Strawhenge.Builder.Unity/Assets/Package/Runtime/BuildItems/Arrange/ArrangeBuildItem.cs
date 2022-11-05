@@ -5,16 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
-        readonly ArrangeBuildItemScript _script;
         readonly FloatRange _tiltRange;
         readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
         readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
+
+        ArrangeBuildItemScript _script;
 
         float _turnAngle;
         float _tiltAngle;
@@ -26,7 +28,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
         {
             _transform = transform;
-            _script = transform.GetOrAddComponent<ArrangeBuildItemScript>();
             _tiltRange = tiltRange;
             _getAvailableVerticalSnaps = getAvailableVerticalSnaps;
             _getAvailableHorizontalSnaps = getAvailableHorizontalSnaps;
@@ -42,9 +43,31 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() =>
             _getAvailableHorizontalSnaps().ToArray();
 
-        public void Move(Vector3 velocity) => _script.Move(velocity);
+        public void Enable()
+        {
+            if (_script != null)
+                Object.Destroy(_script);
 
-        public void Turn(float amount) => _script.Turn(amount);
+            _script = _transform.GetOrAddComponent<ArrangeBuildItemScript>();
+        }
+
+        public void Disable()
+        {
+            Object.Destroy(_script);
+            _script = null;
+        }
+
+        public void Move(Vector3 velocity)
+        {
+            if (_script != null)
+                _script.Move(velocity);
+        }
+
+        public void Turn(float amount)
+        {
+            if (_script != null)
+                _script.Turn(amount);
+        }
 
         public void Tilt(float amount)
         {
