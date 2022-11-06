@@ -8,7 +8,6 @@ namespace Strawhenge.Builder.Unity
     {
         [SerializeField] float _moveSpeed;
         [SerializeField] float _turnSpeed;
-        [SerializeField] float _tiltSpeed;
         [SerializeField] float _cameraDistance;
 
         Transform _cameraTransform;
@@ -61,12 +60,6 @@ namespace Strawhenge.Builder.Unity
             {
                 _buildItem.Move(_moveSpeed * new Vector3(0, y, 0).normalized);
                 _buildItem.Turn(_turnSpeed * x);
-                return;
-            }
-
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
-                _buildItem.Tilt(_tiltSpeed * x);
                 return;
             }
 

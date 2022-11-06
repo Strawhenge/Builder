@@ -27,10 +27,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
         }
 
-        public void Tilt(float amount)
-        {
-        }
-
         public void Turn(float amount)
         {
         }

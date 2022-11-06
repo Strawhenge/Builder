@@ -12,7 +12,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
     public class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
-        readonly FloatRange _tiltRange;
         readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
         readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
 
@@ -24,12 +23,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public ArrangeBuildItem(
             Transform transform,
-            FloatRange tiltRange,
             Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps,
             Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
         {
             _transform = transform;
-            _tiltRange = tiltRange;
             _getAvailableVerticalSnaps = getAvailableVerticalSnaps;
             _getAvailableHorizontalSnaps = getAvailableHorizontalSnaps;
         }
@@ -69,10 +66,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             if (_isEnabled)
                 _script.Turn(amount);
-        }
-
-        public void Tilt(float amount)
-        {
         }
     }
 }
