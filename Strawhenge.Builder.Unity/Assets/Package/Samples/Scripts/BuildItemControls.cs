@@ -64,7 +64,7 @@ namespace Strawhenge.Builder.Unity
                 return;
             }
 
-            if (Input.GetKey(KeyCode.LeftAlt))
+            if (Input.GetKey(KeyCode.LeftControl))
             {
                 _buildItem.Tilt(_tiltSpeed * x);
                 return;
