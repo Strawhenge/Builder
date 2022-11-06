@@ -670,7 +670,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 3
-  _turnSpeed: 50
+  _turnSpeed: 10
+  _tiltSpeed: 10
   _cameraDistance: 5
 --- !u!4 &1745532029
 Transform:
