@@ -10,6 +10,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         Quaternion Rotation { get; }
 
+        void Enable();
+
+        void Disable();
+
         void Move(Vector3 velocity);
 
         void Turn(float amount);
