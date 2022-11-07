@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public interface IArrangeBuildItem
     {
+        event Action ClippingChanged;
+
         Vector3 Position { get; }
 
         Quaternion Rotation { get; }

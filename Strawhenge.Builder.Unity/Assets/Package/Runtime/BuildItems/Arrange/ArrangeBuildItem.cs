@@ -33,6 +33,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _getAvailableHorizontalSnaps = getAvailableHorizontalSnaps;
         }
 
+        public event Action ClippingChanged;
+
         public Vector3 Position => _transform.position;
 
         public Quaternion Rotation => _transform.rotation;
@@ -86,6 +88,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             if (_isEnabled)
                 ToggleColliders(true);
+
+            ClippingChanged?.Invoke();
         }
 
         public void ClippingOff()
@@ -97,6 +101,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             if (_isEnabled)
                 ToggleColliders(false);
+
+            ClippingChanged?.Invoke();
         }
 
         void ToggleColliders(bool enabled)

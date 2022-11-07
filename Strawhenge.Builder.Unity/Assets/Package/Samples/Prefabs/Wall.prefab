@@ -51,7 +51,10 @@ MonoBehaviour:
   _scrapComponents:
   - _component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
     _quantity: 5
-  _settings: {fileID: 11400000, guid: fd0db7a7a722e14439443aeca9a0f9e9, type: 2}
+  _onArrangeEvents: []
+  _onPlaceEvents: []
+  _arrangeColliders:
+  - {fileID: 3723808646042240179}
 --- !u!1 &7392130952687113783
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         Func<bool> _canPlaceFinalItem;
         Action _onPlacedFinalItem;
         Action _onCancelled;
+        bool _clippingDisabled;
 
         public BuildItemController(
             IBuildItemControls buildItemControls,
@@ -39,6 +40,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Action onCancelled = null)
         {
             _currentBuildItem?.Cancel();
+            ResetCurrentBuildItem();
             _currentBuildItem = buildItem;
 
             _canPlaceFinalItem = canPlaceFinalItem ?? (() => true);
@@ -46,13 +48,18 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _onCancelled = onCancelled ?? (() => { });
 
             _arrangeCurrentBuildItem = buildItem.Arrange();
+            _arrangeCurrentBuildItem.ClippingChanged += OnClippingChanged;
+
             _controls.BuildControlsOn(_arrangeCurrentBuildItem);
+
+            if (_clippingDisabled)
+                _arrangeCurrentBuildItem.ClippingOff();
         }
 
         public void Off()
         {
             _currentBuildItem?.Cancel();
-            _currentBuildItem = null;
+            ResetCurrentBuildItem();
 
             _controls.ControlsOff();
 
@@ -67,12 +74,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 return;
 
             _currentBuildItem.PlaceFinal();
-            _currentBuildItem = null;
-
             _controls.ControlsOff();
 
             LastPlacedPosition.Update(_arrangeCurrentBuildItem.Position, _arrangeCurrentBuildItem.Rotation);
 
+            ResetCurrentBuildItem();
+            
             var callback = _onPlacedFinalItem;
             ResetCallbacks();
             callback();
@@ -91,11 +98,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             var horizontalSnap = _arrangeCurrentBuildItem.GetAvailableHorizontalSnaps().FirstOrDefault();
 
-            if (horizontalSnap == null)
-                return;
-
-            horizontalSnap.Snap();
-            _controls.HorizontalSnapControlsOn(horizontalSnap);
+            if (horizontalSnap != null)
+            {
+                horizontalSnap.Snap();
+                _controls.HorizontalSnapControlsOn(horizontalSnap);
+            }
         }
 
         void OnReleaseSnap()
@@ -103,11 +110,27 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _controls.BuildControlsOn(_arrangeCurrentBuildItem);
         }
 
+        void OnClippingChanged()
+        {
+            _clippingDisabled = _arrangeCurrentBuildItem?.ClippingDisabled ?? false;
+        }
+
         void ResetCallbacks()
         {
             _canPlaceFinalItem = () => true;
             _onPlacedFinalItem = () => { };
             _onCancelled = () => { };
+        }
+
+        void ResetCurrentBuildItem()
+        {
+            _currentBuildItem = null;
+
+            if (_arrangeCurrentBuildItem != null)
+            {
+                _arrangeCurrentBuildItem.ClippingChanged -= OnClippingChanged;
+                _arrangeCurrentBuildItem = null;
+            }
         }
     }
 }
