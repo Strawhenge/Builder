@@ -11,6 +11,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public Quaternion Rotation { get; } = new Quaternion();
 
+        public bool ClippingDisabled => false;
+
         public void Enable()
         {
         }
@@ -20,6 +22,14 @@ namespace Strawhenge.Builder.Unity.BuildItems
         }
 
         public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() => Enumerable.Empty<HorizontalSnap>();
+
+        public void ClippingOn()
+        {
+        }
+
+        public void ClippingOff()
+        {
+        }
 
         public IEnumerable<VerticalSnap> GetAvailableVerticalSnaps() => Enumerable.Empty<VerticalSnap>();
 

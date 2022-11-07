@@ -14,6 +14,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] SerializableComponentQuantity[] _scrapComponents;
         [SerializeField] EventScriptableObject[] _onArrangeEvents;
         [SerializeField] EventScriptableObject[] _onPlaceEvents;
+        [SerializeField] Collider[] _arrangeColliders;
 
         SnapSlotToggle _snapSlotToggle;
 
@@ -47,6 +48,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             Arrange = new ArrangeBuildItem(
                 transform,
+                _arrangeColliders,
                 getAvailableVerticalSnaps: () => verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
                 getAvailableHorizontalSnaps: () => horizontalSnapPoints.SelectMany(x => x.GetAvailableSnaps()));
 

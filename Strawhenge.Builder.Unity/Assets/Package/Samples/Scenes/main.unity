@@ -356,6 +356,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1868320131971839266, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
+      propertyPath: _arrangeColliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868320131971839266, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
+      propertyPath: _arrangeColliders.Array.data[0]
+      value: 
+      objectReference: {fileID: 2002978846}
     - target: {fileID: 5398693399376138997, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
       propertyPath: _presetAngles.Array.size
       value: 2
@@ -671,7 +679,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _turnSpeed: 10
-  _tiltSpeed: 10
   _cameraDistance: 5
 --- !u!4 &1745532029
 Transform:
@@ -740,23 +747,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turnSpeed: 50
   _moveSpeed: 3
---- !u!1 &1768661470 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8588558240642278780, guid: ea2730186ba667c4abf75c3175692aa2, type: 3}
-  m_PrefabInstance: {fileID: 980209198}
+--- !u!65 &2002978846 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3723808646042240179, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
+  m_PrefabInstance: {fileID: 965503985}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1768661477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768661470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37fe4bfd93943f6a14ac3fff5cbc901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2093134071435048863
 PrefabInstance:
   m_ObjectHideFlags: 0

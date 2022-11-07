@@ -43,6 +43,7 @@ namespace Strawhenge.Builder.Unity
         {
             UpdateCamera();
             ManageBlueprintMovement();
+            ManageClippingToggle();
 
             if (Input.GetKeyDown(KeyCode.Return))
                 Place?.Invoke();
@@ -65,6 +66,17 @@ namespace Strawhenge.Builder.Unity
 
             var direction = new Vector3(x, 0, y).normalized;
             _buildItem.Move(_moveSpeed * direction);
+        }
+
+        void ManageClippingToggle()
+        {
+            if (!Input.GetKeyDown(KeyCode.CapsLock))
+                return;
+
+            if (_buildItem.ClippingDisabled)
+                _buildItem.ClippingOn();
+            else
+                _buildItem.ClippingOff();
         }
 
         void UpdateCamera()

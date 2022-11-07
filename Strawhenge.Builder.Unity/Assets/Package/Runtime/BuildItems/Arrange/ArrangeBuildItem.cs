@@ -1,5 +1,4 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
-using Strawhenge.Common.Ranges;
 using Strawhenge.Common.Unity;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
     public class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
+        readonly IEnumerable<Collider> _colliders;
         readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
         readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
 
@@ -23,10 +23,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public ArrangeBuildItem(
             Transform transform,
+            IEnumerable<Collider> colliders,
             Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps,
             Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
         {
             _transform = transform;
+            _colliders = colliders;
             _getAvailableVerticalSnaps = getAvailableVerticalSnaps;
             _getAvailableHorizontalSnaps = getAvailableHorizontalSnaps;
         }
@@ -34,6 +36,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public Vector3 Position => _transform.position;
 
         public Quaternion Rotation => _transform.rotation;
+
+        public bool ClippingDisabled { get; private set; }
 
         public IEnumerable<VerticalSnap> GetAvailableVerticalSnaps() =>
             _getAvailableVerticalSnaps().ToArray();
@@ -48,12 +52,17 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             _isEnabled = true;
             _script = _transform.GetOrAddComponent<ArrangeBuildItemScript>();
+
+            if (ClippingDisabled)
+                ToggleColliders(false);
         }
 
         public void Disable()
         {
             Object.Destroy(_script);
             _isEnabled = false;
+
+            ToggleColliders(true);
         }
 
         public void Move(Vector3 velocity)
@@ -66,6 +75,34 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             if (_isEnabled)
                 _script.Turn(amount);
+        }
+
+        public void ClippingOn()
+        {
+            if (!ClippingDisabled)
+                return;
+
+            ClippingDisabled = false;
+
+            if (_isEnabled)
+                ToggleColliders(true);
+        }
+
+        public void ClippingOff()
+        {
+            if (ClippingDisabled)
+                return;
+
+            ClippingDisabled = true;
+
+            if (_isEnabled)
+                ToggleColliders(false);
+        }
+
+        void ToggleColliders(bool enabled)
+        {
+            foreach (var collider in _colliders)
+                collider.enabled = enabled;
         }
     }
 }
