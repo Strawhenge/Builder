@@ -162,7 +162,6 @@ MonoBehaviour:
   _arrangeColliders:
   - {fileID: 4346502293123212770}
   - {fileID: 8104062813136655429}
-  - {fileID: 5001871033702963241}
 --- !u!1 &2408094947196850931
 GameObject:
   m_ObjectHideFlags: 0
