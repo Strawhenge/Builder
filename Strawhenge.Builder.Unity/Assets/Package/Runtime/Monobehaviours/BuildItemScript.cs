@@ -1,7 +1,7 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Builder.Unity.Data;
-using Strawhenge.Common.Unity;
+using Strawhenge.Common.Unity.Events;
 using System.Linq;
 using UnityEngine;
 
@@ -10,8 +10,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class BuildItemScript : MonoBehaviour
     {
         [SerializeField] SerializableComponentQuantity[] _scrapComponents;
-        [SerializeField] EventScriptableObject[] _onArrangeEvents;
-        [SerializeField] EventScriptableObject[] _onPlaceEvents;
+        [SerializeField] EventContainer[] _onArrangeEvents;
+        [SerializeField] EventContainer[] _onPlaceEvents;
         [SerializeField] Collider[] _arrangeColliders;
 
         SnapSlotToggle _snapSlotToggle;
