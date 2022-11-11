@@ -9,6 +9,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         readonly SnapPoint _snapPoint;
         readonly Transform _snappedTo;
         readonly Cycle<float> _presetAngles;
+        readonly SlideAmount _slideAmount = new SlideAmount(-1, 1);
 
         float _angle;
 
@@ -37,6 +38,9 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         public void Slide(float amount)
         {
+            if (!_slideAmount.Slide(amount, out amount))
+                return;
+
             _snapPoint.SetPosition(
                 _snapPoint.Position + _snappedTo.up * amount);
         }
