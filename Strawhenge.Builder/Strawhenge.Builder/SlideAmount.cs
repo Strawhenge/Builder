@@ -8,9 +8,13 @@ namespace Strawhenge.Builder
         readonly FloatRange _range;
         float _currentAmount;
 
-        public SlideAmount(float min, float max)
+        public SlideAmount(float min, float max) : this(new FloatRange(min, max))
         {
-            _range = new FloatRange(min, max);
+        }
+
+        public SlideAmount(FloatRange range)
+        {
+            _range = range;
         }
 
         public bool Slide(float amount, out float delta)
