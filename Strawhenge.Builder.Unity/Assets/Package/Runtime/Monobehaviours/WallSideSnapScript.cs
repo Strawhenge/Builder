@@ -9,6 +9,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 snapPoint,
                 snapSlotScript.SnapSlotAnchor,
                 snapSlotScript.CanRotate,
-                snapSlotScript.PresetAngles);
+                snapSlotScript.PresetAngles,
+                (-1, 1));
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Common.Collections;
+using Strawhenge.Common.Ranges;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         readonly SnapPoint _snapPoint;
         readonly Transform _snappedTo;
         readonly Cycle<float> _presetAngles;
-        readonly SlideAmount _slideAmount = new SlideAmount(-1, 1);
+        readonly SlideAmount _slideAmount;
 
         float _angle;
 
@@ -17,12 +18,14 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
             SnapPoint snapPoint,
             Transform snappedTo,
             bool canRotate,
-            IEnumerable<float> presetAngles)
+            IEnumerable<float> presetAngles,
+            FloatRange slideRange)
         {
             _snapPoint = snapPoint;
             _snappedTo = snappedTo;
 
             _presetAngles = new Cycle<float>(0, presetAngles);
+            _slideAmount = new SlideAmount(slideRange);
 
             CanRotate = canRotate;
         }

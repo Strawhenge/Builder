@@ -10,6 +10,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 snapPoint,
                 snapSlotScript.SnapSlotAnchor,
                 snapSlotScript.TiltRange,
+                (-1, 1),
                 canFlip: true);
         }
     }
