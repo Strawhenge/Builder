@@ -58,7 +58,7 @@ namespace Strawhenge.Builder.Unity
 
             if (Mathf.Abs(y) > 0.1f)
             {
-                _snap.Turn(-y * Time.deltaTime * _turnSpeed);
+                _snap.Tilt(-y * Time.deltaTime * _turnSpeed);
             }
 
             if (Mathf.Abs(x) > 0.01f)

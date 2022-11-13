@@ -7,7 +7,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
     {
         readonly SnapPoint _snapPoint;
         readonly Transform _snappedTo;
-        readonly FloatRange _turnRange;
+        readonly FloatRange _tiltRange;
         readonly SlideAmount _slideAmount;
 
         float _angle;
@@ -16,14 +16,16 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         public HorizontalSnap(
             SnapPoint snapPoint,
             Transform snappedTo,
-            FloatRange turnRange,
+            FloatRange tiltRange,
             FloatRange slideRange,
             bool canFlip)
         {
             _snapPoint = snapPoint;
             _snappedTo = snappedTo;
-            _turnRange = turnRange;
             _slideAmount = new SlideAmount(slideRange);
+
+            _angle = Vector3.Angle(_snappedTo.forward, Vector3.up) - 90;
+            _tiltRange = new FloatRange(tiltRange.Min - _angle, tiltRange.Max - _angle);
 
             CanFlip = canFlip;
         }
@@ -46,9 +48,9 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
                 _snapPoint.Position + _snappedTo.right * amount);
         }
 
-        public void Turn(float amount)
+        public void Tilt(float amount)
         {
-            _angle = _turnRange.Clamp(_angle + amount);
+            _angle = _tiltRange.Clamp(_angle + amount);
             ApplyRotationAngle();
         }
 
@@ -63,10 +65,8 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         void ApplyRotationAngle()
         {
-            var relativeAngle = _angle + Vector3.Angle(_snappedTo.forward, Vector3.up) - 90;
-
             var rotation = _snappedTo.rotation *
-                           Quaternion.AngleAxis(_isFlipped ? -relativeAngle : relativeAngle, Vector3.right) *
+                           Quaternion.AngleAxis(_isFlipped ? -_angle : _angle, Vector3.right) *
                            Quaternion.AngleAxis(_isFlipped ? 0 : 180, Vector3.up);
 
             _snapPoint.SetRotation(rotation);
