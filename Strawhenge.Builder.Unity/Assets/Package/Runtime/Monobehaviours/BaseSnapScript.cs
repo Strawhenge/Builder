@@ -1,5 +1,6 @@
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Common.Ranges;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         }
 
         internal abstract float? GetSlideLength();
-        
+
         protected abstract TSnap Map(SnapPoint snapPoint, TSnapSlotScript snapSlotScript);
 
         void Awake()
@@ -51,6 +52,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var collider = GetComponent<Collider>();
             collider.isTrigger = true;
+        }
+
+        void OnDisable()
+        {
+            _collidingWith.Clear();
         }
 
         void OnTriggerEnter(Collider other)
