@@ -14,5 +14,7 @@ namespace Strawhenge.Builder.Unity
         public bool CanRotate => _settings.GetValue().CanRotate;
 
         public IEnumerable<float> PresetAngles => _settings.GetValue().PresetAngles;
+
+        internal override float? GetSlideLength() => Transform.lossyScale.y;
     }
 }
