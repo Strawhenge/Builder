@@ -1,4 +1,5 @@
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
+using Strawhenge.Common.Ranges;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         Transform _root;
         SnapPoint _snapPoint;
 
+        protected Transform Transform;
+
         public override IEnumerable<TSnap> GetAvailableSnaps()
         {
             foreach (var collider in _collidingWith)
@@ -30,15 +33,17 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             }
         }
 
+        internal abstract float? GetSlideLength();
+        
         protected abstract TSnap Map(SnapPoint snapPoint, TSnapSlotScript snapSlotScript);
 
         void Awake()
         {
-            var t = transform;
-            _root = t.root;
+            Transform = transform;
+            _root = Transform.root;
 
             _snapPoint = _snapPointAnchor == null
-                ? new SnapPoint(t)
+                ? new SnapPoint(Transform)
                 : new SnapPoint(_snapPointAnchor);
 
             var rigidbody = GetComponent<Rigidbody>();

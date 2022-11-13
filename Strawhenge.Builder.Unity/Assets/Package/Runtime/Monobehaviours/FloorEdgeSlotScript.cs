@@ -11,8 +11,10 @@ namespace Strawhenge.Builder.Unity
         [SerializeField] SerializedSource<
             IFloorEdgeSlotSettings, SerializedFloorEdgeSlotSettings, FloorEdgeSlotSettingsScriptableObject> _settings;
 
-        public bool CanFlip => _settings.GetValue().CanFlip;
+        internal bool CanFlip => _settings.GetValue().CanFlip;
 
-        public FloatRange TiltRange => _settings.GetValue().TiltRange;
+        internal FloatRange TiltRange => _settings.GetValue().TiltRange;
+
+        internal override float? GetSlideLength() => Transform.lossyScale.x;
     }
 }

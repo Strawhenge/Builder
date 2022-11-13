@@ -11,8 +11,10 @@ namespace Strawhenge.Builder.Unity
         [SerializeField] SerializedSource<
             IWallSideSlotSettings, SerializedWallSideSlotSettings, WallSideSlotSettingsScriptableObject> _settings;
 
-        public bool CanRotate => _settings.GetValue().CanRotate;
+        internal bool CanRotate => _settings.GetValue().CanRotate;
 
-        public IEnumerable<float> PresetAngles => _settings.GetValue().PresetAngles;
+        internal IEnumerable<float> PresetAngles => _settings.GetValue().PresetAngles;
+
+        internal override float? GetSlideLength() => Transform.lossyScale.y;
     }
 }

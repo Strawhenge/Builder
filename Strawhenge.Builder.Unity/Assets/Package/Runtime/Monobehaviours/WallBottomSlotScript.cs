@@ -12,6 +12,8 @@ namespace Strawhenge.Builder.Unity
                 IWallBottomSlotSettings, SerializedWallBottomSlotSettings, WallBottomSlotSettingsScriptableObject>
             _settings;
 
-        public FloatRange TiltRange => _settings.GetValue().TiltRange;
+        internal FloatRange TiltRange => _settings.GetValue().TiltRange;
+
+        internal override float? GetSlideLength() => Transform.lossyScale.x;
     }
 }

@@ -44,6 +44,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorEdgeSnap
       objectReference: {fileID: 0}
+    - target: {fileID: 2720643633154423281, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6407581895639833347, guid: 1975b12888ffa624584a56c79af3fde5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -179,6 +183,10 @@ PrefabInstance:
     - target: {fileID: 4271908362742918185, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
       propertyPath: m_Name
       value: FloorEdgeSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4271908362742918185, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4986508250445374685, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
       propertyPath: _settings._type
