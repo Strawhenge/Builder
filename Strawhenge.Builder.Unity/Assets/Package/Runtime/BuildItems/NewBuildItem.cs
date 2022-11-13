@@ -37,13 +37,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public void PlaceFinal()
         {
             _current.SetPlaced();
-            var transform = _current.transform;
-            var position = transform.position;
-            var rotation = transform.rotation;
-
-            DestroyCurrent();
-
-            Object.Instantiate(_prefab, position, rotation);
+            _current = null;
         }
 
         void DestroyCurrent()
