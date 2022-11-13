@@ -38,9 +38,9 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Awake()
         {
-            var verticalSnapPoints = GetComponentsInChildren<BaseSnapScript<VerticalSnap>>();
-            var horizontalSnapPoints = GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>();
-            var slotPoints = GetComponentsInChildren<BaseSlotScript>();
+            var verticalSnapPoints = GetComponentsInChildren<BaseSnapScript<VerticalSnap>>(includeInactive: true);
+            var horizontalSnapPoints = GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>(includeInactive: true);
+            var slotPoints = GetComponentsInChildren<BaseSlotScript>(includeInactive: true);
 
             _snapSlotToggle = new SnapSlotToggle(verticalSnapPoints, horizontalSnapPoints, slotPoints);
 
