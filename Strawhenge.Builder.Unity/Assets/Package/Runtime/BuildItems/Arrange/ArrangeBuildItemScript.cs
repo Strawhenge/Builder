@@ -22,6 +22,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void Awake()
         {
+            SanitizeRotation(transform);
+
             _rigidbody = this.GetOrAddComponent<Rigidbody>();
             _rigidbody.isKinematic = false;
             _rigidbody.useGravity = false;
@@ -54,6 +56,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
             }
 
             _rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        }
+
+        static void SanitizeRotation(Transform transform)
+        {
+            transform.rotation = Quaternion.Euler(
+                new Vector3(0, transform.rotation.eulerAngles.y, 0));
         }
     }
 }
