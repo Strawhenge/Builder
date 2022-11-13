@@ -77,4 +77,4 @@ crashlytics-build.properties
 !Strawhenge.Builder.Unity.Tests.csproj.DotSettings
 !/[Aa]ssets/Package/
 !/[Aa]ssets/Package.meta
-
+/[Aa]ssets/Package/Runtime/Strawhenge.Builder.dll
