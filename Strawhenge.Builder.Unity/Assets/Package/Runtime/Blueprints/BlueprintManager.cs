@@ -42,8 +42,8 @@ namespace Strawhenge.Builder.Unity
 
             _buildItemController.On(
                 _currentBlueprint.BuildItem,
-                canPlaceFinalItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
-                onPlacedFinalItem: () =>
+                canPlaceItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
+                onPlacedItem: () =>
                 {
                     _currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
 

@@ -27,7 +27,7 @@ namespace Strawhenge.Builder.Unity
 
             _buildItemController.On(
                 blueprint.BuildItem,
-                onPlacedFinalItem: OnBuildItemArrangeEnded,
+                onPlacedItem: OnBuildItemArrangeEnded,
                 onCancelled: OnBuildItemArrangeEnded);
 
             var additions = blueprint.ScrapValue.GetAdditions(_componentInventory);

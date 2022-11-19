@@ -8,8 +8,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void On(
             IBuildItem buildItem,
-            Func<bool> canPlaceFinalItem = null,
-            Action onPlacedFinalItem = null,
+            Func<bool> canPlaceItem = null,
+            Action onPlacedItem = null,
             Action onCancelled = null);
     }
 }
