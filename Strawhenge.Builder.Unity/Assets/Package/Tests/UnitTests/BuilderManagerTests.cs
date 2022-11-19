@@ -74,16 +74,37 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
             Assert.False(selector.IsEnabled);
         }
 
-        static BuilderManager CreateSut(out Camera camera) => CreateSut(out _, out camera);
+        [Test]
+        public void Build_item_should_be_controlled_when_item_is_selected()
+        {
+            var sut = CreateSut(out BuildItemSelectorFake selector, out BuildItemControllerFake buildItemController);
 
-        static BuilderManager CreateSut(out BuildItemSelectorFake selector) => CreateSut(out selector, out _);
+            sut.On();
+            selector.InvokeSelect(SetUpBuildItemScript());
 
-        static BuilderManager CreateSut(out BuildItemSelectorFake selector, out Camera camera)
+            Assert.True(buildItemController.IsOn);
+        }
+
+        static BuilderManager CreateSut(out Camera camera) => CreateSut(out _, out camera, out _);
+
+        static BuilderManager CreateSut(out BuildItemSelectorFake selector) => CreateSut(out selector, out _, out _);
+
+        static BuilderManager CreateSut(out BuildItemSelectorFake selector, out BuildItemControllerFake buildItemController) =>
+            CreateSut(out selector, out _, out buildItemController);
+
+        static BuilderManager CreateSut(out BuildItemSelectorFake selector, out Camera camera, out BuildItemControllerFake buildItemController)
         {
             selector = new BuildItemSelectorFake();
             camera = SetUpCamera();
+            buildItemController = new BuildItemControllerFake();
 
-            return new BuilderManager(selector, camera, LayersAccessor);
+            var logger = new NullLogger();
+            var inventory = new ComponentInventory(logger);
+            var existingBlueprintManager =
+                new ExistingBlueprintManager(inventory, buildItemController, new NullScrapUI());
+            var existingBlueprintFactory = new ExistingBlueprintFactory();
+
+            return new BuilderManager(selector, camera, LayersAccessor, existingBlueprintManager, existingBlueprintFactory);
         }
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
@@ -101,6 +122,20 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
             camera.cullingMask = EnvironmentLayer;
             return camera;
         }
+    }
+
+    class BuildItemControllerFake : IBuildItemController
+    {
+        internal bool IsOn { get; private set; }
+
+        public void Off() => IsOn = false;
+
+        public void On(
+            IBuildItem buildItem,
+            Func<bool> canPlaceItem = null,
+            Action onPlacedItem = null,
+            Action onCancelled = null) =>
+            IsOn = true;
     }
 
     class BuildItemSelectorFake : IBuildItemSelector

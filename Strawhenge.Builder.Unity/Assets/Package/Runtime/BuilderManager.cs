@@ -9,15 +9,21 @@ namespace Strawhenge.Builder.Unity
         readonly IBuildItemSelector _buildItemSelector;
         readonly Camera _camera;
         readonly ILayersAccessor _layersAccessor;
+        readonly ExistingBlueprintManager _existingBlueprintManager;
+        readonly ExistingBlueprintFactory _existingBlueprintFactory;
 
         public BuilderManager(
             IBuildItemSelector buildItemSelector,
             Camera camera,
-            ILayersAccessor layersAccessor)
+            ILayersAccessor layersAccessor,
+            ExistingBlueprintManager existingBlueprintManager,
+            ExistingBlueprintFactory existingBlueprintFactory)
         {
             _buildItemSelector = buildItemSelector;
             _camera = camera;
             _layersAccessor = layersAccessor;
+            _existingBlueprintManager = existingBlueprintManager;
+            _existingBlueprintFactory = existingBlueprintFactory;
         }
 
         public void On()
@@ -41,6 +47,9 @@ namespace Strawhenge.Builder.Unity
         void OnBuildItemSelected(BuildItemScript item)
         {
             ItemSelectorOff();
+
+            _existingBlueprintManager.Set(
+                _existingBlueprintFactory.Create(item));
         }
 
         void ItemSelectorOff()

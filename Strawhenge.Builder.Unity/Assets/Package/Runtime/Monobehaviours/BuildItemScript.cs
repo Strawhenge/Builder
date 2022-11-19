@@ -18,7 +18,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         public IArrangeBuildItem Arrange { get; private set; }
 
-        public ScrapValue ScrapValue { get; private set; }
+        public ScrapValue ScrapValue { get; private set; } = ScrapValue.None;
 
         public void SetArranging()
         {
