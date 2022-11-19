@@ -34,11 +34,18 @@ namespace Strawhenge.Builder.Unity
 
         void ItemSelectorOn()
         {
+            _buildItemSelector.Select += OnBuildItemSelected;
             _buildItemSelector.Enable();
+        }
+
+        void OnBuildItemSelected(BuildItemScript item)
+        {
+            ItemSelectorOff();
         }
 
         void ItemSelectorOff()
         {
+            _buildItemSelector.Select -= OnBuildItemSelected;
             _buildItemSelector.Disable();
         }
 

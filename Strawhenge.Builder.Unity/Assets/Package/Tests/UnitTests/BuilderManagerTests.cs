@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
+using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.UI;
+using Strawhenge.Common.Logging;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -19,8 +22,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         [Test]
         public void Builder_markers_layers_should_be_visible_when_builder_is_enabled()
         {
-            var camera = SetUpCamera();
-            var sut = new BuilderManager(new BuildItemSelectorFake(), camera, LayersAccessor);
+            var sut = CreateSut(out Camera camera);
 
             sut.On();
 
@@ -31,8 +33,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         [Test]
         public void Builder_markers_layers_should_not_be_visible_when_builder_is_disabled()
         {
-            var camera = SetUpCamera();
-            var sut = new BuilderManager(new BuildItemSelectorFake(), camera, LayersAccessor);
+            var sut = CreateSut(out Camera camera);
 
             sut.On();
             sut.Off();
@@ -44,8 +45,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         [Test]
         public void Build_item_selector_should_enable_when_build_is_enabled()
         {
-            var selector = new BuildItemSelectorFake();
-            var sut = new BuilderManager(selector, SetUpCamera(), LayersAccessor);
+            var sut = CreateSut(out BuildItemSelectorFake selector);
 
             sut.On();
 
@@ -55,14 +55,38 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
         [Test]
         public void Build_item_selector_should_disable_when_build_is_disabled()
         {
-            var selector = new BuildItemSelectorFake();
-            var sut = new BuilderManager(selector, SetUpCamera(), LayersAccessor);
+            var sut = CreateSut(out BuildItemSelectorFake selector);
 
             sut.On();
             sut.Off();
 
             Assert.False(selector.IsEnabled);
         }
+
+        [Test]
+        public void Build_item_selector_should_disable_when_item_is_selected()
+        {
+            var sut = CreateSut(out BuildItemSelectorFake selector);
+
+            sut.On();
+            selector.InvokeSelect(SetUpBuildItemScript());
+
+            Assert.False(selector.IsEnabled);
+        }
+
+        static BuilderManager CreateSut(out Camera camera) => CreateSut(out _, out camera);
+
+        static BuilderManager CreateSut(out BuildItemSelectorFake selector) => CreateSut(out selector, out _);
+
+        static BuilderManager CreateSut(out BuildItemSelectorFake selector, out Camera camera)
+        {
+            selector = new BuildItemSelectorFake();
+            camera = SetUpCamera();
+
+            return new BuilderManager(selector, camera, LayersAccessor);
+        }
+
+        static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
 
         static bool AllMarkersVisible(Camera camera) => MarkerLayers
             .All(layer => ((camera.cullingMask & (1 << layer)) != 0));
