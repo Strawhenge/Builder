@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests
+namespace Strawhenge.Builder.Unity.Tests.UnitTests
 {
     public class BuilderManagerTests
     {
@@ -52,10 +52,5 @@ namespace Strawhenge.Builder.Unity.Tests
             camera.cullingMask = EnvironmentLayer;
             return camera;
         }
-    }
-
-    class LayersFake : ILayersAccessor
-    {
-        public int[] MarkerLayers { get; set; }
     }
 }
