@@ -87,6 +87,18 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             Assert.True(context.BuilderManagerUI.IsEnabled);
         }
 
+        [Test]
+        public void Should_disable_builder_manager_UI_when_builder_disabled()
+        {
+            var context = Context.Create();
+            var sut = context.CreateSut();
+
+            sut.On();
+            sut.Off();
+
+            Assert.False(context.BuilderManagerUI.IsEnabled);
+        }
+
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
     }
 }

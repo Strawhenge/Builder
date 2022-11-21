@@ -39,6 +39,7 @@ namespace Strawhenge.Builder.Unity
 
         public void Off()
         {
+            _builderManagerUI.Disable();
             MarkerLayersOff();
             ItemSelectorOff();
         }
