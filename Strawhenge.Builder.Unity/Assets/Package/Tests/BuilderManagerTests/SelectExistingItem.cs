@@ -2,7 +2,7 @@
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
-    public class OnThenSelectExistingItem : BaseBuilderManagerTest
+    public class SelectExistingItem : BaseBuilderManagerTest
     {
         protected override void Act()
         {

@@ -2,7 +2,7 @@
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
-    public class OnThenOff : BaseBuilderManagerTest
+    public class Off : BaseBuilderManagerTest
     {
         protected override void Act()
         {
