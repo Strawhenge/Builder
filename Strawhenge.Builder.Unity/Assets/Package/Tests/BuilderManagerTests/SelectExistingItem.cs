@@ -11,13 +11,13 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         }
 
         [Test]
-        public void Build_item_selector_should_disable_when_item_is_selected()
+        public void Build_item_selector_should_disable()
         {
             Assert.False(IsExistingBuildItemSelectorEnabled());
         }
 
         [Test]
-        public void Build_item_should_be_controlled_when_item_is_selected()
+        public void Build_item_should_be_controlled()
         {
             Assert.True(IsBuildItemControllerEnabled());
         }
