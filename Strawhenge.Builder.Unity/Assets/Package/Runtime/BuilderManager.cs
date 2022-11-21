@@ -52,6 +52,7 @@ namespace Strawhenge.Builder.Unity
 
         void OnBuildItemSelected(BuildItemScript item)
         {
+            _builderManagerUI.Disable();
             ItemSelectorOff();
 
             _existingBlueprintManager.Set(

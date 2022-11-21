@@ -21,5 +21,11 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         {
             Assert.True(IsBuildItemControllerEnabled());
         }
+
+        [Test]
+        public void Manager_UI_should_be_disabled()
+        {
+            Assert.False(IsBuilderManagerUIEnabled());
+        }
     }
 }
