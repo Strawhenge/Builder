@@ -1,9 +1,8 @@
 ﻿using NUnit.Framework;
-using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Tests.Fakes;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Logging;
-using System;
 using System.Linq;
 using UnityEngine;
 
@@ -122,32 +121,5 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
             camera.cullingMask = EnvironmentLayer;
             return camera;
         }
-    }
-
-    class BuildItemControllerFake : IBuildItemController
-    {
-        internal bool IsOn { get; private set; }
-
-        public void Off() => IsOn = false;
-
-        public void On(
-            IBuildItem buildItem,
-            Func<bool> canPlaceItem = null,
-            Action onPlacedItem = null,
-            Action onCancelled = null) =>
-            IsOn = true;
-    }
-
-    class BuildItemSelectorFake : IBuildItemSelector
-    {
-        public event Action<BuildItemScript> Select;
-
-        public void Enable() => IsEnabled = true;
-
-        public void Disable() => IsEnabled = false;
-
-        internal bool IsEnabled { get; private set; }
-
-        internal void InvokeSelect(BuildItemScript buildItem) => Select?.Invoke(buildItem);
     }
 }
