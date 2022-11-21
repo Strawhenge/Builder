@@ -11,25 +11,30 @@ namespace Strawhenge.Builder.Unity
         readonly ILayersAccessor _layersAccessor;
         readonly ExistingBlueprintManager _existingBlueprintManager;
         readonly ExistingBlueprintFactory _existingBlueprintFactory;
+        readonly IBuilderManagerUI _builderManagerUI;
 
         public BuilderManager(
             IBuildItemSelector buildItemSelector,
             Camera camera,
             ILayersAccessor layersAccessor,
             ExistingBlueprintManager existingBlueprintManager,
-            ExistingBlueprintFactory existingBlueprintFactory)
+            ExistingBlueprintFactory existingBlueprintFactory,
+            IBuilderManagerUI builderManagerUI)
         {
             _buildItemSelector = buildItemSelector;
             _camera = camera;
             _layersAccessor = layersAccessor;
             _existingBlueprintManager = existingBlueprintManager;
             _existingBlueprintFactory = existingBlueprintFactory;
+            _builderManagerUI = builderManagerUI;
         }
 
         public void On()
         {
             MarkerLayersOn();
             ItemSelectorOn();
+
+            _builderManagerUI.Enable();
         }
 
         public void Off()
@@ -73,6 +78,16 @@ namespace Strawhenge.Builder.Unity
                 _camera.cullingMask &= ~(1 << layer);
             }
         }
+    }
+
+    public interface IBuilderManagerUI
+    {
+        event Action ExitBuilder;
+        event Action OpenMenu;
+
+        void Enable();
+
+        void Disable();
     }
 
     public interface ILayersAccessor

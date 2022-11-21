@@ -84,18 +84,35 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
             Assert.True(buildItemController.IsOn);
         }
 
-        static BuilderManager CreateSut(out Camera camera) => CreateSut(out _, out camera, out _);
+        [Test]
+        public void Should_enable_builder_manager_UI_when_builder_enabled()
+        {
+            var sut = CreateSut(out BuilderManagerUIFake builderManagerUI);
 
-        static BuilderManager CreateSut(out BuildItemSelectorFake selector) => CreateSut(out selector, out _, out _);
+            sut.On();
+
+            Assert.True(builderManagerUI.IsEnabled);
+        }
+
+        static BuilderManager CreateSut(out Camera camera) => CreateSut(out _, out camera, out _, out _);
+
+        static BuilderManager CreateSut(out BuildItemSelectorFake selector) => CreateSut(out selector, out _, out _, out _);
+
+        static BuilderManager CreateSut(out BuilderManagerUIFake builderManagerUI) => CreateSut(out _, out _, out _, out builderManagerUI);
 
         static BuilderManager CreateSut(out BuildItemSelectorFake selector, out BuildItemControllerFake buildItemController) =>
-            CreateSut(out selector, out _, out buildItemController);
+            CreateSut(out selector, out _, out buildItemController, out _);
 
-        static BuilderManager CreateSut(out BuildItemSelectorFake selector, out Camera camera, out BuildItemControllerFake buildItemController)
+        static BuilderManager CreateSut(
+            out BuildItemSelectorFake selector,
+            out Camera camera,
+            out BuildItemControllerFake buildItemController,
+            out BuilderManagerUIFake builderManagerUI)
         {
             selector = new BuildItemSelectorFake();
             camera = SetUpCamera();
             buildItemController = new BuildItemControllerFake();
+            builderManagerUI = new BuilderManagerUIFake();
 
             var logger = new NullLogger();
             var inventory = new ComponentInventory(logger);
@@ -103,7 +120,7 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
                 new ExistingBlueprintManager(inventory, buildItemController, new NullScrapUI());
             var existingBlueprintFactory = new ExistingBlueprintFactory();
 
-            return new BuilderManager(selector, camera, LayersAccessor, existingBlueprintManager, existingBlueprintFactory);
+            return new BuilderManager(selector, camera, LayersAccessor, existingBlueprintManager, existingBlueprintFactory, builderManagerUI);
         }
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
