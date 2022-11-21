@@ -33,13 +33,12 @@ namespace Strawhenge.Builder.Unity
         {
             MarkerLayersOn();
             ItemSelectorOn();
-
-            _builderManagerUI.Enable();
+            MangerUIOn();
         }
 
         public void Off()
         {
-            _builderManagerUI.Disable();
+            ManagerUIOff();
             MarkerLayersOff();
             ItemSelectorOff();
         }
@@ -52,7 +51,7 @@ namespace Strawhenge.Builder.Unity
 
         void OnBuildItemSelected(BuildItemScript item)
         {
-            _builderManagerUI.Disable();
+            ManagerUIOff();
             ItemSelectorOff();
 
             _existingBlueprintManager.Set(
@@ -63,6 +62,18 @@ namespace Strawhenge.Builder.Unity
         {
             _buildItemSelector.Select -= OnBuildItemSelected;
             _buildItemSelector.Disable();
+        }
+
+        void MangerUIOn()
+        {
+            _builderManagerUI.Enable();
+            _builderManagerUI.ExitBuilder += Off;
+        }
+
+        void ManagerUIOff()
+        {
+            _builderManagerUI.ExitBuilder -= Off;
+            _builderManagerUI.Disable();
         }
 
         void MarkerLayersOn()

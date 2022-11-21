@@ -66,6 +66,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected bool IsBuildItemControllerEnabled() => _buildItemController.IsOn;
 
+        protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
+
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
     }
 }
