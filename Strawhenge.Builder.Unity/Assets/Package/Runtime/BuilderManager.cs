@@ -55,7 +55,14 @@ namespace Strawhenge.Builder.Unity
             ItemSelectorOff();
 
             _existingBlueprintManager.Set(
-                _existingBlueprintFactory.Create(item));
+                _existingBlueprintFactory.Create(item),
+                callback: OnExistingItemPlaced);
+        }
+
+        void OnExistingItemPlaced()
+        {
+            MangerUIOn();
+            ItemSelectorOn();
         }
 
         void ItemSelectorOff()

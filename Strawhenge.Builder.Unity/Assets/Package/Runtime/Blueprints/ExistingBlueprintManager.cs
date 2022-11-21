@@ -1,5 +1,6 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.UI;
+using System;
 
 namespace Strawhenge.Builder.Unity
 {
@@ -21,14 +22,14 @@ namespace Strawhenge.Builder.Unity
             _scrapUI = scrapUI;
         }
 
-        public void Set(ExistingBlueprint blueprint)
+        public void Set(ExistingBlueprint blueprint, Action callback = null)
         {
             _currentBlueprint = blueprint;
 
             _buildItemController.On(
                 blueprint.BuildItem,
-                onPlacedItem: OnBuildItemArrangeEnded,
-                onCancelled: OnBuildItemArrangeEnded);
+                onPlacedItem: () => OnBuildItemArrangeEnded(callback),
+                onCancelled: () => OnBuildItemArrangeEnded(callback));
 
             var additions = blueprint.ScrapValue.GetAdditions(_componentInventory);
 
@@ -53,10 +54,12 @@ namespace Strawhenge.Builder.Unity
             _buildItemController.Off();
         }
 
-        void OnBuildItemArrangeEnded()
+        void OnBuildItemArrangeEnded(Action callback = null)
         {
             _currentBlueprint = null;
             _scrapUI.Hide();
+
+            callback?.Invoke();
         }
     }
 }

@@ -5,6 +5,8 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     class BuildItemControllerFake : IBuildItemController
     {
+        Action _onPlacedItem;
+
         internal bool IsOn { get; private set; }
 
         public void Off() => IsOn = false;
@@ -13,7 +15,16 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
             IBuildItem buildItem,
             Func<bool> canPlaceItem = null,
             Action onPlacedItem = null,
-            Action onCancelled = null) =>
+            Action onCancelled = null)
+        {
             IsOn = true;
+            _onPlacedItem = onPlacedItem;
+        }
+
+        internal void InvokePlaceItem()
+        {
+            _onPlacedItem?.Invoke();
+            IsOn = false;
+        }
     }
 }
