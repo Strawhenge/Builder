@@ -21,6 +21,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         readonly BuildItemSelectorFake _existingBuildItemSelector;
         readonly BuildItemControllerFake _buildItemController;
         readonly BuilderManagerUIFake _builderManagerUI;
+        readonly BlueprintScriptableObjectMenuFake _menu;
         readonly Camera _camera;
 
         protected BaseBuilderManagerTest()
@@ -28,6 +29,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _existingBuildItemSelector = new BuildItemSelectorFake();
             _buildItemController = new BuildItemControllerFake();
             _builderManagerUI = new BuilderManagerUIFake();
+            _menu = new BlueprintScriptableObjectMenuFake();
 
             var logger = new NullLogger();
             var inventory = new ComponentInventory(logger);
@@ -44,7 +46,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
                 LayersAccessor,
                 existingBlueprintManager,
                 existingBlueprintFactory,
-                _builderManagerUI);
+                _builderManagerUI,
+                _menu);
         }
 
         protected BuilderManager Sut { get; }
@@ -69,6 +72,10 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
         protected void InvokePlaceSelectedItem() => _buildItemController.InvokePlaceItem();
+
+        protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
+
+        protected bool IsMenuOpen() => _menu.IsOpen;
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
     }

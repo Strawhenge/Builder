@@ -1,4 +1,6 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
+﻿using PlasticGui.WorkspaceWindow.Open;
+using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.ScriptableObjects;
 using System;
 using UnityEngine;
 
@@ -12,6 +14,7 @@ namespace Strawhenge.Builder.Unity
         readonly ExistingBlueprintManager _existingBlueprintManager;
         readonly ExistingBlueprintFactory _existingBlueprintFactory;
         readonly IBuilderManagerUI _builderManagerUI;
+        readonly IBlueprintScriptableObjectMenu _menu;
 
         public BuilderManager(
             IBuildItemSelector buildItemSelector,
@@ -19,7 +22,9 @@ namespace Strawhenge.Builder.Unity
             ILayersAccessor layersAccessor,
             ExistingBlueprintManager existingBlueprintManager,
             ExistingBlueprintFactory existingBlueprintFactory,
-            IBuilderManagerUI builderManagerUI)
+            IBuilderManagerUI builderManagerUI,
+            IBlueprintScriptableObjectMenu menu
+            )
         {
             _buildItemSelector = buildItemSelector;
             _camera = camera;
@@ -27,13 +32,14 @@ namespace Strawhenge.Builder.Unity
             _existingBlueprintManager = existingBlueprintManager;
             _existingBlueprintFactory = existingBlueprintFactory;
             _builderManagerUI = builderManagerUI;
+            _menu = menu;
         }
 
         public void On()
         {
             MarkerLayersOn();
             ItemSelectorOn();
-            MangerUIOn();
+            ManagerUIOn();
         }
 
         public void Off()
@@ -61,7 +67,7 @@ namespace Strawhenge.Builder.Unity
 
         void OnExistingItemPlaced()
         {
-            MangerUIOn();
+            ManagerUIOn();
             ItemSelectorOn();
         }
 
@@ -71,10 +77,18 @@ namespace Strawhenge.Builder.Unity
             _buildItemSelector.Disable();
         }
 
-        void MangerUIOn()
+        void ManagerUIOn()
         {
             _builderManagerUI.Enable();
             _builderManagerUI.ExitBuilder += Off;
+            _builderManagerUI.OpenMenu += OpenMenu;
+        }
+
+        void OpenMenu()
+        {
+            ItemSelectorOff();
+            ManagerUIOff();
+            _menu.Open();
         }
 
         void ManagerUIOff()
@@ -108,6 +122,16 @@ namespace Strawhenge.Builder.Unity
         void Enable();
 
         void Disable();
+    }
+
+    public interface IBlueprintScriptableObjectMenu
+    {
+        event Action<BlueprintScriptableObject> Select;
+        event Action Exit;
+
+        void Open();
+
+        void Close();
     }
 
     public interface ILayersAccessor
