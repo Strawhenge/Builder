@@ -1,16 +1,18 @@
 ﻿using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.ScriptableObjects;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BuilderManager
+    public partial class BuilderManager
     {
-        readonly IBuildItemScriptSelector _buildItemSelector;
         readonly MarkersToggle _markers;
-        readonly ExistingBlueprintManager _existingBlueprintManager;
         readonly ExistingBlueprintFactory _existingBlueprintFactory;
-        readonly IBuilderManagerUI _builderManagerUI;
-        readonly IBlueprintScriptableObjectMenu _menu;
+        readonly SelectingExistingItem _selectingExistingItem;
+        readonly ManagingExistingBlueprint _managingExistingBlueprint;
+        readonly MenuOpen _menuOpen;
+
+        IState _currentState;
 
         public BuilderManager(
             IBuildItemScriptSelector buildItemSelector,
@@ -21,74 +23,51 @@ namespace Strawhenge.Builder.Unity
             IBlueprintScriptableObjectMenu menu
             )
         {
-            _buildItemSelector = buildItemSelector;
             _markers = markers;
-            _existingBlueprintManager = existingBlueprintManager;
             _existingBlueprintFactory = existingBlueprintFactory;
-            _builderManagerUI = builderManagerUI;
-            _menu = menu;
+
+            _selectingExistingItem = new SelectingExistingItem(
+                builderManagerUI,
+                buildItemSelector,
+                OnExistingBuildItemSelected,
+                OnMenuOpen,
+                OnExitBuilder);
+
+            _managingExistingBlueprint = new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
+            _menuOpen = new MenuOpen(menu, _ => { }, OnMenuClosed);
         }
 
         public void On()
         {
             _markers.On();
-            ItemSelectorOn();
-            ManagerUIOn();
+            SetState(_selectingExistingItem);
         }
 
         public void Off()
         {
-            ManagerUIOff();
-            ItemSelectorOff();
+            SetState(null);
             _markers.Off();
         }
 
-        void ItemSelectorOn()
+        void SetState(IState state)
         {
-            _buildItemSelector.Select += OnBuildItemSelected;
-            _buildItemSelector.Enable();
+            _currentState?.End();
+            _currentState = state;
+            _currentState?.Begin();
         }
 
-        void OnBuildItemSelected(BuildItemScript item)
+        void OnExistingBuildItemSelected(BuildItemScript script)
         {
-            ManagerUIOff();
-            ItemSelectorOff();
-
-            _existingBlueprintManager.Set(
-                _existingBlueprintFactory.Create(item),
-                callback: OnExistingItemPlaced);
+            _managingExistingBlueprint.Blueprint = _existingBlueprintFactory.Create(script);
+            SetState(_managingExistingBlueprint);
         }
 
-        void OnExistingItemPlaced()
-        {
-            ManagerUIOn();
-            ItemSelectorOn();
-        }
+        void OnManageExistingItemEnded() => SetState(_selectingExistingItem);
 
-        void ItemSelectorOff()
-        {
-            _buildItemSelector.Select -= OnBuildItemSelected;
-            _buildItemSelector.Disable();
-        }
+        void OnMenuOpen() => SetState(_menuOpen);
 
-        void ManagerUIOn()
-        {
-            _builderManagerUI.Enable();
-            _builderManagerUI.ExitBuilder += Off;
-            _builderManagerUI.OpenMenu += OpenMenu;
-        }
+        void OnMenuClosed() => SetState(_selectingExistingItem);
 
-        void OpenMenu()
-        {
-            ItemSelectorOff();
-            ManagerUIOff();
-            _menu.Open();
-        }
-
-        void ManagerUIOff()
-        {
-            _builderManagerUI.ExitBuilder -= Off;
-            _builderManagerUI.Disable();
-        }
+        void OnExitBuilder() => Off();
     }
 }
