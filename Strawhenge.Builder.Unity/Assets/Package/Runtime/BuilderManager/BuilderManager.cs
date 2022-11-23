@@ -1,5 +1,4 @@
 ﻿using Strawhenge.Builder.Unity.Monobehaviours;
-using System;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
@@ -91,24 +90,5 @@ namespace Strawhenge.Builder.Unity
             _builderManagerUI.ExitBuilder -= Off;
             _builderManagerUI.Disable();
         }
-    }
-
-    public interface IBuilderManagerUI
-    {
-        event Action ExitBuilder;
-        event Action OpenMenu;
-
-        void Enable();
-
-        void Disable();
-    }
-
-    public interface IBuildItemScriptSelector
-    {
-        event Action<BuildItemScript> Select;
-
-        void Enable();
-
-        void Disable();
     }
 }
