@@ -1,5 +1,4 @@
 ﻿using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using System;
 using UnityEngine;
 
@@ -102,21 +101,6 @@ namespace Strawhenge.Builder.Unity
         void Enable();
 
         void Disable();
-    }
-
-    public interface IBlueprintScriptableObjectMenu
-    {
-        event Action<BlueprintScriptableObject> Select;
-        event Action Exit;
-
-        void Open();
-
-        void Close();
-    }
-
-    public interface ILayersAccessor
-    {
-        int[] MarkerLayers { get; }
     }
 
     public interface IBuildItemScriptSelector
