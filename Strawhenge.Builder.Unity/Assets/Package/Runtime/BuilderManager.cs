@@ -1,5 +1,4 @@
-﻿using PlasticGui.WorkspaceWindow.Open;
-using Strawhenge.Builder.Unity.Monobehaviours;
+﻿using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using System;
 using UnityEngine;
@@ -8,18 +7,16 @@ namespace Strawhenge.Builder.Unity
 {
     public class BuilderManager
     {
-        readonly IBuildItemSelector _buildItemSelector;
-        readonly Camera _camera;
-        readonly ILayersAccessor _layersAccessor;
+        readonly IBuildItemScriptSelector _buildItemSelector;
+        readonly MarkersToggle _markers;
         readonly ExistingBlueprintManager _existingBlueprintManager;
         readonly ExistingBlueprintFactory _existingBlueprintFactory;
         readonly IBuilderManagerUI _builderManagerUI;
         readonly IBlueprintScriptableObjectMenu _menu;
 
         public BuilderManager(
-            IBuildItemSelector buildItemSelector,
-            Camera camera,
-            ILayersAccessor layersAccessor,
+            IBuildItemScriptSelector buildItemSelector,
+            MarkersToggle markers,
             ExistingBlueprintManager existingBlueprintManager,
             ExistingBlueprintFactory existingBlueprintFactory,
             IBuilderManagerUI builderManagerUI,
@@ -27,8 +24,7 @@ namespace Strawhenge.Builder.Unity
             )
         {
             _buildItemSelector = buildItemSelector;
-            _camera = camera;
-            _layersAccessor = layersAccessor;
+            _markers = markers;
             _existingBlueprintManager = existingBlueprintManager;
             _existingBlueprintFactory = existingBlueprintFactory;
             _builderManagerUI = builderManagerUI;
@@ -37,7 +33,7 @@ namespace Strawhenge.Builder.Unity
 
         public void On()
         {
-            MarkerLayersOn();
+            _markers.On();
             ItemSelectorOn();
             ManagerUIOn();
         }
@@ -45,8 +41,8 @@ namespace Strawhenge.Builder.Unity
         public void Off()
         {
             ManagerUIOff();
-            MarkerLayersOff();
             ItemSelectorOff();
+            _markers.Off();
         }
 
         void ItemSelectorOn()
@@ -96,22 +92,6 @@ namespace Strawhenge.Builder.Unity
             _builderManagerUI.ExitBuilder -= Off;
             _builderManagerUI.Disable();
         }
-
-        void MarkerLayersOn()
-        {
-            foreach (var layer in _layersAccessor.MarkerLayers)
-            {
-                _camera.cullingMask |= 1 << layer;
-            }
-        }
-
-        void MarkerLayersOff()
-        {
-            foreach (var layer in _layersAccessor.MarkerLayers)
-            {
-                _camera.cullingMask &= ~(1 << layer);
-            }
-        }
     }
 
     public interface IBuilderManagerUI
@@ -139,7 +119,7 @@ namespace Strawhenge.Builder.Unity
         int[] MarkerLayers { get; }
     }
 
-    public interface IBuildItemSelector
+    public interface IBuildItemScriptSelector
     {
         event Action<BuildItemScript> Select;
 

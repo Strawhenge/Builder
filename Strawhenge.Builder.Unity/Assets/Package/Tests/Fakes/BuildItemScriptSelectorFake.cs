@@ -3,7 +3,7 @@ using System;
 
 namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
-    class BuildItemSelectorFake : IBuildItemSelector
+    class BuildItemScriptSelectorFake : IBuildItemScriptSelector
     {
         public event Action<BuildItemScript> Select;
 

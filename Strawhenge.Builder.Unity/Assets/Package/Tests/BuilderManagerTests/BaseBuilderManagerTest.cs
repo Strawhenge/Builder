@@ -18,7 +18,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             MarkerLayers = MarkerLayers
         };
 
-        readonly BuildItemSelectorFake _existingBuildItemSelector;
+        readonly BuildItemScriptSelectorFake _existingBuildItemSelector;
         readonly BuildItemControllerFake _buildItemController;
         readonly BuilderManagerUIFake _builderManagerUI;
         readonly BlueprintScriptableObjectMenuFake _menu;
@@ -26,7 +26,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected BaseBuilderManagerTest()
         {
-            _existingBuildItemSelector = new BuildItemSelectorFake();
+            _existingBuildItemSelector = new BuildItemScriptSelectorFake();
             _buildItemController = new BuildItemControllerFake();
             _builderManagerUI = new BuilderManagerUIFake();
             _menu = new BlueprintScriptableObjectMenuFake();
@@ -40,10 +40,11 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _camera = new GameObject().AddComponent<Camera>();
             _camera.cullingMask = EnvironmentLayer;
 
+            var markers = new MarkersToggle(_camera, LayersAccessor);
+
             Sut = new BuilderManager(
                 _existingBuildItemSelector,
-                _camera,
-                LayersAccessor,
+                markers,
                 existingBlueprintManager,
                 existingBlueprintFactory,
                 _builderManagerUI,
