@@ -76,6 +76,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
+        protected void InvokeCloseMenu() => _menu.InvokeExit();
+
         protected bool IsMenuOpen() => _menu.IsOpen;
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
