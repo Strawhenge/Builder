@@ -38,7 +38,7 @@ namespace Strawhenge.Builder.Unity
                 OnExitBuilder);
 
             _managingExistingBlueprint = new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
-            _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager);
+            _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
             _menuOpen = new MenuOpen(menu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
@@ -74,6 +74,8 @@ namespace Strawhenge.Builder.Unity
         }
 
         void OnManageExistingItemEnded() => SetState(_selectingExistingItem);
+
+        void OnManageNewItemEnded() => SetState(_menuOpen);
 
         void OnMenuOpen() => SetState(_menuOpen);
 
