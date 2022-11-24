@@ -4,7 +4,7 @@ namespace Strawhenge.Builder.Unity
 {
     public class ExistingBlueprint
     {
-        public ExistingBlueprint(string identifier, ExistingBuildItem buildItem, ScrapValue scrapValue)
+        public ExistingBlueprint(string identifier, IExistingBuildItem buildItem, ScrapValue scrapValue)
         {
             Identifier = identifier;
             BuildItem = buildItem;
@@ -13,7 +13,7 @@ namespace Strawhenge.Builder.Unity
 
         public string Identifier { get; }
 
-        public ExistingBuildItem BuildItem { get; }
+        public IExistingBuildItem BuildItem { get; }
 
         public ScrapValue ScrapValue { get; }
     }

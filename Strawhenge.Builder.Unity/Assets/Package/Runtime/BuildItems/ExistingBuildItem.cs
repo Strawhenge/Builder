@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public class ExistingBuildItem : IBuildItem
+    public class ExistingBuildItem : IExistingBuildItem
     {
         readonly BuildItemScript _script;
 
