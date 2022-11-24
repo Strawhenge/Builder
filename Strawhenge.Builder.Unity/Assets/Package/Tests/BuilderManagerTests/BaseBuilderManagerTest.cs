@@ -79,6 +79,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
         protected void InvokePlaceSelectedItem() => _buildItemController.InvokePlaceItem();
+        
+        protected void InvokeCancelSelectedItem() => _buildItemController.InvokeCancel();
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
