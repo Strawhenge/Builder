@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
+using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.Tests.Fakes;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Logging;
@@ -33,9 +35,12 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
             var logger = new NullLogger();
             var inventory = new ComponentInventory(logger);
+
             var existingBlueprintManager =
                 new ExistingBlueprintManager(inventory, _buildItemController, new NullScrapUI());
-            var existingBlueprintFactory = new ExistingBlueprintFactory();
+
+            var blueprintManager = new BlueprintManager(inventory, _buildItemController, new NullRecipeUI());
+            var blueprintFactory = new BlueprintFactoryFake();
 
             _camera = new GameObject().AddComponent<Camera>();
             _camera.cullingMask = EnvironmentLayer;
@@ -46,7 +51,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
                 _existingBuildItemSelector,
                 markers,
                 existingBlueprintManager,
-                existingBlueprintFactory,
+                blueprintManager,
+                blueprintFactory,
                 _builderManagerUI,
                 _menu);
         }
@@ -77,6 +83,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
         protected void InvokeCloseMenu() => _menu.InvokeExit();
+
+        protected void InvokeSelectFromMenu() => _menu.InvokeSelect(ScriptableObject.CreateInstance<BlueprintScriptableObject>());
 
         protected bool IsMenuOpen() => _menu.IsOpen;
 

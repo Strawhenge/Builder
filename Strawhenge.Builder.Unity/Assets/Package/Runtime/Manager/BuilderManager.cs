@@ -1,4 +1,5 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
+﻿using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using UnityEngine;
 
@@ -7,9 +8,11 @@ namespace Strawhenge.Builder.Unity
     public partial class BuilderManager
     {
         readonly MarkersToggle _markers;
-        readonly ExistingBlueprintFactory _existingBlueprintFactory;
+        readonly IBlueprintFactory _blueprintFactory;
+
         readonly SelectingExistingItem _selectingExistingItem;
         readonly ManagingExistingBlueprint _managingExistingBlueprint;
+        readonly ManagingNewBlueprint _managingNewBlueprint;
         readonly MenuOpen _menuOpen;
 
         IState _currentState;
@@ -18,13 +21,14 @@ namespace Strawhenge.Builder.Unity
             IBuildItemScriptSelector buildItemSelector,
             MarkersToggle markers,
             ExistingBlueprintManager existingBlueprintManager,
-            ExistingBlueprintFactory existingBlueprintFactory,
+            BlueprintManager blueprintManager,
+            IBlueprintFactory blueprintFactory,
             IBuilderManagerUI builderManagerUI,
             IBlueprintScriptableObjectMenu menu
             )
         {
             _markers = markers;
-            _existingBlueprintFactory = existingBlueprintFactory;
+            _blueprintFactory = blueprintFactory;
 
             _selectingExistingItem = new SelectingExistingItem(
                 builderManagerUI,
@@ -34,7 +38,8 @@ namespace Strawhenge.Builder.Unity
                 OnExitBuilder);
 
             _managingExistingBlueprint = new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
-            _menuOpen = new MenuOpen(menu, _ => { }, OnMenuClosed);
+            _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager);
+            _menuOpen = new MenuOpen(menu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
         public void On()
@@ -58,8 +63,14 @@ namespace Strawhenge.Builder.Unity
 
         void OnExistingBuildItemSelected(BuildItemScript script)
         {
-            _managingExistingBlueprint.Blueprint = _existingBlueprintFactory.Create(script);
+            _managingExistingBlueprint.Blueprint = _blueprintFactory.Create(script);
             SetState(_managingExistingBlueprint);
+        }
+
+        void OnBlueprintSelectedFromMenu(BlueprintScriptableObject scriptableObject)
+        {
+            _managingNewBlueprint.Blueprint = _blueprintFactory.Create(scriptableObject);
+            SetState(_managingNewBlueprint);
         }
 
         void OnManageExistingItemEnded() => SetState(_selectingExistingItem);
