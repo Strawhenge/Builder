@@ -11,9 +11,12 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         public BlueprintRepository BlueprintRepository { private get; set; }
 
+        public MenuView MenuView { private get; set; }
+
         void Start()
         {
             BlueprintRepository.Add(_blueprints);
+            MenuView.Setup(FindObjectOfType<MenuScript>(includeInactive: true));
 
             print(Manager);
         }
