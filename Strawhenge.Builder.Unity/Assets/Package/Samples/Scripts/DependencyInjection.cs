@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Unity;
 using Strawhenge.Builder.Unity;
+using Strawhenge.Builder.Unity.Blueprints;
 using UnityEngine;
 
 public static class DependencyInjection
@@ -11,10 +12,20 @@ public static class DependencyInjection
         AutofacUnity.Configure(builder =>
         {
             builder
+                .RegisterType<BuilderManager>()
+                .AsSelf()
+                .SingleInstance();
+
+            builder
+                .RegisterType<BlueprintFactory>()
+                .As<IBlueprintFactory>()
+                .SingleInstance();
+
+            builder
                 .RegisterType<BlueprintRepository>()
                 .AsSelf()
                 .As<IBlueprintRepository>()
-                .InstancePerLifetimeScope();
+                .SingleInstance();
         });
     }
 }
