@@ -658,6 +658,8 @@ GameObject:
   - component: {fileID: 1745532028}
   - component: {fileID: 1745532031}
   - component: {fileID: 1745532032}
+  - component: {fileID: 1745532033}
+  - component: {fileID: 1745532034}
   m_Layer: 0
   m_Name: Context
   m_TagString: Untagged
@@ -747,6 +749,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turnSpeed: 50
   _moveSpeed: 3
+--- !u!114 &1745532033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9842460b159c7654dba700d87be5357c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1745532034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe073ff11a39db04f8bf447c1a6c5fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scopeConfiguration: {fileID: 0}
 --- !u!65 &2002978846 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3723808646042240179, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
