@@ -27,8 +27,6 @@ public class Context : MonoBehaviour
 
     public ExistingBlueprintManager ExistingBlueprintManager { get; private set; }
 
-    public ExistingBlueprintFactory ExistingBlueprintFactory { get; private set; }
-
     public BuildItemController BuildItemController { get; private set; }
 
     public ComponentInventory Inventory { get; private set; }
@@ -53,8 +51,6 @@ public class Context : MonoBehaviour
         var buildItemCompositionUI = new BuildItemCompositionUI(logger);
 
         BlueprintManager = new BlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
-
-        ExistingBlueprintFactory = new ExistingBlueprintFactory();
         ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
     }
 
@@ -104,7 +100,7 @@ public class Context : MonoBehaviour
             if (buildItemScript != null)
             {
                 ExistingBlueprintManager.Set(
-                    ExistingBlueprintFactory.Create(buildItemScript));
+                    BlueprintFactory.Create(buildItemScript));
             }
         }
     }
