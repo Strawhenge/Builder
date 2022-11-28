@@ -20,14 +20,6 @@ public class Context : MonoBehaviour
 
     BuilderManager _builderManager;
 
-    public BlueprintManager BlueprintManager { get; private set; }
-
-    public BlueprintFactory BlueprintFactory { get; private set; }
-
-    public ExistingBlueprintManager ExistingBlueprintManager { get; private set; }
-
-    public BuildItemController BuildItemController { get; private set; }
-
     public ComponentInventory Inventory { get; private set; }
 
     void Awake()
@@ -40,17 +32,17 @@ public class Context : MonoBehaviour
 
         Inventory = new ComponentInventory(logger);
 
-        BuildItemController = new BuildItemController(
+        var buildItemController = new BuildItemController(
             FindObjectOfType<BuildItemControls>(includeInactive: true),
             FindObjectOfType<VerticalSnapControls>(includeInactive: true),
             FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
 
-        BlueprintFactory = new BlueprintFactory(BuildItemController.LastPlacedPosition, logger);
+        var blueprintFactory = new BlueprintFactory(buildItemController.LastPlacedPosition, logger);
 
         var buildItemCompositionUI = new BuildItemCompositionUI(logger);
 
-        BlueprintManager = new BlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
-        ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
+        var blueprintManager = new BlueprintManager(Inventory, buildItemController, buildItemCompositionUI);
+        var existingBlueprintManager = new ExistingBlueprintManager(Inventory, buildItemController, buildItemCompositionUI);
 
         var markersToggle = new MarkersToggle(_camera, Layers.Instance);
 
@@ -60,9 +52,9 @@ public class Context : MonoBehaviour
         _builderManager = new BuilderManager(
             _buildItemScriptSelector,
             markersToggle,
-            ExistingBlueprintManager,
-            BlueprintManager,
-            BlueprintFactory,
+            existingBlueprintManager,
+            blueprintManager,
+            blueprintFactory,
             _builderManagerUI,
             blueprintScriptableObjectMenu);
 
