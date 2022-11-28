@@ -16,6 +16,7 @@ public class Context : MonoBehaviour
     [SerializeField] BlueprintScriptableObject[] _blueprints;
     [SerializeField] SerializableComponentQuantity[] _inventory;
     [SerializeField] BuildItemScriptSelector _buildItemScriptSelector;
+    [SerializeField] BuilderManagerUI _builderManagerUI;
 
     MenuView _menuView;
     BuilderMenu _menu;
@@ -56,10 +57,8 @@ public class Context : MonoBehaviour
 
         var markersToggle = new MarkersToggle(_camera, Layers.Instance);
 
-        IBuilderManagerUI builderManagerUI = default;
-
         var blueprintRepository = new BlueprintRepository();
-        var menu = new BlueprintScriptableObjectMenu(_menu, _menuItemsFactory, blueprintRepository);
+        var blueprintScriptableObjectMenu = new BlueprintScriptableObjectMenu(_menu, _menuItemsFactory, blueprintRepository);
 
         var builderManager = new BuilderManager(
             _buildItemScriptSelector,
@@ -67,8 +66,8 @@ public class Context : MonoBehaviour
             ExistingBlueprintManager,
             BlueprintManager,
             BlueprintFactory,
-            builderManagerUI,
-            menu);
+            _builderManagerUI,
+            blueprintScriptableObjectMenu);
     }
 
     void Start()

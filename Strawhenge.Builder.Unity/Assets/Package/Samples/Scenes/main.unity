@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 1745532032}
   - component: {fileID: 1745532033}
   - component: {fileID: 1745532034}
+  - component: {fileID: 1745532035}
   m_Layer: 0
   m_Name: Context
   m_TagString: Untagged
@@ -722,6 +723,7 @@ MonoBehaviour:
   - _component: {fileID: 11400000, guid: 0a598968df74a0c42bbea47d116b26a0, type: 2}
     _quantity: 10
   _buildItemScriptSelector: {fileID: 1745532034}
+  _builderManagerUI: {fileID: 1745532035}
 --- !u!114 &1745532031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,6 +778,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1332150398}
+--- !u!114 &1745532035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87508ed3c016d30438c9af0ecc2652b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &2002978846 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3723808646042240179, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
