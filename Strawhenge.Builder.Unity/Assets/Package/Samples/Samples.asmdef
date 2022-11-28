@@ -1,10 +1,9 @@
 {
-    "name": "Development",
+    "name": "Samples",
     "rootNamespace": "",
     "references": [
         "GUID:ab0e643ec0e5c9a4e976743cf4c3ad5e",
-        "GUID:5add605e99b30c242a1f1b6018dda7de",
-        "GUID:2ecdac724b9911e4ab79a9ab375467aa"
+        "GUID:5add605e99b30c242a1f1b6018dda7de"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
