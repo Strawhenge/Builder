@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Strawhenge.Builder.Menu
@@ -14,6 +15,8 @@ namespace Strawhenge.Builder.Menu
         {
             _view = view;
         }
+
+        public event Action Exited;
 
         public bool IsShowing { get; private set; }
 
@@ -91,6 +94,7 @@ namespace Strawhenge.Builder.Menu
         void OnExitSelected()
         {
             Hide();
+            Exited?.Invoke();
         }
     }
 }

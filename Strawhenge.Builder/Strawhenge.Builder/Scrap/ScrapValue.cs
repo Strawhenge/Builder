@@ -5,6 +5,8 @@ namespace Strawhenge.Builder
 {
     public class ScrapValue
     {
+        public static ScrapValue None { get; } = new ScrapValue(Enumerable.Empty<ComponentQuantity>());
+
         readonly ComponentQuantity[] _components;
 
         public ScrapValue(IEnumerable<ComponentQuantity> components)

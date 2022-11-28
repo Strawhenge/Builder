@@ -1,5 +1,6 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.UI;
+using System;
 
 namespace Strawhenge.Builder.Unity
 {
@@ -21,11 +22,11 @@ namespace Strawhenge.Builder.Unity
             _recipeUI = recipeUI;
         }
 
-        public void Set(Blueprint blueprint)
+        public void Set(Blueprint blueprint, Action callback = null)
         {
             _currentBlueprint = blueprint;
 
-            ArrangeCurrentBlueprintBuildItem();
+            ArrangeCurrentBlueprintBuildItem(callback);
         }
 
         public void Unset()
@@ -36,23 +37,24 @@ namespace Strawhenge.Builder.Unity
             _currentBlueprint = null;
         }
 
-        void ArrangeCurrentBlueprintBuildItem()
+        void ArrangeCurrentBlueprintBuildItem(Action callback)
         {
             UpdateRecipeUI();
 
             _buildItemController.On(
                 _currentBlueprint.BuildItem,
-                canPlaceFinalItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
-                onPlacedFinalItem: () =>
+                canPlaceItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
+                onPlacedItem: () =>
                 {
                     _currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
 
-                    ArrangeCurrentBlueprintBuildItem();
+                    ArrangeCurrentBlueprintBuildItem(callback);
                 },
                 onCancelled: () =>
                 {
                     _recipeUI.Hide();
                     _currentBlueprint = null;
+                    callback?.Invoke();
                 });
         }
 
@@ -60,7 +62,7 @@ namespace Strawhenge.Builder.Unity
         {
             var requirements = _currentBlueprint.Recipe.GetRequirements(_componentInventory);
 
-            _recipeUI.Show(_currentBlueprint.Identifier, requirements);          
+            _recipeUI.Show(_currentBlueprint.Identifier, requirements);
         }
     }
 }

@@ -658,6 +658,9 @@ GameObject:
   - component: {fileID: 1745532028}
   - component: {fileID: 1745532031}
   - component: {fileID: 1745532032}
+  - component: {fileID: 1745532033}
+  - component: {fileID: 1745532034}
+  - component: {fileID: 1745532035}
   m_Layer: 0
   m_Name: Context
   m_TagString: Untagged
@@ -707,18 +710,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1332150398}
-  _blueprints:
-  - {fileID: 11400000, guid: 4dd91844b3ef58f40a79b41691f4685a, type: 2}
-  - {fileID: 11400000, guid: 1968798576057f249807222f8c74b4ed, type: 2}
-  - {fileID: 11400000, guid: 5c8051852dc5aeb42906dbf546564f9e, type: 2}
-  - {fileID: 11400000, guid: 77f65c1590c79b8498b2c1bd9a6ba58e, type: 2}
-  - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
-  - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
   _inventory:
   - _component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
     _quantity: 25
   - _component: {fileID: 11400000, guid: 0a598968df74a0c42bbea47d116b26a0, type: 2}
     _quantity: 10
+  _builderScript: {fileID: 1745532033}
+  _buildItemScriptSelector: {fileID: 1745532034}
+  _builderManagerUI: {fileID: 1745532035}
 --- !u!114 &1745532031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,6 +746,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turnSpeed: 50
   _moveSpeed: 3
+--- !u!114 &1745532033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9842460b159c7654dba700d87be5357c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blueprints:
+  - {fileID: 11400000, guid: 4dd91844b3ef58f40a79b41691f4685a, type: 2}
+  - {fileID: 11400000, guid: 1968798576057f249807222f8c74b4ed, type: 2}
+  - {fileID: 11400000, guid: 5c8051852dc5aeb42906dbf546564f9e, type: 2}
+  - {fileID: 11400000, guid: 77f65c1590c79b8498b2c1bd9a6ba58e, type: 2}
+  - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
+  - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
+--- !u!114 &1745532034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f872c8d0c0725a448b30c34cd5b597f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1332150398}
+--- !u!114 &1745532035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745532027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87508ed3c016d30438c9af0ecc2652b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &2002978846 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3723808646042240179, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}

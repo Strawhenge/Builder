@@ -1,11 +1,13 @@
-﻿using Strawhenge.Builder.Unity.BuildItems;
+﻿using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Common.Logging;
 using System.Linq;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BlueprintFactory
+    public class BlueprintFactory : IBlueprintFactory
     {
         readonly IDefaultPositionAccessor _initialPositionAccessor;
         readonly ILogger _logger;
@@ -16,6 +18,14 @@ namespace Strawhenge.Builder.Unity
         {
             _initialPositionAccessor = initialPositionAccessor;
             _logger = logger;
+        }
+
+        public ExistingBlueprint Create(BuildItemScript buildItemScript)
+        {
+            var buildItem = new ExistingBuildItem(buildItemScript);
+            var scrapValue = buildItemScript.ScrapValue;
+
+            return new ExistingBlueprint(buildItemScript.name, buildItem, scrapValue);
         }
 
         public Blueprint Create(BlueprintScriptableObject scriptableObject)
@@ -37,7 +47,7 @@ namespace Strawhenge.Builder.Unity
             return new NewBuildItem(_initialPositionAccessor, scriptableObject.BuildItem);
         }
 
-        Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
+        static Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
         {
             var recipeComponents = scriptableObject.Recipe
                 .Select(x => new ComponentQuantity(
