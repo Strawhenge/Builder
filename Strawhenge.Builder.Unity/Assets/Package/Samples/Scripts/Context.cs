@@ -19,8 +19,7 @@ public class Context : MonoBehaviour
     [SerializeField] BuilderManagerUI _builderManagerUI;
 
     BuilderManager _builderManager;
-
-    public ComponentInventory Inventory { get; private set; }
+    ComponentInventory _componentInventory;
 
     void Awake()
     {
@@ -30,7 +29,7 @@ public class Context : MonoBehaviour
         var menuView = new MenuView(logger);
         var menu = new BuilderMenu(menuView);
 
-        Inventory = new ComponentInventory(logger);
+        _componentInventory = new ComponentInventory(logger);
 
         var buildItemController = new BuildItemController(
             FindObjectOfType<BuildItemControls>(includeInactive: true),
@@ -41,8 +40,8 @@ public class Context : MonoBehaviour
 
         var buildItemCompositionUI = new BuildItemCompositionUI(logger);
 
-        var blueprintManager = new BlueprintManager(Inventory, buildItemController, buildItemCompositionUI);
-        var existingBlueprintManager = new ExistingBlueprintManager(Inventory, buildItemController, buildItemCompositionUI);
+        var blueprintManager = new BlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
+        var existingBlueprintManager = new ExistingBlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
 
         var markersToggle = new MarkersToggle(_camera, Layers.Instance);
 
@@ -66,7 +65,7 @@ public class Context : MonoBehaviour
     void Start()
     {
         foreach (var components in _inventory)
-            Inventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
+            _componentInventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
 
         _builderManager.On();
     }
