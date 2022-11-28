@@ -14,6 +14,7 @@ namespace Strawhenge.Builder.Unity
 
         public event Action Place;
         public event Action Release;
+        public event Action Cancel;
 
         public void ControlOff()
         {
@@ -35,6 +36,12 @@ namespace Strawhenge.Builder.Unity
 
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Cancel?.Invoke();
+                return;
+            }
+
             if (Input.GetKeyDown(KeyCode.RightShift))
             {
                 Release?.Invoke();

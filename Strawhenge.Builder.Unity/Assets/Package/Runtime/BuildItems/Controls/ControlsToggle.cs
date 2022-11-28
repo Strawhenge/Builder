@@ -24,6 +24,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         internal event Action Place;
         internal event Action Snap;
         internal event Action ReleaseSnap;
+        internal event Action Cancel;
 
         internal void BuildControlsOn(IArrangeBuildItem buildItem)
         {
@@ -31,6 +32,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             _buildItemControls.Place += InvokePlace;
             _buildItemControls.Snap += InvokeSnap;
+            _buildItemControls.Cancel += InvokeCancel;
             _buildItemControls.ControlOn(buildItem);
             buildItem.Enable();
 
@@ -39,6 +41,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 buildItem.Disable();
                 _buildItemControls.Place -= InvokePlace;
                 _buildItemControls.Snap -= InvokeSnap;
+                _buildItemControls.Cancel -= InvokeCancel;
                 _buildItemControls.ControlOff();
             };
         }
@@ -49,12 +52,14 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             _verticalSnapControls.Place += InvokePlace;
             _verticalSnapControls.Release += InvokeReleaseSnap;
+            _verticalSnapControls.Cancel += InvokeCancel;
             _verticalSnapControls.ControlOn(snap);
 
             _controlsOffStrategy = () =>
             {
                 _verticalSnapControls.Place -= InvokePlace;
                 _verticalSnapControls.Release -= InvokeReleaseSnap;
+                _verticalSnapControls.Cancel -= InvokeCancel;
                 _verticalSnapControls.ControlOff();
             };
         }
@@ -65,12 +70,14 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             _horizontalSnapControls.Place += InvokePlace;
             _horizontalSnapControls.Release += InvokeReleaseSnap;
+            _horizontalSnapControls.Cancel += InvokeCancel;
             _horizontalSnapControls.ControlOn(snap);
 
             _controlsOffStrategy = () =>
             {
                 _horizontalSnapControls.Place -= InvokePlace;
                 _horizontalSnapControls.Release -= InvokeReleaseSnap;
+                _horizontalSnapControls.Cancel -= InvokeCancel;
                 _horizontalSnapControls.ControlOff();
             };
         }
@@ -86,5 +93,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         void InvokeSnap() => Snap?.Invoke();
 
         void InvokeReleaseSnap() => ReleaseSnap?.Invoke();
+
+        void InvokeCancel() => Cancel?.Invoke();
     }
 }

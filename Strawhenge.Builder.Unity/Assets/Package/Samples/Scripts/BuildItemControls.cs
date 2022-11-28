@@ -15,6 +15,7 @@ namespace Strawhenge.Builder.Unity
 
         public event Action Place;
         public event Action Snap;
+        public event Action Cancel;
 
         public void ControlOn(IArrangeBuildItem buildItem)
         {
@@ -50,6 +51,9 @@ namespace Strawhenge.Builder.Unity
 
             if (Input.GetKeyDown(KeyCode.RightShift))
                 Snap?.Invoke();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                Cancel?.Invoke();
         }
 
         void ManageBlueprintMovement()

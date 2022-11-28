@@ -6,6 +6,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         event Action Place;
         event Action Snap;
+        event Action Cancel;
 
         void ControlOn(IArrangeBuildItem buildItem);
 

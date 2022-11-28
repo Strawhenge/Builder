@@ -27,6 +27,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _controls.Place += SpawnFinalItem;
             _controls.Snap += OnSnap;
             _controls.ReleaseSnap += OnReleaseSnap;
+            _controls.Cancel += Off;
 
             ResetCallbacks();
         }

@@ -7,6 +7,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         event Action Place;
         event Action Release;
+        event Action Cancel;
 
         void ControlOn(VerticalSnap snap);
 
