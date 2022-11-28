@@ -1,7 +1,6 @@
 ﻿using Strawhenge.Builder.Unity.Blueprints;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
-using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
