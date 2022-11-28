@@ -53,6 +53,12 @@ public class Context : MonoBehaviour
 
         BlueprintManager = new BlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
         ExistingBlueprintManager = new ExistingBlueprintManager(Inventory, BuildItemController, buildItemCompositionUI);
+
+        var markersToggle = new MarkersToggle(_camera, Layers.Instance);
+
+        //var builderManager = new BuilderManager(
+        //    _buildItemScriptSelector,
+        //    markersToggle)
     }
 
     void Start()
