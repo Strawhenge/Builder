@@ -56,9 +56,19 @@ public class Context : MonoBehaviour
 
         var markersToggle = new MarkersToggle(_camera, Layers.Instance);
 
-        //var builderManager = new BuilderManager(
-        //    _buildItemScriptSelector,
-        //    markersToggle)
+        IBuilderManagerUI builderManagerUI = default;
+
+        var blueprintRepository = new BlueprintRepository();
+        var menu = new BlueprintScriptableObjectMenu(_menu, _menuItemsFactory, blueprintRepository);
+
+        var builderManager = new BuilderManager(
+            _buildItemScriptSelector,
+            markersToggle,
+            ExistingBlueprintManager,
+            BlueprintManager,
+            BlueprintFactory,
+            builderManagerUI,
+            menu);
     }
 
     void Start()
