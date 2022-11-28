@@ -721,6 +721,7 @@ MonoBehaviour:
     _quantity: 25
   - _component: {fileID: 11400000, guid: 0a598968df74a0c42bbea47d116b26a0, type: 2}
     _quantity: 10
+  _buildItemScriptSelector: {fileID: 1745532034}
 --- !u!114 &1745532031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -761,6 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9842460b159c7654dba700d87be5357c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blueprints: []
 --- !u!114 &1745532034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,10 +772,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1745532027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe073ff11a39db04f8bf447c1a6c5fe8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f872c8d0c0725a448b30c34cd5b597f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scopeConfiguration: {fileID: 0}
+  _camera: {fileID: 1332150398}
 --- !u!65 &2002978846 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3723808646042240179, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}

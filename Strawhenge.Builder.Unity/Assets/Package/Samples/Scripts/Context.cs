@@ -15,6 +15,7 @@ public class Context : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] BlueprintScriptableObject[] _blueprints;
     [SerializeField] SerializableComponentQuantity[] _inventory;
+    [SerializeField] BuildItemScriptSelector _buildItemScriptSelector;
 
     MenuView _menuView;
     BuilderMenu _menu;
