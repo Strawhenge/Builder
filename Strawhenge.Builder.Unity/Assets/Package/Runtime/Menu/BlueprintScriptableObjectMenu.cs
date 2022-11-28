@@ -7,7 +7,7 @@ namespace Strawhenge.Builder.Unity
     public class BlueprintScriptableObjectMenu : IBlueprintScriptableObjectMenu
     {
         readonly BuilderMenu _menu;
-        readonly MainCategory _mainCategory;
+        readonly Lazy<MainCategory> _mainCategory;
 
         public BlueprintScriptableObjectMenu(
             BuilderMenu menu,
@@ -17,14 +17,14 @@ namespace Strawhenge.Builder.Unity
             _menu = menu;
             _menu.Exited += () => Exit?.Invoke();
 
-            _mainCategory = menuItemsFactory
-                .CreateMainCategory(blueprints.GetAll(), blueprint => Select?.Invoke(blueprint));
+            _mainCategory = new Lazy<MainCategory>(() =>
+                menuItemsFactory.CreateMainCategory(blueprints.GetAll(), blueprint => Select?.Invoke(blueprint)));
         }
 
         public event Action<BlueprintScriptableObject> Select;
         public event Action Exit;
 
-        public void Open() => _menu.Show(_mainCategory);
+        public void Open() => _menu.Show(_mainCategory.Value);
 
         public void Close() => _menu.Hide();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace Strawhenge.Builder.Unity
 {
@@ -22,7 +23,7 @@ namespace Strawhenge.Builder.Unity
             _backButton.onClick.AddListener(() => SelectBack?.Invoke());
 
             _exitButton.onClick.AddListener(() => SelectExit?.Invoke());
-
+            
             gameObject.SetActive(false);
         }
 
@@ -44,7 +45,10 @@ namespace Strawhenge.Builder.Unity
             foreach (var item in items)
                 AddItem(item);
 
+            // SetActive must be called twice due to a Unity bug
             gameObject.SetActive(true);
+            gameObject.SetActive(true);
+
             _backButton.gameObject.SetActive(enableBack);
         }
 
