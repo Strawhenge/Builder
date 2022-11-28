@@ -722,6 +722,7 @@ MonoBehaviour:
     _quantity: 25
   - _component: {fileID: 11400000, guid: 0a598968df74a0c42bbea47d116b26a0, type: 2}
     _quantity: 10
+  _builderScript: {fileID: 1745532033}
   _buildItemScriptSelector: {fileID: 1745532034}
   _builderManagerUI: {fileID: 1745532035}
 --- !u!114 &1745532031

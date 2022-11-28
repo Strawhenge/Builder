@@ -13,15 +13,12 @@ using Component = Strawhenge.Builder.Component;
 public class Context : MonoBehaviour
 {
     [SerializeField] Camera _camera;
-    [SerializeField] BlueprintScriptableObject[] _blueprints;
     [SerializeField] SerializableComponentQuantity[] _inventory;
+    [SerializeField] BuilderScript _builderScript;
     [SerializeField] BuildItemScriptSelector _buildItemScriptSelector;
     [SerializeField] BuilderManagerUI _builderManagerUI;
 
-    MenuView _menuView;
-    BuilderMenu _menu;
-    MenuItemsFactory<BlueprintScriptableObject> _menuItemsFactory;
-    MainCategory _mainCategory;
+    BuilderManager _builderManager;
 
     public BlueprintManager BlueprintManager { get; private set; }
 
@@ -37,9 +34,9 @@ public class Context : MonoBehaviour
     {
         var logger = new UnityLogger(gameObject);
 
-        _menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
-        _menuView = new MenuView(logger);
-        _menu = new BuilderMenu(_menuView);
+        var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
+        var menuView = new MenuView(logger);
+        var menu = new BuilderMenu(menuView);
 
         Inventory = new ComponentInventory(logger);
 
@@ -58,9 +55,9 @@ public class Context : MonoBehaviour
         var markersToggle = new MarkersToggle(_camera, Layers.Instance);
 
         var blueprintRepository = new BlueprintRepository();
-        var blueprintScriptableObjectMenu = new BlueprintScriptableObjectMenu(_menu, _menuItemsFactory, blueprintRepository);
+        var blueprintScriptableObjectMenu = new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
 
-        var builderManager = new BuilderManager(
+        _builderManager = new BuilderManager(
             _buildItemScriptSelector,
             markersToggle,
             ExistingBlueprintManager,
@@ -68,62 +65,17 @@ public class Context : MonoBehaviour
             BlueprintFactory,
             _builderManagerUI,
             blueprintScriptableObjectMenu);
+
+        _builderScript.Manager = _builderManager;
+        _builderScript.BlueprintRepository = blueprintRepository;
+        _builderScript.MenuView = menuView;
     }
 
     void Start()
     {
-        _menuView.Setup(
-            FindObjectOfType<MenuScript>(includeInactive: true));
-
-        _mainCategory = _menuItemsFactory.CreateMainCategory(_blueprints, selectedBlueprint =>
-        {
-            BlueprintManager.Set(
-                BlueprintFactory.Create(selectedBlueprint));
-        });
-
         foreach (var components in _inventory)
             Inventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
-    }
 
-    void Update()
-    {
-        HandleMenuToggle();
-        HandleExistingItemClick();
-        HandleScrapTrigger();
-    }
-
-    void HandleMenuToggle()
-    {
-        if (!Input.GetKeyUp(KeyCode.Escape))
-            return;
-
-        if (_menu.IsShowing)
-            _menu.Hide();
-        else
-        {
-            BlueprintManager.Unset();
-            _menu.Show(_mainCategory);
-        }
-    }
-
-    void HandleExistingItemClick()
-    {
-        if (Input.GetMouseButtonDown(0) &&
-            Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
-        {
-            var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();
-
-            if (buildItemScript != null)
-            {
-                ExistingBlueprintManager.Set(
-                    BlueprintFactory.Create(buildItemScript));
-            }
-        }
-    }
-
-    void HandleScrapTrigger()
-    {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-            ExistingBlueprintManager.Scrap();
+        _builderManager.On();
     }
 }
