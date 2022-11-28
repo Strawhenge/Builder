@@ -14,7 +14,7 @@ public class BuilderManagerUI : MonoBehaviour, IBuilderManagerUI
 
     public void Disable()
     {
-        enabled = true;
+        enabled = false;
     }
 
     void Awake()
