@@ -23,6 +23,12 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
             _onCancel = onCancelled;
         }
 
+        public void On(
+            IExistingBuildItem buildItem,
+            Action onPlacedItem = null,
+            Action onScrapped = null,
+            Action onCancelled = null) => On((IBuildItem)buildItem, onPlacedItem: onPlacedItem, onCancelled: onCancelled);
+
         internal void InvokePlaceItem()
         {
             _onPlacedItem?.Invoke();
