@@ -12,14 +12,17 @@ namespace Strawhenge.Builder.Unity
 
         Transform _cameraTransform;
         IArrangeBuildItem _buildItem;
+        bool _canScrap;
 
         public event Action Place;
         public event Action Snap;
         public event Action Cancel;
+        public event Action Scrap;
 
-        public void ControlOn(IArrangeBuildItem buildItem)
+        public void ControlOn(IArrangeBuildItem buildItem, bool canScrap)
         {
             _buildItem = buildItem;
+            _canScrap = canScrap;
             enabled = true;
         }
 
@@ -54,6 +57,9 @@ namespace Strawhenge.Builder.Unity
 
             if (Input.GetKeyDown(KeyCode.Escape))
                 Cancel?.Invoke();
+
+            if (_canScrap && Input.GetKeyDown(KeyCode.Backspace))
+                Scrap?.Invoke();
         }
 
         void ManageBlueprintMovement()

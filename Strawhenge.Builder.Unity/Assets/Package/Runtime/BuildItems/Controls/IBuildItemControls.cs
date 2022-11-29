@@ -7,8 +7,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
         event Action Place;
         event Action Snap;
         event Action Cancel;
+        event Action Scrap;
 
-        void ControlOn(IArrangeBuildItem buildItem);
+        void ControlOn(IArrangeBuildItem buildItem, bool canScrap);
 
         void ControlOff();
     }
