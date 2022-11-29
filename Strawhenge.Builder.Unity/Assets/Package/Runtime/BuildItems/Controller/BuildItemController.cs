@@ -9,8 +9,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
         readonly Callbacks _callbacks;
 
         IBuildItem _currentBuildItem;
+        IExistingBuildItem _currentExistingBuildItem;
         IArrangeBuildItem _arrangeCurrentBuildItem;
         bool _clippingDisabled;
+        bool _canScrap;
 
         public BuildItemController(
             IBuildItemControls buildItemControls,
@@ -26,6 +28,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _controls.Snap += OnSnap;
             _controls.ReleaseSnap += OnReleaseSnap;
             _controls.Cancel += Off;
+            _controls.Scrap += OnScrap;
 
             _callbacks = new Callbacks();
         }
@@ -38,24 +41,28 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Action onPlacedFinalItem = null,
             Action onCancelled = null)
         {
-            _currentBuildItem?.Cancel();
-            ResetCurrentBuildItem();
-            _currentBuildItem = buildItem;
+            Off();
 
-            _callbacks.Set(canPlaceFinalItem, onPlacedFinalItem, onCancelled);
+            _callbacks.Set(
+                canPlaceItem: canPlaceFinalItem,
+                onPlacedItem: onPlacedFinalItem,
+                onCancelled: onCancelled);
 
-            _arrangeCurrentBuildItem = buildItem.Arrange();
-            _arrangeCurrentBuildItem.ClippingChanged += OnClippingChanged;
-
-            _controls.BuildControlsOn(_arrangeCurrentBuildItem, false);
-
-            if (_clippingDisabled)
-                _arrangeCurrentBuildItem.ClippingOff();
+            Begin(buildItem, false);
         }
 
         public void On(IExistingBuildItem buildItem, Action onPlacedItem = null, Action onScrapped = null, Action onCancelled = null)
         {
-            throw new NotImplementedException();
+            Off();
+
+            _callbacks.Set(
+                onPlacedItem: onPlacedItem,
+                onCancelled: onCancelled,
+                onScrapped: onScrapped);
+
+            _currentExistingBuildItem = buildItem;
+
+            Begin(buildItem, true);
         }
 
         public void Off()
@@ -66,6 +73,19 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _controls.ControlsOff();
 
             _callbacks.OnCancelled();
+        }
+
+        void Begin(IBuildItem buildItem, bool canScrap)
+        {
+            _currentBuildItem = buildItem;
+            _arrangeCurrentBuildItem = buildItem.Arrange();
+            _arrangeCurrentBuildItem.ClippingChanged += OnClippingChanged;
+
+            _canScrap = canScrap;
+            _controls.BuildControlsOn(_arrangeCurrentBuildItem, canScrap);
+
+            if (_clippingDisabled)
+                _arrangeCurrentBuildItem.ClippingOff();
         }
 
         void SpawnFinalItem()
@@ -105,7 +125,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void OnReleaseSnap()
         {
-            _controls.BuildControlsOn(_arrangeCurrentBuildItem, false);
+            _controls.BuildControlsOn(_arrangeCurrentBuildItem, _canScrap);
         }
 
         void OnClippingChanged()
@@ -113,9 +133,20 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _clippingDisabled = _arrangeCurrentBuildItem?.ClippingDisabled ?? false;
         }
 
+        void OnScrap()
+        {
+            if (_currentExistingBuildItem == null)
+                return;
+
+            _currentExistingBuildItem.Scrap();
+            _callbacks.OnScrapped();
+            ResetCurrentBuildItem();
+        }
+
         void ResetCurrentBuildItem()
         {
             _currentBuildItem = null;
+            _currentExistingBuildItem = null;
 
             if (_arrangeCurrentBuildItem != null)
             {
