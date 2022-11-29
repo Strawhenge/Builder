@@ -3,15 +3,13 @@ using System.Linq;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public class BuildItemController : IBuildItemController
+    public partial class BuildItemController : IBuildItemController
     {
         readonly ControlsToggle _controls;
+        readonly Callbacks _callbacks;
 
         IBuildItem _currentBuildItem;
         IArrangeBuildItem _arrangeCurrentBuildItem;
-        Func<bool> _canPlaceFinalItem;
-        Action _onPlacedFinalItem;
-        Action _onCancelled;
         bool _clippingDisabled;
 
         public BuildItemController(
@@ -29,7 +27,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _controls.ReleaseSnap += OnReleaseSnap;
             _controls.Cancel += Off;
 
-            ResetCallbacks();
+            _callbacks = new Callbacks();
         }
 
         public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
@@ -44,9 +42,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             ResetCurrentBuildItem();
             _currentBuildItem = buildItem;
 
-            _canPlaceFinalItem = canPlaceFinalItem ?? (() => true);
-            _onPlacedFinalItem = onPlacedFinalItem ?? (() => { });
-            _onCancelled = onCancelled ?? (() => { });
+            _callbacks.Set(canPlaceFinalItem, onPlacedFinalItem, onCancelled);
 
             _arrangeCurrentBuildItem = buildItem.Arrange();
             _arrangeCurrentBuildItem.ClippingChanged += OnClippingChanged;
@@ -64,14 +60,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             _controls.ControlsOff();
 
-            var callback = _onCancelled;
-            ResetCallbacks();
-            callback();
+            _callbacks.OnCancelled();
         }
 
         void SpawnFinalItem()
         {
-            if (_currentBuildItem == null || _arrangeCurrentBuildItem == null || !_canPlaceFinalItem())
+            if (_currentBuildItem == null || _arrangeCurrentBuildItem == null || !_callbacks.CanPlaceItem())
                 return;
 
             _currentBuildItem.PlaceFinal();
@@ -81,9 +75,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             ResetCurrentBuildItem();
 
-            var callback = _onPlacedFinalItem;
-            ResetCallbacks();
-            callback();
+            _callbacks.CanPlaceItem();
         }
 
         void OnSnap()
@@ -114,13 +106,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
         void OnClippingChanged()
         {
             _clippingDisabled = _arrangeCurrentBuildItem?.ClippingDisabled ?? false;
-        }
-
-        void ResetCallbacks()
-        {
-            _canPlaceFinalItem = () => true;
-            _onPlacedFinalItem = () => { };
-            _onCancelled = () => { };
         }
 
         void ResetCurrentBuildItem()
