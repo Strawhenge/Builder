@@ -26,14 +26,14 @@ namespace Strawhenge.Builder.Unity.BuildItems
         internal event Action ReleaseSnap;
         internal event Action Cancel;
 
-        internal void BuildControlsOn(IArrangeBuildItem buildItem)
+        internal void BuildControlsOn(IArrangeBuildItem buildItem, bool canScrap)
         {
             ControlsOff();
 
             _buildItemControls.Place += InvokePlace;
             _buildItemControls.Snap += InvokeSnap;
             _buildItemControls.Cancel += InvokeCancel;
-            _buildItemControls.ControlOn(buildItem, false);
+            _buildItemControls.ControlOn(buildItem, canScrap);
             buildItem.Enable();
 
             _controlsOffStrategy = () =>

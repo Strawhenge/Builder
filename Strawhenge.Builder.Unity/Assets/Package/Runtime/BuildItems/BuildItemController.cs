@@ -51,7 +51,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _arrangeCurrentBuildItem = buildItem.Arrange();
             _arrangeCurrentBuildItem.ClippingChanged += OnClippingChanged;
 
-            _controls.BuildControlsOn(_arrangeCurrentBuildItem);
+            _controls.BuildControlsOn(_arrangeCurrentBuildItem, false);
 
             if (_clippingDisabled)
                 _arrangeCurrentBuildItem.ClippingOff();
@@ -80,7 +80,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             LastPlacedPosition.Update(_arrangeCurrentBuildItem.Position, _arrangeCurrentBuildItem.Rotation);
 
             ResetCurrentBuildItem();
-            
+
             var callback = _onPlacedFinalItem;
             ResetCallbacks();
             callback();
@@ -108,7 +108,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         void OnReleaseSnap()
         {
-            _controls.BuildControlsOn(_arrangeCurrentBuildItem);
+            _controls.BuildControlsOn(_arrangeCurrentBuildItem, false);
         }
 
         void OnClippingChanged()
