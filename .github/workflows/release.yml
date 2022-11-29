@@ -18,7 +18,7 @@ jobs:
           
     - name: Build
       run: |
-          cd Strawhenge.Builder
+          tree
           dotnet build Strawhenge.Builder -p:Version=${{ env.VERSION }} --configuration Release
       
     - name: Test
