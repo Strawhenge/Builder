@@ -75,7 +75,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
             ResetCurrentBuildItem();
 
-            _callbacks.CanPlaceItem();
+            _callbacks.OnPlacedItem();
         }
 
         void OnSnap()
