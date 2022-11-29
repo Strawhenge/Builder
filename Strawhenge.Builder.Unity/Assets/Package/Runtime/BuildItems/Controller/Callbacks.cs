@@ -25,6 +25,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _canPlacedItem = canPlaceItem ?? (() => true);
                 _onPlacedFinalItem = onPlacedItem ?? (() => { });
                 _onCancelled = onCancelled ?? (() => { });
+                _onScrapped = onScrapped ?? (() => { });
             }
 
             public bool CanPlaceItem() => _canPlacedItem();
