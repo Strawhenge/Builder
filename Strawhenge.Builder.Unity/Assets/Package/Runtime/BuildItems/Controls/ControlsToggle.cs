@@ -25,15 +25,20 @@ namespace Strawhenge.Builder.Unity.BuildItems
         internal event Action Snap;
         internal event Action ReleaseSnap;
         internal event Action Cancel;
+        internal event Action Scrap;
 
-        internal void BuildControlsOn(IArrangeBuildItem buildItem)
+        internal void BuildControlsOn(IArrangeBuildItem buildItem, bool canScrap)
         {
             ControlsOff();
 
             _buildItemControls.Place += InvokePlace;
             _buildItemControls.Snap += InvokeSnap;
             _buildItemControls.Cancel += InvokeCancel;
-            _buildItemControls.ControlOn(buildItem);
+
+            if (canScrap)
+                _buildItemControls.Scrap += InvokeScrap;
+
+            _buildItemControls.ControlOn(buildItem, canScrap);
             buildItem.Enable();
 
             _controlsOffStrategy = () =>
@@ -42,6 +47,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _buildItemControls.Place -= InvokePlace;
                 _buildItemControls.Snap -= InvokeSnap;
                 _buildItemControls.Cancel -= InvokeCancel;
+
+                if (canScrap)
+                    _buildItemControls.Scrap -= InvokeScrap;
+
                 _buildItemControls.ControlOff();
             };
         }
@@ -95,5 +104,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         void InvokeReleaseSnap() => ReleaseSnap?.Invoke();
 
         void InvokeCancel() => Cancel?.Invoke();
+
+        void InvokeScrap() => Scrap?.Invoke();
     }
 }
