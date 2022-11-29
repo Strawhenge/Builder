@@ -17,9 +17,7 @@ jobs:
           dotnet-version: 3.1.101
           
     - name: Build
-      run: |
-          tree
-          dotnet build Strawhenge.Builder -p:Version=${{ env.VERSION }} --configuration Release
+      run: dotnet build Strawhenge.Builder -p:Version=${{ env.VERSION }} --configuration Release
       
     - name: Test
       run: dotnet test Strawhenge.Builder
