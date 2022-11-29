@@ -53,6 +53,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _arrangeCurrentBuildItem.ClippingOff();
         }
 
+        public void On(IExistingBuildItem buildItem, Action onPlacedItem = null, Action onScrapped = null, Action onCancelled = null)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Off()
         {
             _currentBuildItem?.Cancel();
