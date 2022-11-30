@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Strawhenge.Builder", "Strawhenge.Builder\Strawhenge.Builder.csproj", "{E0BB70DD-0A0B-4B94-A41D-3F1F5D230E8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Strawhenge.Builder.Tests", "Strawhenge.Builder.Tests\Strawhenge.Builder.Tests.csproj", "{AA2F792C-3F63-4F07-9B2A-5C757AA681CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Strawhenge.Builder.Tests", "Strawhenge.Builder.Tests\Strawhenge.Builder.Tests.csproj", "{AA2F792C-3F63-4F07-9B2A-5C757AA681CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
