@@ -18,6 +18,11 @@ jobs:
       with:
           dotnet-version: 3.1.101
           
+    - name: Restore
+      run: |        
+        dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Strawhenge/index.json"
+        dotnet restore Strawhenge.Builder
+          
     - name: Build
       run: dotnet build Strawhenge.Builder -p:Version=${{ env.VERSION }} --configuration Release
       
