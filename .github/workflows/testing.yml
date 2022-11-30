@@ -19,8 +19,8 @@ jobs:
           dotnet-version: 3.1.200
           
     - name: Restore
-      run: |
-        dotnet nuget update source github --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
+      run: |        
+        dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Strawhenge/index.json"
         dotnet restore Strawhenge.Builder
           
     - name: Build
