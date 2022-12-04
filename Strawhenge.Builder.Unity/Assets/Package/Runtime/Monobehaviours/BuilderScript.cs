@@ -7,6 +7,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class BuilderScript : MonoBehaviour
     {
         [SerializeField] BlueprintScriptableObject[] _blueprints;
+        [SerializeField] BuilderManagerUIScript _managerUI;
+        [SerializeField] MenuScript _menu;
 
         public BlueprintRepository BlueprintRepository { private get; set; }
 
@@ -17,8 +19,12 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         void Start()
         {
             BlueprintRepository.Add(_blueprints);
-            ManagerUI.Setup(FindObjectOfType<BuilderManagerUIScript>(includeInactive: true));
-            MenuView.Setup(FindObjectOfType<MenuScript>(includeInactive: true));
+
+            if (!ReferenceEquals(null, _managerUI))
+                ManagerUI.Setup(_managerUI);
+
+            if (!ReferenceEquals(null, _menu))
+                MenuView.Setup(_menu);
         }
     }
 }
