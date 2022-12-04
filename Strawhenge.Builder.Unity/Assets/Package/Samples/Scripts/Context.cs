@@ -8,6 +8,7 @@ using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using UnityEngine;
+using BuilderManagerUI = Strawhenge.Builder.Unity.Manager.UI.BuilderManagerUI;
 using Component = Strawhenge.Builder.Component;
 
 public class Context : MonoBehaviour
@@ -16,7 +17,6 @@ public class Context : MonoBehaviour
     [SerializeField] SerializableComponentQuantity[] _inventory;
     [SerializeField] BuilderScript _builderScript;
     [SerializeField] BuildItemScriptSelector _buildItemScriptSelector;
-    [SerializeField] BuilderManagerUI _builderManagerUI;
 
     BuilderManager _builderManager;
     ComponentInventory _componentInventory;
@@ -41,12 +41,16 @@ public class Context : MonoBehaviour
         var buildItemCompositionUI = new BuildItemCompositionUI(logger);
 
         var blueprintManager = new BlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
-        var existingBlueprintManager = new ExistingBlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
+        var existingBlueprintManager =
+            new ExistingBlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
 
         var markersToggle = new MarkersToggle(_camera, Layers.Instance);
 
         var blueprintRepository = new BlueprintRepository();
-        var blueprintScriptableObjectMenu = new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
+        var blueprintScriptableObjectMenu =
+            new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
+
+        var managerUI = new BuilderManagerUI(logger);
 
         _builderManager = new BuilderManager(
             _buildItemScriptSelector,
@@ -54,11 +58,11 @@ public class Context : MonoBehaviour
             existingBlueprintManager,
             blueprintManager,
             blueprintFactory,
-            _builderManagerUI,
+            managerUI,
             blueprintScriptableObjectMenu);
 
-        _builderScript.Manager = _builderManager;
         _builderScript.BlueprintRepository = blueprintRepository;
+        _builderScript.ManagerUI = managerUI;
         _builderScript.MenuView = menuView;
     }
 
@@ -66,8 +70,6 @@ public class Context : MonoBehaviour
     {
         foreach (var components in _inventory)
             _componentInventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
-
-        _builderManager.On();
     }
 
     [ContextMenu("Builder On")]

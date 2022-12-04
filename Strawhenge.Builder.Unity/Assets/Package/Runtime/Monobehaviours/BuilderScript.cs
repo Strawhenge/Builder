@@ -1,4 +1,5 @@
-﻿using Strawhenge.Builder.Unity.ScriptableObjects;
+﻿using Strawhenge.Builder.Unity.Manager.UI;
+using Strawhenge.Builder.Unity.ScriptableObjects;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
@@ -6,17 +7,24 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class BuilderScript : MonoBehaviour
     {
         [SerializeField] BlueprintScriptableObject[] _blueprints;
-
-        public BuilderManager Manager { private get; set; }
+        [SerializeField] BuilderManagerUIScript _managerUI;
+        [SerializeField] MenuScript _menu;
 
         public BlueprintRepository BlueprintRepository { private get; set; }
+
+        public BuilderManagerUI ManagerUI { private get; set; }
 
         public MenuView MenuView { private get; set; }
 
         void Start()
         {
             BlueprintRepository.Add(_blueprints);
-            MenuView.Setup(FindObjectOfType<MenuScript>(includeInactive: true));
+
+            if (!ReferenceEquals(null, _managerUI))
+                ManagerUI.Setup(_managerUI);
+
+            if (!ReferenceEquals(null, _menu))
+                MenuView.Setup(_menu);
         }
     }
 }
