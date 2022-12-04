@@ -15,6 +15,7 @@ namespace Strawhenge.Builder.Unity.Manager.UI
 
         public void Show()
         {
+            // SetActive must be called twice due to a Unity bug
             gameObject.SetActive(true);
             gameObject.SetActive(true);
         }
