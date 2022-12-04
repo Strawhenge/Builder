@@ -70,8 +70,6 @@ public class Context : MonoBehaviour
     {
         foreach (var components in _inventory)
             _componentInventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
-
-        _builderManager.On();
     }
 
     [ContextMenu("Builder On")]
