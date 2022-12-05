@@ -24,7 +24,7 @@ namespace Strawhenge.Builder.Unity
             IBlueprintFactory blueprintFactory,
             IBuilderManagerUI builderManagerUI,
             IBlueprintScriptableObjectMenu menu
-            )
+        )
         {
             _markers = markers;
             _blueprintFactory = blueprintFactory;
@@ -36,19 +36,28 @@ namespace Strawhenge.Builder.Unity
                 OnMenuOpen,
                 OnExitBuilder);
 
-            _managingExistingBlueprint = new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
+            _managingExistingBlueprint =
+                new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
             _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
             _menuOpen = new MenuOpen(menu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
+        public bool IsOn { get; private set; }
+
         public void On()
         {
+            if (IsOn) return;
+            IsOn = true;
+
             _markers.On();
             SetState(_selectingExistingItem);
         }
 
         public void Off()
         {
+            if (!IsOn) return;
+            IsOn = false;
+
             SetState(null);
             _markers.Off();
         }
