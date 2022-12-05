@@ -63,6 +63,7 @@ public class Context : MonoBehaviour
 
         _builderScript.BlueprintRepository = blueprintRepository;
         _builderScript.ManagerUI = managerUI;
+        _builderScript.ItemCompositionUI = buildItemCompositionUI;
         _builderScript.MenuView = menuView;
     }
 
