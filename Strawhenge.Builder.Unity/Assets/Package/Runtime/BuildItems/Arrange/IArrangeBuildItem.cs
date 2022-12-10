@@ -9,6 +9,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         event Action ClippingChanged;
 
+
         Vector3 Position { get; }
 
         Quaternion Rotation { get; }
@@ -18,6 +19,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
         void Enable();
 
         void Disable();
+
+        Transform GetTransform();
 
         void Move(Vector3 velocity);
 

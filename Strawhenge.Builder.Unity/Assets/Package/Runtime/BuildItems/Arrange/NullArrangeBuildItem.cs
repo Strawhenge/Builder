@@ -8,6 +8,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NullArrangeBuildItem : IArrangeBuildItem
     {
+        static Transform _transform;
+
 #pragma warning disable 67
         public event Action ClippingChanged;
 #pragma warning restore 67
@@ -24,6 +26,14 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Disable()
         {
+        }
+
+        public Transform GetTransform()
+        {
+            if (_transform == null)
+                _transform = new GameObject(nameof(NullArrangeBuildItem)).transform;
+
+            return _transform;
         }
 
         public IEnumerable<HorizontalSnap> GetAvailableHorizontalSnaps() => Enumerable.Empty<HorizontalSnap>();

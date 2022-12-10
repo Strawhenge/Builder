@@ -67,6 +67,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
             ToggleColliders(true);
         }
 
+        public Transform GetTransform() => _transform;
+
         public void Move(Vector3 velocity)
         {
             if (_isEnabled)
