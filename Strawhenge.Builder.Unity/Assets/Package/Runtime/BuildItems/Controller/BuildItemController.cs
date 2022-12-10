@@ -67,10 +67,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Off()
         {
+            _controls.ControlsOff();
+            
             _currentBuildItem?.Cancel();
             ResetCurrentBuildItem();
-
-            _controls.ControlsOff();
 
             _callbacks.OnCancelled();
         }
@@ -93,8 +93,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
             if (_currentBuildItem == null || _arrangeCurrentBuildItem == null || !_callbacks.CanPlaceItem())
                 return;
 
-            _currentBuildItem.PlaceFinal();
             _controls.ControlsOff();
+            _currentBuildItem.PlaceFinal();
 
             LastPlacedPosition.Update(_arrangeCurrentBuildItem.Position, _arrangeCurrentBuildItem.Rotation);
 
