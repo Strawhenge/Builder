@@ -32,6 +32,8 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         public bool CanFlip { get; }
 
+        public Transform GetSnappedToTransform() => _snappedTo;
+        
         public void Snap()
         {
             _snapPoint.SetPosition(_snappedTo.position);

@@ -31,6 +31,8 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         }
 
         public bool CanRotate { get; }
+        
+        public Transform GetSnappedToTransform() => _snappedTo;
 
         public void Snap()
         {
