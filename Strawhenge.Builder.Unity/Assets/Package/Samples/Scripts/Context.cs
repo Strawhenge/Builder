@@ -78,4 +78,10 @@ public class Context : MonoBehaviour
     {
         _builderManager.On();
     }
+
+    [ContextMenu("Builder Off")]
+    public void BuilderOff()
+    {
+        _builderManager.Off();
+    }
 }
