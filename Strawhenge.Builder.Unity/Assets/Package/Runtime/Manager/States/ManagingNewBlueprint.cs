@@ -9,6 +9,8 @@ namespace Strawhenge.Builder.Unity
             readonly BlueprintManager _blueprintManager;
             readonly Action _onEnded;
 
+            Action _callback = () => { };
+
             public ManagingNewBlueprint(BlueprintManager blueprintManager, Action onEnded)
             {
                 _blueprintManager = blueprintManager;
@@ -19,11 +21,13 @@ namespace Strawhenge.Builder.Unity
 
             public void Begin()
             {
-                _blueprintManager.Set(Blueprint, _onEnded);
+                _callback = _onEnded;
+                _blueprintManager.Set(Blueprint, () => _callback());
             }
 
             public void End()
             {
+                _callback = () => { };
                 _blueprintManager.Unset();
             }
         }
