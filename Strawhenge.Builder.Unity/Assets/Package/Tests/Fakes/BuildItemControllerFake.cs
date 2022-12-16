@@ -10,7 +10,10 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 
         internal bool IsOn { get; private set; }
 
-        public void Off() => IsOn = false;
+        public void Off()
+        {
+            SetOffState(_onCancel);
+        }
 
         public void On(
             IBuildItem buildItem,
@@ -27,18 +30,25 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
             IExistingBuildItem buildItem,
             Action onPlacedItem = null,
             Action onScrapped = null,
-            Action onCancelled = null) => On((IBuildItem)buildItem, onPlacedItem: onPlacedItem, onCancelled: onCancelled);
+            Action onCancelled = null) =>
+            On((IBuildItem)buildItem, onPlacedItem: onPlacedItem, onCancelled: onCancelled);
 
         internal void InvokePlaceItem()
         {
-            _onPlacedItem?.Invoke();
-            IsOn = false;
+            SetOffState(_onPlacedItem);
         }
 
         internal void InvokeCancel()
         {
-            _onCancel?.Invoke();
+            SetOffState(_onCancel);
+        }
+
+        void SetOffState(Action callback)
+        {
             IsOn = false;
+            _onCancel = null;
+            _onPlacedItem = null;
+            callback?.Invoke();
         }
     }
 }

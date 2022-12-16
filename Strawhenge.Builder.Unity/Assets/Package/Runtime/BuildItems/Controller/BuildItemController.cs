@@ -51,7 +51,11 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Begin(buildItem, false);
         }
 
-        public void On(IExistingBuildItem buildItem, Action onPlacedItem = null, Action onScrapped = null, Action onCancelled = null)
+        public void On(
+            IExistingBuildItem buildItem,
+            Action onPlacedItem = null,
+            Action onScrapped = null,
+            Action onCancelled = null)
         {
             Off();
 
@@ -68,7 +72,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public void Off()
         {
             _controls.ControlsOff();
-            
+
             _currentBuildItem?.Cancel();
             ResetCurrentBuildItem();
 
