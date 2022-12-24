@@ -8,9 +8,7 @@ namespace Strawhenge.Builder.Unity
     {
         [SerializeField] float _moveSpeed;
         [SerializeField] float _turnSpeed;
-        [SerializeField] float _cameraDistance;
 
-        Transform _cameraTransform;
         IArrangeBuildItem _buildItem;
         bool _canScrap;
 
@@ -32,11 +30,6 @@ namespace Strawhenge.Builder.Unity
             _buildItem = null;
         }
 
-        void Awake()
-        {
-            _cameraTransform = FindObjectOfType<Camera>().transform;
-        }
-
         void OnEnable()
         {
             if (_buildItem == null)
@@ -45,7 +38,6 @@ namespace Strawhenge.Builder.Unity
 
         void Update()
         {
-            UpdateCamera();
             ManageBlueprintMovement();
             ManageClippingToggle();
 
@@ -87,13 +79,6 @@ namespace Strawhenge.Builder.Unity
                 _buildItem.ClippingOn();
             else
                 _buildItem.ClippingOff();
-        }
-
-        void UpdateCamera()
-        {
-            var direction = _cameraTransform.forward.normalized * -1;
-
-            _cameraTransform.position = _buildItem.Position + direction * _cameraDistance;
         }
     }
 }

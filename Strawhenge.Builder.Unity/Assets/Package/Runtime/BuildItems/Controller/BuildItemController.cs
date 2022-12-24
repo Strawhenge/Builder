@@ -5,6 +5,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public partial class BuildItemController : IBuildItemController
     {
+        readonly ICameraController _camera;
         readonly ControlsToggle _controls;
         readonly Callbacks _callbacks;
 
@@ -15,10 +16,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
         bool _canScrap;
 
         public BuildItemController(
+            ICameraController camera,
             IBuildItemControls buildItemControls,
             IVerticalSnapControls verticalSnapControls,
             IHorizontalSnapControls horizontalSnapControls)
         {
+            _camera = camera;
             _controls = new ControlsToggle(
                 buildItemControls,
                 verticalSnapControls,
@@ -71,6 +74,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Off()
         {
+            _camera.Unfocus();
             _controls.ControlsOff();
 
             _currentBuildItem?.Cancel();
@@ -85,6 +89,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _arrangeCurrentBuildItem = buildItem.Arrange();
             _arrangeCurrentBuildItem.ClippingChanged += OnClippingChanged;
 
+            _camera.FocusOnBuildItem(_arrangeCurrentBuildItem.GetTransform());
+
             _canScrap = canScrap;
             _controls.BuildControlsOn(_arrangeCurrentBuildItem, canScrap);
 
@@ -97,6 +103,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             if (_currentBuildItem == null || _arrangeCurrentBuildItem == null || !_callbacks.CanPlaceItem())
                 return;
 
+            _camera.Unfocus();
             _controls.ControlsOff();
             _currentBuildItem.PlaceFinal();
 
@@ -114,6 +121,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             if (verticalSnap != null)
             {
                 verticalSnap.Snap();
+                _camera.FocusOnSnapPoint(verticalSnap.GetSnappedToTransform());
                 _controls.VerticalSnapControlsOn(verticalSnap);
                 return;
             }
@@ -123,6 +131,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             if (horizontalSnap != null)
             {
                 horizontalSnap.Snap();
+                _camera.FocusOnSnapPoint(horizontalSnap.GetSnappedToTransform());
                 _controls.HorizontalSnapControlsOn(horizontalSnap);
             }
         }
@@ -130,6 +139,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         void OnReleaseSnap()
         {
             _controls.BuildControlsOn(_arrangeCurrentBuildItem, _canScrap);
+            _camera.FocusOnBuildItem(_arrangeCurrentBuildItem.GetTransform());
         }
 
         void OnClippingChanged()
