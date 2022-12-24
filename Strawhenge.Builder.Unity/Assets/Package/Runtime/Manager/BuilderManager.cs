@@ -1,10 +1,11 @@
 ﻿using Strawhenge.Builder.Unity.Blueprints;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
+using System;
 
 namespace Strawhenge.Builder.Unity
 {
-    public partial class BuilderManager
+    public partial class BuilderManager : IBuilderManagerEvents
     {
         readonly MarkersToggle _markers;
         readonly IBlueprintFactory _blueprintFactory;
@@ -42,13 +43,17 @@ namespace Strawhenge.Builder.Unity
             _menuOpen = new MenuOpen(menu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
+        public event Action TurningOn;
+        public event Action TurnedOff;
+
         public bool IsOn { get; private set; }
 
         public void On()
         {
             if (IsOn) return;
             IsOn = true;
-
+            
+            TurningOn?.Invoke();
             _markers.On();
             SetState(_selectingExistingItem);
         }
@@ -60,6 +65,7 @@ namespace Strawhenge.Builder.Unity
 
             SetState(null);
             _markers.Off();
+            TurnedOff?.Invoke();
         }
 
         void SetState(IState state)
