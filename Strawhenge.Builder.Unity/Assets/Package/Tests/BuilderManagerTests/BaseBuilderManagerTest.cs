@@ -4,6 +4,7 @@ using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.Tests.Fakes;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Logging;
+using Strawhenge.Common.Unity.Camera;
 using System.Linq;
 using UnityEngine;
 
@@ -44,7 +45,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _camera = new GameObject().AddComponent<Camera>();
             _camera.cullingMask = EnvironmentLayer;
 
-            var markers = new MarkersToggle(_camera, LayersAccessor);
+            var markers = new MarkersToggle(new CameraAccessor(_camera), LayersAccessor);
 
             Sut = new BuilderManager(
                 _existingBuildItemSelector,
@@ -78,17 +79,30 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
         protected void InvokePlaceSelectedItem() => _buildItemController.InvokePlaceItem();
-        
+
         protected void InvokeCancelSelectedItem() => _buildItemController.InvokeCancel();
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
         protected void InvokeCloseMenu() => _menu.InvokeExit();
 
-        protected void InvokeSelectFromMenu() => _menu.InvokeSelect(ScriptableObject.CreateInstance<BlueprintScriptableObject>());
+        protected void InvokeSelectFromMenu() =>
+            _menu.InvokeSelect(ScriptableObject.CreateInstance<BlueprintScriptableObject>());
 
         protected bool IsMenuOpen() => _menu.IsOpen;
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
+
+        class CameraAccessor : ICameraAccessor
+        {
+            readonly Camera _camera;
+
+            public CameraAccessor(Camera camera)
+            {
+                _camera = camera;
+            }
+
+            public Camera GetCamera() => _camera;
+        }
     }
 }

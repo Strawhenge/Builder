@@ -7,13 +7,13 @@ using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
+using Strawhenge.Common.Unity.Camera;
 using UnityEngine;
 using BuilderManagerUI = Strawhenge.Builder.Unity.Manager.UI.BuilderManagerUI;
 using Component = Strawhenge.Builder.Component;
 
 public class Context : MonoBehaviour
 {
-    [SerializeField] Camera _camera;
     [SerializeField] SerializableComponentQuantity[] _inventory;
     [SerializeField] BuilderScript _builderScript;
     [SerializeField] BuildItemScriptSelector _buildItemScriptSelector;
@@ -45,7 +45,7 @@ public class Context : MonoBehaviour
         var existingBlueprintManager =
             new ExistingBlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
 
-        var markersToggle = new MarkersToggle(_camera, Layers.Instance);
+        var markersToggle = new MarkersToggle(new CameraCache(), Layers.Instance);
 
         var blueprintRepository = new BlueprintRepository();
         var blueprintScriptableObjectMenu =
