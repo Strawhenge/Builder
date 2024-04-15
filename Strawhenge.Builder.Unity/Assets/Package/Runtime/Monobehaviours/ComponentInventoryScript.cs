@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using Strawhenge.Builder.Unity.Data;
+using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
 {
     public class ComponentInventoryScript : MonoBehaviour
     {
+        [SerializeField] SerializableComponentQuantity[] _components;
         [SerializeField] bool _infiniteComponents;
 
         public IComponentInventory Inventory { private get; set; }
@@ -37,6 +39,10 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         void Start()
         {
             Inventory.InfiniteComponents = _infiniteComponents;
+
+            foreach (var component in _components)
+                Inventory.AddComponent(
+                    new Component(component.Component.Identifier), component.Quantity);
         }
     }
 }
