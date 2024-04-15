@@ -11,5 +11,7 @@
         int CountTotal();
 
         void RemoveComponent(Component component, int quantity);
+
+        void RemoveAllComponents();
     }
 }
