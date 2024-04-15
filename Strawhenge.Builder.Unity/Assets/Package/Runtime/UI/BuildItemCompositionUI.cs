@@ -19,6 +19,11 @@ namespace Strawhenge.Builder.Unity.UI
             Hide();
         }
 
+        public void Reset()
+        {
+            _script = null;
+        }
+
         public void Hide()
         {
             if (ReferenceEquals(_script, null))

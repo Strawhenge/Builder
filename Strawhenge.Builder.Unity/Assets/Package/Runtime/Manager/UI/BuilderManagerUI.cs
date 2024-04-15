@@ -23,6 +23,13 @@ namespace Strawhenge.Builder.Unity.Manager.UI
             _script.Exit = () => ExitBuilder?.Invoke();
         }
 
+        public void Reset()
+        {
+            _script.OpenMenu = null;
+            _script.Exit = null;
+            _script = null;
+        }
+
         public void Enable()
         {
             if (_script == null)

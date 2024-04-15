@@ -60,6 +60,11 @@ namespace Strawhenge.Builder
             componentCounter.Substract(quantity);
         }
 
+        public void RemoveAllComponents()
+        {
+            _componentCounters.Clear();
+        }
+
         ComponentCounter GetOrCreateComponentCounter(Component component)
         {
             return _componentCounters
