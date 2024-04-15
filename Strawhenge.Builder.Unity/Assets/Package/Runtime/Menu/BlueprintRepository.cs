@@ -16,5 +16,10 @@ namespace Strawhenge.Builder.Unity
         {
             _blueprints.AddRange(blueprints);
         }
+
+        public void Clear()
+        {
+            _blueprints.Clear();
+        }
     }
 }

@@ -33,5 +33,13 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             if (!ReferenceEquals(null, _menu))
                 MenuView.Setup(_menu);
         }
+
+        void OnDestroy()
+        {
+            ManagerUI.Reset();
+            ItemCompositionUI.Reset();
+            MenuView.Reset();
+            BlueprintRepository.Clear();
+        }
     }
 }

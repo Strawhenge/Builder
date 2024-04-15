@@ -29,6 +29,15 @@ namespace Strawhenge.Builder.Unity
             _script.SelectExit = () => SelectExit?.Invoke();
         }
 
+        public void Reset()
+        {
+            _script.SelectCategory = null;
+            _script.SelectItem = null;
+            _script.SelectBack = null;
+            _script.SelectExit = null;
+            _script = null;
+        }
+
         public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
         {
             if (_script == null)
