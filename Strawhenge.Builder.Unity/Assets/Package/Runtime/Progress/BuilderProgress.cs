@@ -1,5 +1,4 @@
 using Strawhenge.Builder.Unity.Blueprints;
-using System.Linq;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity

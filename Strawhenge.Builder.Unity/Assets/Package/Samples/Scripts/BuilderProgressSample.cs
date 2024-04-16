@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Unity
     {
         public static readonly BuilderProgressData Data = new BuilderProgressData
         {
-            BuildItems = new BuildItemData[]
+            BuildItems = new[]
             {
                 new BuildItemData()
                 {
