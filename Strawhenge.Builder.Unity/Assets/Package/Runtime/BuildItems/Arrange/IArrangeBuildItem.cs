@@ -33,5 +33,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         void ClippingOn();
 
         void ClippingOff();
+
+        void PlaceAt(Vector3 position, Quaternion rotation);
     }
 }

@@ -46,6 +46,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
         }
 
+        public void PlaceAt(Vector3 position, Quaternion rotation)
+        {
+        }
+
         public IEnumerable<VerticalSnap> GetAvailableVerticalSnaps() => Enumerable.Empty<VerticalSnap>();
 
         public void Move(Vector3 velocity)

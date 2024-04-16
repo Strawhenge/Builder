@@ -20,6 +20,7 @@ public class Context : MonoBehaviour
 
     BuilderManager _builderManager;
     ComponentInventory _componentInventory;
+    BuilderProgress _builderProgress;
 
     void Awake()
     {
@@ -47,7 +48,7 @@ public class Context : MonoBehaviour
 
         var markersToggle = new MarkersToggle(new CameraCache(), Layers.Instance);
 
-        var blueprintRepository = new BlueprintRepository();
+        var blueprintRepository = new BlueprintRepository(logger);
         var blueprintScriptableObjectMenu =
             new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
 
@@ -66,6 +67,11 @@ public class Context : MonoBehaviour
         _builderScript.ManagerUI = managerUI;
         _builderScript.ItemCompositionUI = buildItemCompositionUI;
         _builderScript.MenuView = menuView;
+
+        _builderProgress = new BuilderProgress(
+            blueprintRepository,
+            blueprintFactory,
+            logger);
     }
 
     void Start()
@@ -84,5 +90,12 @@ public class Context : MonoBehaviour
     public void BuilderOff()
     {
         _builderManager.Off();
+    }
+
+    [ContextMenu("Load Progress")]
+    public void LoadBuilderProgress()
+    {
+        _builderProgress.Load(
+            BuilderProgressSample.Data);
     }
 }
