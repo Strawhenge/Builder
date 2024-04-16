@@ -18,7 +18,7 @@ namespace Strawhenge.Builder.Unity
             _logger = logger;
         }
 
-        public Maybe<BlueprintScriptableObject> GetByName(string name)
+        public Maybe<BlueprintScriptableObject> FindByName(string name)
         {
             if (_blueprints.TryGetValue(name, out var blueprint))
                 return blueprint;
