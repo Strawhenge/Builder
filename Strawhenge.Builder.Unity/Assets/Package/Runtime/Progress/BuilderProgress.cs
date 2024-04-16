@@ -36,7 +36,9 @@ namespace Strawhenge.Builder.Unity
 
                 var buildItem = _blueprintFactory.Create(blueprint).BuildItem;
 
-                buildItem.Arrange();
+                buildItem
+                    .Arrange()
+                    .PlaceAt(buildItemData.Position, buildItemData.Rotation);
                 buildItem.PlaceFinal();
             }
         }

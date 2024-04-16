@@ -107,6 +107,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
             ClippingChanged?.Invoke();
         }
 
+        public void PlaceAt(Vector3 position, Quaternion rotation)
+        {
+            _transform.position = position;
+            _transform.rotation = rotation;
+        }
+
         void ToggleColliders(bool enabled)
         {
             foreach (var collider in _colliders)
