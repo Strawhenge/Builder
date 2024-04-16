@@ -92,6 +92,19 @@ public class Context : MonoBehaviour
     [ContextMenu("Load Progress")]
     public void LoadBuilderProgress()
     {
-        _builderProgress.Load(new BuilderProgressData());
+        _builderProgress.Load(new BuilderProgressData
+        {
+            BuildItems = new BuildItemData[]
+            {
+                new BuildItemData()
+                {
+                    Name = "Wall"
+                },
+                new BuildItemData()
+                {
+                    Name = "Wall"
+                }
+            }
+        });
     }
 }

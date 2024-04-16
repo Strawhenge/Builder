@@ -16,8 +16,4 @@ namespace Strawhenge.Builder.Unity
             _logger.LogInformation("Loading build progress.");
         }
     }
-
-    public class BuilderProgressData
-    {
-    }
 }
