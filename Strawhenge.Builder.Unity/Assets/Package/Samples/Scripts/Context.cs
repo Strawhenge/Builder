@@ -48,7 +48,7 @@ public class Context : MonoBehaviour
 
         var markersToggle = new MarkersToggle(new CameraCache(), Layers.Instance);
 
-        var blueprintRepository = new BlueprintRepository();
+        var blueprintRepository = new BlueprintRepository(logger);
         var blueprintScriptableObjectMenu =
             new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
 
@@ -68,7 +68,10 @@ public class Context : MonoBehaviour
         _builderScript.ItemCompositionUI = buildItemCompositionUI;
         _builderScript.MenuView = menuView;
 
-        _builderProgress = new BuilderProgress(logger);
+        _builderProgress = new BuilderProgress(
+            blueprintRepository,
+            blueprintFactory,
+            logger);
     }
 
     void Start()
