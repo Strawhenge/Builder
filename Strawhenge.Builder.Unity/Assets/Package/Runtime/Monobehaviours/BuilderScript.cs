@@ -1,5 +1,4 @@
 ﻿using Strawhenge.Builder.Unity.Manager.UI;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 {
     public class BuilderScript : MonoBehaviour
     {
-        [SerializeField] BlueprintScriptableObject[] _blueprints;
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
@@ -22,8 +20,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Start()
         {
-            BlueprintRepository.Add(_blueprints);
-
             if (!ReferenceEquals(null, _managerUI))
                 ManagerUI.Setup(_managerUI);
 
@@ -39,7 +35,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             ManagerUI.Reset();
             ItemCompositionUI.Reset();
             MenuView.Reset();
-            BlueprintRepository.Clear();
         }
     }
 }

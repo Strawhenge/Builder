@@ -1,53 +1,32 @@
 ﻿using FunctionalUtilities;
 using Strawhenge.Builder.Unity.ScriptableObjects;
-using Strawhenge.Common.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
     public class BlueprintRepository : IBlueprintRepository
     {
-        readonly ILogger _logger;
+        readonly BlueprintScriptableObject[] _scriptableObjects;
 
-        readonly Dictionary<string, BlueprintScriptableObject> _blueprints =
-            new Dictionary<string, BlueprintScriptableObject>();
-
-        public BlueprintRepository(ILogger logger)
+        public BlueprintRepository(ISettings settings)
         {
-            _logger = logger;
+            _scriptableObjects = Resources
+                .LoadAll<BlueprintScriptableObject>(path: settings.BlueprintsScriptableObjectsPath)
+                .ToArray();
         }
 
         public Maybe<BlueprintScriptableObject> FindByName(string name)
         {
-            if (_blueprints.TryGetValue(name, out var blueprint))
-                return blueprint;
-
-            return Maybe.None<BlueprintScriptableObject>();
+            return _scriptableObjects.FirstOrNone(x =>
+                x.name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
         public IReadOnlyList<BlueprintScriptableObject> GetAll()
         {
-            return _blueprints.Values.ToArray();
-        }
-
-        public void Add(IEnumerable<BlueprintScriptableObject> blueprints)
-        {
-            foreach (var blueprint in blueprints)
-            {
-                if (_blueprints.ContainsKey(blueprint.name))
-                {
-                    _logger.LogWarning($"Duplicate blueprint '{blueprint.name}'.");
-                    continue;
-                }
-
-                _blueprints.Add(blueprint.name, blueprint);
-            }
-        }
-
-        public void Clear()
-        {
-            _blueprints.Clear();
+            return _scriptableObjects.ToArray();
         }
     }
 }
