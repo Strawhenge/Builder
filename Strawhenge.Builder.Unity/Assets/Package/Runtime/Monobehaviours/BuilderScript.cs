@@ -10,8 +10,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
 
-        public BlueprintRepository BlueprintRepository { private get; set; }
-
         public BuilderManagerUI ManagerUI { private get; set; }
 
         public BuildItemCompositionUI ItemCompositionUI { private get; set; }
