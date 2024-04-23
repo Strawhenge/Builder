@@ -5,13 +5,15 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class ExistingBuildItem : IExistingBuildItem
     {
+        readonly IBuilderProgressTracker _progressTracker;
         readonly BuildItemScript _script;
 
         Vector3 _initialPosition;
         Quaternion _initialRotation;
 
-        public ExistingBuildItem(BuildItemScript script)
+        public ExistingBuildItem(IBuilderProgressTracker progressTracker, BuildItemScript script)
         {
+            _progressTracker = progressTracker;
             _script = script;
 
             var transform = _script.transform;
@@ -31,6 +33,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
             var transform = _script.transform;
             _initialPosition = transform.position;
             _initialRotation = transform.rotation;
+
+            _progressTracker.Update(_script);
         }
 
         public IArrangeBuildItem Arrange()
@@ -41,6 +45,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Scrap()
         {
+            _progressTracker.Remove(_script);
             Object.Destroy(_script.gameObject);
         }
     }
