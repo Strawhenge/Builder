@@ -45,9 +45,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public void PlaceFinal()
         {
             _current.SetPlaced();
-            _current = null;
-
             _progressTracker.Add(_current, _blueprintName);
+
+            _current = null;
         }
 
         void DestroyCurrent()
