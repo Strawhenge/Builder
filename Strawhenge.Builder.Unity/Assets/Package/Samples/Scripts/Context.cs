@@ -63,7 +63,6 @@ public class Context : MonoBehaviour
             managerUI,
             blueprintScriptableObjectMenu);
 
-        _builderScript.BlueprintRepository = blueprintRepository;
         _builderScript.ManagerUI = managerUI;
         _builderScript.ItemCompositionUI = buildItemCompositionUI;
         _builderScript.MenuView = menuView;
