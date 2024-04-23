@@ -38,7 +38,12 @@ public class Context : MonoBehaviour
             FindObjectOfType<VerticalSnapControls>(includeInactive: true),
             FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
 
-        var blueprintFactory = new BlueprintFactory(buildItemController.LastPlacedPosition, logger);
+        var progressTracker = new BuilderProgressTracker(logger);
+
+        var blueprintFactory = new BlueprintFactory(
+            progressTracker,
+            buildItemController.LastPlacedPosition,
+            logger);
 
         var buildItemCompositionUI = new BuildItemCompositionUI(logger);
 

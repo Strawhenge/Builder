@@ -10,7 +10,6 @@ namespace Strawhenge.Builder.Unity
         readonly ILogger _logger;
 
         public BuilderProgressLoader(
-            IBuilderProgressTracker progressTracker,
             IBlueprintRepository blueprintRepository,
             IBlueprintFactory blueprintFactory,
             ILogger logger)
