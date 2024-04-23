@@ -21,6 +21,7 @@ public class Context : MonoBehaviour
     BuilderManager _builderManager;
     ComponentInventory _componentInventory;
     BuilderProgressLoader _builderProgressLoader;
+    BuilderProgressTracker _progressTracker;
 
     void Awake()
     {
@@ -38,10 +39,10 @@ public class Context : MonoBehaviour
             FindObjectOfType<VerticalSnapControls>(includeInactive: true),
             FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
 
-        var progressTracker = new BuilderProgressTracker(logger);
+        _progressTracker = new BuilderProgressTracker(logger);
 
         var blueprintFactory = new BlueprintFactory(
-            progressTracker,
+            _progressTracker,
             buildItemController.LastPlacedPosition,
             logger);
 
@@ -82,6 +83,9 @@ public class Context : MonoBehaviour
     {
         foreach (var components in _inventory)
             _componentInventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
+
+        foreach (var buildItem in Object.FindObjectsOfType<BuildItemScript>())
+            _progressTracker.Add(buildItem, buildItem.gameObject.name);
     }
 
     [ContextMenu("Builder On")]
@@ -101,5 +105,14 @@ public class Context : MonoBehaviour
     {
         _builderProgressLoader.Load(
             BuilderProgressSample.Data);
+    }
+
+    [ContextMenu("Print Progress")]
+    public void PrintProgress()
+    {
+        var progress = _progressTracker.GetCurrentProgress();
+
+        foreach (var buildItem in progress.BuildItems)
+            print($"{buildItem.Name} [p: {buildItem.Position}] [r: {buildItem.Rotation}]");
     }
 }
