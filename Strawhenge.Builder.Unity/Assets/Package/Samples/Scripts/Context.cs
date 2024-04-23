@@ -4,6 +4,7 @@ using Strawhenge.Builder.Unity;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;

@@ -3,7 +3,7 @@ using Strawhenge.Common.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Progress
 {
     public class BuilderProgressTracker : IBuilderProgressTracker, IBuilderProgressAccessor
     {

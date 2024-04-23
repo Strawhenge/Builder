@@ -1,6 +1,6 @@
 using Strawhenge.Builder.Unity.Monobehaviours;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Progress
 {
     public interface IBuilderProgressTracker
     {
