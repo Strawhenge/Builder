@@ -53,8 +53,7 @@ namespace Strawhenge.Builder.Unity
         {
             if (_currentBlueprint == null)
                 return;
-
-            _currentBlueprint.BuildItem.Scrap();
+           
             _currentBlueprint.ScrapValue.AddComponentsTo(_componentInventory);
             _buildItemController.Off();
         }
