@@ -3,13 +3,13 @@ using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BuilderProgress
+    public class BuilderProgressLoader
     {
         readonly IBlueprintRepository _blueprintRepository;
         readonly IBlueprintFactory _blueprintFactory;
         readonly ILogger _logger;
 
-        public BuilderProgress(
+        public BuilderProgressLoader(
             IBuilderProgressTracker progressTracker,
             IBlueprintRepository blueprintRepository,
             IBlueprintFactory blueprintFactory,

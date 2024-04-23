@@ -20,7 +20,7 @@ public class Context : MonoBehaviour
 
     BuilderManager _builderManager;
     ComponentInventory _componentInventory;
-    BuilderProgress _builderProgress;
+    BuilderProgressLoader _builderProgressLoader;
 
     void Awake()
     {
@@ -67,7 +67,7 @@ public class Context : MonoBehaviour
         _builderScript.ItemCompositionUI = buildItemCompositionUI;
         _builderScript.MenuView = menuView;
 
-        _builderProgress = new BuilderProgress(
+        _builderProgressLoader = new BuilderProgressLoader(
             blueprintRepository,
             blueprintFactory,
             logger);
@@ -94,7 +94,7 @@ public class Context : MonoBehaviour
     [ContextMenu("Load Progress")]
     public void LoadBuilderProgress()
     {
-        _builderProgress.Load(
+        _builderProgressLoader.Load(
             BuilderProgressSample.Data);
     }
 }
