@@ -1,15 +1,15 @@
 using Strawhenge.Builder.Unity.Blueprints;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Progress
 {
-    public class BuilderProgress
+    public class BuilderProgressLoader
     {
         readonly IBlueprintRepository _blueprintRepository;
         readonly IBlueprintFactory _blueprintFactory;
         readonly ILogger _logger;
 
-        public BuilderProgress(
+        public BuilderProgressLoader(
             IBlueprintRepository blueprintRepository,
             IBlueprintFactory blueprintFactory,
             ILogger logger)

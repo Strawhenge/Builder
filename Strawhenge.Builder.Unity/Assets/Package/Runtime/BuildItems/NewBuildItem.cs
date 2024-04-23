@@ -1,19 +1,28 @@
 ﻿using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Progress;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NewBuildItem : IBuildItem
     {
+        readonly IBuilderProgressTracker _progressTracker;
         readonly IDefaultPositionAccessor _initialPosition;
         readonly BuildItemScript _prefab;
+        readonly string _blueprintName;
 
         BuildItemScript _current;
 
-        public NewBuildItem(IDefaultPositionAccessor initialPosition, BuildItemScript prefab)
+        public NewBuildItem(
+            IBuilderProgressTracker progressTracker,
+            IDefaultPositionAccessor initialPosition,
+            BuildItemScript prefab,
+            string blueprintName)
         {
+            _progressTracker = progressTracker;
             _initialPosition = initialPosition;
             _prefab = prefab;
+            _blueprintName = blueprintName;
         }
 
         public IArrangeBuildItem Arrange()
@@ -37,6 +46,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public void PlaceFinal()
         {
             _current.SetPlaced();
+            _progressTracker.Add(_current, _blueprintName);
+
             _current = null;
         }
 

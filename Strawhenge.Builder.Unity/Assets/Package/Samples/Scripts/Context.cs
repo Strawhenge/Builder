@@ -4,6 +4,7 @@ using Strawhenge.Builder.Unity;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
@@ -20,7 +21,8 @@ public class Context : MonoBehaviour
 
     BuilderManager _builderManager;
     ComponentInventory _componentInventory;
-    BuilderProgress _builderProgress;
+    BuilderProgressLoader _builderProgressLoader;
+    BuilderProgressTracker _progressTracker;
 
     void Awake()
     {
@@ -38,7 +40,12 @@ public class Context : MonoBehaviour
             FindObjectOfType<VerticalSnapControls>(includeInactive: true),
             FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
 
-        var blueprintFactory = new BlueprintFactory(buildItemController.LastPlacedPosition, logger);
+        _progressTracker = new BuilderProgressTracker(logger);
+
+        var blueprintFactory = new BlueprintFactory(
+            _progressTracker,
+            buildItemController.LastPlacedPosition,
+            logger);
 
         var buildItemCompositionUI = new BuildItemCompositionUI(logger);
 
@@ -67,7 +74,7 @@ public class Context : MonoBehaviour
         _builderScript.ItemCompositionUI = buildItemCompositionUI;
         _builderScript.MenuView = menuView;
 
-        _builderProgress = new BuilderProgress(
+        _builderProgressLoader = new BuilderProgressLoader(
             blueprintRepository,
             blueprintFactory,
             logger);
@@ -77,6 +84,9 @@ public class Context : MonoBehaviour
     {
         foreach (var components in _inventory)
             _componentInventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
+
+        foreach (var buildItem in Object.FindObjectsOfType<BuildItemScript>())
+            _progressTracker.Add(buildItem, buildItem.gameObject.name);
     }
 
     [ContextMenu("Builder On")]
@@ -94,7 +104,16 @@ public class Context : MonoBehaviour
     [ContextMenu("Load Progress")]
     public void LoadBuilderProgress()
     {
-        _builderProgress.Load(
+        _builderProgressLoader.Load(
             BuilderProgressSample.Data);
+    }
+
+    [ContextMenu("Print Progress")]
+    public void PrintProgress()
+    {
+        var progress = _progressTracker.GetCurrentProgress();
+
+        foreach (var buildItem in progress.BuildItems)
+            print($"{buildItem.Name} [p: {buildItem.Position}] [r: {buildItem.Rotation}]");
     }
 }
