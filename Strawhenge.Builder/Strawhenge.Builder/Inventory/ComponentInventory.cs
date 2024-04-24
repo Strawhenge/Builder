@@ -31,6 +31,13 @@ namespace Strawhenge.Builder
             return counter.CurrentCount;
         }
 
+        public IReadOnlyList<ComponentQuantity> GetComponents()
+        {
+            return _componentCounters
+                .Select(x => x.Component.Quantity(x.CurrentCount))
+                .ToArray();
+        }
+
         public void AddComponent(Component component, int quantity)
         {
             if (quantity < 1)

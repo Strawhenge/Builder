@@ -1,4 +1,6 @@
-﻿namespace Strawhenge.Builder
+﻿using System.Collections.Generic;
+
+namespace Strawhenge.Builder
 {
     public interface IComponentInventory
     {
@@ -6,9 +8,11 @@
 
         void AddComponent(Component component, int quantity);
 
+        int CountTotal();
+
         int Count(Component component);
 
-        int CountTotal();
+        IReadOnlyList<ComponentQuantity> GetComponents();
 
         void RemoveComponent(Component component, int quantity);
 
