@@ -4,9 +4,11 @@ namespace Strawhenge.Builder
 {
     public sealed class Component : IEquatable<Component>
     {
-        public static bool operator ==(Component first, Component second) => first.Equals(second);
+        public static bool operator ==(Component first, Component second) =>
+            (ReferenceEquals(first, null) && ReferenceEquals(second, null)) ||
+            (!ReferenceEquals(second, null) && (first?.Equals(second) ?? false));
 
-        public static bool operator !=(Component first, Component second) => !first.Equals(second);
+        public static bool operator !=(Component first, Component second) => !(first == second);
 
         public Component(string identifier)
         {
