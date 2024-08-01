@@ -73,6 +73,7 @@ public class Context : MonoBehaviour
         _builderScript.ManagerUI = managerUI;
         _builderScript.ItemCompositionUI = buildItemCompositionUI;
         _builderScript.MenuView = menuView;
+        _builderScript.BuilderManager = _builderManager;
 
         _builderProgressLoader = new BuilderProgressLoader(
             blueprintRepository,
