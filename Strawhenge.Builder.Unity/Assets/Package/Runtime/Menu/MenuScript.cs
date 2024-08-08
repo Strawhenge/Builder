@@ -8,6 +8,7 @@ namespace Strawhenge.Builder.Unity
 {
     public class MenuScript : MonoBehaviour
     {
+        [SerializeField] Canvas _canvas;
         [SerializeField] Button _exitButton;
         [SerializeField] Button _backButton;
         [SerializeField] Transform _buttonParent;
@@ -23,7 +24,7 @@ namespace Strawhenge.Builder.Unity
 
             _exitButton.onClick.AddListener(() => SelectExit?.Invoke());
             
-            gameObject.SetActive(false);
+            _canvas.enabled = false;
         }
 
         public Action<string> SelectCategory { private get; set; }
@@ -44,16 +45,13 @@ namespace Strawhenge.Builder.Unity
             foreach (var item in items)
                 AddItem(item);
 
-            // SetActive must be called twice due to a Unity bug
-            gameObject.SetActive(true);
-            gameObject.SetActive(true);
-
+            _canvas.enabled = true;
             _backButton.gameObject.SetActive(enableBack);
         }
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            _canvas.enabled = false;
         }
 
         void AddItem(string itemName) =>

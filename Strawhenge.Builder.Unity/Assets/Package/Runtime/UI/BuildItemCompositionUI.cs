@@ -32,7 +32,7 @@ namespace Strawhenge.Builder.Unity.UI
                 return;
             }
 
-            _script.gameObject.SetActive(false);
+            _script.Hide();
         }
 
         public void Show(string recipeName, IEnumerable<RecipeRequirement> requirements)
@@ -43,17 +43,7 @@ namespace Strawhenge.Builder.Unity.UI
                 return;
             }
 
-            _script.SetTitle(recipeName);
-            _script.SetRecipeSubtitle();
-            _script.ClearComponents();
-
-            foreach (var requirement in requirements)
-            {
-                _script.AddRecipeComponent(requirement.Component.Identifier, requirement.QuantityRequired,
-                    requirement.QuantityInInventory);
-            }
-
-            _script.gameObject.SetActive(true);
+            _script.ShowRecipe(recipeName, requirements);
         }
 
         public void Show(string scrapName, IEnumerable<ScrapAddition> additions)
@@ -64,17 +54,7 @@ namespace Strawhenge.Builder.Unity.UI
                 return;
             }
 
-            _script.SetTitle(scrapName);
-            _script.SetScrapSubtitle();
-            _script.ClearComponents();
-
-            foreach (var addition in additions)
-            {
-                _script.AddScrapComponent(addition.Component.Identifier, addition.AdditionalQuantity,
-                    addition.QuantityInInventory);
-            }
-
-            _script.gameObject.SetActive(true);
+            _script.ShowScrap(scrapName, additions);
         }
     }
 }

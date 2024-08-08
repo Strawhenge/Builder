@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ namespace Strawhenge.Builder.Unity.UI
 {
     public class BuildItemCompositionUIScript : MonoBehaviour
     {
+        [SerializeField] Canvas _canvas;
         [SerializeField] Text _title;
         [SerializeField] Text _subtitle;
         [SerializeField] string _recipeSubtitleText;
@@ -16,13 +18,52 @@ namespace Strawhenge.Builder.Unity.UI
 
         readonly List<GameObject> _currentComponents = new List<GameObject>();
 
-        public void SetTitle(string title) => _title.text = title;
+        public void ShowRecipe(string title, IEnumerable<RecipeRequirement> requirements)
+        {
+            ClearComponents();
+            SetTitle(title);
+            SetRecipeSubtitle();
 
-        public void SetRecipeSubtitle() => _subtitle.text = _recipeSubtitleText;
+            foreach (var requirement in requirements)
+            {
+                AddRecipeComponent(
+                    requirement.Component.Identifier,
+                    requirement.QuantityRequired,
+                    requirement.QuantityInInventory);
+            }
 
-        public void SetScrapSubtitle() => _subtitle.text = _scrapSubtitleText;
+            _canvas.enabled = true;
+        }
 
-        public void ClearComponents()
+        public void ShowScrap(string title, IEnumerable<ScrapAddition> additions)
+        {
+            ClearComponents();
+            SetTitle(title);
+            SetScrapSubtitle();
+
+            foreach (var addition in additions)
+            {
+                AddScrapComponent(
+                    addition.Component.Identifier,
+                    addition.AdditionalQuantity,
+                    addition.QuantityInInventory);
+            }
+
+            _canvas.enabled = true;
+        }
+
+        public void Hide()
+        {
+            _canvas.enabled = false;
+        }
+
+        void SetTitle(string title) => _title.text = title;
+
+        void SetRecipeSubtitle() => _subtitle.text = _recipeSubtitleText;
+
+        void SetScrapSubtitle() => _subtitle.text = _scrapSubtitleText;
+
+        void ClearComponents()
         {
             foreach (var component in _currentComponents.ToArray())
             {
@@ -31,7 +72,7 @@ namespace Strawhenge.Builder.Unity.UI
             }
         }
 
-        public void AddRecipeComponent(string name, int amountRequired, int amountInInventory)
+        void AddRecipeComponent(string name, int amountRequired, int amountInInventory)
         {
             var component = Instantiate(_recipeComponentPrefab, parent: _componentsParent);
             component.Set(name, amountRequired, amountInInventory);
@@ -39,12 +80,17 @@ namespace Strawhenge.Builder.Unity.UI
             _currentComponents.Add(component.gameObject);
         }
 
-        public void AddScrapComponent(string name, int amount, int amountInInventory)
+        void AddScrapComponent(string name, int amount, int amountInInventory)
         {
             var component = Instantiate(_scrapComponentPrefab, parent: _componentsParent);
             component.Set(name, amount, amountInInventory);
 
             _currentComponents.Add(component.gameObject);
+        }
+
+        void Awake()
+        {
+            _canvas.enabled = false;
         }
     }
 }

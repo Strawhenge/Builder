@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79a05245216db7429f38b4af0bc0407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 3850298040838681647}
   _menuButton: {fileID: 8930583790440145121}
   _exitButton: {fileID: 6618207523102171254}
 --- !u!1 &7613729097990251825

@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b379dba5ca0d94fbaceb782495906b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 6578935773696418333}
   _title: {fileID: 6578935773205644644}
   _subtitle: {fileID: 6578935772937188377}
   _recipeSubtitleText: Requirements

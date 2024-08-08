@@ -6,6 +6,7 @@ namespace Strawhenge.Builder.Unity.Manager.UI
 {
     public class BuilderManagerUIScript : MonoBehaviour
     {
+        [SerializeField] Canvas _canvas;
         [SerializeField] Button _menuButton;
         [SerializeField] Button _exitButton;
 
@@ -15,14 +16,12 @@ namespace Strawhenge.Builder.Unity.Manager.UI
 
         public void Show()
         {
-            // SetActive must be called twice due to a Unity bug
-            gameObject.SetActive(true);
-            gameObject.SetActive(true);
+            _canvas.enabled = true;
         }
 
         public void Hide()
         {
-            gameObject.SetActive(false);
+            _canvas.enabled = false;
         }
 
         void Awake()
@@ -30,7 +29,7 @@ namespace Strawhenge.Builder.Unity.Manager.UI
             _menuButton.onClick.AddListener(() => OpenMenu?.Invoke());
             _exitButton.onClick.AddListener(() => Exit?.Invoke());
 
-            gameObject.SetActive(false);
+            _canvas.enabled = false;
         }
     }
 }

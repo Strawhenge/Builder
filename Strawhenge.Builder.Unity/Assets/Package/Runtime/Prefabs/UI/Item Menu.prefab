@@ -808,6 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60b3acf53f30f2f40bad2ff9a9b9e561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 6547399678933943845}
   _exitButton: {fileID: 3111595907435801698}
   _backButton: {fileID: 7835240526826350234}
   _buttonParent: {fileID: 3111595906840061500}
