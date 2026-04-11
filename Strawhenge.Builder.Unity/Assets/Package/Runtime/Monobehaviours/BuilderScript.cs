@@ -87,7 +87,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 _camera,
                 layers);
 
-            var componentInventory = new ComponentInventory(logger);
+            var componentInventory = new ComponentInventory(logger); // TODO Move this to another script and access via field.
 
             var existingBlueprintManager = new ExistingBlueprintManager(
                 componentInventory,
@@ -104,7 +104,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 initialPositionAccessor: null,
                 logger);
 
-            var builderManagerUI = new BuilderManagerUI(logger: null);
+            var builderManagerUI = new BuilderManagerUI(logger);
 
             var menu = new BlueprintScriptableObjectMenu(
                 menu: null,
