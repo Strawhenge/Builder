@@ -1,5 +1,6 @@
 ﻿using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.UI;
+using Strawhenge.Common.Unity;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
+        [SerializeField] LoggerScript _logger;
+
         [SerializeField] UnityEvent _turningOn;
         [SerializeField] UnityEvent _turnedOff;
 
@@ -60,6 +63,10 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         BuilderManager Create()
         {
+            var logger = _logger != null
+                ? _logger.Logger
+                : new UnityLogger(gameObject);
+
             IBuildItemScriptSelector buildItemSelector = null;
 
             var markers = new MarkersToggle(
@@ -77,9 +84,9 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 recipeUI: null);
 
             var blueprintFactory = new BlueprintFactory(
-                null,
-                null,
-                null);
+                builderProgressTracker: null,
+                initialPositionAccessor: null,
+                logger);
 
             var builderManagerUI = new BuilderManagerUI(logger: null);
 
