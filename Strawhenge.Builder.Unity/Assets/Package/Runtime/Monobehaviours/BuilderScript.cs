@@ -1,6 +1,7 @@
 ﻿using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
+using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,12 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
+
+        [SerializeField] SerializedSource<
+            ILayers,
+            SerializedLayers,
+            LayersScriptableObject> _layers;
+
         [SerializeField] LoggerScript _logger;
 
         [SerializeField] UnityEvent _turningOn;
@@ -69,9 +76,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             IBuildItemScriptSelector buildItemSelector = null;
 
+            var layers = _layers.GetValue(); // TODO Handle missing case.
+
             var markers = new MarkersToggle(
                 cameraAccessor: null,
-                layers: null);
+                layers);
 
             var existingBlueprintManager = new ExistingBlueprintManager(
                 componentInventory: null,

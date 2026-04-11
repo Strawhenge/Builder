@@ -15,7 +15,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         const int EnvironmentLayer = 1;
         static readonly int[] MarkerLayers = { 2, 3, 4 };
 
-        static readonly ILayersAccessor LayersAccessor = new LayersFake()
+        static readonly ILayers Layers = new LayersFake()
         {
             MarkerLayers = MarkerLayers
         };
@@ -45,7 +45,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _camera = new GameObject().AddComponent<Camera>();
             _camera.cullingMask = EnvironmentLayer;
 
-            var markers = new MarkersToggle(new CameraAccessor(_camera), LayersAccessor);
+            var markers = new MarkersToggle(new CameraAccessor(_camera), Layers);
 
             Sut = new BuilderManager(
                 _existingBuildItemSelector,

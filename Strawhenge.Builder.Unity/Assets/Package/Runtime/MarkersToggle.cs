@@ -5,9 +5,9 @@ namespace Strawhenge.Builder.Unity
     public class MarkersToggle
     {
         readonly ICameraAccessor _cameraAccessor;
-        readonly ILayersAccessor _layers;
+        readonly ILayers _layers;
 
-        public MarkersToggle(ICameraAccessor cameraAccessor, ILayersAccessor layers)
+        public MarkersToggle(ICameraAccessor cameraAccessor, ILayers layers)
         {
             _cameraAccessor = cameraAccessor;
             _layers = layers;

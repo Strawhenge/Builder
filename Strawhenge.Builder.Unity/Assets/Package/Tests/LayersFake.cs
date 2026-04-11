@@ -1,6 +1,6 @@
 ﻿namespace Strawhenge.Builder.Unity.Tests
 {
-    class LayersFake : ILayersAccessor
+    class LayersFake : ILayers
     {
         public int[] MarkerLayers { get; set; }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Strawhenge.Builder.Unity
 {
-    public interface ILayersAccessor
+    public interface ILayers
     {
         int[] MarkerLayers { get; }
     }

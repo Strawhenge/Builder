@@ -1,7 +1,7 @@
 using Strawhenge.Builder.Unity;
 using UnityEngine;
 
-class Layers : ILayersAccessor
+class Layers : ILayers
 {
     public static Layers Instance { get; } = new Layers();
 
