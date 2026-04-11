@@ -994,6 +994,7 @@ MonoBehaviour:
   _managerUI: {fileID: 60753929}
   _itemCompositionUI: {fileID: 1227849172}
   _menu: {fileID: 621259159}
+  _camera: {fileID: 1332150398}
   _layers:
     _serialized: {fileID: 0}
     _scriptableObject: {fileID: 11400000, guid: 45df18bb263f315408ce9183edb89458, type: 2}

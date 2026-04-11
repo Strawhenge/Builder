@@ -1,6 +1,7 @@
 ﻿using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
+using Strawhenge.Common.Unity.Helpers;
 using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +13,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
+
+        [SerializeField] Camera _camera;
 
         [SerializeField] SerializedSource<
             ILayers,
@@ -70,6 +73,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         BuilderManager Create()
         {
+            ComponentRefHelper.EnsureCamera(ref _camera, nameof(_camera), this);
+
             var logger = _logger != null
                 ? _logger.Logger
                 : new UnityLogger(gameObject);
@@ -79,7 +84,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             var layers = _layers.GetValue(); // TODO Handle missing case.
 
             var markers = new MarkersToggle(
-                cameraAccessor: null,
+                _camera,
                 layers);
 
             var existingBlueprintManager = new ExistingBlueprintManager(
