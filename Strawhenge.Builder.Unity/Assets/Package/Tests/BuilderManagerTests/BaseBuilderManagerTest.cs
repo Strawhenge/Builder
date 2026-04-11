@@ -33,7 +33,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _builderManagerUI = new BuilderManagerUIFake();
             _menu = new BlueprintScriptableObjectMenuFake();
 
-            var logger = new NullLogger();
+            var logger = NullLogger.Instance;
             var inventory = new ComponentInventory(logger);
 
             var existingBlueprintManager =
