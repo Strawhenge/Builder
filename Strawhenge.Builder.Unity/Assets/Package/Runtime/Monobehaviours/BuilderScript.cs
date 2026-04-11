@@ -87,13 +87,15 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 _camera,
                 layers);
 
+            var componentInventory = new ComponentInventory(logger);
+
             var existingBlueprintManager = new ExistingBlueprintManager(
-                componentInventory: null,
+                componentInventory,
                 buildItemController: null,
                 scrapUI: null);
 
             var blueprintManager = new BlueprintManager(
-                componentInventory: null,
+                componentInventory,
                 buildItemController: null,
                 recipeUI: null);
 
