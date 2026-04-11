@@ -13,6 +13,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] UnityEvent _turningOn;
         [SerializeField] UnityEvent _turnedOff;
 
+        BuilderManager _builderManager;
+
         public BuilderManager BuilderManager { private get; set; }
 
         public BuilderManagerUI ManagerUI { private get; set; }
@@ -55,5 +57,45 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         void OnBuilderTuringOn() => _turningOn.Invoke();
 
         void OnBuilderTurningOff() => _turnedOff.Invoke();
+
+        BuilderManager Create()
+        {
+            IBuildItemScriptSelector buildItemSelector = null;
+
+            var markers = new MarkersToggle(
+                cameraAccessor: null,
+                layers: null);
+
+            var existingBlueprintManager = new ExistingBlueprintManager(
+                componentInventory: null,
+                buildItemController: null,
+                scrapUI: null);
+
+            var blueprintManager = new BlueprintManager(
+                componentInventory: null,
+                buildItemController: null,
+                recipeUI: null);
+
+            var blueprintFactory = new BlueprintFactory(
+                null,
+                null,
+                null);
+
+            var builderManagerUI = new BuilderManagerUI(logger: null);
+
+            var menu = new BlueprintScriptableObjectMenu(
+                menu: null,
+                menuItemsFactory: null,
+                blueprints: null);
+
+            return new BuilderManager(
+                buildItemSelector,
+                markers,
+                existingBlueprintManager,
+                blueprintManager,
+                blueprintFactory,
+                builderManagerUI,
+                menu);
+        }
     }
 }
