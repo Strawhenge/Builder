@@ -1,4 +1,5 @@
-﻿using Strawhenge.Builder.Unity.Manager.UI;
+﻿using Strawhenge.Builder.Menu;
+using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Helpers;
@@ -50,9 +51,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             if (!ReferenceEquals(null, _itemCompositionUI))
                 ItemCompositionUI.Setup(_itemCompositionUI);
 
-            if (!ReferenceEquals(null, _menu))
-                MenuView.Setup(_menu);
-
             BuilderManager.TurningOn += OnBuilderTuringOn;
             BuilderManager.TurnedOff += OnBuilderTurningOff;
         }
@@ -61,7 +59,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         {
             ManagerUI.Reset();
             ItemCompositionUI.Reset();
-            MenuView.Reset();
 
             BuilderManager.TurningOn -= OnBuilderTuringOn;
             BuilderManager.TurnedOff -= OnBuilderTurningOff;
@@ -87,7 +84,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 _camera,
                 layers);
 
-            var componentInventory = new ComponentInventory(logger); // TODO Move this to another script and access via field.
+            var componentInventory =
+                new ComponentInventory(logger); // TODO Move this to another script and access via field.
 
             var existingBlueprintManager = new ExistingBlueprintManager(
                 componentInventory,
@@ -106,8 +104,10 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var builderManagerUI = new BuilderManagerUI(logger);
 
+            var builderMenuView = new MenuView(_menu, logger);
+            var builderMenu = new BuilderMenu(builderMenuView);
             var menu = new BlueprintScriptableObjectMenu(
-                menu: null,
+                builderMenu,
                 menuItemsFactory: null,
                 blueprints: null);
 
