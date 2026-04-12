@@ -29,7 +29,7 @@ public class Context : MonoBehaviour
         var logger = new UnityLogger(gameObject);
 
         var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
-        var menuView = new MenuView(logger);
+        var menuView = new MenuView(null);
         var menu = new BuilderMenu(menuView);
 
         _componentInventory = new ComponentInventory(logger);

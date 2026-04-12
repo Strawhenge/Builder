@@ -11,6 +11,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 {
     public class BuilderScript : MonoBehaviour
     {
+        [SerializeField] ComponentInventoryScript _inventory;
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
@@ -80,20 +81,15 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var layers = _layers.GetValue(); // TODO Handle missing case.
 
-            var markers = new MarkersToggle(
-                _camera,
-                layers);
-
-            var componentInventory =
-                new ComponentInventory(logger); // TODO Move this to another script and access via field.
+            var markers = new MarkersToggle(_camera, layers);
 
             var existingBlueprintManager = new ExistingBlueprintManager(
-                componentInventory,
+                _inventory.Inventory,
                 buildItemController: null,
                 scrapUI: null);
 
             var blueprintManager = new BlueprintManager(
-                componentInventory,
+                _inventory.Inventory,
                 buildItemController: null,
                 recipeUI: null);
 
@@ -104,7 +100,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var builderManagerUI = new BuilderManagerUI(logger);
 
-            var builderMenuView = new MenuView(_menu, logger);
+            var builderMenuView = new MenuView(_menu);
             var builderMenu = new BuilderMenu(builderMenuView);
             var menu = new BlueprintScriptableObjectMenu(
                 builderMenu,

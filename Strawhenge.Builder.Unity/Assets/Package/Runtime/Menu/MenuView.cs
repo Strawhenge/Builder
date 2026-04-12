@@ -7,17 +7,15 @@ namespace Strawhenge.Builder.Unity
 {
     public class MenuView : IMenuView
     {
-        readonly ILogger _logger;
-     readonly   MenuScript _script;
+        readonly MenuScript _script;
 
-        public MenuView(MenuScript script, ILogger logger)
+        public MenuView(MenuScript script)
         {
             _script = script;
             _script.SelectCategory = x => SelectCategory?.Invoke(x);
             _script.SelectItem = x => SelectItem?.Invoke(x);
             _script.SelectBack = () => SelectBack?.Invoke();
             _script.SelectExit = () => SelectExit?.Invoke();
-            _logger = logger;
         }
 
         public event Action<string> SelectCategory;
@@ -27,23 +25,11 @@ namespace Strawhenge.Builder.Unity
 
         public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
         {
-            if (_script == null)
-            {
-                _logger.LogError($"{nameof(MenuScript)} is missing.");
-                return;
-            }
-
             _script.Show(categories, items, enableBack);
         }
 
         public void Hide()
         {
-            if (_script == null)
-            {
-                _logger.LogError($"{nameof(MenuScript)} is missing.");
-                return;
-            }
-
             _script.Hide();
         }
     }

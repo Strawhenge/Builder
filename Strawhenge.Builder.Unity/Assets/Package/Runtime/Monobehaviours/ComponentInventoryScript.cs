@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.Data;
+using Strawhenge.Common.Unity;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,31 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class ComponentInventoryScript : MonoBehaviour
     {
         [SerializeField] SerializableComponentQuantity[] _components;
-        [SerializeField] bool _infiniteComponents;
+        [SerializeField] LoggerScript _logger;
 
-        public IComponentInventory Inventory { private get; set; }
+        ComponentInventory _inventory;
+
+        public IComponentInventory Inventory => _inventory ??= Create();
+
+        void Awake()
+        {
+            _inventory ??= Create();
+        }
+
+        ComponentInventory Create()
+        {
+            var logger = _logger != null
+                ? _logger.Logger
+                : new UnityLogger(gameObject);
+
+            var inventory = new ComponentInventory(logger);
+
+            foreach (var component in _components)
+                inventory.AddComponent(
+                    new Component(component.Component.Identifier), component.Quantity);
+
+            return inventory;
+        }
 
         public void Add(ComponentsScript componentsScript) =>
             Add(componentsScript.GetComponents());
@@ -21,30 +44,9 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         }
 
         [ContextMenu("Infinite Components On")]
-        public void InfiniteComponentsOn()
-        {
-            _infiniteComponents = true;
-
-            if (Inventory != null)
-                Inventory.InfiniteComponents = true;
-        }
+        public void InfiniteComponentsOn() => Inventory.InfiniteComponents = true;
 
         [ContextMenu("Infinite Components Off")]
-        public void InfiniteComponentsOff()
-        {
-            _infiniteComponents = false;
-
-            if (Inventory != null)
-                Inventory.InfiniteComponents = false;
-        }
-
-        void Start()
-        {
-            Inventory.InfiniteComponents = _infiniteComponents;
-
-            foreach (var component in _components)
-                Inventory.AddComponent(
-                    new Component(component.Component.Identifier), component.Quantity);
-        }
+        public void InfiniteComponentsOff() => Inventory.InfiniteComponents = false;
     }
 }
