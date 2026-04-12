@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity.UI
 {
-    public class BuildItemCompositionUIScript : MonoBehaviour
+    public class BuildItemCompositionUIScript : MonoBehaviour, IRecipeUI, IScrapUI
     {
         [SerializeField] Canvas _canvas;
         [SerializeField] Text _title;
@@ -17,7 +17,7 @@ namespace Strawhenge.Builder.Unity.UI
 
         readonly List<GameObject> _currentComponents = new List<GameObject>();
 
-        public void ShowRecipe(string title, IEnumerable<RecipeRequirement> requirements)
+        public void Show(string title, IEnumerable<RecipeRequirement> requirements)
         {
             ClearComponents();
             SetTitle(title);
@@ -34,7 +34,7 @@ namespace Strawhenge.Builder.Unity.UI
             _canvas.enabled = true;
         }
 
-        public void ShowScrap(string title, IEnumerable<ScrapAddition> additions)
+        public void Show(string title, IEnumerable<ScrapAddition> additions)
         {
             ClearComponents();
             SetTitle(title);

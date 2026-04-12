@@ -32,8 +32,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         public BuilderManager BuilderManager { private get; set; }
 
-        public BuildItemCompositionUI ItemCompositionUI { private get; set; }
-
         [ContextMenu(nameof(On))]
         public void On() => BuilderManager.On();
 
@@ -42,17 +40,12 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         void Start()
         {
-            if (!ReferenceEquals(null, _itemCompositionUI))
-                ItemCompositionUI.Setup(_itemCompositionUI);
-
             BuilderManager.TurningOn += OnBuilderTuringOn;
             BuilderManager.TurnedOff += OnBuilderTurningOff;
         }
 
         void OnDestroy()
         {
-            ItemCompositionUI.Reset();
-
             BuilderManager.TurningOn -= OnBuilderTuringOn;
             BuilderManager.TurnedOff -= OnBuilderTurningOff;
         }
@@ -78,12 +71,12 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             var existingBlueprintManager = new ExistingBlueprintManager(
                 _inventory.Inventory,
                 buildItemController: null,
-                scrapUI: null);
+                _itemCompositionUI);
 
             var blueprintManager = new BlueprintManager(
                 _inventory.Inventory,
                 buildItemController: null,
-                recipeUI: null);
+                _itemCompositionUI);
 
             var blueprintFactory = new BlueprintFactory(
                 builderProgressTracker: null,

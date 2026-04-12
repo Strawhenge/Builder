@@ -46,11 +46,11 @@ public class Context : MonoBehaviour
             buildItemController.LastPlacedPosition,
             logger);
 
-        var buildItemCompositionUI = new BuildItemCompositionUI(logger);
+       
 
-        var blueprintManager = new BlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
+        var blueprintManager = new BlueprintManager(_componentInventory, buildItemController, null);
         var existingBlueprintManager =
-            new ExistingBlueprintManager(_componentInventory, buildItemController, buildItemCompositionUI);
+            new ExistingBlueprintManager(_componentInventory, buildItemController, null);
 
         var markersToggle = new MarkersToggle(new CameraCache(), Layers.Instance);
 
@@ -69,7 +69,7 @@ public class Context : MonoBehaviour
             blueprintScriptableObjectMenu);
 
        
-        _builderScript.ItemCompositionUI = buildItemCompositionUI;
+      
         
         _builderScript.BuilderManager = _builderManager;
 
