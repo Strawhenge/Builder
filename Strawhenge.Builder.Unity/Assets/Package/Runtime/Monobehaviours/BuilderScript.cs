@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Menu;
+using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
@@ -68,14 +69,20 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var markers = new MarkersToggle(_camera, layers);
 
+            var buildItemController = new BuildItemController(
+                camera: null,
+                buildItemControls: null,
+                verticalSnapControls: null,
+                horizontalSnapControls: null);
+            
             var existingBlueprintManager = new ExistingBlueprintManager(
                 _inventory.Inventory,
-                buildItemController: null,
+                buildItemController,
                 _itemCompositionUI);
 
             var blueprintManager = new BlueprintManager(
                 _inventory.Inventory,
-                buildItemController: null,
+                buildItemController,
                 _itemCompositionUI);
 
             var blueprintFactory = new BlueprintFactory(
