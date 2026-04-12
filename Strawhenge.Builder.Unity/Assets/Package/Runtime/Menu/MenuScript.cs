@@ -1,3 +1,4 @@
+using Strawhenge.Builder.Menu;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class MenuScript : MonoBehaviour
+    public class MenuScript : MonoBehaviour, IMenuView
     {
         [SerializeField] Canvas _canvas;
         [SerializeField] Button _exitButton;
@@ -27,15 +28,12 @@ namespace Strawhenge.Builder.Unity
             _canvas.enabled = false;
         }
 
-        public Action<string> SelectCategory { private get; set; }
+        public event Action<string> SelectCategory;
+        public event Action<string> SelectItem;
+        public event Action SelectBack;
+        public event Action SelectExit;
 
-        public Action<string> SelectItem { private get; set; }
-
-        public Action SelectBack { private get; set; }
-        
-        public Action SelectExit { private get; set; }
-
-        public void Show(IEnumerable<string> categories, IEnumerable<string> items, bool enableBack)
+        public void Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
         {
             RemoveAll();
 

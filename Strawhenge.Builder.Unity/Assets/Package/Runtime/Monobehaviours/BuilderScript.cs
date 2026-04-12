@@ -36,8 +36,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         public BuildItemCompositionUI ItemCompositionUI { private get; set; }
 
-        public MenuView MenuView { private get; set; }
-
         [ContextMenu(nameof(On))]
         public void On() => BuilderManager.On();
 
@@ -100,8 +98,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var builderManagerUI = new BuilderManagerUI(logger);
 
-            var builderMenuView = new MenuView(_menu);
-            var builderMenu = new BuilderMenu(builderMenuView);
+            var builderMenu = new BuilderMenu(_menu);
             var menu = new BlueprintScriptableObjectMenu(
                 builderMenu,
                 menuItemsFactory: null,
