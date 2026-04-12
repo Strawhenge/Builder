@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity.Manager.UI
 {
-    public class BuilderManagerUIScript : MonoBehaviour
+    public class BuilderManagerUIScript : MonoBehaviour, IBuilderManagerUI
     {
         [SerializeField] Canvas _canvas;
         [SerializeField] Button _menuButton;
         [SerializeField] Button _exitButton;
 
-        public Action OpenMenu { private get; set; }
-
-        public Action Exit { private get; set; }
+        public event Action ExitBuilder;
+        
+        public event Action OpenMenu;
 
         public void Show()
         {
@@ -27,7 +27,7 @@ namespace Strawhenge.Builder.Unity.Manager.UI
         void Awake()
         {
             _menuButton.onClick.AddListener(() => OpenMenu?.Invoke());
-            _exitButton.onClick.AddListener(() => Exit?.Invoke());
+            _exitButton.onClick.AddListener(() => ExitBuilder?.Invoke());
 
             _canvas.enabled = false;
         }

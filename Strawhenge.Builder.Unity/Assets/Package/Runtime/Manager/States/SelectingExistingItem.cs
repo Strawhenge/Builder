@@ -29,7 +29,7 @@ namespace Strawhenge.Builder.Unity
 
             public void Begin()
             {
-                _builderManagerUI.Enable();
+                _builderManagerUI.Show();
                 _buildItemScriptSelector.Enable();
 
                 _builderManagerUI.OpenMenu += _onOpenMenu;
@@ -44,7 +44,7 @@ namespace Strawhenge.Builder.Unity
                 _builderManagerUI.ExitBuilder -= _onExitBuilder;
 
                 _buildItemScriptSelector.Disable();
-                _builderManagerUI.Disable();
+                _builderManagerUI.Hide();
             }
         }
     }

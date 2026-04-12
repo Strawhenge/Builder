@@ -9,9 +9,9 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 
         internal bool IsEnabled { get; private set; }
 
-        public void Enable() => IsEnabled = true;
+        public void Show() => IsEnabled = true;
 
-        public void Disable() => IsEnabled = false;
+        public void Hide() => IsEnabled = false;
 
         internal void InvokeExitBuilder() => ExitBuilder?.Invoke();
 

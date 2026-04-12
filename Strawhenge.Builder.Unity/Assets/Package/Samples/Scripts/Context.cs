@@ -10,7 +10,6 @@ using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Camera;
 using UnityEngine;
-using BuilderManagerUI = Strawhenge.Builder.Unity.Manager.UI.BuilderManagerUI;
 using Component = Strawhenge.Builder.Component;
 
 public class Context : MonoBehaviour
@@ -58,8 +57,7 @@ public class Context : MonoBehaviour
         var blueprintRepository = new BlueprintRepository(new Settings());
         var blueprintScriptableObjectMenu =
             new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
-
-        var managerUI = new BuilderManagerUI(logger);
+    
 
         _builderManager = new BuilderManager(
             _buildItemScriptSelector,
@@ -67,10 +65,10 @@ public class Context : MonoBehaviour
             existingBlueprintManager,
             blueprintManager,
             blueprintFactory,
-            managerUI,
+            null,
             blueprintScriptableObjectMenu);
 
-        _builderScript.ManagerUI = managerUI;
+       
         _builderScript.ItemCompositionUI = buildItemCompositionUI;
         
         _builderScript.BuilderManager = _builderManager;

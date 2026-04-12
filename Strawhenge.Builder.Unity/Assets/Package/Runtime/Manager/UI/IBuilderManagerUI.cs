@@ -7,8 +7,8 @@ namespace Strawhenge.Builder.Unity
         event Action ExitBuilder;
         event Action OpenMenu;
 
-        void Enable();
+        void Show();
 
-        void Disable();
+        void Hide();
     }
 }
