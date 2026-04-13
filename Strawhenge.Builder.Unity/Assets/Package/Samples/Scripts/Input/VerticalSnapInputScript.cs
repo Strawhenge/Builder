@@ -2,7 +2,7 @@ using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Sample.Input
 {
     public class VerticalSnapInputScript : MonoBehaviour
     {
@@ -23,32 +23,32 @@ namespace Strawhenge.Builder.Unity
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
             {
                 _verticalSnapControls.Cancel();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.RightShift))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.RightShift))
             {
                 _verticalSnapControls.Release();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Return))
             {
                 _verticalSnapControls.Place();
                 return;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
             {
                 _verticalSnapControls.TurnNext();
                 return;
             }
 
-            var x = Input.GetAxis("Horizontal");
-            var y = Input.GetAxis("Vertical");
+            var x = UnityEngine.Input.GetAxis("Horizontal");
+            var y = UnityEngine.Input.GetAxis("Vertical");
 
             if (Mathf.Abs(x) > 0.1f)
             {

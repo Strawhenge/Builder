@@ -2,7 +2,7 @@ using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Sample.Input
 {
     public class BuildItemInputScript : MonoBehaviour
     {
@@ -26,25 +26,25 @@ namespace Strawhenge.Builder.Unity
             ManageBlueprintMovement();
             ManageClippingToggle();
 
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Return))
                 _buildItemControls.Place();
 
-            if (Input.GetKeyDown(KeyCode.RightShift))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.RightShift))
                 _buildItemControls.Snap();
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape))
                 _buildItemControls.Cancel();
 
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Backspace))
                 _buildItemControls.Scrap();
         }
 
         void ManageBlueprintMovement()
         {
-            var x = Input.GetAxis("Horizontal");
-            var y = Input.GetAxis("Vertical");
+            var x = UnityEngine.Input.GetAxis("Horizontal");
+            var y = UnityEngine.Input.GetAxis("Vertical");
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (UnityEngine.Input.GetKey(KeyCode.LeftShift))
             {
                 _buildItemControls.Move(new Vector3(0, y, 0));
                 _buildItemControls.Turn(x * Time.deltaTime);
@@ -56,7 +56,7 @@ namespace Strawhenge.Builder.Unity
 
         void ManageClippingToggle()
         {
-            if (!Input.GetKeyDown(KeyCode.CapsLock))
+            if (!UnityEngine.Input.GetKeyDown(KeyCode.CapsLock))
                 return;
 
             _buildItemControls.ClippingToggle();

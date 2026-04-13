@@ -1,6 +1,7 @@
+using Strawhenge.Builder.Unity;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Sample
 {
     public class PanningCameraControllerScript : CameraControllerScript, ICameraController
     {

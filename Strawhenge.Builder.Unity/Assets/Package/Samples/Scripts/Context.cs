@@ -6,109 +6,111 @@ using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
-using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Camera;
 using UnityEngine;
 using Component = Strawhenge.Builder.Component;
 
-public class Context : MonoBehaviour
+namespace Sample
 {
-    [SerializeField] SerializableComponentQuantity[] _inventory;
-    [SerializeField] BuilderScript _builderScript;
-    [SerializeField] MouseClickBuildItemSelectorScript _buildItemSelectorScript;
-
-    BuilderManager _builderManager;
-    ComponentInventory _componentInventory;
-    BuilderProgressLoader _builderProgressLoader;
-    BuilderProgressTracker _progressTracker;
-
-    void Awake()
+    public class Context : MonoBehaviour
     {
-        var logger = new UnityLogger(gameObject);
+        [SerializeField] SerializableComponentQuantity[] _inventory;
+        [SerializeField] BuilderScript _builderScript;
+        [SerializeField] MouseClickBuildItemSelectorScript _buildItemSelectorScript;
 
-        var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
+        BuilderManager _builderManager;
+        ComponentInventory _componentInventory;
+        BuilderProgressLoader _builderProgressLoader;
+        BuilderProgressTracker _progressTracker;
 
-        var menu = new BuilderMenu(null);
+        void Awake()
+        {
+            var logger = new UnityLogger(gameObject);
 
-        _componentInventory = new ComponentInventory(logger);
+            var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
 
-        BuildItemController buildItemController = null;
-        // var buildItemController = new BuildItemController(
-        //     FindObjectOfType<PanningCameraControllerScript>(includeInactive: true),
-        //     FindObjectOfType<BuildItemControls>(includeInactive: true),
-        //     FindObjectOfType<VerticalSnapControls>(includeInactive: true),
-        //     FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
+            var menu = new BuilderMenu(null);
 
-        _progressTracker = new BuilderProgressTracker(logger);
+            _componentInventory = new ComponentInventory(logger);
 
-        var blueprintFactory = new BlueprintFactory(
-            _progressTracker,
-            null,
-            logger);
+            BuildItemController buildItemController = null;
+            // var buildItemController = new BuildItemController(
+            //     FindObjectOfType<PanningCameraControllerScript>(includeInactive: true),
+            //     FindObjectOfType<BuildItemControls>(includeInactive: true),
+            //     FindObjectOfType<VerticalSnapControls>(includeInactive: true),
+            //     FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
 
+            _progressTracker = new BuilderProgressTracker(logger);
 
-        var blueprintManager = new BlueprintManager(_componentInventory, buildItemController, null);
-        var existingBlueprintManager =
-            new ExistingBlueprintManager(_componentInventory, buildItemController, null);
-
-        var markersToggle = new MarkersToggle(new CameraCache(), Layers.Instance);
-
-        IBlueprintRepository blueprintRepository = null; //new ResourcesBlueprintRepositoryScript(new Settings());
-        var blueprintScriptableObjectMenu =
-            new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
-
-
-        _builderManager = new BuilderManager(
-            _buildItemSelectorScript,
-            markersToggle,
-            existingBlueprintManager,
-            blueprintManager,
-            blueprintFactory,
-            null,
-            blueprintScriptableObjectMenu);
+            var blueprintFactory = new BlueprintFactory(
+                _progressTracker,
+                null,
+                logger);
 
 
-        _builderProgressLoader = new BuilderProgressLoader(
-            blueprintRepository,
-            blueprintFactory,
-            logger);
-    }
+            var blueprintManager = new BlueprintManager(_componentInventory, buildItemController, null);
+            var existingBlueprintManager =
+                new ExistingBlueprintManager(_componentInventory, buildItemController, null);
 
-    void Start()
-    {
-        foreach (var components in _inventory)
-            _componentInventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
+            var markersToggle = new MarkersToggle(new CameraCache(), null);
 
-        foreach (var buildItem in Object.FindObjectsOfType<BuildItemScript>())
-            _progressTracker.Add(buildItem, buildItem.gameObject.name);
-    }
+            IBlueprintRepository blueprintRepository = null; //new ResourcesBlueprintRepositoryScript(new Settings());
+            var blueprintScriptableObjectMenu =
+                new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
 
-    [ContextMenu("Builder On")]
-    public void BuilderOn()
-    {
-        _builderManager.On();
-    }
 
-    [ContextMenu("Builder Off")]
-    public void BuilderOff()
-    {
-        _builderManager.Off();
-    }
+            _builderManager = new BuilderManager(
+                _buildItemSelectorScript,
+                markersToggle,
+                existingBlueprintManager,
+                blueprintManager,
+                blueprintFactory,
+                null,
+                blueprintScriptableObjectMenu);
 
-    [ContextMenu("Load Progress")]
-    public void LoadBuilderProgress()
-    {
-        _builderProgressLoader.Load(
-            BuilderProgressSample.Data);
-    }
 
-    [ContextMenu("Print Progress")]
-    public void PrintProgress()
-    {
-        var progress = _progressTracker.GetCurrentProgress();
+            _builderProgressLoader = new BuilderProgressLoader(
+                blueprintRepository,
+                blueprintFactory,
+                logger);
+        }
 
-        foreach (var buildItem in progress.BuildItems)
-            print($"{buildItem.Name} [p: {buildItem.Position}] [r: {buildItem.Rotation}]");
+        void Start()
+        {
+            foreach (var components in _inventory)
+                _componentInventory.AddComponent(new Component(components.Component.Identifier), components.Quantity);
+
+            foreach (var buildItem in Object.FindObjectsOfType<BuildItemScript>())
+                _progressTracker.Add(buildItem, buildItem.gameObject.name);
+        }
+
+        [ContextMenu("Builder On")]
+        public void BuilderOn()
+        {
+            _builderManager.On();
+        }
+
+        [ContextMenu("Builder Off")]
+        public void BuilderOff()
+        {
+            _builderManager.Off();
+        }
+
+        [ContextMenu("Load Progress")]
+        public void LoadBuilderProgress()
+        {
+            _builderProgressLoader.Load(
+                BuilderProgressSample.Data);
+        }
+
+        [ContextMenu("Print Progress")]
+        public void PrintProgress()
+        {
+            var progress = _progressTracker.GetCurrentProgress();
+
+            foreach (var buildItem in progress.BuildItems)
+                print($"{buildItem.Name} [p: {buildItem.Position}] [r: {buildItem.Rotation}]");
+        }
     }
 }

@@ -1,7 +1,7 @@
 using Strawhenge.Builder.Unity.Progress;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Sample
 {
     public static class BuilderProgressSample
     {

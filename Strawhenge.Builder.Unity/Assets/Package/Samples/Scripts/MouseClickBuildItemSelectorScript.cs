@@ -3,43 +3,46 @@ using Strawhenge.Builder.Unity.Monobehaviours;
 using System;
 using UnityEngine;
 
-public class MouseClickBuildItemSelectorScript : BaseBuildItemScriptSelectorScript, IBuildItemScriptSelector
+namespace Sample
 {
-    [SerializeField] Camera _camera;
-
-    public override IBuildItemScriptSelector BuildItemScriptSelector => this;
-
-    public event Action<BuildItemScript> Select;
-
-    public void Enable()
+    public class MouseClickBuildItemSelectorScript : BaseBuildItemScriptSelectorScript, IBuildItemScriptSelector
     {
-        enabled = true;
-    }
+        [SerializeField] Camera _camera;
 
-    public void Disable()
-    {
-        enabled = false;
-    }
+        public override IBuildItemScriptSelector BuildItemScriptSelector => this;
 
-    void Awake()
-    {
-        enabled = false;
-    }
+        public event Action<BuildItemScript> Select;
 
-    void Update()
-    {
-        HandleExistingItemClick();
-    }
+        public void Enable()
+        {
+            enabled = true;
+        }
 
-    void HandleExistingItemClick()
-    {
-        if (!Input.GetMouseButtonDown(0) ||
-            !Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
-            return;
+        public void Disable()
+        {
+            enabled = false;
+        }
 
-        var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();
+        void Awake()
+        {
+            enabled = false;
+        }
 
-        if (buildItemScript != null)
-            Select?.Invoke(buildItemScript);
+        void Update()
+        {
+            HandleExistingItemClick();
+        }
+
+        void HandleExistingItemClick()
+        {
+            if (!UnityEngine.Input.GetMouseButtonDown(0) ||
+                !Physics.Raycast(_camera.ScreenPointToRay(UnityEngine.Input.mousePosition), out var hit))
+                return;
+
+            var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();
+
+            if (buildItemScript != null)
+                Select?.Invoke(buildItemScript);
+        }
     }
 }
