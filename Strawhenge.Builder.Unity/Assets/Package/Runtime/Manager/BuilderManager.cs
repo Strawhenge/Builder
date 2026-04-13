@@ -1,6 +1,9 @@
 ﻿using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Common.Logging;
 using System;
 
 namespace Strawhenge.Builder.Unity
@@ -9,6 +12,8 @@ namespace Strawhenge.Builder.Unity
     {
         readonly MarkersToggle _markers;
         readonly IBlueprintFactory _blueprintFactory;
+
+        readonly ProgressManager _progressManager;
 
         readonly SelectingExistingItem _selectingExistingItem;
         readonly ManagingExistingBlueprint _managingExistingBlueprint;
@@ -22,13 +27,21 @@ namespace Strawhenge.Builder.Unity
             MarkersToggle markers,
             ExistingBlueprintManager existingBlueprintManager,
             BlueprintManager blueprintManager,
-            IBlueprintFactory blueprintFactory,
+            IDefaultPositionAccessor defaultPositionAccessor,
             IBuilderManagerUI builderManagerUI,
-            IBlueprintScriptableObjectMenu menu
-        )
+            IBlueprintScriptableObjectMenu menu,
+            IBlueprintRepository  blueprintRepository,
+            ILogger logger)
         {
             _markers = markers;
-            _blueprintFactory = blueprintFactory;
+
+            var progressTracker = new BuilderProgressTracker(logger);
+            _blueprintFactory = new BlueprintFactory(progressTracker, defaultPositionAccessor, logger);
+            _progressManager = new ProgressManager(
+                blueprintRepository,
+                _blueprintFactory,
+                progressTracker,
+                logger);
 
             _selectingExistingItem = new SelectingExistingItem(
                 builderManagerUI,
@@ -52,7 +65,7 @@ namespace Strawhenge.Builder.Unity
         {
             if (IsOn) return;
             IsOn = true;
-            
+
             TurningOn?.Invoke();
             _markers.On();
             SetState(_selectingExistingItem);
@@ -67,6 +80,10 @@ namespace Strawhenge.Builder.Unity
             _markers.Off();
             TurnedOff?.Invoke();
         }
+
+        public void Import(BuilderProgressData data) => _progressManager.Import(data);
+
+        public BuilderProgressData Export() => _progressManager.Export();
 
         void SetState(IState state)
         {

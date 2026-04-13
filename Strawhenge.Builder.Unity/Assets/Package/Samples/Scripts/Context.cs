@@ -65,9 +65,9 @@ namespace Sample
                 markersToggle,
                 existingBlueprintManager,
                 blueprintManager,
-                blueprintFactory,
                 null,
-                blueprintScriptableObjectMenu);
+                null,
+                blueprintScriptableObjectMenu, null, null);
 
 
             _builderProgressLoader = new BuilderProgressLoader(

@@ -86,13 +86,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 buildItemController,
                 _itemCompositionUI);
 
-            var builderProgressTracker = new BuilderProgressTracker(logger); // TODO Needs to be exposed.
-
-            var blueprintFactory = new BlueprintFactory(
-                builderProgressTracker,
-                _defaultPosition.DefaultPositionAccessor,
-                logger);
-
             var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
             var builderMenu = new BuilderMenu(_menu);
             var menu = new BlueprintScriptableObjectMenu(
@@ -105,9 +98,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 markers,
                 existingBlueprintManager,
                 blueprintManager,
-                blueprintFactory,
+                _defaultPosition.DefaultPositionAccessor,
                 _managerUI,
-                menu);
+                menu,
+                _blueprintsRepository,
+                logger);
         }
     }
 }

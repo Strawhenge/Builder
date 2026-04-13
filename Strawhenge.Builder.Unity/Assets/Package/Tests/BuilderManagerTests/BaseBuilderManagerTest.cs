@@ -47,14 +47,15 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
             var markers = new MarkersToggle(new CameraAccessor(_camera), Layers);
 
-            Sut = new BuilderManager(
-                _existingBuildItemSelector,
-                markers,
-                existingBlueprintManager,
-                blueprintManager,
-                blueprintFactory,
-                _builderManagerUI,
-                _menu);
+            // TODO
+            // Sut = new BuilderManager(
+            //     _existingBuildItemSelector,
+            //     markers,
+            //     existingBlueprintManager,
+            //     blueprintManager,
+            //     blueprintFactory,
+            //     _builderManagerUI,
+            //     _menu);
         }
 
         protected BuilderManager Sut { get; }

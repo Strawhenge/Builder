@@ -9,8 +9,7 @@ namespace Strawhenge.Builder.Unity.Progress
     {
         readonly ILogger _logger;
 
-        readonly Dictionary<BuildItemScript, BuildItemData> _dataByScript =
-            new Dictionary<BuildItemScript, BuildItemData>();
+        readonly Dictionary<BuildItemScript, BuildItemData> _dataByScript = new();
 
         public BuilderProgressTracker(ILogger logger)
         {
