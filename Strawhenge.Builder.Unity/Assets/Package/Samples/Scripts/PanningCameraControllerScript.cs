@@ -1,10 +1,12 @@
 using Strawhenge.Builder.Unity;
+using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
 namespace Sample
 {
     public class PanningCameraControllerScript : CameraControllerScript, ICameraController
     {
+        [SerializeField] Camera _camera;
         [SerializeField] float _distance = 5;
 
         Transform _cameraTransform;
@@ -29,7 +31,8 @@ namespace Sample
 
         void Awake()
         {
-            _cameraTransform = FindObjectOfType<Camera>().transform;
+            ComponentRefHelper.EnsureCamera(ref _camera, nameof(_camera), this);
+            _cameraTransform = _camera.transform;
         }
 
         void Update()
