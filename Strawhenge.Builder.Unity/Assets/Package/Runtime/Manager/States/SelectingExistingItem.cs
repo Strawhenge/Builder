@@ -8,14 +8,14 @@ namespace Strawhenge.Builder.Unity
         class SelectingExistingItem : IState
         {
             readonly IBuilderManagerUI _builderManagerUI;
-            readonly IBuildItemScriptSelector _buildItemScriptSelector;
+            readonly IBuildItemSelector _buildItemScriptSelector;
             readonly Action<BuildItemScript> _onSelectedItem;
             readonly Action _onOpenMenu;
             readonly Action _onExitBuilder;
 
             public SelectingExistingItem(
                 IBuilderManagerUI builderManagerUI,
-                IBuildItemScriptSelector buildItemScriptSelector,
+                IBuildItemSelector buildItemScriptSelector,
                 Action<BuildItemScript> onSelectedItem,
                 Action onOpenMenu,
                 Action onExitBuilder)

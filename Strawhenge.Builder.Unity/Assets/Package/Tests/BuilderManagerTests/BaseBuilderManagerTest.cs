@@ -20,7 +20,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             MarkerLayers = MarkerLayers
         };
 
-        readonly BuildItemScriptSelectorFake _existingBuildItemSelector;
+        readonly BuildItemSelectorFake _existingBuildItemSelector;
         readonly BuildItemControllerFake _buildItemController;
         readonly BuilderManagerUIFake _builderManagerUI;
         readonly BlueprintScriptableObjectMenuFake _menu;
@@ -28,7 +28,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected BaseBuilderManagerTest()
         {
-            _existingBuildItemSelector = new BuildItemScriptSelectorFake();
+            _existingBuildItemSelector = new BuildItemSelectorFake();
             _buildItemController = new BuildItemControllerFake();
             _builderManagerUI = new BuilderManagerUIFake();
             _menu = new BlueprintScriptableObjectMenuFake();

@@ -18,7 +18,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] ComponentInventoryScript _inventory;
         [SerializeField] BlueprintsRepositoryScript _blueprintsRepository;
         [SerializeField] ControlsScript _controls;
-        [SerializeField] BaseBuildItemScriptSelectorScript _buildItemScriptSelector;
+        [SerializeField] BaseBuildItemSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
         [SerializeField] BuilderManagerUIScript _managerUI;
@@ -86,21 +86,14 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 buildItemController,
                 _itemCompositionUI);
 
-            var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
-            var builderMenu = new BuilderMenu(_menu);
-            var menu = new BlueprintScriptableObjectMenu(
-                builderMenu,
-                menuItemsFactory,
-                _blueprintsRepository);
-
             return new BuilderManager(
-                _buildItemScriptSelector.BuildItemScriptSelector,
+                _buildItemScriptSelector.BuildItemSelector,
                 markers,
                 existingBlueprintManager,
                 blueprintManager,
                 _defaultPosition.DefaultPositionAccessor,
                 _managerUI,
-                menu,
+                _menu,
                 _blueprintsRepository,
                 logger);
         }

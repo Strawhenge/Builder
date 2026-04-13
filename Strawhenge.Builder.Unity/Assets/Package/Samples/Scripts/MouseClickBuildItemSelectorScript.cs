@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class MouseClickBuildItemSelectorScript : BaseBuildItemScriptSelectorScript, IBuildItemScriptSelector
+    public class MouseClickBuildItemSelectorScript : BaseBuildItemSelectorScript, IBuildItemSelector
     {
         [SerializeField] Camera _camera;
 
-        public override IBuildItemScriptSelector BuildItemScriptSelector => this;
+        public override IBuildItemSelector BuildItemSelector => this;
 
         public event Action<BuildItemScript> Select;
 

@@ -1,4 +1,5 @@
-﻿using Strawhenge.Builder.Unity.Blueprints;
+﻿using Strawhenge.Builder.Menu;
+using Strawhenge.Builder.Unity.Blueprints;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.Progress;
@@ -23,14 +24,14 @@ namespace Strawhenge.Builder.Unity
         IState _currentState;
 
         public BuilderManager(
-            IBuildItemScriptSelector buildItemSelector,
+            IBuildItemSelector buildItemSelector,
             MarkersToggle markers,
             ExistingBlueprintManager existingBlueprintManager,
             BlueprintManager blueprintManager,
             IDefaultPositionAccessor defaultPositionAccessor,
             IBuilderManagerUI builderManagerUI,
-            IBlueprintScriptableObjectMenu menu,
-            IBlueprintRepository  blueprintRepository,
+            IMenuView menu,
+            IBlueprintRepository blueprintRepository,
             ILogger logger)
         {
             _markers = markers;
@@ -49,11 +50,16 @@ namespace Strawhenge.Builder.Unity
                 OnExistingBuildItemSelected,
                 OnMenuOpen,
                 OnExitBuilder);
+           
+            var builderMenu = new BuilderMenu(menu);
+            var scriptableObjectsMenu = new BlueprintScriptableObjectMenu(
+                builderMenu,
+                blueprintRepository);
 
             _managingExistingBlueprint =
                 new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
             _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
-            _menuOpen = new MenuOpen(menu, OnBlueprintSelectedFromMenu, OnMenuClosed);
+            _menuOpen = new MenuOpen(scriptableObjectsMenu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
         public event Action TurningOn;

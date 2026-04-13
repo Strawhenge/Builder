@@ -3,7 +3,7 @@ using System;
 
 namespace Strawhenge.Builder.Unity
 {
-    public interface IBuildItemScriptSelector
+    public interface IBuildItemSelector
     {
         event Action<BuildItemScript> Select;
 

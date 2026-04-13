@@ -11,12 +11,12 @@ namespace Strawhenge.Builder.Unity
 
         public BlueprintScriptableObjectMenu(
             BuilderMenu menu,
-            MenuItemsFactory<BlueprintScriptableObject> menuItemsFactory,
             IBlueprintRepository blueprints)
         {
             _menu = menu;
             _menu.Exited += () => Exit?.Invoke();
 
+            var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
             _mainCategory = new Lazy<MainCategory>(() =>
                 menuItemsFactory.CreateMainCategory(blueprints.GetAll(), blueprint => Select?.Invoke(blueprint)));
         }

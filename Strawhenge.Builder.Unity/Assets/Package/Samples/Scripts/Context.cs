@@ -56,8 +56,8 @@ namespace Sample
             var markersToggle = new MarkersToggle(new CameraCache(), null);
 
             IBlueprintRepository blueprintRepository = null; //new ResourcesBlueprintRepositoryScript(new Settings());
-            var blueprintScriptableObjectMenu =
-                new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
+            BlueprintScriptableObjectMenu blueprintScriptableObjectMenu = null;
+               // new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
 
 
             _builderManager = new BuilderManager(
@@ -67,7 +67,7 @@ namespace Sample
                 blueprintManager,
                 null,
                 null,
-                blueprintScriptableObjectMenu, null, null);
+                null, null, null);
 
 
             _builderProgressLoader = new BuilderProgressLoader(
