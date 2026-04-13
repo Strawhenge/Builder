@@ -9,7 +9,7 @@ using System;
 
 namespace Strawhenge.Builder.Unity
 {
-    public partial class BuilderManager : IBuilderManagerEvents
+    public partial class BuilderManager
     {
         readonly MarkersToggle _markers;
         readonly IBlueprintFactory _blueprintFactory;
@@ -50,7 +50,7 @@ namespace Strawhenge.Builder.Unity
                 OnExistingBuildItemSelected,
                 OnMenuOpen,
                 OnExitBuilder);
-           
+
             var builderMenu = new BuilderMenu(menu);
             var scriptableObjectsMenu = new BlueprintScriptableObjectMenu(
                 builderMenu,
