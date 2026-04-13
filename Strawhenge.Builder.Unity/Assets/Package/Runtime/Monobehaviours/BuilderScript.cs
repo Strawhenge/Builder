@@ -15,6 +15,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class BuilderScript : MonoBehaviour
     {
         [SerializeField] ComponentInventoryScript _inventory;
+        [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
@@ -67,7 +68,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             var markers = new MarkersToggle(_camera, layers);
 
             var buildItemController = new BuildItemController(
-                camera: null,
+                camera: _cameraController.CameraController,
                 buildItemControls: null,
                 verticalSnapControls: null,
                 horizontalSnapControls: null);

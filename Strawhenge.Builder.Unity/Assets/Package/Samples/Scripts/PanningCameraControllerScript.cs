@@ -2,12 +2,14 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class CameraControllerScript : MonoBehaviour, ICameraController
+    public class PanningCameraControllerScript : CameraControllerScript, ICameraController
     {
         [SerializeField] float _distance;
 
         Transform _cameraTransform;
         Transform _anchor;
+
+        public override ICameraController CameraController => this;
 
         public void FocusOnBuildItem(Transform anchor)
         {

@@ -34,7 +34,7 @@ public class Context : MonoBehaviour
         _componentInventory = new ComponentInventory(logger);
 
         var buildItemController = new BuildItemController(
-            FindObjectOfType<CameraControllerScript>(includeInactive: true),
+            FindObjectOfType<PanningCameraControllerScript>(includeInactive: true),
             FindObjectOfType<BuildItemControls>(includeInactive: true),
             FindObjectOfType<VerticalSnapControls>(includeInactive: true),
             FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
