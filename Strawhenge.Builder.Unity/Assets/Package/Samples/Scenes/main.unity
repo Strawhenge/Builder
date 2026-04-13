@@ -993,6 +993,8 @@ GameObject:
   - component: {fileID: 1692729547}
   - component: {fileID: 1692729549}
   - component: {fileID: 1692729550}
+  - component: {fileID: 1692729551}
+  - component: {fileID: 1692729552}
   m_Layer: 0
   m_Name: Builder
   m_TagString: Untagged
@@ -1012,12 +1014,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9842460b159c7654dba700d87be5357c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 0}
+  _inventory: {fileID: 1692729551}
   _blueprintsRepository: {fileID: 1692729550}
   _controls: {fileID: 1692729549}
   _buildItemScriptSelector: {fileID: 7374499}
   _cameraController: {fileID: 7374500}
-  _defaultPosition: {fileID: 0}
+  _defaultPosition: {fileID: 1692729552}
   _managerUI: {fileID: 60753929}
   _itemCompositionUI: {fileID: 1227849172}
   _menu: {fileID: 621259159}
@@ -1088,6 +1090,43 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 77f65c1590c79b8498b2c1bd9a6ba58e, type: 2}
   - {fileID: 11400000, guid: 78bbeab55d440c84990f4fac8e86d457, type: 2}
   - {fileID: 11400000, guid: 47a76c1c99224724f851303de0442894, type: 2}
+--- !u!114 &1692729551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692729546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e73f5a6efba0994b8f65a0524f90645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _components:
+  - _component: {fileID: 11400000, guid: 0a598968df74a0c42bbea47d116b26a0, type: 2}
+    _quantity: 5
+  - _component: {fileID: 11400000, guid: aa3affef97bf59b49ad527bdedf9c357, type: 2}
+    _quantity: 2
+  - _component: {fileID: 11400000, guid: a9263ccd7a669ff4d86abe3f95777140, type: 2}
+    _quantity: 10
+  _logger: {fileID: 0}
+--- !u!114 &1692729552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692729546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab3f2fe18164886bbbebe94b52ec3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1332150398}
+  _distance: 5
+  _collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &1914762604
 GameObject:
   m_ObjectHideFlags: 0
