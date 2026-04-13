@@ -3,9 +3,11 @@ using Strawhenge.Builder.Unity.Monobehaviours;
 using System;
 using UnityEngine;
 
-public class BuildItemScriptSelector : MonoBehaviour, IBuildItemScriptSelector
+public class MouseClickBuildItemSelectorScript : BaseBuildItemScriptSelectorScript, IBuildItemScriptSelector
 {
     [SerializeField] Camera _camera;
+
+    public override IBuildItemScriptSelector BuildItemScriptSelector => this;
 
     public event Action<BuildItemScript> Select;
 
@@ -31,7 +33,8 @@ public class BuildItemScriptSelector : MonoBehaviour, IBuildItemScriptSelector
 
     void HandleExistingItemClick()
     {
-        if (!Input.GetMouseButtonDown(0) || !Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
+        if (!Input.GetMouseButtonDown(0) ||
+            !Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out var hit))
             return;
 
         var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();

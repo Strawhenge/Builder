@@ -132,11 +132,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7374498}
+  - component: {fileID: 7374499}
   - component: {fileID: 7374497}
   - component: {fileID: 7374496}
   - component: {fileID: 7374495}
   m_Layer: 0
-  m_Name: Input
+  m_Name: Sample Context
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,6 +197,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7374499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7374494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f872c8d0c0725a448b30c34cd5b597f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _camera: {fileID: 1332150398}
 --- !u!1001 &60753928
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,6 +821,7 @@ GameObject:
   - component: {fileID: 1332150399}
   - component: {fileID: 1332150398}
   - component: {fileID: 1332150397}
+  - component: {fileID: 1332150400}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -880,6 +895,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 38.841, y: 0, z: 0}
+--- !u!114 &1332150400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332150396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f4f26e9c6f4ef78fcd560935f7916d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distance: 5
 --- !u!4 &1502106952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3998035774886422083, guid: 52e68f3c8b05b504590f5e0d8e30ec72, type: 3}
@@ -986,8 +1014,8 @@ MonoBehaviour:
   _inventory: {fileID: 0}
   _blueprintsRepository: {fileID: 0}
   _controls: {fileID: 1692729549}
-  _buildItemScriptSelector: {fileID: 0}
-  _cameraController: {fileID: 0}
+  _buildItemScriptSelector: {fileID: 7374499}
+  _cameraController: {fileID: 1332150400}
   _defaultPosition: {fileID: 0}
   _managerUI: {fileID: 60753929}
   _itemCompositionUI: {fileID: 1227849172}
@@ -1109,7 +1137,7 @@ MonoBehaviour:
   - _component: {fileID: 11400000, guid: 0a598968df74a0c42bbea47d116b26a0, type: 2}
     _quantity: 10
   _builderScript: {fileID: 1745532033}
-  _buildItemScriptSelector: {fileID: 1745532034}
+  _buildItemSelectorScript: {fileID: 0}
 --- !u!114 &1745532031
 MonoBehaviour:
   m_ObjectHideFlags: 0

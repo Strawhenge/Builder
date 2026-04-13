@@ -16,7 +16,7 @@ public class Context : MonoBehaviour
 {
     [SerializeField] SerializableComponentQuantity[] _inventory;
     [SerializeField] BuilderScript _builderScript;
-    [SerializeField] BuildItemScriptSelector _buildItemScriptSelector;
+    [SerializeField] MouseClickBuildItemSelectorScript _buildItemSelectorScript;
 
     BuilderManager _builderManager;
     ComponentInventory _componentInventory;
@@ -60,7 +60,7 @@ public class Context : MonoBehaviour
 
 
         _builderManager = new BuilderManager(
-            _buildItemScriptSelector,
+            _buildItemSelectorScript,
             markersToggle,
             existingBlueprintManager,
             blueprintManager,

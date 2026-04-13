@@ -4,7 +4,7 @@ namespace Strawhenge.Builder.Unity
 {
     public class PanningCameraControllerScript : CameraControllerScript, ICameraController
     {
-        [SerializeField] float _distance;
+        [SerializeField] float _distance = 5;
 
         Transform _cameraTransform;
         Transform _anchor;
