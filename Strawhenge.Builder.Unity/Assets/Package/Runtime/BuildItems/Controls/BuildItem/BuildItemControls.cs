@@ -19,10 +19,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
         public event Action Enabled;
         public event Action Disabled;
 
-        internal event Action Place;
-        internal event Action Snap;
-        internal event Action Cancel;
-        internal event Action Scrap;
+        internal event Action Placed;
+        internal event Action Snapped;
+        internal event Action Cancelled;
+        internal event Action Scrapped;
 
         public bool IsEnabled => _buildItem != null;
 
@@ -30,13 +30,13 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Turn(float amount) => _buildItem.Turn(amount * _turnSpeed);
 
-        public void InvokePlace() => Place?.Invoke();
+        public void Place() => Placed?.Invoke();
 
-        public void InvokeCancel() => Cancel?.Invoke();
+        public void Cancel() => Cancelled?.Invoke();
 
-        public void InvokeScrap() => Scrap?.Invoke();
+        public void Scrap() => Scrapped?.Invoke();
 
-        public void InvokeSnap() => Snap?.Invoke();
+        public void Snap() => Snapped?.Invoke();
 
         public void ClippingToggle()
         {

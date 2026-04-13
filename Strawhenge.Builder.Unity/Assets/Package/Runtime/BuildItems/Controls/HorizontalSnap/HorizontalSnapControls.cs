@@ -20,19 +20,19 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public event Action Disabled;
 
-        internal event Action Place;
+        internal event Action Placed;
 
-        internal event Action Release;
+        internal event Action Released;
 
-        internal event Action Cancel;
+        internal event Action Cancelled;
 
         public bool IsEnabled => _snap != null;
 
-        public void InvokePlace() => Place?.Invoke();
+        public void Place() => Placed?.Invoke();
 
-        public void InvokeCancel() => Cancel?.Invoke();
+        public void Cancel() => Cancelled?.Invoke();
 
-        public void InvokeRelease() => Release?.Invoke();
+        public void Release() => Released?.Invoke();
 
         public void Flip() => _snap.Flip();
 
