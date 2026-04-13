@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Package.Runtime.Blueprints
 {
-    public class ScriptableObjectsBlueprintsRepositoryScript : MonoBehaviour, IBlueprintRepository
+    public class ScriptableObjectsBlueprintsRepositoryScript : BlueprintsRepositoryScript, IBlueprintRepository
     {
         [SerializeField] BlueprintScriptableObject[] _blueprints;
 
@@ -18,8 +18,10 @@ namespace Strawhenge.Builder.Unity.Package.Runtime.Blueprints
                 _blueprintsByName[blueprint.name] = blueprint;
         }
 
-        public Maybe<BlueprintScriptableObject> FindByName(string name) => _blueprintsByName.MaybeGetValue(name);
+        public override Maybe<BlueprintScriptableObject> FindByName(string name) =>
+            _blueprintsByName.MaybeGetValue(name);
 
-        public IReadOnlyList<BlueprintScriptableObject> GetAll() => _blueprintsByName.Values.ToArray();
+        public override IReadOnlyList<BlueprintScriptableObject> GetAll() =>
+            _blueprintsByName.Values.ToArray();
     }
 }
