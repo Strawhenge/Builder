@@ -1,6 +1,7 @@
 ﻿using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Manager.UI;
+using Strawhenge.Builder.Unity.Package.Runtime.Blueprints;
 using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
@@ -15,6 +16,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class BuilderScript : MonoBehaviour
     {
         [SerializeField] ComponentInventoryScript _inventory;
+        [SerializeField] BlueprintsRepositoryScript _blueprintsRepository;
         [SerializeField] ControlsScript _controls;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] BuilderManagerUIScript _managerUI;
@@ -96,7 +98,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
             var menu = new BlueprintScriptableObjectMenu(
                 builderMenu,
                 menuItemsFactory,
-                blueprints: null);
+                _blueprintsRepository);
 
             return new BuilderManager(
                 buildItemSelector,
