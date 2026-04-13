@@ -44,7 +44,7 @@ public class Context : MonoBehaviour
 
         var blueprintFactory = new BlueprintFactory(
             _progressTracker,
-            buildItemController.LastPlacedPosition,
+            null,
             logger);
 
 
@@ -54,7 +54,7 @@ public class Context : MonoBehaviour
 
         var markersToggle = new MarkersToggle(new CameraCache(), Layers.Instance);
 
-        IBlueprintRepository blueprintRepository = null;//new ResourcesBlueprintRepositoryScript(new Settings());
+        IBlueprintRepository blueprintRepository = null; //new ResourcesBlueprintRepositoryScript(new Settings());
         var blueprintScriptableObjectMenu =
             new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
 

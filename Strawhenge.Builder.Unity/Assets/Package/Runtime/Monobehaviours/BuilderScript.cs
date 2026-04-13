@@ -20,6 +20,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] ControlsScript _controls;
         [SerializeField] BaseBuildItemScriptSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
+        [SerializeField] DefaultPositionAccessorScript _defaultPosition;
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
@@ -89,7 +90,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var blueprintFactory = new BlueprintFactory(
                 builderProgressTracker,
-                initialPositionAccessor: null,
+                _defaultPosition.DefaultPositionAccessor,
                 logger);
 
             var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();

@@ -36,8 +36,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _callbacks = new Callbacks();
         }
 
-        public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
-
         public void On(
             IBuildItem buildItem,
             Func<bool> canPlaceFinalItem = null,
@@ -106,8 +104,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _camera.Unfocus();
             _controls.ControlsOff();
             _currentBuildItem.PlaceFinal();
-
-            LastPlacedPosition.Update(_arrangeCurrentBuildItem.Position, _arrangeCurrentBuildItem.Rotation);
 
             ResetCurrentBuildItem();
 
