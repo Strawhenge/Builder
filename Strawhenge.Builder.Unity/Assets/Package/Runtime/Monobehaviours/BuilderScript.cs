@@ -18,6 +18,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] ComponentInventoryScript _inventory;
         [SerializeField] BlueprintsRepositoryScript _blueprintsRepository;
         [SerializeField] ControlsScript _controls;
+        [SerializeField] BaseBuildItemScriptSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
@@ -64,8 +65,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 ? _logger.Logger
                 : new UnityLogger(gameObject);
 
-            IBuildItemScriptSelector buildItemSelector = null;
-
             var layers = _layers.GetValue(); // TODO Handle missing case.
 
             var markers = new MarkersToggle(_camera, layers);
@@ -101,7 +100,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 _blueprintsRepository);
 
             return new BuilderManager(
-                buildItemSelector,
+                _buildItemScriptSelector.BuildItemScriptSelector,
                 markers,
                 existingBlueprintManager,
                 blueprintManager,
