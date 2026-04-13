@@ -1,6 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.Data;
 using Strawhenge.Common.Unity;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Monobehaviours
@@ -32,15 +31,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                     new Component(component.Component.Identifier), component.Quantity);
 
             return inventory;
-        }
-
-        public void Add(ComponentsScript componentsScript) =>
-            Add(componentsScript.GetComponents());
-
-        public void Add(IEnumerable<ComponentQuantity> components)
-        {
-            foreach (var component in components)
-                Inventory.AddComponent(component.Component, component.Quantity);
         }
 
         [ContextMenu("Infinite Components On")]
