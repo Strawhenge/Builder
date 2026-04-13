@@ -86,7 +86,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 buildItemController,
                 _itemCompositionUI);
 
-            var builderProgressTracker = new BuilderProgressTracker(logger);
+            var builderProgressTracker = new BuilderProgressTracker(logger); // TODO Needs to be exposed.
 
             var blueprintFactory = new BlueprintFactory(
                 builderProgressTracker,
