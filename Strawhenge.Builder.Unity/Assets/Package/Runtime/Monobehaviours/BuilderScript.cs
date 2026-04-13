@@ -1,6 +1,7 @@
 ﻿using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Manager.UI;
+using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Helpers;
@@ -31,7 +32,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         BuilderManager _builderManager;
 
-        public BuilderManager BuilderManager { private get; set; }
+        public BuilderManager BuilderManager => _builderManager ??= Create();
 
         [ContextMenu(nameof(On))]
         public void On() => BuilderManager.On();
@@ -39,16 +40,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [ContextMenu(nameof(Off))]
         public void Off() => BuilderManager.Off();
 
-        void Start()
+        void Awake()
         {
-            BuilderManager.TurningOn += OnBuilderTuringOn;
-            BuilderManager.TurnedOff += OnBuilderTurningOff;
-        }
-
-        void OnDestroy()
-        {
-            BuilderManager.TurningOn -= OnBuilderTuringOn;
-            BuilderManager.TurnedOff -= OnBuilderTurningOff;
+            _builderManager ??= Create();
+            _builderManager.TurningOn += OnBuilderTuringOn;
+            _builderManager.TurnedOff += OnBuilderTurningOff;
         }
 
         void OnBuilderTuringOn() => _turningOn.Invoke();
@@ -74,7 +70,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 buildItemControls: null,
                 verticalSnapControls: null,
                 horizontalSnapControls: null);
-            
+
             var existingBlueprintManager = new ExistingBlueprintManager(
                 _inventory.Inventory,
                 buildItemController,
@@ -85,8 +81,10 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 buildItemController,
                 _itemCompositionUI);
 
+            var builderProgressTracker = new BuilderProgressTracker(logger);
+
             var blueprintFactory = new BlueprintFactory(
-                builderProgressTracker: null,
+                builderProgressTracker,
                 initialPositionAccessor: null,
                 logger);
 

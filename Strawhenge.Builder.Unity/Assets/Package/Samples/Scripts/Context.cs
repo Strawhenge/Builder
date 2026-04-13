@@ -71,7 +71,7 @@ public class Context : MonoBehaviour
        
       
         
-        _builderScript.BuilderManager = _builderManager;
+        
 
         _builderProgressLoader = new BuilderProgressLoader(
             blueprintRepository,
