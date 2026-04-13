@@ -6,13 +6,13 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class ExistingBuildItem : IExistingBuildItem
     {
-        readonly IBuilderProgressTracker _progressTracker;
+        readonly BuilderProgressTracker _progressTracker;
         readonly BuildItemScript _script;
 
         Vector3 _initialPosition;
         Quaternion _initialRotation;
 
-        public ExistingBuildItem(IBuilderProgressTracker progressTracker, BuildItemScript script)
+        public ExistingBuildItem(BuilderProgressTracker progressTracker, BuildItemScript script)
         {
             _progressTracker = progressTracker;
             _script = script;

@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NewBuildItem : IBuildItem
     {
-        readonly IBuilderProgressTracker _progressTracker;
+        readonly BuilderProgressTracker _progressTracker;
         readonly IDefaultPositionAccessor _initialPosition;
         readonly BuildItemScript _prefab;
         readonly string _blueprintName;
@@ -14,7 +14,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         BuildItemScript _current;
 
         public NewBuildItem(
-            IBuilderProgressTracker progressTracker,
+            BuilderProgressTracker progressTracker,
             IDefaultPositionAccessor initialPosition,
             BuildItemScript prefab,
             string blueprintName)

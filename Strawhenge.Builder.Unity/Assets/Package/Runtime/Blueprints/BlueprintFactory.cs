@@ -10,12 +10,12 @@ namespace Strawhenge.Builder.Unity
 {
     public class BlueprintFactory : IBlueprintFactory
     {
-        readonly IBuilderProgressTracker _builderProgressTracker;
+        readonly BuilderProgressTracker _builderProgressTracker;
         readonly IDefaultPositionAccessor _initialPositionAccessor;
         readonly ILogger _logger;
 
         public BlueprintFactory(
-            IBuilderProgressTracker builderProgressTracker,
+            BuilderProgressTracker builderProgressTracker,
             IDefaultPositionAccessor initialPositionAccessor,
             ILogger logger)
         {
