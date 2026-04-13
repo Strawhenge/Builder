@@ -2,6 +2,7 @@
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.Progress;
+using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Helpers;
@@ -88,10 +89,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 initialPositionAccessor: null,
                 logger);
 
+            var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
             var builderMenu = new BuilderMenu(_menu);
             var menu = new BlueprintScriptableObjectMenu(
                 builderMenu,
-                menuItemsFactory: null,
+                menuItemsFactory,
                 blueprints: null);
 
             return new BuilderManager(
