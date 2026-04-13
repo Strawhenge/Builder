@@ -15,6 +15,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class BuilderScript : MonoBehaviour
     {
         [SerializeField] ComponentInventoryScript _inventory;
+        [SerializeField] ControlsScript _controls;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] BuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
@@ -69,9 +70,9 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var buildItemController = new BuildItemController(
                 camera: _cameraController.CameraController,
-                buildItemControls: null,
-                verticalSnapControls: null,
-                horizontalSnapControls: null);
+                _controls.BuildItemControls,
+                _controls.VerticalSnapControls,
+                _controls.HorizontalSnapControls);
 
             var existingBlueprintManager = new ExistingBlueprintManager(
                 _inventory.Inventory,

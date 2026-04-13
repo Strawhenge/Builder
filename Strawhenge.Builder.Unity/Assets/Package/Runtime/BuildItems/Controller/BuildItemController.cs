@@ -17,9 +17,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public BuildItemController(
             ICameraController camera,
-            IBuildItemControls buildItemControls,
-            IVerticalSnapControls verticalSnapControls,
-            IHorizontalSnapControls horizontalSnapControls)
+            BuildItemControls buildItemControls,
+            VerticalSnapControls verticalSnapControls,
+            HorizontalSnapControls horizontalSnapControls)
         {
             _camera = camera;
             _controls = new ControlsToggle(

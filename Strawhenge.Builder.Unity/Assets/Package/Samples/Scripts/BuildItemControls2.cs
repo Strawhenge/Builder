@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BuildItemControls : MonoBehaviour, IBuildItemControls
+    public class BuildItemControls2 : MonoBehaviour//, IBuildItemControls
     {
         [SerializeField] float _moveSpeed;
         [SerializeField] float _turnSpeed;

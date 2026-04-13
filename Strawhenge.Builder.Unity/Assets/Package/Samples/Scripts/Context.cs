@@ -28,16 +28,17 @@ public class Context : MonoBehaviour
         var logger = new UnityLogger(gameObject);
 
         var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
-       
+
         var menu = new BuilderMenu(null);
 
         _componentInventory = new ComponentInventory(logger);
 
-        var buildItemController = new BuildItemController(
-            FindObjectOfType<PanningCameraControllerScript>(includeInactive: true),
-            FindObjectOfType<BuildItemControls>(includeInactive: true),
-            FindObjectOfType<VerticalSnapControls>(includeInactive: true),
-            FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
+        BuildItemController buildItemController = null;
+        // var buildItemController = new BuildItemController(
+        //     FindObjectOfType<PanningCameraControllerScript>(includeInactive: true),
+        //     FindObjectOfType<BuildItemControls>(includeInactive: true),
+        //     FindObjectOfType<VerticalSnapControls>(includeInactive: true),
+        //     FindObjectOfType<HorizontalSnapControls>(includeInactive: true));
 
         _progressTracker = new BuilderProgressTracker(logger);
 
@@ -46,7 +47,6 @@ public class Context : MonoBehaviour
             buildItemController.LastPlacedPosition,
             logger);
 
-       
 
         var blueprintManager = new BlueprintManager(_componentInventory, buildItemController, null);
         var existingBlueprintManager =
@@ -57,7 +57,7 @@ public class Context : MonoBehaviour
         var blueprintRepository = new BlueprintRepository(new Settings());
         var blueprintScriptableObjectMenu =
             new BlueprintScriptableObjectMenu(menu, menuItemsFactory, blueprintRepository);
-    
+
 
         _builderManager = new BuilderManager(
             _buildItemScriptSelector,
@@ -68,10 +68,6 @@ public class Context : MonoBehaviour
             null,
             blueprintScriptableObjectMenu);
 
-       
-      
-        
-        
 
         _builderProgressLoader = new BuilderProgressLoader(
             blueprintRepository,
