@@ -70,8 +70,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var layers = _layers.GetValue(); // TODO Handle missing case.
 
-            if (!_controlsSettings.TryGetValue(out var controlsSettings))
-                controlsSettings = DefaultControlsSettings.Instance;
+            var controlsSettings = _controlsSettings
+                .GetValueOrDefault(() => DefaultControlsSettings.Instance);
 
             return new BuilderManager(
                 _inventory.Inventory,
