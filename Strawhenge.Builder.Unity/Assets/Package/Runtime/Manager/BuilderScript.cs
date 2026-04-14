@@ -1,9 +1,6 @@
-﻿using Strawhenge.Builder.Menu;
-using Strawhenge.Builder.Unity.BuildItems;
+﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.Package.Runtime.Blueprints;
-using Strawhenge.Builder.Unity.Progress;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Helpers;
@@ -26,6 +23,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] MenuScript _menu;
 
         [SerializeField] Camera _camera;
+
+        [SerializeField] SerializedSource<
+            IControlsSettings,
+            SerializedControlsSettings,
+            ControlsSettingsScriptableObject> _controlsSettings;
 
         [SerializeField] SerializedSource<
             ILayers,
