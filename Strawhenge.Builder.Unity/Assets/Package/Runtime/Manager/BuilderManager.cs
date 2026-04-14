@@ -44,7 +44,7 @@ namespace Strawhenge.Builder.Unity
 
             var progressTracker = new BuilderProgressTracker(logger);
             _blueprintFactory = new BlueprintFactory(progressTracker, defaultPositionAccessor, logger);
-            _progressManager = new ProgressManager(
+            Progress = new ProgressManager(
                 blueprintRepository,
                 _blueprintFactory,
                 progressTracker,
@@ -93,6 +93,8 @@ namespace Strawhenge.Builder.Unity
 
         public Controls Controls { get; }
 
+        public ProgressManager Progress { get; }
+
         public void On()
         {
             if (IsOn) return;
@@ -112,10 +114,6 @@ namespace Strawhenge.Builder.Unity
             _markers.Off();
             TurnedOff?.Invoke();
         }
-
-        public void Import(BuilderProgressData data) => _progressManager.Import(data);
-
-        public BuilderProgressData Export() => _progressManager.Export();
 
         void SetState(IState state)
         {
