@@ -32,16 +32,16 @@ namespace Strawhenge.Builder.Unity
                 _builderManagerUI.Show();
                 _buildItemScriptSelector.Enable();
 
-                _builderManagerUI.OpenMenu += _onOpenMenu;
-                _builderManagerUI.ExitBuilder += _onExitBuilder;
+                _builderManagerUI.OpenedMenu += _onOpenMenu;
+                _builderManagerUI.ExitedBuilder += _onExitBuilder;
                 _buildItemScriptSelector.Select += _onSelectedItem;
             }
 
             public void End()
             {
                 _buildItemScriptSelector.Select -= _onSelectedItem;
-                _builderManagerUI.OpenMenu -= _onOpenMenu;
-                _builderManagerUI.ExitBuilder -= _onExitBuilder;
+                _builderManagerUI.OpenedMenu -= _onOpenMenu;
+                _builderManagerUI.ExitedBuilder -= _onExitBuilder;
 
                 _buildItemScriptSelector.Disable();
                 _builderManagerUI.Hide();

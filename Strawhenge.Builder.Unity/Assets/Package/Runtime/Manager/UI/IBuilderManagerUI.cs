@@ -4,8 +4,8 @@ namespace Strawhenge.Builder.Unity
 {
     public interface IBuilderManagerUI
     {
-        event Action ExitBuilder;
-        event Action OpenMenu;
+        event Action ExitedBuilder;
+        event Action OpenedMenu;
 
         void Show();
 

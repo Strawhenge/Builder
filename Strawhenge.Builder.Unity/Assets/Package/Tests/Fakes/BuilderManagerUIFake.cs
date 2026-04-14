@@ -4,8 +4,8 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     class BuilderManagerUIFake : IBuilderManagerUI
     {
-        public event Action ExitBuilder;
-        public event Action OpenMenu;
+        public event Action ExitedBuilder;
+        public event Action OpenedMenu;
 
         internal bool IsEnabled { get; private set; }
 
@@ -13,8 +13,8 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 
         public void Hide() => IsEnabled = false;
 
-        internal void InvokeExitBuilder() => ExitBuilder?.Invoke();
+        internal void InvokeExitBuilder() => ExitedBuilder?.Invoke();
 
-        internal void InvokeOpenMenu() => OpenMenu?.Invoke();
+        internal void InvokeOpenMenu() => OpenedMenu?.Invoke();
     }
 }

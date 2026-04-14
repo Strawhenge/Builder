@@ -18,7 +18,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] BaseBuildItemSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
-        [SerializeField] BuilderManagerUIScript _managerUI;
+        [SerializeField] StandardBuilderManagerUIScript _managerUI;
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
         [SerializeField] MenuScript _menu;
 
