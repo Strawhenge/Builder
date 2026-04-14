@@ -4,9 +4,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class ControlsScript : MonoBehaviour
     {
-        [SerializeField] BuildItemControlsSettings _buildItemSettings;
-        [SerializeField] VerticalSnapControlsSettings _verticalSnapSettings;
-        [SerializeField] HorizontalSnapControlsSettings _horizontalSnapSettings;
+        [SerializeField] SerializedBuildItemControlsSettings _buildItemSettings;
+        [SerializeField] SerializedVerticalSnapControlsSettings _verticalSnapSettings;
+        [SerializeField] SerializedHorizontalSnapControlsSettings _horizontalSnapSettings;
 
         BuildItemControls _buildItemControls;
         VerticalSnapControls _verticalSnapControls;

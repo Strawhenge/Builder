@@ -10,7 +10,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         VerticalSnap _snap;
 
-        public VerticalSnapControls(VerticalSnapControlsSettings settings)
+        public VerticalSnapControls(IVerticalSnapControlsSettings settings)
         {
             _turnSpeed = settings.TurnSpeed;
             _slideSpeed = settings.SlideSpeed;

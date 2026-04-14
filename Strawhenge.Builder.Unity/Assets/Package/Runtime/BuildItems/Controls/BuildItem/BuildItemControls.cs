@@ -10,7 +10,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         IArrangeBuildItem _buildItem;
 
-        public BuildItemControls(BuildItemControlsSettings settings)
+        public BuildItemControls(IBuildItemControlsSettings settings)
         {
             _moveSpeed = settings.MoveSpeed;
             _turnSpeed = settings.TurnSpeed;
