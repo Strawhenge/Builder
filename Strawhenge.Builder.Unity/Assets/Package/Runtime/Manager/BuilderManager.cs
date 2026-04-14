@@ -4,8 +4,10 @@ using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
-using Strawhenge.Common.Logging;
+using Strawhenge.Builder.Unity.UI;
 using System;
+using UnityEngine;
+using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity
 {
@@ -24,17 +26,21 @@ namespace Strawhenge.Builder.Unity
         IState _currentState;
 
         public BuilderManager(
+            IComponentInventory componentInventory,
             IBuildItemSelector buildItemSelector,
-            MarkersToggle markers,
-            ExistingBlueprintManager existingBlueprintManager,
-            BlueprintManager blueprintManager,
+            Camera camera,
+            ICameraController cameraController,
             IDefaultPositionAccessor defaultPositionAccessor,
             IBuilderManagerUI builderManagerUI,
             IMenuView menu,
+            IRecipeUI recipeUI,
+            IScrapUI scrapUI,
             IBlueprintRepository blueprintRepository,
+            IControlsSettings controlsSettings,
+            ILayers layers,
             ILogger logger)
         {
-            _markers = markers;
+            _markers = new MarkersToggle(camera, layers);
 
             var progressTracker = new BuilderProgressTracker(logger);
             _blueprintFactory = new BlueprintFactory(progressTracker, defaultPositionAccessor, logger);
@@ -56,6 +62,24 @@ namespace Strawhenge.Builder.Unity
                 builderMenu,
                 blueprintRepository);
 
+            Controls = new Controls(controlsSettings);
+
+            var buildItemController = new BuildItemController(
+                cameraController,
+                Controls.BuildItem,
+                Controls.VerticalSnap,
+                Controls.HorizontalSnap);
+
+            var existingBlueprintManager = new ExistingBlueprintManager(
+                componentInventory,
+                buildItemController,
+                scrapUI);
+
+            var blueprintManager = new BlueprintManager(
+                componentInventory,
+                buildItemController,
+                recipeUI);
+
             _managingExistingBlueprint =
                 new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
             _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
@@ -66,6 +90,8 @@ namespace Strawhenge.Builder.Unity
         public event Action TurnedOff;
 
         public bool IsOn { get; private set; }
+
+        public Controls Controls { get; }
 
         public void On()
         {

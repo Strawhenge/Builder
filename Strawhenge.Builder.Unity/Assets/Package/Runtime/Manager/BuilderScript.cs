@@ -14,7 +14,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     {
         [SerializeField] ComponentInventoryScript _inventory;
         [SerializeField] BlueprintsRepositoryScript _blueprintsRepository;
-        [SerializeField] ControlsScript _controls;
+
         [SerializeField] BaseBuildItemSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
@@ -70,33 +70,22 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
             var layers = _layers.GetValue(); // TODO Handle missing case.
 
-            var markers = new MarkersToggle(_camera, layers);
-
-            var buildItemController = new BuildItemController(
-                camera: _cameraController.CameraController,
-                _controls.BuildItemControls,
-                _controls.VerticalSnapControls,
-                _controls.HorizontalSnapControls);
-
-            var existingBlueprintManager = new ExistingBlueprintManager(
-                _inventory.Inventory,
-                buildItemController,
-                _itemCompositionUI);
-
-            var blueprintManager = new BlueprintManager(
-                _inventory.Inventory,
-                buildItemController,
-                _itemCompositionUI);
+            if (!_controlsSettings.TryGetValue(out var controlsSettings))
+                controlsSettings = DefaultControlsSettings.Instance;
 
             return new BuilderManager(
+                _inventory.Inventory,
                 _buildItemScriptSelector.BuildItemSelector,
-                markers,
-                existingBlueprintManager,
-                blueprintManager,
+                _camera,
+                _cameraController.CameraController,
                 _defaultPosition.DefaultPositionAccessor,
                 _managerUI,
                 _menu,
+                _itemCompositionUI,
+                _itemCompositionUI,
                 _blueprintsRepository,
+                controlsSettings,
+                layers,
                 logger);
         }
     }

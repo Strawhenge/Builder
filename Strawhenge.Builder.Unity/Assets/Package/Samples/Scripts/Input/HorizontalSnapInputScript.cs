@@ -1,4 +1,5 @@
 using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
@@ -6,16 +7,16 @@ namespace Sample.Input
 {
     public class HorizontalSnapInputScript : MonoBehaviour
     {
-        [SerializeField] ControlsScript _controls;
+        [SerializeField] BuilderScript _builder;
 
         HorizontalSnapControls _horizontalSnapControls;
 
         void Awake()
         {
             ComponentRefHelper
-                .EnsureSceneComponent(ref _controls, nameof(ControlsScript), this);
+                .EnsureSceneComponent(ref _builder, nameof(_builder), this);
 
-            _horizontalSnapControls = _controls.HorizontalSnapControls;
+            _horizontalSnapControls = _builder.BuilderManager.Controls.HorizontalSnap;
             enabled = _horizontalSnapControls.IsEnabled;
             _horizontalSnapControls.Enabled += () => enabled = true;
             _horizontalSnapControls.Disabled += () => enabled = false;

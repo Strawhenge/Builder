@@ -1,4 +1,5 @@
 using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
@@ -6,16 +7,16 @@ namespace Sample.Input
 {
     public class BuildItemInputScript : MonoBehaviour
     {
-        [SerializeField] ControlsScript _controls;
+        [SerializeField] BuilderScript _builder;
 
         BuildItemControls _buildItemControls;
 
         void Awake()
         {
             ComponentRefHelper
-                .EnsureSceneComponent(ref _controls, nameof(_controls), this);
+                .EnsureSceneComponent(ref _builder, nameof(_builder), this);
 
-            _buildItemControls = _controls.BuildItemControls;
+            _buildItemControls = _builder.BuilderManager.Controls.BuildItem;
             enabled = _buildItemControls.IsEnabled;
             _buildItemControls.Enabled += () => enabled = true;
             _buildItemControls.Disabled += () => enabled = false;
