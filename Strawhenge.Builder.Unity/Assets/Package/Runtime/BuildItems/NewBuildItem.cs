@@ -56,7 +56,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
             if (_current == null)
                 return;
 
+            // TODO
+# if UNITY_EDITOR
+            Object.DestroyImmediate(_current.gameObject);
+#else
             Object.Destroy(_current.gameObject);
+#endif
             _current = null;
         }
     }

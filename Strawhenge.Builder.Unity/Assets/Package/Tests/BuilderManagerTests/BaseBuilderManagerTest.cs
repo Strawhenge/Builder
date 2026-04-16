@@ -80,8 +80,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected void InvokeExistingItemSelected() => _existingBuildItemSelector.InvokeSelect(SetUpBuildItemScript());
 
-        protected bool IsBuildItemControllerEnabled() => throw new NotImplementedException();
-        //_buildItemController.IsOn;
+        protected bool IsBuildItemControllerEnabled() => Sut.Controls.BuildItem.IsEnabled;
 
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
