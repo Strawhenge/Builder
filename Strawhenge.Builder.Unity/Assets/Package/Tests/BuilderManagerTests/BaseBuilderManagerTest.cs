@@ -28,7 +28,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         readonly MenuViewFake _menuView;
 
         // TODO Allow individual tests to setup repo.
-        readonly BlueprintFake _chair = new("Chair", SetUpBuildItemScript()); 
+        readonly BlueprintFake _chair = new("Chair", SetUpBuildItemScript());
         readonly BlueprintRepositoryFake _blueprintRepository;
 
         protected BaseBuilderManagerTest()
@@ -84,11 +84,9 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
-        protected void InvokePlaceSelectedItem() => throw new NotImplementedException();
-        //_buildItemController.InvokePlaceItem();
+        protected void InvokePlaceSelectedItem() => Sut.Controls.BuildItem.Place();
 
-        protected void InvokeCancelSelectedItem() => throw new NotImplementedException();
-        //_buildItemController.InvokeCancel();
+        protected void InvokeCancelSelectedItem() => Sut.Controls.BuildItem.Cancel();
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
