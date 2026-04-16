@@ -27,7 +27,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         readonly Camera _camera;
         readonly MenuViewFake _menuView;
 
-        readonly BlueprintFake _chair = new("Chair", SetUpBuildItemScript());
+        // TODO Allow individual tests to setup repo.
+        readonly BlueprintFake _chair = new("Chair", SetUpBuildItemScript()); 
         readonly BlueprintRepositoryFake _blueprintRepository;
 
         protected BaseBuilderManagerTest()
