@@ -36,7 +36,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _existingBuildItemSelector = new BuildItemSelectorFake();
             _builderManagerUI = new BuilderManagerUIFake();
 
-            var logger = NullLogger.Instance;
+            var logger = NullLogger.Instance; // TODO Forward logs to test output.
             var inventory = new ComponentInventory(logger);
 
             _camera = new GameObject().AddComponent<Camera>();
