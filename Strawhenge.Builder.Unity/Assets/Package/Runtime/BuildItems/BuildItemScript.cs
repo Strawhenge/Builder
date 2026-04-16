@@ -1,7 +1,7 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using Strawhenge.Builder.Unity.Data;
-using Strawhenge.Common.Unity.Events;
+using Strawhenge.Common;
 using System.Linq;
 using UnityEngine;
 
@@ -10,48 +10,64 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     public class BuildItemScript : MonoBehaviour
     {
         [SerializeField] SerializableComponentQuantity[] _scrapComponents;
-        [SerializeField] EventContainer[] _onArrangeEvents;
-        [SerializeField] EventContainer[] _onPlaceEvents;
         [SerializeField] Collider[] _arrangeColliders;
 
+        ArrangeBuildItem _arrange;
+        ScrapValue _scrapValue;
         SnapSlotToggle _snapSlotToggle;
+        BaseSnapScript<VerticalSnap>[] _verticalSnapPoints;
+        BaseSnapScript<HorizontalSnap>[] _horizontalSnapPoints;
+        BaseSlotScript[] _slotPoints;
 
-        public IArrangeBuildItem Arrange { get; private set; }
+        public IArrangeBuildItem Arrange => _arrange ??= CreateArrangeBuildItem();
 
-        public ScrapValue ScrapValue { get; private set; } = ScrapValue.None;
+        public ScrapValue ScrapValue => _scrapValue ??= CreateScrapValue();
 
         public void SetArranging()
         {
+            _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Snaps();
-
-            foreach (var @event in _onArrangeEvents)
-                @event.Invoke(gameObject);
         }
 
         public void SetPlaced()
         {
+            _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Slots();
-
-            foreach (var @event in _onPlaceEvents)
-                @event.Invoke(gameObject);
         }
 
         void Awake()
         {
-            var verticalSnapPoints = GetComponentsInChildren<BaseSnapScript<VerticalSnap>>(includeInactive: true);
-            var horizontalSnapPoints = GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>(includeInactive: true);
-            var slotPoints = GetComponentsInChildren<BaseSlotScript>(includeInactive: true);
+            _arrange ??= CreateArrangeBuildItem();
+            _scrapValue ??= CreateScrapValue();
+            _snapSlotToggle ??= CreateSnapSlotToggle();
+        }
 
-            _snapSlotToggle = new SnapSlotToggle(verticalSnapPoints, horizontalSnapPoints, slotPoints);
+        ArrangeBuildItem CreateArrangeBuildItem()
+        {
+            _verticalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<VerticalSnap>>(includeInactive: true);
+            _horizontalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>(includeInactive: true);
 
-            Arrange = new ArrangeBuildItem(
+            return new ArrangeBuildItem(
                 transform,
-                _arrangeColliders,
-                getAvailableVerticalSnaps: () => verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
-                getAvailableHorizontalSnaps: () => horizontalSnapPoints.SelectMany(x => x.GetAvailableSnaps()));
+                _arrangeColliders.ExcludeNull().ToArray(),
+                getAvailableVerticalSnaps: () => _verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
+                getAvailableHorizontalSnaps: () => _horizontalSnapPoints.SelectMany(x => x.GetAvailableSnaps()));
+        }
 
-            ScrapValue = new ScrapValue(_scrapComponents.Select(
-                x => new ComponentQuantity(new Component(x.Component.Identifier), x.Quantity)));
+        SnapSlotToggle CreateSnapSlotToggle()
+        {
+            _verticalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<VerticalSnap>>(includeInactive: true);
+            _horizontalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>(includeInactive: true);
+            _slotPoints ??= GetComponentsInChildren<BaseSlotScript>(includeInactive: true);
+
+            return new SnapSlotToggle(_verticalSnapPoints, _horizontalSnapPoints, _slotPoints);
+        }
+
+        ScrapValue CreateScrapValue()
+        {
+            return new ScrapValue(_scrapComponents.ExcludeNull().Select(x =>
+                new ComponentQuantity(
+                    new Component(x.Component.Identifier), x.Quantity)));
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
     public class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
-        readonly IEnumerable<Collider> _colliders;
+        readonly IReadOnlyList<Collider> _colliders;
         readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
         readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
 
@@ -23,7 +23,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public ArrangeBuildItem(
             Transform transform,
-            IEnumerable<Collider> colliders,
+            IReadOnlyList<Collider> colliders,
             Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps,
             Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
         {
