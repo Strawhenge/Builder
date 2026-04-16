@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.Tests.Fakes;
@@ -45,17 +46,20 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _camera = new GameObject().AddComponent<Camera>();
             _camera.cullingMask = EnvironmentLayer;
 
-            var markers = new MarkersToggle(new CameraAccessor(_camera), Layers);
-
-            // TODO
-            // Sut = new BuilderManager(
-            //     _existingBuildItemSelector,
-            //     markers,
-            //     existingBlueprintManager,
-            //     blueprintManager,
-            //     blueprintFactory,
-            //     _builderManagerUI,
-            //     _menu);
+            Sut = new BuilderManager(
+                inventory,
+                _existingBuildItemSelector,
+                _camera,
+                new CameraControllerFake(),
+                new DefaultPositionAccessorFake(),
+                null,
+                null,
+                new NullRecipeUI(),
+                new NullScrapUI(),
+                null,
+                DefaultControlsSettings.Instance,
+                Layers,
+                logger);
         }
 
         protected BuilderManager Sut { get; }
@@ -93,17 +97,5 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected bool IsMenuOpen() => _menu.IsOpen;
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
-
-        class CameraAccessor : ICameraAccessor
-        {
-            readonly Camera _camera;
-
-            public CameraAccessor(Camera camera)
-            {
-                _camera = camera;
-            }
-
-            public Camera GetCamera() => _camera;
-        }
     }
 }
