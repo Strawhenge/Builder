@@ -128,7 +128,7 @@ namespace Strawhenge.Builder.Unity
             SetState(_managingExistingBlueprint);
         }
 
-        void OnBlueprintSelectedFromMenu(BlueprintScriptableObject scriptableObject)
+        void OnBlueprintSelectedFromMenu(IBlueprint scriptableObject)
         {
             _managingNewBlueprint.Blueprint = _blueprintFactory.Create(scriptableObject);
             SetState(_managingNewBlueprint);

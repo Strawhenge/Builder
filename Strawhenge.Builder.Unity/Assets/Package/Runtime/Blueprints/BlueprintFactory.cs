@@ -32,19 +32,19 @@ namespace Strawhenge.Builder.Unity
             return new ExistingBlueprint(buildItemScript.name, buildItem, scrapValue);
         }
 
-        public Blueprint Create(BlueprintScriptableObject scriptableObject)
+        public Blueprint Create(IBlueprint scriptableObject)
         {
             var buildItem = CreateBuildItem(scriptableObject);
             var recipe = CreateRecipe(scriptableObject);
 
-            return new Blueprint(scriptableObject.name, buildItem, recipe);
+            return new Blueprint(scriptableObject.Name, buildItem, recipe);
         }
 
-        IBuildItem CreateBuildItem(BlueprintScriptableObject scriptableObject)
+        IBuildItem CreateBuildItem(IBlueprint scriptableObject)
         {
             if (scriptableObject.BuildItem == null)
             {
-                _logger.LogError($"Missing build item on '{scriptableObject.name}'.");
+                _logger.LogError($"Missing build item on '{scriptableObject.Name}'.");
                 return new NullBuildItem();
             }
 
@@ -52,10 +52,10 @@ namespace Strawhenge.Builder.Unity
                 _builderProgressTracker,
                 _initialPositionAccessor,
                 scriptableObject.BuildItem,
-                scriptableObject.name);
+                scriptableObject.Name);
         }
 
-        static Recipe CreateRecipe(BlueprintScriptableObject scriptableObject)
+        static Recipe CreateRecipe(IBlueprint scriptableObject)
         {
             var recipeComponents = scriptableObject.Recipe
                 .Select(x => new ComponentQuantity(

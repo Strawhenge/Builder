@@ -6,8 +6,8 @@ namespace Strawhenge.Builder.Unity
 {
     public interface IBlueprintRepository
     {
-        Maybe<BlueprintScriptableObject> FindByName(string name);
+        Maybe<IBlueprint> FindByName(string name);
 
-        IReadOnlyList<BlueprintScriptableObject> GetAll();
+        IReadOnlyList<IBlueprint> GetAll();
     }
 }

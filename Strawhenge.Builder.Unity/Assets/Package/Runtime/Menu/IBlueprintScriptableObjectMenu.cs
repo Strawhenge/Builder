@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Unity
 {
     public interface IBlueprintScriptableObjectMenu
     {
-        event Action<BlueprintScriptableObject> Select;
+        event Action<IBlueprint> Select;
         event Action Exit;
 
         void Open();

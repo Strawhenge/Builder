@@ -8,12 +8,12 @@ namespace Strawhenge.Builder.Unity
         class MenuOpen : IState
         {
             readonly IBlueprintScriptableObjectMenu _menu;
-            readonly Action<BlueprintScriptableObject> _onBlueprintSelected;
+            readonly Action<IBlueprint> _onBlueprintSelected;
             readonly Action _onMenuClosed;
 
             public MenuOpen(
                 IBlueprintScriptableObjectMenu menu,
-                Action<BlueprintScriptableObject> onBlueprintSelected,
+                Action<IBlueprint> onBlueprintSelected,
                 Action onMenuClosed)
             {
                 _menu = menu;

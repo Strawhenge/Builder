@@ -7,8 +7,8 @@ namespace Strawhenge.Builder.Unity.Package.Runtime.Blueprints
 {
     public abstract class BlueprintsRepositoryScript : MonoBehaviour, IBlueprintRepository
     {
-        public abstract Maybe<BlueprintScriptableObject> FindByName(string name);
+        public abstract Maybe<IBlueprint> FindByName(string name);
 
-        public abstract IReadOnlyList<BlueprintScriptableObject> GetAll();
+        public abstract IReadOnlyList<IBlueprint> GetAll();
     }
 }

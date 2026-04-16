@@ -18,10 +18,12 @@ namespace Strawhenge.Builder.Unity.Package.Runtime.Blueprints
                 _blueprintsByName[blueprint.name] = blueprint;
         }
 
-        public override Maybe<BlueprintScriptableObject> FindByName(string name) =>
-            _blueprintsByName.MaybeGetValue(name);
+        public override Maybe<IBlueprint> FindByName(string name) =>
+            _blueprintsByName
+                .MaybeGetValue(name)
+                .Map<IBlueprint>(blueprint => blueprint);
 
-        public override IReadOnlyList<BlueprintScriptableObject> GetAll() =>
+        public override IReadOnlyList<IBlueprint> GetAll() =>
             _blueprintsByName.Values.ToArray();
     }
 }

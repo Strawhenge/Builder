@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     class BlueprintScriptableObjectMenuFake : IBlueprintScriptableObjectMenu
     {
-        public event Action<BlueprintScriptableObject> Select;
+        public event Action<IBlueprint> Select;
         public event Action Exit;
 
         internal bool IsOpen { get; private set; }

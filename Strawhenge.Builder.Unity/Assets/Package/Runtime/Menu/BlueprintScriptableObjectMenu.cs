@@ -16,12 +16,13 @@ namespace Strawhenge.Builder.Unity
             _menu = menu;
             _menu.Exited += () => Exit?.Invoke();
 
-            var menuItemsFactory = new MenuItemsFactory<BlueprintScriptableObject>();
-            _mainCategory = new Lazy<MainCategory>(() =>
-                menuItemsFactory.CreateMainCategory(blueprints.GetAll(), blueprint => Select?.Invoke(blueprint)));
+            var menuItemsFactory = new MenuItemsFactory<IBlueprint>();
+            _mainCategory = new Lazy<MainCategory>(
+                () => menuItemsFactory.CreateMainCategory(blueprints.GetAll(), 
+                    blueprint => Select?.Invoke(blueprint)));
         }
 
-        public event Action<BlueprintScriptableObject> Select;
+        public event Action<IBlueprint> Select;
         public event Action Exit;
 
         public void Open() => _menu.Show(_mainCategory.Value);

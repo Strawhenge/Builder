@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Unity.Blueprints
 {
     public interface IBlueprintFactory
     {
-        Blueprint Create(BlueprintScriptableObject scriptableObject);
+        Blueprint Create(IBlueprint scriptableObject);
 
         ExistingBlueprint Create(BuildItemScript script);
     }

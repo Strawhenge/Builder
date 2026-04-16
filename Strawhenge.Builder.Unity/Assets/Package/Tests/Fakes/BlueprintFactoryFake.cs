@@ -8,7 +8,7 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     class BlueprintFactoryFake : IBlueprintFactory
     {
-        public Blueprint Create(BlueprintScriptableObject scriptableObject)
+        public Blueprint Create(IBlueprint scriptableObject)
         {
             return new Blueprint(
                 "test blueprint",

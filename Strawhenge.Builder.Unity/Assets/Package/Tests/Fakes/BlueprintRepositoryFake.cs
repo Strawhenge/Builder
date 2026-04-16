@@ -7,12 +7,12 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     public class BlueprintRepositoryFake : IBlueprintRepository
     {
-        public Maybe<BlueprintScriptableObject> FindByName(string name)
+        public Maybe<IBlueprint> FindByName(string name)
         {
-            return Maybe.None<BlueprintScriptableObject>();
+            return Maybe.None<IBlueprint>();
         }
 
-        public IReadOnlyList<BlueprintScriptableObject> GetAll()
+        public IReadOnlyList<IBlueprint> GetAll()
         {
             return Array.Empty<BlueprintScriptableObject>();
         }
