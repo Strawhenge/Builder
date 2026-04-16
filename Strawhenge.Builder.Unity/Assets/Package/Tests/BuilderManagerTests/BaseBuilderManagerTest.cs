@@ -5,7 +5,7 @@ using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.Tests.Fakes;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Logging;
-using Strawhenge.Common.Unity.Camera;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -22,41 +22,34 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         };
 
         readonly BuildItemSelectorFake _existingBuildItemSelector;
-        readonly BuildItemControllerFake _buildItemController;
         readonly BuilderManagerUIFake _builderManagerUI;
-        readonly BlueprintScriptableObjectMenuFake _menu;
+
         readonly Camera _camera;
+        readonly MenuViewFake _menuView;
 
         protected BaseBuilderManagerTest()
         {
             _existingBuildItemSelector = new BuildItemSelectorFake();
-            _buildItemController = new BuildItemControllerFake();
             _builderManagerUI = new BuilderManagerUIFake();
-            _menu = new BlueprintScriptableObjectMenuFake();
 
             var logger = NullLogger.Instance;
             var inventory = new ComponentInventory(logger);
 
-            var existingBlueprintManager =
-                new ExistingBlueprintManager(inventory, _buildItemController, new NullScrapUI());
-
-            var blueprintManager = new BlueprintManager(inventory, _buildItemController, new NullRecipeUI());
-            var blueprintFactory = new BlueprintFactoryFake();
-
             _camera = new GameObject().AddComponent<Camera>();
             _camera.cullingMask = EnvironmentLayer;
 
+            _menuView = new MenuViewFake();
             Sut = new BuilderManager(
                 inventory,
                 _existingBuildItemSelector,
                 _camera,
                 new CameraControllerFake(),
                 new DefaultPositionAccessorFake(),
-                null,
-                null,
+                _builderManagerUI,
+                _menuView,
                 new NullRecipeUI(),
                 new NullScrapUI(),
-                null,
+                new BlueprintRepositoryFake(),
                 DefaultControlsSettings.Instance,
                 Layers,
                 logger);
@@ -79,22 +72,27 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected void InvokeExistingItemSelected() => _existingBuildItemSelector.InvokeSelect(SetUpBuildItemScript());
 
-        protected bool IsBuildItemControllerEnabled() => _buildItemController.IsOn;
+        protected bool IsBuildItemControllerEnabled() => throw new NotImplementedException();
+        //_buildItemController.IsOn;
 
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
-        protected void InvokePlaceSelectedItem() => _buildItemController.InvokePlaceItem();
+        protected void InvokePlaceSelectedItem() => throw new NotImplementedException();
+        //_buildItemController.InvokePlaceItem();
 
-        protected void InvokeCancelSelectedItem() => _buildItemController.InvokeCancel();
+        protected void InvokeCancelSelectedItem() => throw new NotImplementedException();
+        //_buildItemController.InvokeCancel();
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
-        protected void InvokeCloseMenu() => _menu.InvokeExit();
+        protected void InvokeCloseMenu() => throw new NotImplementedException();
+        //_menu.InvokeExit();
 
         protected void InvokeSelectFromMenu() =>
-            _menu.InvokeSelect(ScriptableObject.CreateInstance<BlueprintScriptableObject>());
+            throw new NotImplementedException();
+        //_menu.InvokeSelect(ScriptableObject.CreateInstance<BlueprintScriptableObject>());
 
-        protected bool IsMenuOpen() => _menu.IsOpen;
+        protected bool IsMenuOpen() => _menuView.IsShowing;
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
     }

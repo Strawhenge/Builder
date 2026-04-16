@@ -16,7 +16,8 @@
     "precompiledReferences": [
         "nunit.framework.dll",
         "Strawhenge.Builder.dll",
-        "Strawhenge.Common.dll"
+        "Strawhenge.Common.dll",
+        "FunctionalUtilities.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
