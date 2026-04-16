@@ -8,6 +8,10 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
     {
         public bool IsShowing { get; private set; }
 
+        public void InvokeSelectItem(string item) => SelectItem?.Invoke(item);
+
+        public void InvokeSelectExit() => SelectExit?.Invoke();
+
         void IMenuView.Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
         {
             IsShowing = true;

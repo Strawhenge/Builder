@@ -27,6 +27,9 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         readonly Camera _camera;
         readonly MenuViewFake _menuView;
 
+        readonly BlueprintFake _chair = new("Chair", SetUpBuildItemScript());
+        readonly BlueprintRepositoryFake _blueprintRepository;
+
         protected BaseBuilderManagerTest()
         {
             _existingBuildItemSelector = new BuildItemSelectorFake();
@@ -39,6 +42,10 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _camera.cullingMask = EnvironmentLayer;
 
             _menuView = new MenuViewFake();
+            _blueprintRepository = new BlueprintRepositoryFake();
+
+            _blueprintRepository.Blueprints.Add(_chair);
+
             Sut = new BuilderManager(
                 inventory,
                 _existingBuildItemSelector,
@@ -49,7 +56,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
                 _menuView,
                 new NullRecipeUI(),
                 new NullScrapUI(),
-                new BlueprintRepositoryFake(),
+                _blueprintRepository,
                 DefaultControlsSettings.Instance,
                 Layers,
                 logger);
@@ -85,12 +92,9 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
-        protected void InvokeCloseMenu() => throw new NotImplementedException();
-        //_menu.InvokeExit();
+        protected void InvokeCloseMenu() => _menuView.InvokeSelectExit();
 
-        protected void InvokeSelectFromMenu() =>
-            throw new NotImplementedException();
-        //_menu.InvokeSelect(ScriptableObject.CreateInstance<BlueprintScriptableObject>());
+        protected void InvokeSelectFromMenu() => _menuView.InvokeSelectItem(_chair.Name);
 
         protected bool IsMenuOpen() => _menuView.IsShowing;
 

@@ -5,16 +5,18 @@ using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
-    public class BlueprintRepositoryFake : IBlueprintRepository
+    class BlueprintRepositoryFake : IBlueprintRepository
     {
+        public List<IBlueprint> Blueprints { get; private set; } = new();
+        
         public Maybe<IBlueprint> FindByName(string name)
         {
-            return Maybe.None<IBlueprint>();
+            return Blueprints.FirstOrNone(x => x.Name == name);
         }
 
         public IReadOnlyList<IBlueprint> GetAll()
         {
-            return Array.Empty<BlueprintScriptableObject>();
+            return Blueprints;
         }
     }
 }
