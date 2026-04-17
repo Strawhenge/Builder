@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public class ComponentInventory_TestCase10 : ComponentInventoryTests
+    public class WhenInfiniteComponentsEnabled_ShouldReturnMaxCounts : BaseComponentInventoryTest
     {
-        public ComponentInventory_TestCase10(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public WhenInfiniteComponentsEnabled_ShouldReturnMaxCounts(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
 
@@ -24,3 +24,4 @@ namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
         }
     }
 }
+

@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public class ComponentInventory_TestCase11 : ComponentInventoryTests
+    public class WhenRemovingWhileInfiniteEnabled_ShouldNotDecrementStoredCounts : BaseComponentInventoryTest
     {
-        public ComponentInventory_TestCase11(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public WhenRemovingWhileInfiniteEnabled_ShouldNotDecrementStoredCounts(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
 
@@ -31,3 +31,4 @@ namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
         }
     }
 }
+

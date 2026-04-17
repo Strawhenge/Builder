@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public class ComponentInventory_TestCase01 : ComponentInventoryTests
+    public class WhenAddThenRemoveSameComponent_ShouldReturnToZero : BaseComponentInventoryTest
     {
-        public ComponentInventory_TestCase01(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public WhenAddThenRemoveSameComponent_ShouldReturnToZero(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
 
@@ -20,6 +20,9 @@ namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 
         protected override void PerformTest(ComponentInventory sut)
         {
+            sut.AddComponent(Components.Wood);
+            sut.RemoveComponent(Components.Wood);
         }
     }
 }
+

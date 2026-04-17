@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public class ComponentInventory_TestCase02 : ComponentInventoryTests
+    public class WhenAddingWoodWithExplicitQuantityOne_ShouldMatchSingleAddBehavior : BaseComponentInventoryTest
     {
-        public ComponentInventory_TestCase02(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public WhenAddingWoodWithExplicitQuantityOne_ShouldMatchSingleAddBehavior(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
 
@@ -20,7 +20,8 @@ namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 
         protected override void PerformTest(ComponentInventory sut)
         {
-            sut.AddComponent(Components.Wood);
+            sut.AddComponent(Components.Wood, 1);
         }
     }
 }
+

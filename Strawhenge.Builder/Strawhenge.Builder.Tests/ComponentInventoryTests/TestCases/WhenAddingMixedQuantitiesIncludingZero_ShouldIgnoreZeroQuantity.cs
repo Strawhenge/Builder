@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public class ComponentInventory_TestCase08 : ComponentInventoryTests
+    public class WhenAddingMixedQuantitiesIncludingZero_ShouldIgnoreZeroQuantity : BaseComponentInventoryTest
     {
-        public ComponentInventory_TestCase08(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public WhenAddingMixedQuantitiesIncludingZero_ShouldIgnoreZeroQuantity(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
 
@@ -26,3 +26,4 @@ namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
         }
     }
 }
+
