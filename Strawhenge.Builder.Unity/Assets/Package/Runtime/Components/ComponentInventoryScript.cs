@@ -11,7 +11,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         ComponentInventory _inventory;
 
-        public IComponentInventory Inventory => _inventory ??= Create();
+        public ComponentInventory Inventory => _inventory ??= Create();
 
         void Awake()
         {

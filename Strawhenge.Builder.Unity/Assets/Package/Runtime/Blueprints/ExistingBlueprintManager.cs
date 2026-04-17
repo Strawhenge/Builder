@@ -6,14 +6,14 @@ namespace Strawhenge.Builder.Unity
 {
     public class ExistingBlueprintManager
     {
-        readonly IComponentInventory _componentInventory;
+        readonly ComponentInventory _componentInventory;
         readonly BuildItemController _buildItemController;
         readonly IScrapUI _scrapUI;
 
         ExistingBlueprint _currentBlueprint;
 
         public ExistingBlueprintManager(
-            IComponentInventory componentInventory,
+            ComponentInventory componentInventory,
             BuildItemController buildItemController,
             IScrapUI scrapUI)
         {

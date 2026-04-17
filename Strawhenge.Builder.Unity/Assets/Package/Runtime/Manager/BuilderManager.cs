@@ -26,7 +26,7 @@ namespace Strawhenge.Builder.Unity
         IState _currentState;
 
         public BuilderManager(
-            IComponentInventory componentInventory,
+            ComponentInventory componentInventory,
             IBuildItemSelector buildItemSelector,
             Camera camera,
             ICameraController cameraController,
