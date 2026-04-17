@@ -1,9 +1,18 @@
 ﻿using Xunit;
+using Xunit.Abstractions;
 
-namespace Strawhenge.Builder.Tests.UnitTests
+namespace Strawhenge.Builder.Tests.RecipeTests
 {
-    public partial class RecipeTests
+    public class DeductRequiredComponents
     {
+        readonly ComponentInventory _inventory;
+
+        public DeductRequiredComponents(ITestOutputHelper testOutputLogger)
+        {
+            _inventory = new ComponentInventory(
+                new TestOutputLogger(testOutputLogger));
+        }
+
         [Fact]
         public void DeductRequiredComponents_ShouldRemoveComponentsFromInventory()
         {
