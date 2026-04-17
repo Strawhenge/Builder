@@ -1,45 +1,42 @@
 using NUnit.Framework;
-using System.Linq;
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
     public abstract partial class BaseBuilderManagerTest
     {
         protected void VerifyAllMarkersVisible() =>
-            Assert.True(
-                MarkerLayers.All(layer => (_camera.cullingMask & (1 << layer)) != 0));
+            Assert.That(MarkerLayers,
+                Is.All.Matches<int>(layer => (_camera.cullingMask & (1 << layer)) != 0));
 
         protected void VerifyAllMarkersNotVisible() =>
-            Assert.True(MarkerLayers
-                .All(layer => (_camera.cullingMask & (1 << layer)) == 0));
+            Assert.That(MarkerLayers,
+                Is.All.Matches<int>(layer => (_camera.cullingMask & (1 << layer)) == 0));
 
         protected void VerifyExistingBuildItemSelectorEnabled() =>
-            Assert.True(_existingBuildItemSelector.IsEnabled);
+            Assert.That(_existingBuildItemSelector.IsEnabled, Is.True);
 
         protected void VerifyExistingBuildItemSelectorDisabled() =>
-            Assert.False(_existingBuildItemSelector.IsEnabled);
+            Assert.That(_existingBuildItemSelector.IsEnabled, Is.False);
 
         protected void VerifyBuilderManagerUIEnabled() =>
-            Assert.True(_builderManagerUI.IsEnabled);
+            Assert.That(_builderManagerUI.IsEnabled, Is.True);
 
         protected void VerifyBuilderManagerUIDisabled() =>
-            Assert.False(_builderManagerUI.IsEnabled);
+            Assert.That(_builderManagerUI.IsEnabled, Is.False);
 
-        protected void VerifyMenuIsOpen() => Assert.True(_menuView.IsShowing);
+        protected void VerifyMenuIsOpen() =>
+            Assert.That(_menuView.IsShowing, Is.True);
 
-        protected void VerifyMenuIsNotOpen() => Assert.False(_menuView.IsShowing);
+        protected void VerifyMenuIsNotOpen() =>
+            Assert.That(_menuView.IsShowing, Is.False);
 
         protected void VerifyMenuIsShowingCategories(params string[] categories) =>
-            Assert.True(categories
-                .OrderBy(x => x)
-                .SequenceEqual(_menuView.Categories.OrderBy(x => x)));
+            CollectionAssert.AreEquivalent(categories, _menuView.Categories);
 
         protected void VerifyMenuIsShowingItems(params string[] items) =>
-            Assert.True(items
-                .OrderBy(x => x)
-                .SequenceEqual(_menuView.Items.OrderBy(x => x)));
+            CollectionAssert.AreEquivalent(items, _menuView.Items);
 
         protected void VerifyBuildItemControlsEnabled() =>
-            Assert.True(_builder.Controls.BuildItem.IsEnabled);
+            Assert.That(_builder.Controls.BuildItem.IsEnabled, Is.True);
     }
 }
