@@ -86,6 +86,10 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected void InvokeCloseMenu() => _menuView.InvokeSelectExit();
 
         protected void InvokeSelectFromMenu(string name) => _menuView.InvokeSelectItem(name);
+       
+        protected void InvokeSelectCategoryFromMenu(string name) => _menuView.InvokeSelectCategory(name);
+        
+        protected void InvokeBackOnMenu() => _menuView.InvokeSelectBack();
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
     }

@@ -22,6 +22,10 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 
         public void InvokeSelectItem(string item) => SelectItem?.Invoke(item);
 
+        public void InvokeSelectCategory(string name) => SelectCategory?.Invoke(name);
+
+        public void InvokeSelectBack() => SelectBack?.Invoke();
+
         public void InvokeSelectExit() => SelectExit?.Invoke();
 
         void IMenuView.Show(IReadOnlyList<string> categories, IReadOnlyList<string> items, bool enableBack)
