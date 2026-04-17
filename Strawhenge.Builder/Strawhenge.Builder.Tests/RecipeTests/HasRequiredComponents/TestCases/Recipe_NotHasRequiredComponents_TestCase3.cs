@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xunit.Abstractions;
 
-namespace Strawhenge.Builder.Tests.RecipeTests.HasRequiredComponents.TestCases.NotHasRequiredComponents
+namespace Strawhenge.Builder.Tests.RecipeTests.HasRequiredComponents.TestCases
 {
     public class Recipe_NotHasRequiredComponents_TestCase3 : BaseHasRequiredComponentsTest
     {
