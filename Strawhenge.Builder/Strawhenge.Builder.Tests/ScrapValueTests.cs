@@ -4,11 +4,11 @@ using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.Scrap
 {
-    public class ScrapValue_Tests
+    public class ScrapValueTests
     {
         readonly ComponentInventory _inventory;
 
-        public ScrapValue_Tests(ITestOutputHelper testOutputHelper)
+        public ScrapValueTests(ITestOutputHelper testOutputHelper)
         {
             var logger = new TestOutputLogger(testOutputHelper);
 

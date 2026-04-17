@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public class ComponentInventory_TestCase12 : ComponentInventory_Tests
+    public class ComponentInventory_TestCase04 : ComponentInventoryTests
     {
-        public ComponentInventory_TestCase12(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
+        public ComponentInventory_TestCase04(ITestOutputHelper testOutputHelper) : base(testOutputHelper)
         {
         }
 
@@ -20,11 +20,7 @@ namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 
         protected override void PerformTest(ComponentInventory sut)
         {
-            sut.AddComponent(Components.Wood, 3);
-            sut.AddComponent(Components.Metal, 3);
-            sut.AddComponent(Components.Plastic, 3);
-
-            sut.RemoveAllComponents();
+            sut.RemoveComponent(Components.Wood);
         }
     }
 }

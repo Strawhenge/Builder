@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
-    public partial class Recipe_Tests
+    public partial class RecipeTests
     {
         public static IEnumerable<object[]> HasRequiredComponents_ShouldBeTrue_TestCases =>
             HasRequiredComponents_TestCases

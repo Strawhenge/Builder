@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
-    public class ComponentExtensions_Tests
+    public class ComponentExtensionsTests
     {
         readonly Component _component = Components.Metal;
 

@@ -4,11 +4,11 @@ using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
 {
-    public abstract class ComponentInventory_Tests
+    public abstract class ComponentInventoryTests
     {
         readonly ComponentInventory _sut;
 
-        protected ComponentInventory_Tests(ITestOutputHelper testOutputHelper)
+        protected ComponentInventoryTests(ITestOutputHelper testOutputHelper)
         {
             _sut = new ComponentInventory(
                 logger: new TestOutputLogger(testOutputHelper));

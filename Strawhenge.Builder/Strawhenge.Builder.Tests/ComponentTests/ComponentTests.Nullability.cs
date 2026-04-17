@@ -2,7 +2,7 @@ using Xunit;
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
-    public partial class Component_Tests
+    public partial class ComponentTests
     {
         [Fact]
         public void EqualityOperator_ShouldBeTrue_WhenBothReferencesAreNull()

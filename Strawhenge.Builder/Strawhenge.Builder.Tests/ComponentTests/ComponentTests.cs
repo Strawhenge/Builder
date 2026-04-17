@@ -2,7 +2,7 @@
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
-    public partial class Component_Tests
+    public partial class ComponentTests
     {
         [Theory]
         [InlineData(null, "")]
