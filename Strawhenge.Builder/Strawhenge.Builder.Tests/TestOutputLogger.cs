@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Tests
 {
     class TestOutputLogger : ILogger
     {
-        private readonly ITestOutputHelper _testOutput;
+        readonly ITestOutputHelper _testOutput;
 
         public TestOutputLogger(ITestOutputHelper testOutput)
         {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace Strawhenge.Builder.Tests.UnitTests
+namespace Strawhenge.Builder.Tests.ComponentTests
 {
     public class ComponentExtensionsTests
     {

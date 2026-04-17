@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Xunit.Abstractions;
 
-namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
+namespace Strawhenge.Builder.Tests.ComponentInventoryTests.TestCases
 {
     public class WhenAddThenRemoveSameComponent_ShouldReturnToZero : BaseComponentInventoryTest
     {

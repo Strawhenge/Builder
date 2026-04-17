@@ -1,6 +1,6 @@
 ﻿namespace Strawhenge.Builder
 {
-    internal class ComponentCounter
+    class ComponentCounter
     {
         public ComponentCounter(Component component)
         {

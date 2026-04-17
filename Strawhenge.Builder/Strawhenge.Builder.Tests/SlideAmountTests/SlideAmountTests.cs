@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace Strawhenge.Builder.Tests.UnitTests
+namespace Strawhenge.Builder.Tests.SlideAmountTests
 {
     public class SlideAmountTests
     {

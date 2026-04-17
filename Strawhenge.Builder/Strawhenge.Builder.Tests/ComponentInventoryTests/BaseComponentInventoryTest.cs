@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Strawhenge.Builder.Tests.UnitTests.ComponentInventoryTests
+namespace Strawhenge.Builder.Tests.ComponentInventoryTests
 {
     public abstract class BaseComponentInventoryTest
     {

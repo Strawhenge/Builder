@@ -1,7 +1,7 @@
 ﻿using FunctionalUtilities;
 using Strawhenge.Builder.Menu;
 
-namespace Strawhenge.Builder.Tests.Menu
+namespace Strawhenge.Builder.Tests
 {
     class SampleBuildItem : ICategorizable
     {

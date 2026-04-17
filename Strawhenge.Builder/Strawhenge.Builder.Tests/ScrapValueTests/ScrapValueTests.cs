@@ -2,7 +2,7 @@
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Strawhenge.Builder.Tests.UnitTests.Scrap
+namespace Strawhenge.Builder.Tests.ScrapValueTests
 {
     public class ScrapValueTests
     {
@@ -30,7 +30,7 @@ namespace Strawhenge.Builder.Tests.UnitTests.Scrap
         public void GetAdditions_WhenScrapValueHasSingleComponent_ShouldReturnSingleAddition()
         {
             var component = Components.Wood.One();
-            var scrap = new ScrapValue(component.Enumerate());
+            var scrap = new ScrapValue(new[] { component });
 
             var additions = scrap.GetAdditions(_inventory);
 
@@ -41,10 +41,11 @@ namespace Strawhenge.Builder.Tests.UnitTests.Scrap
         }
 
         [Fact]
-        public void GetAdditions_WhenScrapValueHasSingleComponent_AndInventoryAlreadyHasSome_ShouldReturnSingleAddition()
+        public void
+            GetAdditions_WhenScrapValueHasSingleComponent_AndInventoryAlreadyHasSome_ShouldReturnSingleAddition()
         {
             var component = Components.Wood.One();
-            var scrap = new ScrapValue(component.Enumerate());
+            var scrap = new ScrapValue(new[] { component });
 
             const int inventoryQuantity = 5;
             _inventory.AddComponent(Components.Wood, 5);
@@ -54,7 +55,8 @@ namespace Strawhenge.Builder.Tests.UnitTests.Scrap
             Assert.NotNull(additions);
             var addition = Assert.Single(additions);
 
-            VerifyAddition(addition, Components.Wood, expectedQuantity: 1, expectedInventoryQuantity: inventoryQuantity);
+            VerifyAddition(addition, Components.Wood, expectedQuantity: 1,
+                expectedInventoryQuantity: inventoryQuantity);
         }
 
         [Fact]
@@ -81,7 +83,8 @@ namespace Strawhenge.Builder.Tests.UnitTests.Scrap
             VerifyAddition(woodAddition, Components.Wood, expectedQuantity: 5, expectedInventoryQuantity: 5);
         }
 
-        void VerifyAddition(ScrapAddition addition, Component expectedComponent, int expectedQuantity, int expectedInventoryQuantity)
+        void VerifyAddition(ScrapAddition addition, Component expectedComponent, int expectedQuantity,
+            int expectedInventoryQuantity)
         {
             Assert.True(addition.Component.Is(expectedComponent));
             Assert.Equal(expectedQuantity, addition.AdditionalQuantity);

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xunit;
 
-namespace Strawhenge.Builder.Tests.UnitTests
+namespace Strawhenge.Builder.Tests.ComponentTests
 {
     public partial class ComponentTests
     {

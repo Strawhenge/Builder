@@ -1,6 +1,6 @@
 ﻿namespace Strawhenge.Builder.Tests
 {
-    internal static class Components
+    static class Components
     {
         public static Component Wood => new Component("Wood");
 

@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace Strawhenge.Builder.Tests.Menu
+namespace Strawhenge.Builder.Tests.BuilderMenuTests
 {
     public partial class BuilderMenuTests
     {

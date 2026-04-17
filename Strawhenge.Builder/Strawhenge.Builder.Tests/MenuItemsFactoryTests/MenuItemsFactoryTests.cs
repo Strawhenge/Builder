@@ -1,9 +1,9 @@
-﻿using Strawhenge.Builder.Menu;
-using System;
+﻿using System;
 using System.Linq;
+using Strawhenge.Builder.Menu;
 using Xunit;
 
-namespace Strawhenge.Builder.Tests.Menu
+namespace Strawhenge.Builder.Tests.MenuItemsFactoryTests
 {
     public class MenuItemsFactoryTests
     {

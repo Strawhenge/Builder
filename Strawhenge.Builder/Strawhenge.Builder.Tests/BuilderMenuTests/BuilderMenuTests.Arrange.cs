@@ -1,8 +1,8 @@
-﻿using Strawhenge.Builder.Menu;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Strawhenge.Builder.Menu;
 
-namespace Strawhenge.Builder.Tests.Menu
+namespace Strawhenge.Builder.Tests.BuilderMenuTests
 {
     public partial class BuilderMenuTests
     {
