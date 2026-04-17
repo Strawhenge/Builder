@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetPosition
+namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetPosition.TestCases
 {
     public class SetPositionChildAtOrigin : BaseSnapPointSetPositionTest
     {

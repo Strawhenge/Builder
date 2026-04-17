@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
+namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests.TestCases
 {
     public class CloseMenu : BaseBuilderManagerTest
     {

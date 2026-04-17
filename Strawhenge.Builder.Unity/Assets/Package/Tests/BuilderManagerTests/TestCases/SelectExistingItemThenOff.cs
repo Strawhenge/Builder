@@ -1,19 +1,14 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
-namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
+namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests.TestCases
 {
-    public class Off : BaseBuilderManagerTest
+    public class SelectExistingItemThenOff : BaseBuilderManagerTest
     {
         protected override void Act()
         {
             BuilderOn();
+            InvokeExistingItemSelected();
             BuilderOff();
-        }
-
-        [Test]
-        public void Builder_markers_should_not_be_visible()
-        {
-            VerifyAllMarkersNotVisible();
         }
 
         [Test]
@@ -26,6 +21,12 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         public void Should_disable_builder_manager_UI()
         {
             VerifyBuilderManagerUIDisabled();
+        }
+
+        [Test]
+        public void Menu_should_be_closed()
+        {
+            VerifyMenuIsNotOpen();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetRotation
+namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetRotation.TestCases
 {
     public class SetRotationStandaloneIdentity : BaseSnapPointSetRotationTest
     {

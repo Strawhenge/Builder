@@ -2,7 +2,7 @@
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Collections.Generic;
 
-namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
+namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests.TestCases
 {
     public class SelectFromMenu : BaseBuilderManagerTest
     {

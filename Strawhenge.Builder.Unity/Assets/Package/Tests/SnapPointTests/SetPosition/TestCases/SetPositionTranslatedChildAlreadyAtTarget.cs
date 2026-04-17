@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetPosition
+namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetPosition.TestCases
 {
-    public class SetPositionTranslatedOffsetChildRepositionsRoot : BaseSnapPointSetPositionTest
+    public class SetPositionTranslatedChildAlreadyAtTarget : BaseSnapPointSetPositionTest
     {
-        protected override Vector3 PositionToSet => new Vector3(0, 0, -1);
+        protected override Vector3 PositionToSet => new Vector3(0, 0, 2);
 
-        protected override Vector3 ExpectedRootPosition => new Vector3(0, 0, -2);
+        protected override Vector3 ExpectedRootPosition => new Vector3(0, 0, 1);
 
         protected override GameObject CreateSubject()
         {
