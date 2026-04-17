@@ -29,17 +29,17 @@ namespace Strawhenge.Builder.Tests
 
         public string Name { get; set; }
 
-        public Maybe<ICategory> Category { get; set; } = Maybe.None<ICategory>();
+        public Maybe<Category> Category { get; set; } = Maybe.None<Category>();
 
         public SampleBuildItem InCategory(string category)
         {
-            Category = Maybe.Some<ICategory>(new Category(category));
+            Category = Maybe.Some<Category>(new Category(category));
             return this;
         }
 
         public SampleBuildItem InCategory(string category, string parentCategory)
         {
-            Category = Maybe.Some<ICategory>(new Category(category, new Category(parentCategory)));
+            Category = Maybe.Some<Category>(new Category(category, new Category(parentCategory)));
             return this;
         }
 
