@@ -4,7 +4,7 @@ using Strawhenge.Common.Logging;
 
 namespace Strawhenge.Builder
 {
-    public class ComponentInventory : IComponentInventory
+    public class ComponentInventory
     {
         readonly List<ComponentCounter> _componentCounters = new List<ComponentCounter>();
         readonly ILogger _logger;

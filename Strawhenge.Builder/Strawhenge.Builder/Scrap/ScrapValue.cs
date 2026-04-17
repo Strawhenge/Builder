@@ -14,13 +14,13 @@ namespace Strawhenge.Builder
             _components = components.ToArray();
         }
 
-        public void AddComponentsTo(IComponentInventory inventory)
+        public void AddComponentsTo(ComponentInventory inventory)
         {
             foreach (var component in _components)
                 inventory.AddComponent(component);
         }
 
-        public IEnumerable<ScrapAddition> GetAdditions(IComponentInventory inventory)
+        public IEnumerable<ScrapAddition> GetAdditions(ComponentInventory inventory)
         {
             foreach (var componentQuantity in _components)
             {
