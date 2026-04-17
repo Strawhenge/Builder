@@ -6,6 +6,6 @@ namespace Strawhenge.Builder.Menu
     {
         string Name { get; }
 
-        Maybe<Category> Category { get; }
+        Maybe<ICategory> Category { get; }
     }
 }

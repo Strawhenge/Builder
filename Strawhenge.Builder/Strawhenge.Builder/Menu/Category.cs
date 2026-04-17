@@ -2,15 +2,15 @@
 
 namespace Strawhenge.Builder.Menu
 {
-    public class Category
+    public class Category : ICategory
     {
         public Category(string name)
         {
             Name = name;
-            Parent = Maybe.None<Category>();
+            Parent = Maybe.None<ICategory>();
         }
 
-        public Category(string name, Category parent)
+        public Category(string name, ICategory parent)
         {
             Name = name;
             Parent = Maybe.Some(parent);
@@ -18,6 +18,6 @@ namespace Strawhenge.Builder.Menu
 
         public string Name { get; }
 
-        public Maybe<Category> Parent { get; }
+        public Maybe<ICategory> Parent { get; }
     }
 }

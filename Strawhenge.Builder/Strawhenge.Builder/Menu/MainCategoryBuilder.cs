@@ -25,7 +25,7 @@ namespace Strawhenge.Builder.Menu
             _uncategorizedMenuItems.Add(menuItem);
         }
 
-        public void AddCategorized(Category category, MenuItem menuItem)
+        public void AddCategorized(ICategory category, MenuItem menuItem)
         {
             if (!_menuItemsByCategory.ContainsKey(category.Name))
                 _menuItemsByCategory.Add(category.Name, new List<MenuItem>());
@@ -48,7 +48,7 @@ namespace Strawhenge.Builder.Menu
             return new MenuCategory(categoryName, subCategories, items);
         }
 
-        void AddCategory(Category category)
+        void AddCategory(ICategory category)
         {
             if (!category.Parent.HasSome(out var parent))
             {
