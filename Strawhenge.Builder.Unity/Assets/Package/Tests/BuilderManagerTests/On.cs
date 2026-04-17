@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
     {
         protected override void Act()
         {
-            Sut.On();
+            BuilderOn();
         }
 
         [Test]

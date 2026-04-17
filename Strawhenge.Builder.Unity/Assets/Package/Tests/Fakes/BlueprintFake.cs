@@ -10,21 +10,21 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     class BlueprintFake : IBlueprint
     {
-        public BlueprintFake(string name, BuildItemScript buildItem)
+        public BlueprintFake(string name, BuildItemScript buildItem, ICategory category = null)
         {
             Name = name;
             BuildItem = buildItem;
-            Category = Maybe.None<ICategory>();
+            Category = Maybe.NotNull(category);
             Recipe = Array.Empty<SerializableComponentQuantity>();
         }
 
 
         public string Name { get; }
-      
+
         public Maybe<ICategory> Category { get; }
-      
+
         public BuildItemScript BuildItem { get; }
-      
+
         public IReadOnlyList<SerializableComponentQuantity> Recipe { get; }
     }
 }

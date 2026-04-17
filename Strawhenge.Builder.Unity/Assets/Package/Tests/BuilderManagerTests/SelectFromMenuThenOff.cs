@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using Strawhenge.Builder.Unity.ScriptableObjects;
+using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
@@ -6,12 +8,17 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
     {
         protected override void Act()
         {
-            Sut.On();
+            BuilderOn();
             InvokeOpenMenu();
-            InvokeSelectFromMenu();
-            Sut.Off();
+            InvokeSelectFromMenu(BlueprintSamples.Wall.Name);
+            BuilderOff();
         }
-        
+
+        protected override IEnumerable<IBlueprint> GetBlueprints()
+        {
+            yield return BlueprintSamples.Wall;
+        }
+
         [Test]
         public void Build_item_selector_should_disable()
         {
@@ -23,7 +30,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         {
             Assert.False(IsBuilderManagerUIEnabled());
         }
-        
+
         [Test]
         public void Menu_should_be_closed()
         {

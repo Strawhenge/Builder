@@ -1,8 +1,10 @@
 ﻿using NUnit.Framework;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.Tests.Fakes;
 using Strawhenge.Builder.Unity.UI;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -23,10 +25,8 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         readonly Camera _camera;
         readonly MenuViewFake _menuView;
-
-        // TODO Allow individual tests to setup repo.
-        readonly BlueprintFake _chair = new("Chair", SetUpBuildItemScript());
         readonly BlueprintRepositoryFake _blueprintRepository;
+        readonly BuilderManager _builder;
 
         protected BaseBuilderManagerTest()
         {
@@ -42,9 +42,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             _menuView = new MenuViewFake();
             _blueprintRepository = new BlueprintRepositoryFake();
 
-            _blueprintRepository.Blueprints.Add(_chair);
-
-            Sut = new BuilderManager(
+            _builder = new BuilderManager(
                 inventory,
                 _existingBuildItemSelector,
                 _camera,
@@ -60,10 +58,20 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
                 logger);
         }
 
-        protected BuilderManager Sut { get; }
-
         [OneTimeSetUp]
+        protected void SetUp()
+        {
+            _blueprintRepository.Blueprints.AddRange(GetBlueprints());
+            Act();
+        }
+
         protected abstract void Act();
+
+        protected virtual IEnumerable<IBlueprint> GetBlueprints() => Enumerable.Empty<BlueprintFake>();
+
+        protected void BuilderOn() => _builder.On();
+
+        protected void BuilderOff() => _builder.Off();
 
         protected bool AllMarkersVisible() => MarkerLayers
             .All(layer => ((_camera.cullingMask & (1 << layer)) != 0));
@@ -77,19 +85,19 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected void InvokeExistingItemSelected() => _existingBuildItemSelector.InvokeSelect(SetUpBuildItemScript());
 
-        protected bool IsBuildItemControllerEnabled() => Sut.Controls.BuildItem.IsEnabled;
+        protected bool IsBuildItemControllerEnabled() => _builder.Controls.BuildItem.IsEnabled;
 
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
-        protected void InvokePlaceSelectedItem() => Sut.Controls.BuildItem.Place();
+        protected void InvokePlaceSelectedItem() => _builder.Controls.BuildItem.Place();
 
-        protected void InvokeCancelSelectedItem() => Sut.Controls.BuildItem.Cancel();
+        protected void InvokeCancelSelectedItem() => _builder.Controls.BuildItem.Cancel();
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
         protected void InvokeCloseMenu() => _menuView.InvokeSelectExit();
 
-        protected void InvokeSelectFromMenu() => _menuView.InvokeSelectItem(_chair.Name);
+        protected void InvokeSelectFromMenu(string name) => _menuView.InvokeSelectItem(name);
 
         protected bool IsMenuOpen() => _menuView.IsShowing;
 

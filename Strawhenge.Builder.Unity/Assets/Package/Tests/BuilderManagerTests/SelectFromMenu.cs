@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using Strawhenge.Builder.Unity.ScriptableObjects;
+using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
@@ -6,9 +8,14 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
     {
         protected override void Act()
         {
-            Sut.On();
+            BuilderOn();
             InvokeOpenMenu();
-            InvokeSelectFromMenu();
+            InvokeSelectFromMenu(BlueprintSamples.Wall.Name);
+        }
+
+        protected override IEnumerable<IBlueprint> GetBlueprints()
+        {
+            yield return BlueprintSamples.Wall;
         }
 
         [Test]

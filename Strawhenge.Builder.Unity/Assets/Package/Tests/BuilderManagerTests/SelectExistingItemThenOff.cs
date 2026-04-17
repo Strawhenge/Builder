@@ -6,11 +6,11 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
     {
         protected override void Act()
         {
-            Sut.On();
+            BuilderOn();
             InvokeExistingItemSelected();
-            Sut.Off();
+            BuilderOff();
         }
-        
+
         [Test]
         public void Build_item_selector_should_disable()
         {
@@ -22,7 +22,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         {
             Assert.False(IsBuilderManagerUIEnabled());
         }
-        
+
         [Test]
         public void Menu_should_be_closed()
         {
