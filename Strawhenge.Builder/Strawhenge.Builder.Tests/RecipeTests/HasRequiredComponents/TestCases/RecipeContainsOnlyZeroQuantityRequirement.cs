@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.RecipeTests.HasRequiredComponents.TestCases
 {
-    public class Recipe_HasRequiredComponents_TestCase2 : BaseHasRequiredComponentsTest
+    public class RecipeContainsOnlyZeroQuantityRequirement : BaseHasRequiredComponentsTest
     {
-        public Recipe_HasRequiredComponents_TestCase2(ITestOutputHelper testOutputLogger) : base(testOutputLogger)
+        public RecipeContainsOnlyZeroQuantityRequirement(ITestOutputHelper testOutputLogger) : base(testOutputLogger)
         {
         }
 
@@ -13,12 +14,14 @@ namespace Strawhenge.Builder.Tests.RecipeTests.HasRequiredComponents.TestCases
         
         public override IEnumerable<ComponentQuantity> GetInventoryComponents()
         {
-            yield return new ComponentQuantity(Components.Wood, 2);
+            return Enumerable.Empty<ComponentQuantity>();
         }
 
         public override IEnumerable<ComponentQuantity> GetRecipeComponents()
         {
-            yield return new ComponentQuantity(Components.Wood, 2);
+            yield return new ComponentQuantity(Components.Wood, 0);
         }
     }
 }
+
+

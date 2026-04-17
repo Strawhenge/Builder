@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.RecipeTests.HasRequiredComponents.TestCases
 {
-    public class Recipe_HasRequiredComponents_TestCase1 : BaseHasRequiredComponentsTest
+    public class RecipeAndInventoryAreEmpty : BaseHasRequiredComponentsTest
     {
-        public Recipe_HasRequiredComponents_TestCase1(ITestOutputHelper testOutputLogger) : base(testOutputLogger)
+        public RecipeAndInventoryAreEmpty(ITestOutputHelper testOutputLogger) : base(testOutputLogger)
         {
         }
 
@@ -23,3 +23,5 @@ namespace Strawhenge.Builder.Tests.RecipeTests.HasRequiredComponents.TestCases
         }
     }
 }
+
+
