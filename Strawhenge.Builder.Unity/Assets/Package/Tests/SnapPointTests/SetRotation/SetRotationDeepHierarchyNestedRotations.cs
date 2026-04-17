@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests.UnitTests
+namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetRotation
 {
-    public class SnapPoint_SetRotation_TestCase7 : SnapPoint_SetRotation_Tests
+    public class SetRotationDeepHierarchyNestedRotations : BaseSnapPointSetRotationTest
     {
         protected override Quaternion RotationToSet => new Quaternion(-0.1f, 0.8f, -0.1f, 0.6f);
 

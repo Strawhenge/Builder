@@ -2,9 +2,9 @@
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests.UnitTests
+namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetPosition
 {
-    public abstract class SnapPoint_SetPosition_Tests
+    public abstract class BaseSnapPointSetPositionTest
     {
         Transform _transform;
         SnapPoint _sut;

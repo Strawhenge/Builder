@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests.UnitTests
+namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetRotation
 {
-    public class SnapPoint_SetRotation_TestCase5 : SnapPoint_SetRotation_Tests
+    public class SetRotationOffsetChildRepositionsRoot : BaseSnapPointSetRotationTest
     {
         protected override Quaternion RotationToSet => new Quaternion(0, 0.707106829f, 0, 0.707106829f);
 
-        protected override Quaternion ExpectedRootRotation => new Quaternion(0, 0, 0, 1);
+        protected override Quaternion ExpectedRootRotation => new Quaternion(0, 0.707106829f, 0, 0.707106829f);
 
-        protected override Vector3 ExpectedRootPosition => Vector3.zero;
+        protected override Vector3 ExpectedRootPosition => new Vector3(1, 0, 1);
 
         protected override GameObject CreateSubject()
         {
@@ -16,7 +16,6 @@ namespace Strawhenge.Builder.Unity.Tests.UnitTests
 
             return GameObjectCreator.Create(
                 position: Vector3.right,
-                rotation: RotationToSet,
                 parent: root.transform);
         }
     }

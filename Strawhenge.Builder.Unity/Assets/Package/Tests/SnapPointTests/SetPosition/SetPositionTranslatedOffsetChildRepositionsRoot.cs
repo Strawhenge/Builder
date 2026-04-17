@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Tests.UnitTests
+namespace Strawhenge.Builder.Unity.Tests.SnapPointTests.SetPosition
 {
-    public class SnapPoint_SetPosition_TestCase4 : SnapPoint_SetPosition_Tests
+    public class SetPositionTranslatedOffsetChildRepositionsRoot : BaseSnapPointSetPositionTest
     {
         protected override Vector3 PositionToSet => new Vector3(0, 0, -1);
 

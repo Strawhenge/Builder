@@ -1,4 +1,4 @@
-﻿namespace Strawhenge.Builder.Unity.Tests
+﻿namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     class LayersFake : ILayers
     {
