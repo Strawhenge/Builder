@@ -1,7 +1,7 @@
-﻿using Moq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
@@ -32,17 +32,25 @@ namespace Strawhenge.Builder.Tests.UnitTests
             new Recipe_NotHasRequiredComponents_TestCase4(),
         };
 
+        readonly ComponentInventory _inventory;
+
+        public RecipeTests(ITestOutputHelper testOutputHelper)
+        {
+            _inventory = new ComponentInventory(
+                new TestOutputLogger(testOutputHelper));
+        }
+
         [Theory]
         [MemberData(nameof(HasRequiredComponents_ShouldBeTrue_TestCases))]
         public void HasRequiredComponents_ShouldBeTrue(IEnumerable<ComponentQuantity> recipeComponents,
             IEnumerable<ComponentQuantity> inventoryComponents)
         {
-            var inventoryMock = CreateInventoryMock(inventoryComponents);
+            _inventory.AddComponents(inventoryComponents);
 
             var sut = new Recipe(recipeComponents);
 
             Assert.True(
-                sut.HasRequiredComponents(inventoryMock.Object));
+                sut.HasRequiredComponents(_inventory));
         }
 
         [Theory]
@@ -50,26 +58,12 @@ namespace Strawhenge.Builder.Tests.UnitTests
         public void HasRequiredComponents_ShouldBeFalse(IEnumerable<ComponentQuantity> recipeComponents,
             IEnumerable<ComponentQuantity> inventoryComponents)
         {
-            var inventoryMock = CreateInventoryMock(inventoryComponents);
+            _inventory.AddComponents(inventoryComponents);
 
             var sut = new Recipe(recipeComponents);
 
             Assert.False(
-                sut.HasRequiredComponents(inventoryMock.Object));
-        }
-
-        Mock<IComponentInventory> CreateInventoryMock(IEnumerable<ComponentQuantity> inventoryComponents)
-        {
-            var inventoryMock = new Mock<IComponentInventory>();
-
-            foreach (var componentQuantity in inventoryComponents)
-            {
-                inventoryMock
-                    .Setup(x => x.Count(It.Is<Component>(y => y.Is(componentQuantity.Component))))
-                    .Returns(componentQuantity.Quantity);
-            }
-
-            return inventoryMock;
+                sut.HasRequiredComponents(_inventory));
         }
     }
 }

@@ -1,52 +1,37 @@
-﻿using Moq;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
+﻿using Xunit;
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
     public partial class RecipeTests
     {
-        [Theory]
-        [ClassData(typeof(DeductRequiredComponents_ShouldRemoveComponentsFromInventory_Data))]
-        public void DeductRequiredComponents_ShouldRemoveComponentsFromInventory(
-            IEnumerable<ComponentQuantity> recipeComponents)
+        [Fact]
+        public void DeductRequiredComponents_ShouldRemoveComponentsFromInventory()
         {
-            var inventoryMock = new Mock<IComponentInventory>();
+            const int initialMetal = 10;
+            const int initialWood = 10;
+            const int initialPlastic = 10;
 
-            var sut = new Recipe(recipeComponents);
-            sut.DeductRequiredComponents(inventoryMock.Object);
+            _inventory.AddComponent(Components.Metal, initialMetal);
+            _inventory.AddComponent(Components.Wood, initialWood);
+            _inventory.AddComponent(Components.Plastic, initialPlastic);
 
-            foreach (var componentQuantity in recipeComponents)
+            const int requiredMetal = 2;
+            const int requiredWood = 1;
+            const int requiredPlastic = 10;
+
+            var requirements = new[]
             {
-                inventoryMock.Verify(
-                    x => x.RemoveComponent(It.Is<Component>(y => y.Is(componentQuantity.Component)),
-                        componentQuantity.Quantity),
-                    Times.Once);
-            }
-        }
+                new ComponentQuantity(Components.Metal, requiredMetal),
+                new ComponentQuantity(Components.Wood, requiredWood),
+                new ComponentQuantity(Components.Plastic, requiredPlastic)
+            };
 
-        class DeductRequiredComponents_ShouldRemoveComponentsFromInventory_Data : IEnumerable<object[]>
-        {
-            private IEnumerable<ComponentQuantity> GetComponents()
-            {
-                yield return new ComponentQuantity(Components.Metal, 2);
-                yield return new ComponentQuantity(Components.Wood, 1);
-                yield return new ComponentQuantity(Components.Plastic, 10);
-            }
+            var sut = new Recipe(requirements);
+            sut.DeductRequiredComponents(_inventory);
 
-            public IEnumerator<object[]> GetEnumerator()
-            {
-                var components = GetComponents();
-                var data = new object[] { components };
-
-                return new[] { data }
-                    .AsEnumerable()
-                    .GetEnumerator();
-            }
-
-            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+            Assert.Equal(_inventory.Count(Components.Metal), initialMetal - requiredMetal);
+            Assert.Equal(_inventory.Count(Components.Wood), initialWood - requiredWood);
+            Assert.Equal(_inventory.Count(Components.Plastic), initialPlastic - requiredPlastic);
         }
     }
 }
