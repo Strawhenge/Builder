@@ -11,6 +11,27 @@ namespace Strawhenge.Builder.Tests.UnitTests
             HasRequiredComponents_TestCases
                 .Select(x => new object[] { x.GetRecipeComponents(), x.GetInventoryComponents() });
 
+        public static IEnumerable<object[]> HasRequiredComponents_ShouldBeFalse_TestCases =>
+            NotHasRequiredComponents_TestCases
+                .Select(x => new object[] { x.GetRecipeComponents(), x.GetInventoryComponents() });
+
+        static readonly Recipe_HasRequiredComponents_TestCase[] HasRequiredComponents_TestCases =
+        {
+            new Recipe_HasRequiredComponents_TestCase1(),
+            new Recipe_HasRequiredComponents_TestCase2(),
+            new Recipe_HasRequiredComponents_TestCase3(),
+            new Recipe_HasRequiredComponents_TestCase4(),
+            new Recipe_HasRequiredComponents_TestCase5(),
+        };
+
+        static readonly Recipe_NotHasRequiredComponents_TestCase[] NotHasRequiredComponents_TestCases =
+        {
+            new Recipe_NotHasRequiredComponents_TestCase1(),
+            new Recipe_NotHasRequiredComponents_TestCase2(),
+            new Recipe_NotHasRequiredComponents_TestCase3(),
+            new Recipe_NotHasRequiredComponents_TestCase4(),
+        };
+
         [Theory]
         [MemberData(nameof(HasRequiredComponents_ShouldBeTrue_TestCases))]
         public void HasRequiredComponents_ShouldBeTrue(IEnumerable<ComponentQuantity> recipeComponents,
@@ -23,10 +44,6 @@ namespace Strawhenge.Builder.Tests.UnitTests
             Assert.True(
                 sut.HasRequiredComponents(inventoryMock.Object));
         }
-
-        public static IEnumerable<object[]> HasRequiredComponents_ShouldBeFalse_TestCases =>
-            NotHasRequiredComponents_TestCases
-                .Select(x => new object[] { x.GetRecipeComponents(), x.GetInventoryComponents() });
 
         [Theory]
         [MemberData(nameof(HasRequiredComponents_ShouldBeFalse_TestCases))]
@@ -54,22 +71,5 @@ namespace Strawhenge.Builder.Tests.UnitTests
 
             return inventoryMock;
         }
-
-        static readonly Recipe_HasRequiredComponents_TestCase[] HasRequiredComponents_TestCases =
-        {
-            new Recipe_HasRequiredComponents_TestCase1(),
-            new Recipe_HasRequiredComponents_TestCase2(),
-            new Recipe_HasRequiredComponents_TestCase3(),
-            new Recipe_HasRequiredComponents_TestCase4(),
-            new Recipe_HasRequiredComponents_TestCase5(),
-        };
-
-        static readonly Recipe_NotHasRequiredComponents_TestCase[] NotHasRequiredComponents_TestCases =
-        {
-            new Recipe_NotHasRequiredComponents_TestCase1(),
-            new Recipe_NotHasRequiredComponents_TestCase2(),
-            new Recipe_NotHasRequiredComponents_TestCase3(),
-            new Recipe_NotHasRequiredComponents_TestCase4(),
-        };
     }
 }
