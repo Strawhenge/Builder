@@ -14,19 +14,19 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         [Test]
         public void Menu_should_be_closed()
         {
-            Assert.False(IsMenuOpen());
+            VerifyMenuIsNotOpen();
         }
 
         [Test]
         public void Build_item_selector_should_enable()
         {
-            Assert.True(IsExistingBuildItemSelectorEnabled());
+            VerifyExistingBuildItemSelectorEnabled();
         }
 
         [Test]
         public void Should_enable_builder_manager_UI()
         {
-            Assert.True(IsBuilderManagerUIEnabled());
+            VerifyBuilderManagerUIEnabled();
         }
     }
 }

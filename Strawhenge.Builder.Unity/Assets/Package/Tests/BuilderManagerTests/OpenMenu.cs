@@ -21,33 +21,31 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         [Test]
         public void Menu_should_be_open()
         {
-            Assert.True(IsMenuOpen());
+            VerifyMenuIsOpen();
         }
 
         [Test]
         public void Menu_should_show_categories()
         {
-            Assert.True(
-                IsMenuShowingCategories(BlueprintSamples.Furniture.CategoryName));
+            VerifyMenuIsShowingCategories(BlueprintSamples.Furniture.CategoryName);
         }
 
         [Test]
         public void Menu_should_show_items()
         {
-            Assert.True(
-                IsMenuShowingItems(BlueprintSamples.Wall.Name));
+            VerifyMenuIsShowingItems(BlueprintSamples.Wall.Name);
         }
 
         [Test]
         public void Build_item_selector_should_be_disabled()
         {
-            Assert.False(IsExistingBuildItemSelectorEnabled());
+            VerifyExistingBuildItemSelectorDisabled();
         }
 
         [Test]
         public void Manager_UI_should_be_disabled()
         {
-            Assert.False(IsBuilderManagerUIEnabled());
+            VerifyBuilderManagerUIDisabled();
         }
     }
 }

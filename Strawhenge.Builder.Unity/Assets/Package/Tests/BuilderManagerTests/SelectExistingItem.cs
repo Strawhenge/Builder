@@ -13,19 +13,19 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         [Test]
         public void Build_item_selector_should_disable()
         {
-            Assert.False(IsExistingBuildItemSelectorEnabled());
+            VerifyExistingBuildItemSelectorDisabled();
         }
 
         [Test]
         public void Build_item_should_be_controlled()
         {
-            Assert.True(IsBuildItemControllerEnabled());
+            VerifyBuildItemControlsEnabled();
         }
 
         [Test]
         public void Manager_UI_should_be_disabled()
         {
-            Assert.False(IsBuilderManagerUIEnabled());
+            VerifyBuilderManagerUIDisabled();
         }
     }
 }

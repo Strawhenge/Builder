@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
-    public abstract class BaseBuilderManagerTest
+    public abstract partial class BaseBuilderManagerTest
     {
         const int EnvironmentLayer = 1;
         static readonly int[] MarkerLayers = { 2, 3, 4 };
@@ -73,19 +73,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected void BuilderOff() => _builder.Off();
 
-        protected bool AllMarkersVisible() => MarkerLayers
-            .All(layer => ((_camera.cullingMask & (1 << layer)) != 0));
-
-        protected bool AllMarkersNotVisible() => MarkerLayers
-            .All(layer => ((_camera.cullingMask & (1 << layer)) == 0));
-
-        protected bool IsExistingBuildItemSelectorEnabled() => _existingBuildItemSelector.IsEnabled;
-
-        protected bool IsBuilderManagerUIEnabled() => _builderManagerUI.IsEnabled;
-
         protected void InvokeExistingItemSelected() => _existingBuildItemSelector.InvokeSelect(SetUpBuildItemScript());
-
-        protected bool IsBuildItemControllerEnabled() => _builder.Controls.BuildItem.IsEnabled;
 
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
@@ -98,18 +86,6 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected void InvokeCloseMenu() => _menuView.InvokeSelectExit();
 
         protected void InvokeSelectFromMenu(string name) => _menuView.InvokeSelectItem(name);
-
-        protected bool IsMenuOpen() => _menuView.IsShowing;
-
-        protected bool IsMenuShowingCategories(params string[] categories) =>
-            categories
-                .OrderBy(x => x)
-                .SequenceEqual(_menuView.Categories.OrderBy(x => x));
-
-        protected bool IsMenuShowingItems(params string[] items) =>
-            items
-                .OrderBy(x => x)
-                .SequenceEqual(_menuView.Items.OrderBy(x => x));
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
     }

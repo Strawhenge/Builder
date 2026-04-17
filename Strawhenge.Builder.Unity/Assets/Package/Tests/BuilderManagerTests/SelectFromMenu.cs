@@ -21,13 +21,13 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         [Test]
         public void Menu_should_be_closed()
         {
-            Assert.False(IsMenuOpen());
+            VerifyMenuIsNotOpen();
         }
 
         [Test]
         public void Build_item_should_be_controlled()
         {
-            Assert.True(IsBuildItemControllerEnabled());
+            VerifyBuildItemControlsEnabled();
         }
     }
 }

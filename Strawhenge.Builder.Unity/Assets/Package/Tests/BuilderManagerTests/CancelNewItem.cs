@@ -22,7 +22,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         [Test]
         public void Menu_should_be_open()
         {
-            Assert.True(IsMenuOpen());
+            VerifyMenuIsOpen();
         }
     }
 }
