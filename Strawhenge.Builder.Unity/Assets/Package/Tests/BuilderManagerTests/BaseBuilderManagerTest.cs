@@ -101,6 +101,16 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 
         protected bool IsMenuOpen() => _menuView.IsShowing;
 
+        protected bool IsMenuShowingCategories(params string[] categories) =>
+            categories
+                .OrderBy(x => x)
+                .SequenceEqual(_menuView.Categories.OrderBy(x => x));
+
+        protected bool IsMenuShowingItems(params string[] items) =>
+            items
+                .OrderBy(x => x)
+                .SequenceEqual(_menuView.Items.OrderBy(x => x));
+
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
     }
 }

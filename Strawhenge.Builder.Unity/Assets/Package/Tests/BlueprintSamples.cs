@@ -14,11 +14,13 @@ namespace Strawhenge.Builder.Unity.Tests
 
         public static class Furniture
         {
+            public static string CategoryName => nameof(Furniture);
+
             public static BlueprintFake Chair { get; } =
                 new(
                     nameof(Chair),
                     new GameObject(nameof(Chair)).AddComponent<BuildItemScript>(),
-                    new Category(nameof(Furniture)));
+                    new Category(CategoryName));
         }
     }
 }

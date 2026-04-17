@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using Strawhenge.Builder.Unity.ScriptableObjects;
+using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
@@ -10,10 +12,30 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             InvokeOpenMenu();
         }
 
+        protected override IEnumerable<IBlueprint> GetBlueprints()
+        {
+            yield return BlueprintSamples.Wall;
+            yield return BlueprintSamples.Furniture.Chair;
+        }
+
         [Test]
         public void Menu_should_be_open()
         {
             Assert.True(IsMenuOpen());
+        }
+
+        [Test]
+        public void Menu_should_show_categories()
+        {
+            Assert.True(
+                IsMenuShowingCategories(BlueprintSamples.Furniture.CategoryName));
+        }
+
+        [Test]
+        public void Menu_should_show_items()
+        {
+            Assert.True(
+                IsMenuShowingItems(BlueprintSamples.Wall.Name));
         }
 
         [Test]
