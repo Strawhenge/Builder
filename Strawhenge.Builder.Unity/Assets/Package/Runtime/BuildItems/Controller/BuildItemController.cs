@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public partial class BuildItemController : IBuildItemController
+    public partial class BuildItemController
     {
         readonly ICameraController _camera;
         readonly ControlsToggle _controls;

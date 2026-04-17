@@ -7,14 +7,14 @@ namespace Strawhenge.Builder.Unity
     public class BlueprintManager
     {
         readonly IComponentInventory _componentInventory;
-        readonly IBuildItemController _buildItemController;
+        readonly BuildItemController _buildItemController;
         readonly IRecipeUI _recipeUI;
 
         Blueprint _currentBlueprint;
 
         public BlueprintManager(
             IComponentInventory componentInventory,
-            IBuildItemController buildItemController,
+            BuildItemController buildItemController,
             IRecipeUI recipeUI)
         {
             _componentInventory = componentInventory;
@@ -43,14 +43,14 @@ namespace Strawhenge.Builder.Unity
 
             _buildItemController.On(
                 _currentBlueprint.BuildItem,
-                canPlaceItem: () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
-                onPlacedItem: () =>
+                () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
+                () =>
                 {
                     _currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
 
                     ArrangeCurrentBlueprintBuildItem(callback);
                 },
-                onCancelled: () =>
+                () =>
                 {
                     _recipeUI.Hide();
                     _currentBlueprint = null;
