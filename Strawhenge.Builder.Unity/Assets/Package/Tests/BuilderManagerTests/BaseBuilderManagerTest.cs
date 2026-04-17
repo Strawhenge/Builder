@@ -1,11 +1,8 @@
 ﻿using NUnit.Framework;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.Tests.Fakes;
 using Strawhenge.Builder.Unity.UI;
-using Strawhenge.Common.Logging;
-using System;
 using System.Linq;
 using UnityEngine;
 

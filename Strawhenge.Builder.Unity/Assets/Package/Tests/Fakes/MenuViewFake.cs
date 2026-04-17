@@ -6,6 +6,14 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
 {
     class MenuViewFake : IMenuView
     {
+        public event Action<string> SelectCategory;
+        
+        public event Action<string> SelectItem;
+        
+        public event Action SelectBack;
+        
+        public event Action SelectExit;
+        
         public bool IsShowing { get; private set; }
 
         public void InvokeSelectItem(string item) => SelectItem?.Invoke(item);
@@ -21,10 +29,5 @@ namespace Strawhenge.Builder.Unity.Tests.Fakes
         {
             IsShowing = false;
         }
-
-        public event Action<string> SelectCategory;
-        public event Action<string> SelectItem;
-        public event Action SelectBack;
-        public event Action SelectExit;
     }
 }
