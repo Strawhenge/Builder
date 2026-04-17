@@ -2,7 +2,7 @@ using Xunit;
 
 namespace Strawhenge.Builder.Tests.UnitTests
 {
-    public class SlideAmount_Tests
+    public class SlideAmountTests
     {
         [Fact]
         public void Slide_delta_should_be_entered_amount_when_total_is_within_range()

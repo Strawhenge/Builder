@@ -7,7 +7,7 @@ namespace Strawhenge.Builder.Tests.Menu
 {
     public class MenuItemsFactoryTests
     {
-        readonly MenuItemsFactory<SampleBuildItem> _sut = new MenuItemsFactory<SampleBuildItem>();
+        readonly MenuItemsFactory<SampleBuildItem> _sut;
         readonly Action<SampleBuildItem> _onSelect;
         SampleBuildItem _selectedItem;
 
@@ -20,7 +20,9 @@ namespace Strawhenge.Builder.Tests.Menu
         [Fact]
         public void CreateEmptyCategory()
         {
-            var mainCategory = _sut.CreateMainCategory(Enumerable.Empty<SampleBuildItem>(), x => { });
+            var mainCategory = _sut.CreateMainCategory(Enumerable.Empty<SampleBuildItem>(), x =>
+            {
+            });
 
             Assert.NotNull(mainCategory);
             Assert.Empty(mainCategory.Items);
