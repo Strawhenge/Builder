@@ -27,6 +27,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6578935773433511726}
   m_RootOrder: 2
@@ -72,8 +73,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3998035774886422083}
   - component: {fileID: 2248303608002285938}
+  - component: {fileID: 7839129224104203380}
+  - component: {fileID: 2785306098028721147}
   m_Layer: 0
-  m_Name: Recipe Display
+  m_Name: Build Item Composition UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +92,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 736.7467, y: 293.0977, z: -44.531548}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6578935773696418328}
   m_Father: {fileID: 0}
@@ -114,6 +118,32 @@ MonoBehaviour:
   _componentsParent: {fileID: 291340295869111920}
   _recipeComponentPrefab: {fileID: 2062664628934885841, guid: c7b0313ecaa6d304793d830135a4cb11, type: 3}
   _scrapComponentPrefab: {fileID: 1084459358712243293, guid: c7b0313ecaa6d304793d830135a4cb11, type: 3}
+--- !u!114 &7839129224104203380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481004620245421512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e98154367045e480144c3d94055dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildItemCompositionUI: {fileID: 2248303608002285938}
+--- !u!114 &2785306098028721147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2481004620245421512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6c6d8244734506b284a2a87efc0b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildItemCompositionUI: {fileID: 2248303608002285938}
 --- !u!1 &6578935772937188379
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +172,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6578935773433511726}
   m_RootOrder: 1
@@ -221,6 +252,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6578935773433511726}
   m_RootOrder: 0
@@ -300,6 +332,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6578935773205644645}
   - {fileID: 6578935772937188378}
@@ -379,6 +412,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6578935773433511726}
   m_Father: {fileID: 3998035774886422083}

@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 2062664628934885841}
   - component: {fileID: 1084459358712243293}
   m_Layer: 5
-  m_Name: Recipe Display Component
+  m_Name: Build Item Composition UI Component
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,8 +21,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
 
-        [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
-
 
         [SerializeField] Camera _camera;
 
@@ -81,8 +79,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 _defaultPosition.DefaultPositionAccessor,
                 _ui.BuilderManagerUI,
                 _ui.Menu,
-                _itemCompositionUI,
-                _itemCompositionUI,
+                _ui.RecipeUI,
+                _ui.ScrapUI,
                 _blueprintsRepository,
                 controlsSettings,
                 layers,

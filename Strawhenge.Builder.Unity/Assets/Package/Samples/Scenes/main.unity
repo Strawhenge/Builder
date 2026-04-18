@@ -762,7 +762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2481004620245421512, guid: 52e68f3c8b05b504590f5e0d8e30ec72, type: 3}
       propertyPath: m_Name
-      value: Recipe Display
+      value: Build Item Composition UI
       objectReference: {fileID: 0}
     - target: {fileID: 2481004620245421512, guid: 52e68f3c8b05b504590f5e0d8e30ec72, type: 3}
       propertyPath: m_IsActive
@@ -816,13 +816,24 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 52e68f3c8b05b504590f5e0d8e30ec72, type: 3}
 --- !u!114 &1227849172 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2248303608002285938, guid: 52e68f3c8b05b504590f5e0d8e30ec72, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2785306098028721147, guid: 52e68f3c8b05b504590f5e0d8e30ec72, type: 3}
   m_PrefabInstance: {fileID: 1227849171}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b379dba5ca0d94fbaceb782495906b, type: 3}
+  m_Script: {fileID: 11500000, guid: fe6c6d8244734506b284a2a87efc0b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1227849173 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7839129224104203380, guid: 52e68f3c8b05b504590f5e0d8e30ec72, type: 3}
+  m_PrefabInstance: {fileID: 1227849171}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e98154367045e480144c3d94055dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1332150396
@@ -1020,7 +1031,6 @@ MonoBehaviour:
   _buildItemScriptSelector: {fileID: 7374499}
   _cameraController: {fileID: 7374500}
   _defaultPosition: {fileID: 1692729552}
-  _itemCompositionUI: {fileID: 1227849172}
   _camera: {fileID: 1332150398}
   _controlsSettings:
     _serialized:
@@ -1166,6 +1176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _builderManagerUI: {fileID: 60753929}
   _menu: {fileID: 621259159}
+  _recipeUI: {fileID: 1227849173}
+  _scrapUI: {fileID: 1227849172}
 --- !u!65 &2002978846 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3723808646042240179, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
