@@ -1,4 +1,5 @@
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Progress;
 using UnityEditor;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Strawhenge.Builder.Unity.Editor
     public class BuilderScriptEditor : UnityEditor.Editor
     {
         BuilderScript _target;
+        bool _importToggle;
+        BuilderProgressDataScriptableObject _progressData;
 
         void OnEnable()
         {
@@ -31,6 +34,26 @@ namespace Strawhenge.Builder.Unity.Editor
                 _target.BuilderManager.Off();
 
             EditorGUILayout.EndHorizontal();
+
+            _importToggle = EditorGUILayout.Foldout(_importToggle, "Import");
+
+            if (_importToggle)
+            {
+                _progressData = (BuilderProgressDataScriptableObject)EditorGUILayout.ObjectField(
+                    "Progress",
+                    _progressData,
+                    typeof(BuilderProgressDataScriptableObject),
+                    allowSceneObjects: false
+                );
+
+                EditorGUI.BeginDisabledGroup(_progressData == null);
+
+                if (GUILayout.Button(nameof(ProgressManager.Import)))
+                    _target.BuilderManager.Progress.Import(_progressData);
+
+                EditorGUI.EndDisabledGroup();
+            }
+
             EditorGUI.EndDisabledGroup();
         }
     }

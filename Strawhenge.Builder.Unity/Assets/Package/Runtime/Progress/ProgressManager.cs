@@ -17,8 +17,8 @@ namespace Strawhenge.Builder.Unity.Progress
             _progressLoader = new BuilderProgressLoader(blueprintRepository, blueprintFactory, logger);
         }
 
-        public void Import(BuilderProgressData data) => _progressLoader.Load(data);
+        public void Import(IBuilderProgressData data) => _progressLoader.Load(data);
 
-        public BuilderProgressData Export() => _progressTracker.GetCurrentProgress();
+        public IBuilderProgressData Export() => _progressTracker.GetCurrentProgress();
     }
 }

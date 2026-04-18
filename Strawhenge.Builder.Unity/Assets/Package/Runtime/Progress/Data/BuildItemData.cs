@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Progress
 {
-    public class BuildItemData
+    public class BuildItemData : IBuildItemData
     {
         public BuildItemData(string name, Vector3 position, Quaternion rotation)
         {
