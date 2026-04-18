@@ -16,3 +16,18 @@ MonoBehaviour:
   - _name: Floor
     _position: {x: 2.0155058, y: 0.005000001, z: 1.7324241}
     _rotation: {x: 0, y: 0, z: 0}
+  - _name: WallWithDoor
+    _position: {x: 2.0155058, y: 0.005000001, z: 1.2324241}
+    _rotation: {x: 0, y: 0, z: 0}
+  - _name: Wall
+    _position: {x: 2.5155058, y: 0.005000001, z: 1.7324241}
+    _rotation: {x: 0, y: 270, z: 0}
+  - _name: Wall
+    _position: {x: 2.0155058, y: 0.005, z: 2.2324245}
+    _rotation: {x: 0, y: 180, z: 0}
+  - _name: Wall
+    _position: {x: 1.5155056, y: 0.005, z: 1.7324247}
+    _rotation: {x: 0, y: 90, z: 0}
+  - _name: Floor
+    _position: {x: 2.0155058, y: 1.005, z: 1.7324241}
+    _rotation: {x: 0, y: 0, z: 0}
