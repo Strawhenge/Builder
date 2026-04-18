@@ -14,9 +14,6 @@ namespace Strawhenge.Builder.Unity
     {
         readonly MarkersToggle _markers;
         readonly BlueprintFactory _blueprintFactory;
-
-        readonly ProgressManager _progressManager;
-
         readonly SelectingExistingItem _selectingExistingItem;
         readonly ManagingExistingBlueprint _managingExistingBlueprint;
         readonly ManagingNewBlueprint _managingNewBlueprint;
