@@ -1,4 +1,3 @@
-using Strawhenge.Builder.Unity.Blueprints;
 using Strawhenge.Common.Logging;
 
 namespace Strawhenge.Builder.Unity.Progress
@@ -8,9 +7,9 @@ namespace Strawhenge.Builder.Unity.Progress
         readonly BuilderProgressTracker _progressTracker;
         readonly BuilderProgressLoader _progressLoader;
 
-        public ProgressManager(
+        internal ProgressManager(
             IBlueprintRepository blueprintRepository,
-            IBlueprintFactory blueprintFactory,
+            BlueprintFactory blueprintFactory,
             BuilderProgressTracker progressTracker,
             ILogger logger)
         {

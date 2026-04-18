@@ -1,5 +1,4 @@
-﻿using Strawhenge.Builder.Unity.Blueprints;
-using Strawhenge.Builder.Unity.BuildItems;
+﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
@@ -8,7 +7,7 @@ using System.Linq;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BlueprintFactory : IBlueprintFactory
+    class BlueprintFactory
     {
         readonly BuilderProgressTracker _builderProgressTracker;
         readonly IDefaultPositionAccessor _initialPositionAccessor;

@@ -1,5 +1,4 @@
 ﻿using Strawhenge.Builder.Menu;
-using Strawhenge.Builder.Unity.Blueprints;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Builder.Unity.Progress;
@@ -14,7 +13,7 @@ namespace Strawhenge.Builder.Unity
     public partial class BuilderManager
     {
         readonly MarkersToggle _markers;
-        readonly IBlueprintFactory _blueprintFactory;
+        readonly BlueprintFactory _blueprintFactory;
 
         readonly ProgressManager _progressManager;
 
