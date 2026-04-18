@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Controls
 {
     public sealed class DefaultControlsSettings : IControlsSettings
     {
-        public static DefaultControlsSettings Instance { get; } = new DefaultControlsSettings();
+        public static DefaultControlsSettings Instance { get; } = new();
 
         DefaultControlsSettings()
         {
