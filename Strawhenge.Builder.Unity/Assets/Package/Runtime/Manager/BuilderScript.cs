@@ -68,7 +68,11 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 ? _logger.Logger
                 : new UnityLogger(gameObject);
 
-            var layers = _layers.GetValue(); // TODO Handle missing case.
+            if (!_layers.TryGetValue(out var layers))
+            {
+                logger.LogWarning($"'{nameof(_layers)}' not set.");
+                layers = NullLayers.Instance;
+            }
 
             var controlsSettings = _controlsSettings
                 .GetValueOrDefault(() => DefaultControlsSettings.Instance);
