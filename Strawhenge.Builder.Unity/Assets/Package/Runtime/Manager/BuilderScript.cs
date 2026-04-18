@@ -43,12 +43,6 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
 
         public BuilderManager BuilderManager => _builderManager ??= Create();
 
-        [ContextMenu(nameof(On))]
-        public void On() => BuilderManager.On();
-
-        [ContextMenu(nameof(Off))]
-        public void Off() => BuilderManager.Off();
-
         void Awake()
         {
             _builderManager ??= Create();
