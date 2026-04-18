@@ -9,7 +9,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Controls.HorizontalSnap
 
         Snapping.HorizontalSnap _snap;
 
-        public HorizontalSnapControls(IHorizontalSnapControlsSettings settings)
+        internal HorizontalSnapControls(IHorizontalSnapControlsSettings settings)
         {
             _tiltSpeed = settings.TiltSpeed;
             _slideSpeed = settings.SlideSpeed;
