@@ -1,6 +1,6 @@
 ﻿namespace Strawhenge.Builder.Unity.BuildItems.Existing
 {
-    public class ExistingBuildableItem
+    class ExistingBuildableItem
     {
         public ExistingBuildableItem(string identifier, IExistingBuildItem buildItem, ScrapValue scrapValue)
         {

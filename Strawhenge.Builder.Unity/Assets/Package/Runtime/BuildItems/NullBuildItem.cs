@@ -3,7 +3,7 @@ using Strawhenge.Builder.Unity.BuildItems.Existing;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
-    public class NullBuildItem : IExistingBuildItem
+    class NullBuildItem : IExistingBuildItem
     {
         public static IExistingBuildItem Instance { get; } = new NullBuildItem();
 

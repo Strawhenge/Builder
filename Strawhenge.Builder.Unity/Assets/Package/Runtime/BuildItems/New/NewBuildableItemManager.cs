@@ -4,7 +4,7 @@ using System;
 
 namespace Strawhenge.Builder.Unity.BuildItems.New
 {
-    public class NewBuildableItemManager
+    class NewBuildableItemManager
     {
         readonly ComponentInventory _componentInventory;
         readonly BuildItemController _buildItemController;

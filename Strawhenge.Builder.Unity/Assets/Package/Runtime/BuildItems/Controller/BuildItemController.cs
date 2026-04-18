@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Controller
 {
-    public partial class BuildItemController
+    partial class BuildItemController
     {
         readonly ICameraController _camera;
         readonly ControlsToggle _controls;
@@ -44,7 +44,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Controller
             _callbacks = new Callbacks();
         }
 
-        public void On(
+        internal void On(
             IBuildItem buildItem,
             Func<bool> canPlaceFinalItem = null,
             Action onPlacedFinalItem = null,
@@ -60,7 +60,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Controller
             Begin(buildItem, false);
         }
 
-        public void On(
+        internal void On(
             IExistingBuildItem buildItem,
             Action onPlacedItem = null,
             Action onScrapped = null,

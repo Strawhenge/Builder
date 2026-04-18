@@ -2,7 +2,7 @@
 
 namespace Strawhenge.Builder.Unity.BuildItems.Existing
 {
-    public interface IExistingBuildItem : IBuildItem
+    interface IExistingBuildItem : IBuildItem
     {
         void Scrap();
     }

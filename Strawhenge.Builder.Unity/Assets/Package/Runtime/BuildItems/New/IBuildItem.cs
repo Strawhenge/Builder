@@ -2,7 +2,7 @@
 
 namespace Strawhenge.Builder.Unity.BuildItems.New
 {
-    public interface IBuildItem
+    interface IBuildItem
     {
         void Cancel();
 

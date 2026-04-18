@@ -1,6 +1,6 @@
 ﻿namespace Strawhenge.Builder.Unity.BuildItems.New
 {
-    public class NewBuildableItem
+    class NewBuildableItem
     {
         public NewBuildableItem(string identifier, IBuildItem buildItem, Recipe recipe)
         {
