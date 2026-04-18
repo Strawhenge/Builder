@@ -5,16 +5,16 @@ namespace Strawhenge.Builder.Unity.Progress
     class BuilderProgressLoader
     {
         readonly IBlueprintRepository _blueprintRepository;
-        readonly BlueprintFactory _blueprintFactory;
+        readonly BuildableItemFactory _buildableItemFactory;
         readonly ILogger _logger;
 
         public BuilderProgressLoader(
             IBlueprintRepository blueprintRepository,
-            BlueprintFactory blueprintFactory,
+            BuildableItemFactory buildableItemFactory,
             ILogger logger)
         {
             _blueprintRepository = blueprintRepository;
-            _blueprintFactory = blueprintFactory;
+            _buildableItemFactory = buildableItemFactory;
             _logger = logger;
         }
 
@@ -32,7 +32,7 @@ namespace Strawhenge.Builder.Unity.Progress
                     continue;
                 }
 
-                var buildItem = _blueprintFactory.Create(blueprint).BuildItem;
+                var buildItem = _buildableItemFactory.Create(blueprint).BuildItem;
 
                 buildItem
                     .Arrange()

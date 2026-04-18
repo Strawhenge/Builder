@@ -13,7 +13,7 @@ namespace Strawhenge.Builder.Unity
     public partial class BuilderManager
     {
         readonly MarkersToggle _markers;
-        readonly BlueprintFactory _blueprintFactory;
+        readonly BuildableItemFactory _buildableItemFactory;
         readonly SelectingExistingItem _selectingExistingItem;
         readonly ManagingExistingBlueprint _managingExistingBlueprint;
         readonly ManagingNewBlueprint _managingNewBlueprint;
@@ -36,10 +36,10 @@ namespace Strawhenge.Builder.Unity
             _markers = new MarkersToggle(camera, layers);
 
             var progressTracker = new BuilderProgressTracker(logger);
-            _blueprintFactory = new BlueprintFactory(progressTracker, defaultPositionAccessor, logger);
+            _buildableItemFactory = new BuildableItemFactory(progressTracker, defaultPositionAccessor, logger);
             Progress = new ProgressManager(
                 blueprintRepository,
-                _blueprintFactory,
+                _buildableItemFactory,
                 progressTracker,
                 logger);
 
@@ -63,12 +63,12 @@ namespace Strawhenge.Builder.Unity
                 Controls.VerticalSnap,
                 Controls.HorizontalSnap);
 
-            var existingBlueprintManager = new ExistingBlueprintManager(
+            var existingBlueprintManager = new ExistingBuildableItemManager(
                 componentInventory,
                 buildItemController,
                 uiContainer.ScrapUI);
 
-            var blueprintManager = new BlueprintManager(
+            var blueprintManager = new NewBuildableItemManager(
                 componentInventory,
                 buildItemController,
                 uiContainer.RecipeUI);
@@ -117,13 +117,13 @@ namespace Strawhenge.Builder.Unity
 
         void OnExistingBuildItemSelected(BuildItemScript script)
         {
-            _managingExistingBlueprint.Blueprint = _blueprintFactory.Create(script);
+            _managingExistingBlueprint.BuildableItem = _buildableItemFactory.Create(script);
             SetState(_managingExistingBlueprint);
         }
 
         void OnBlueprintSelectedFromMenu(IBlueprint scriptableObject)
         {
-            _managingNewBlueprint.Blueprint = _blueprintFactory.Create(scriptableObject);
+            _managingNewBlueprint.NewBuildableItem = _buildableItemFactory.Create(scriptableObject);
             SetState(_managingNewBlueprint);
         }
 

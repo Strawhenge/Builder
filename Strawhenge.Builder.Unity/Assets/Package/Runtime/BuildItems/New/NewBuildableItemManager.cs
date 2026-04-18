@@ -4,15 +4,15 @@ using System;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BlueprintManager
+    public class NewBuildableItemManager
     {
         readonly ComponentInventory _componentInventory;
         readonly BuildItemController _buildItemController;
         readonly IRecipeUI _recipeUI;
 
-        Blueprint _currentBlueprint;
+        NewBuildableItem _currentNewBuildableItem;
 
-        public BlueprintManager(
+        public NewBuildableItemManager(
             ComponentInventory componentInventory,
             BuildItemController buildItemController,
             IRecipeUI recipeUI)
@@ -22,9 +22,9 @@ namespace Strawhenge.Builder.Unity
             _recipeUI = recipeUI;
         }
 
-        public void Set(Blueprint blueprint, Action callback = null)
+        public void Set(NewBuildableItem newBuildableItem, Action callback = null)
         {
-            _currentBlueprint = blueprint;
+            _currentNewBuildableItem = newBuildableItem;
 
             ArrangeCurrentBlueprintBuildItem(callback);
         }
@@ -34,7 +34,7 @@ namespace Strawhenge.Builder.Unity
             _recipeUI.Hide();
             _buildItemController.Off();
 
-            _currentBlueprint = null;
+            _currentNewBuildableItem = null;
         }
 
         void ArrangeCurrentBlueprintBuildItem(Action callback)
@@ -42,27 +42,27 @@ namespace Strawhenge.Builder.Unity
             UpdateRecipeUI();
 
             _buildItemController.On(
-                _currentBlueprint.BuildItem,
-                () => _currentBlueprint.Recipe.HasRequiredComponents(_componentInventory),
+                _currentNewBuildableItem.BuildItem,
+                () => _currentNewBuildableItem.Recipe.HasRequiredComponents(_componentInventory),
                 () =>
                 {
-                    _currentBlueprint.Recipe.DeductRequiredComponents(_componentInventory);
+                    _currentNewBuildableItem.Recipe.DeductRequiredComponents(_componentInventory);
 
                     ArrangeCurrentBlueprintBuildItem(callback);
                 },
                 () =>
                 {
                     _recipeUI.Hide();
-                    _currentBlueprint = null;
+                    _currentNewBuildableItem = null;
                     callback?.Invoke();
                 });
         }
 
         void UpdateRecipeUI()
         {
-            var requirements = _currentBlueprint.Recipe.GetRequirements(_componentInventory);
+            var requirements = _currentNewBuildableItem.Recipe.GetRequirements(_componentInventory);
 
-            _recipeUI.Show(_currentBlueprint.Identifier, requirements);
+            _recipeUI.Show(_currentNewBuildableItem.Identifier, requirements);
         }
     }
 }

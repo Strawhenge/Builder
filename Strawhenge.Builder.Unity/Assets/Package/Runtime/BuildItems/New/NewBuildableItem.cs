@@ -2,9 +2,9 @@
 
 namespace Strawhenge.Builder.Unity
 {
-    public class Blueprint // TODO Rename this. 'Blueprint' refers to the data object. 
+    public class NewBuildableItem
     {
-        public Blueprint(string identifier, IBuildItem buildItem, Recipe recipe)
+        public NewBuildableItem(string identifier, IBuildItem buildItem, Recipe recipe)
         {
             Identifier = identifier;
             BuildItem = buildItem;

@@ -7,13 +7,13 @@ using System.Linq;
 
 namespace Strawhenge.Builder.Unity
 {
-    class BlueprintFactory
+    class BuildableItemFactory
     {
         readonly BuilderProgressTracker _builderProgressTracker;
         readonly IDefaultPositionAccessor _initialPositionAccessor;
         readonly ILogger _logger;
 
-        public BlueprintFactory(
+        public BuildableItemFactory(
             BuilderProgressTracker builderProgressTracker,
             IDefaultPositionAccessor initialPositionAccessor,
             ILogger logger)
@@ -23,20 +23,20 @@ namespace Strawhenge.Builder.Unity
             _logger = logger;
         }
 
-        public ExistingBlueprint Create(BuildItemScript buildItemScript)
+        public ExistingBuildableItem Create(BuildItemScript buildItemScript)
         {
             var buildItem = new ExistingBuildItem(_builderProgressTracker, buildItemScript);
             var scrapValue = buildItemScript.ScrapValue;
 
-            return new ExistingBlueprint(buildItemScript.name, buildItem, scrapValue);
+            return new ExistingBuildableItem(buildItemScript.name, buildItem, scrapValue);
         }
 
-        public Blueprint Create(IBlueprint scriptableObject)
+        public NewBuildableItem Create(IBlueprint scriptableObject)
         {
             var buildItem = CreateBuildItem(scriptableObject);
             var recipe = CreateRecipe(scriptableObject);
 
-            return new Blueprint(scriptableObject.Name, buildItem, recipe);
+            return new NewBuildableItem(scriptableObject.Name, buildItem, recipe);
         }
 
         IBuildItem CreateBuildItem(IBlueprint scriptableObject)

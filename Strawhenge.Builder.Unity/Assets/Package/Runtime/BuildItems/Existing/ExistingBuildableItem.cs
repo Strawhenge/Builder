@@ -2,9 +2,9 @@
 
 namespace Strawhenge.Builder.Unity
 {
-    public class ExistingBlueprint
+    public class ExistingBuildableItem
     {
-        public ExistingBlueprint(string identifier, IExistingBuildItem buildItem, ScrapValue scrapValue)
+        public ExistingBuildableItem(string identifier, IExistingBuildItem buildItem, ScrapValue scrapValue)
         {
             Identifier = identifier;
             BuildItem = buildItem;

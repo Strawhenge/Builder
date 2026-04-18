@@ -6,29 +6,29 @@ namespace Strawhenge.Builder.Unity
     {
         class ManagingNewBlueprint : IState
         {
-            readonly BlueprintManager _blueprintManager;
+            readonly NewBuildableItemManager _newBuildableItemManager;
             readonly Action _onEnded;
 
             Action _callback = () => { };
 
-            public ManagingNewBlueprint(BlueprintManager blueprintManager, Action onEnded)
+            public ManagingNewBlueprint(NewBuildableItemManager newBuildableItemManager, Action onEnded)
             {
-                _blueprintManager = blueprintManager;
+                _newBuildableItemManager = newBuildableItemManager;
                 _onEnded = onEnded;
             }
 
-            public Blueprint Blueprint { private get; set; }
+            public NewBuildableItem NewBuildableItem { private get; set; }
 
             public void Begin()
             {
                 _callback = _onEnded;
-                _blueprintManager.Set(Blueprint, () => _callback());
+                _newBuildableItemManager.Set(NewBuildableItem, () => _callback());
             }
 
             public void End()
             {
                 _callback = () => { };
-                _blueprintManager.Unset();
+                _newBuildableItemManager.Unset();
             }
         }
     }

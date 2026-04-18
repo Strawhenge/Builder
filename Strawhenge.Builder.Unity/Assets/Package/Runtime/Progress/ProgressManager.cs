@@ -9,12 +9,12 @@ namespace Strawhenge.Builder.Unity.Progress
 
         internal ProgressManager(
             IBlueprintRepository blueprintRepository,
-            BlueprintFactory blueprintFactory,
+            BuildableItemFactory buildableItemFactory,
             BuilderProgressTracker progressTracker,
             ILogger logger)
         {
             _progressTracker = progressTracker;
-            _progressLoader = new BuilderProgressLoader(blueprintRepository, blueprintFactory, logger);
+            _progressLoader = new BuilderProgressLoader(blueprintRepository, buildableItemFactory, logger);
         }
 
         public void Import(IBuilderProgressData data) => _progressLoader.Load(data);

@@ -4,15 +4,15 @@ using System;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class ExistingBlueprintManager
+    public class ExistingBuildableItemManager
     {
         readonly ComponentInventory _componentInventory;
         readonly BuildItemController _buildItemController;
         readonly IScrapUI _scrapUI;
 
-        ExistingBlueprint _currentBlueprint;
+        ExistingBuildableItem _currentBuildableItem;
 
-        public ExistingBlueprintManager(
+        public ExistingBuildableItemManager(
             ComponentInventory componentInventory,
             BuildItemController buildItemController,
             IScrapUI scrapUI)
@@ -22,12 +22,12 @@ namespace Strawhenge.Builder.Unity
             _scrapUI = scrapUI;
         }
 
-        public void Set(ExistingBlueprint blueprint, Action callback = null)
+        public void Set(ExistingBuildableItem buildableItem, Action callback = null)
         {
-            _currentBlueprint = blueprint;
+            _currentBuildableItem = buildableItem;
 
             _buildItemController.On(
-                blueprint.BuildItem,
+                buildableItem.BuildItem,
                 onPlacedItem: () => OnBuildItemArrangeEnded(callback),
                 onScrapped: () =>
                 {
@@ -36,14 +36,14 @@ namespace Strawhenge.Builder.Unity
                 },
                 onCancelled: () => OnBuildItemArrangeEnded(callback));
 
-            var additions = blueprint.ScrapValue.GetAdditions(_componentInventory);
+            var additions = buildableItem.ScrapValue.GetAdditions(_componentInventory);
 
-            _scrapUI.Show(blueprint.Identifier, additions);
+            _scrapUI.Show(buildableItem.Identifier, additions);
         }
 
         public void Unset()
         {
-            if (_currentBlueprint == null)
+            if (_currentBuildableItem == null)
                 return;
 
             _buildItemController.Off();
@@ -51,16 +51,16 @@ namespace Strawhenge.Builder.Unity
 
         void Scrap()
         {
-            if (_currentBlueprint == null)
+            if (_currentBuildableItem == null)
                 return;
            
-            _currentBlueprint.ScrapValue.AddComponentsTo(_componentInventory);
+            _currentBuildableItem.ScrapValue.AddComponentsTo(_componentInventory);
             _buildItemController.Off();
         }
 
         void OnBuildItemArrangeEnded(Action callback = null)
         {
-            _currentBlueprint = null;
+            _currentBuildableItem = null;
             _scrapUI.Hide();
 
             callback?.Invoke();
