@@ -1,6 +1,6 @@
-using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.UI;
+using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Package.Runtime.UI
@@ -12,12 +12,22 @@ namespace Strawhenge.Builder.Unity.Package.Runtime.UI
         [SerializeField] BaseRecipeUIScript _recipeUI;
         [SerializeField] BaseScrapUIScript _scrapUI;
 
-        internal IBuilderManagerUI BuilderManagerUI => _builderManagerUI.BuilderManagerUI;
+        UIContainer _container;
 
-        internal IMenuView Menu => _menu.MenuView;
+        internal UIContainer Container => _container ??= Create();
 
-        internal IRecipeUI RecipeUI => _recipeUI.RecipeUI;
+        UIContainer Create()
+        {
+            ComponentRefHelper.EnsureSceneComponent(ref _builderManagerUI, nameof(_builderManagerUI), this);
+            ComponentRefHelper.EnsureSceneComponent(ref _menu, nameof(_menu), this);
+            ComponentRefHelper.EnsureSceneComponent(ref _recipeUI, nameof(_recipeUI), this);
+            ComponentRefHelper.EnsureSceneComponent(ref _scrapUI, nameof(_scrapUI), this);
 
-        internal IScrapUI ScrapUI => _scrapUI.ScrapUI;
+            return new UIContainer(
+                _builderManagerUI.BuilderManagerUI,
+                _menu.MenuView,
+                _recipeUI.RecipeUI,
+                _scrapUI.ScrapUI);
+        }
     }
 }

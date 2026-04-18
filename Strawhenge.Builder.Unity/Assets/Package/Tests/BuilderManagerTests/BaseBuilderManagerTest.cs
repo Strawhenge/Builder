@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Package.Runtime.UI;
 using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Builder.Unity.Tests.Fakes;
 using Strawhenge.Builder.Unity.UI;
@@ -48,10 +49,10 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
                 _camera,
                 new CameraControllerFake(),
                 new DefaultPositionAccessorFake(),
-                _builderManagerUI,
-                _menuView,
-                new NullRecipeUI(),
-                new NullScrapUI(),
+                new UIContainer(_builderManagerUI,
+                    _menuView,
+                    new NullRecipeUI(),
+                    new NullScrapUI()),
                 _blueprintRepository,
                 DefaultControlsSettings.Instance,
                 Layers,
@@ -86,9 +87,9 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         protected void InvokeCloseMenu() => _menuView.InvokeSelectExit();
 
         protected void InvokeSelectFromMenu(string name) => _menuView.InvokeSelectItem(name);
-       
+
         protected void InvokeSelectCategoryFromMenu(string name) => _menuView.InvokeSelectCategory(name);
-        
+
         protected void InvokeBackOnMenu() => _menuView.InvokeSelectBack();
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();

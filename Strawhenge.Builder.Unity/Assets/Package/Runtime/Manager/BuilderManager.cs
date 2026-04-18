@@ -1,9 +1,9 @@
 ﻿using Strawhenge.Builder.Menu;
 using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Package.Runtime.UI;
 using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.ScriptableObjects;
-using Strawhenge.Builder.Unity.UI;
 using System;
 using UnityEngine;
 using ILogger = Strawhenge.Common.Logging.ILogger;
@@ -30,10 +30,7 @@ namespace Strawhenge.Builder.Unity
             Camera camera,
             ICameraController cameraController,
             IDefaultPositionAccessor defaultPositionAccessor,
-            IBuilderManagerUI builderManagerUI,
-            IMenuView menu,
-            IRecipeUI recipeUI,
-            IScrapUI scrapUI,
+            UIContainer uiContainer,
             IBlueprintRepository blueprintRepository,
             IControlsSettings controlsSettings,
             ILayers layers,
@@ -50,13 +47,13 @@ namespace Strawhenge.Builder.Unity
                 logger);
 
             _selectingExistingItem = new SelectingExistingItem(
-                builderManagerUI,
+                uiContainer.BuilderManagerUI,
                 buildItemSelector,
                 OnExistingBuildItemSelected,
                 OnMenuOpen,
                 OnExitBuilder);
 
-            var builderMenu = new BuilderMenu(menu);
+            var builderMenu = new BuilderMenu(uiContainer.MenuView);
             var scriptableObjectsMenu = new BlueprintMenu(
                 builderMenu,
                 blueprintRepository);
@@ -72,12 +69,12 @@ namespace Strawhenge.Builder.Unity
             var existingBlueprintManager = new ExistingBlueprintManager(
                 componentInventory,
                 buildItemController,
-                scrapUI);
+                uiContainer.ScrapUI);
 
             var blueprintManager = new BlueprintManager(
                 componentInventory,
                 buildItemController,
-                recipeUI);
+                uiContainer.RecipeUI);
 
             _managingExistingBlueprint =
                 new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
