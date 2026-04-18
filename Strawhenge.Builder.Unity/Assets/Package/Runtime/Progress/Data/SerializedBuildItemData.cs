@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Progress
+namespace Strawhenge.Builder.Unity.Progress.Data
 {
     [Serializable]
     public class SerializedBuildItemData : IBuildItemData

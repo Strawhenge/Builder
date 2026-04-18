@@ -1,7 +1,10 @@
-﻿using Strawhenge.Builder.Unity.BuildItems;
-using Strawhenge.Builder.Unity.Manager.UI;
-using Strawhenge.Builder.Unity.Package.Runtime.Blueprints;
-using Strawhenge.Builder.Unity.Package.Runtime.UI;
+﻿using Strawhenge.Builder.Unity.Blueprints.Repository;
+using Strawhenge.Builder.Unity.BuildItems.Controls;
+using Strawhenge.Builder.Unity.BuildItems.DefaultPosition;
+using Strawhenge.Builder.Unity.BuildItems.Selector;
+using Strawhenge.Builder.Unity.Camera;
+using Strawhenge.Builder.Unity.Components;
+using Strawhenge.Builder.Unity.Layers;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Helpers;
@@ -9,7 +12,7 @@ using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Strawhenge.Builder.Unity.Monobehaviours
+namespace Strawhenge.Builder.Unity.Manager
 {
     public class BuilderScript : MonoBehaviour
     {
@@ -19,7 +22,7 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
         [SerializeField] UIContainerScript _ui;
-        [SerializeField] Camera _camera;
+        [SerializeField] UnityEngine.Camera _camera;
 
         [SerializeField] SerializedSource<
             IControlsSettings,

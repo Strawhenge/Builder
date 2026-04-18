@@ -1,3 +1,4 @@
+using Strawhenge.Builder.Unity.Camera;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Tests.Fakes

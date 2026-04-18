@@ -1,7 +1,8 @@
+using Strawhenge.Builder.Unity.BuildItems.Arrange;
 using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem
 {
     public class BuildItemControls
     {

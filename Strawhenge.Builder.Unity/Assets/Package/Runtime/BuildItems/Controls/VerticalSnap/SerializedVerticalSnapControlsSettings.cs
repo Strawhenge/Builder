@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap
 {
     [Serializable]
     public class SerializedVerticalSnapControlsSettings : IVerticalSnapControlsSettings

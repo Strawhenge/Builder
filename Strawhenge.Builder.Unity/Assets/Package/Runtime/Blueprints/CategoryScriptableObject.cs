@@ -2,7 +2,7 @@ using FunctionalUtilities;
 using Strawhenge.Builder.Menu;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.ScriptableObjects
+namespace Strawhenge.Builder.Unity.Blueprints
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/Category")]
     public class CategoryScriptableObject : ScriptableObject, ICategory

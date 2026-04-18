@@ -1,7 +1,9 @@
 using Strawhenge.Builder.Menu;
-using Strawhenge.Builder.Unity.UI;
+using Strawhenge.Builder.Unity.UI.Manager;
+using Strawhenge.Builder.Unity.UI.Recipe;
+using Strawhenge.Builder.Unity.UI.Scrap;
 
-namespace Strawhenge.Builder.Unity.Package.Runtime.UI
+namespace Strawhenge.Builder.Unity.UI
 {
     public class UIContainer
     {

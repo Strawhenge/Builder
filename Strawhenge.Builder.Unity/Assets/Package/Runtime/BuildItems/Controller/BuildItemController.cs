@@ -1,7 +1,15 @@
-﻿using System;
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
+using Strawhenge.Builder.Unity.BuildItems.Controls;
+using Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem;
+using Strawhenge.Builder.Unity.BuildItems.Controls.HorizontalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Existing;
+using Strawhenge.Builder.Unity.BuildItems.New;
+using Strawhenge.Builder.Unity.Camera;
+using System;
 using System.Linq;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controller
 {
     public partial class BuildItemController
     {

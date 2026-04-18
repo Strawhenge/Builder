@@ -1,11 +1,11 @@
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.DefaultPosition
 {
     public class InFrontOfCameraDefaultPositionScript : DefaultPositionAccessorScript
     {
-        [SerializeField] Camera _camera;
+        [SerializeField] UnityEngine.Camera _camera;
         [SerializeField] float _distance;
         [SerializeField] LayerMask _collisionLayerMask;
 

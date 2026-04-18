@@ -1,5 +1,6 @@
 using FunctionalUtilities;
-using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.Blueprints.Repository;
 using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Unity.Tests.Fakes

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Strawhenge.Builder.Unity.UI
+namespace Strawhenge.Builder.Unity.UI.Recipe
 {
     public class NullRecipeUI : IRecipeUI
     {

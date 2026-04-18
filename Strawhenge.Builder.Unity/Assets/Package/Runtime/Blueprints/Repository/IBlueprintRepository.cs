@@ -1,8 +1,7 @@
 ﻿using FunctionalUtilities;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Collections.Generic;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Blueprints.Repository
 {
     public interface IBlueprintRepository
     {

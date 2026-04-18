@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.BuildItems.Selector
 {
     public abstract class BuildItemSelectorScript : MonoBehaviour
     {

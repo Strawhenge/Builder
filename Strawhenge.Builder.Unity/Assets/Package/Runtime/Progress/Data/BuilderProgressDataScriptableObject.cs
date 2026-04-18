@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Progress
+namespace Strawhenge.Builder.Unity.Progress.Data
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/Progress Data")]
     public class BuilderProgressDataScriptableObject : ScriptableObject, IBuilderProgressData

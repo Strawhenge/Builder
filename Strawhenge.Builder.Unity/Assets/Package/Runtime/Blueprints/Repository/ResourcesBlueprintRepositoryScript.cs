@@ -1,11 +1,9 @@
 ﻿using FunctionalUtilities;
-using Strawhenge.Builder.Unity.Package.Runtime.Blueprints;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Blueprints.Repository
 {
     public class ResourcesBlueprintRepositoryScript : BlueprintsRepositoryScript
     {

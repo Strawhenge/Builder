@@ -3,7 +3,7 @@ using Strawhenge.Common.Unity.Serialization;
 using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Layers
 {
     [Serializable]
     public class SerializedLayers : ScriptableObject, ILayers

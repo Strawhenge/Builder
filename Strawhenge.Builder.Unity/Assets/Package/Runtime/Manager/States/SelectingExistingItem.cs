@@ -1,11 +1,13 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
+﻿using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Selector;
+using Strawhenge.Builder.Unity.UI.Manager;
 using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
-        class SelectingExistingItem : IState
+        class SelectingExistingItem : Manager.BuilderManager.IState
         {
             readonly IBuilderManagerUI _builderManagerUI;
             readonly IBuildItemSelector _buildItemScriptSelector;

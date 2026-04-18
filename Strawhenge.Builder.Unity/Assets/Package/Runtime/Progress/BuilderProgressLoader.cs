@@ -1,3 +1,6 @@
+using Strawhenge.Builder.Unity.Blueprints.Repository;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Progress.Data;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity.Progress

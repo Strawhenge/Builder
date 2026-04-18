@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.UI
+namespace Strawhenge.Builder.Unity.UI.Scrap
 {
     public class StandardScrapUIScript : BaseScrapUIScript
     {

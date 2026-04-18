@@ -1,8 +1,8 @@
 using FunctionalUtilities;
 using Strawhenge.Builder.Menu;
-using Strawhenge.Builder.Unity.Data;
-using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Components;
 using System;
 using System.Collections.Generic;
 

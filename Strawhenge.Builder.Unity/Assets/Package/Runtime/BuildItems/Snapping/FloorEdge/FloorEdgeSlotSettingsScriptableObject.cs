@@ -3,7 +3,7 @@ using Strawhenge.Common.Ranges;
 using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.ScriptableObjects
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping.FloorEdge
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/SlotSettings/FloorEdge")]
     public class FloorEdgeSlotSettingsScriptableObject : ScriptableObject, IFloorEdgeSlotSettings

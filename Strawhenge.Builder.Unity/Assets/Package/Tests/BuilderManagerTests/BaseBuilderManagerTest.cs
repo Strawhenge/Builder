@@ -1,10 +1,13 @@
 ﻿using NUnit.Framework;
+using Strawhenge.Builder.Unity.Blueprints;
 using Strawhenge.Builder.Unity.BuildItems;
-using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.Package.Runtime.UI;
-using Strawhenge.Builder.Unity.ScriptableObjects;
-using Strawhenge.Builder.Unity.Tests.Fakes;
+using Strawhenge.Builder.Unity.BuildItems.Controls;
+using Strawhenge.Builder.Unity.Layers;
+using Strawhenge.Builder.Unity.Manager;
 using Strawhenge.Builder.Unity.UI;
+using Strawhenge.Builder.Unity.UI.Recipe;
+using Strawhenge.Builder.Unity.UI.Scrap;
+using Strawhenge.Builder.Unity.Tests.Fakes;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -24,7 +27,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
         readonly BuildItemSelectorFake _existingBuildItemSelector;
         readonly BuilderManagerUIFake _builderManagerUI;
 
-        readonly Camera _camera;
+        readonly UnityEngine.Camera _camera;
         readonly MenuViewFake _menuView;
         readonly BlueprintRepositoryFake _blueprintRepository;
         readonly BuilderManager _builder;
@@ -37,7 +40,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
             var logger = new TestContextLogger();
             var inventory = new ComponentInventory(logger);
 
-            _camera = new GameObject().AddComponent<Camera>();
+            _camera = new GameObject().AddComponent<UnityEngine.Camera>();
             _camera.cullingMask = EnvironmentLayer;
 
             _menuView = new MenuViewFake();

@@ -1,9 +1,8 @@
 using FunctionalUtilities;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Package.Runtime.Blueprints
+namespace Strawhenge.Builder.Unity.Blueprints.Repository
 {
     public abstract class BlueprintsRepositoryScript : MonoBehaviour, IBlueprintRepository
     {

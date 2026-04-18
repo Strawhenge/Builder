@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Package.Runtime
+namespace Strawhenge.Builder.Unity
 {
     static class ObjectHelper
     {

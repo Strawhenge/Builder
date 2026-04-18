@@ -1,13 +1,11 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
-using Strawhenge.Builder.Unity.Package.Runtime;
 using Strawhenge.Common.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
     public class ArrangeBuildItem : IArrangeBuildItem
     {

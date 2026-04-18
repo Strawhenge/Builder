@@ -1,11 +1,11 @@
-﻿using Strawhenge.Common.Unity.Camera;
-using UnityEngine;
+﻿using Strawhenge.Builder.Unity.Layers;
+using Strawhenge.Common.Unity.Camera;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Camera
 {
     public class MarkersToggle
     {
-        readonly Camera _camera;
+        readonly UnityEngine.Camera _camera;
         readonly ILayers _layers;
 
         public MarkersToggle(ICameraAccessor cameraAccessor, ILayers layers)
@@ -14,7 +14,7 @@ namespace Strawhenge.Builder.Unity
             _layers = layers;
         }
 
-        public MarkersToggle(Camera camera, ILayers layers)
+        public MarkersToggle(UnityEngine.Camera camera, ILayers layers)
         {
             _camera = camera;
             _layers = layers;

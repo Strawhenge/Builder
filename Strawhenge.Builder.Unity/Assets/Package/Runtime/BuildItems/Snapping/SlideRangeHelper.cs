@@ -1,8 +1,7 @@
-using Strawhenge.Builder.Unity.Monobehaviours;
 using Strawhenge.Common.Ranges;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     static class SlideRangeHelper
     {

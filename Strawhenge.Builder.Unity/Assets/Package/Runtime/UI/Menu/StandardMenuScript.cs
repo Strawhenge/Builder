@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.UI.Menu
 {
     public class StandardMenuScript : BaseMenuScript, IMenuView
     {

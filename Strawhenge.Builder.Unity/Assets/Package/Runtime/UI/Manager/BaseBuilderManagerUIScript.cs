@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Manager.UI
+namespace Strawhenge.Builder.Unity.UI.Manager
 {
     public abstract class BaseBuilderManagerUIScript : MonoBehaviour
     {

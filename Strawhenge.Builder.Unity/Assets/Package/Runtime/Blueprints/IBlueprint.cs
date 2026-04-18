@@ -1,9 +1,9 @@
 using Strawhenge.Builder.Menu;
-using Strawhenge.Builder.Unity.Data;
-using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Components;
 using System.Collections.Generic;
 
-namespace Strawhenge.Builder.Unity.ScriptableObjects
+namespace Strawhenge.Builder.Unity.Blueprints
 {
     public interface IBlueprint : ICategorizable
     {

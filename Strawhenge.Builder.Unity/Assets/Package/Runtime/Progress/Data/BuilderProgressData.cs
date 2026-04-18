@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Strawhenge.Builder.Unity.Progress
+namespace Strawhenge.Builder.Unity.Progress.Data
 {
     public class BuilderProgressData : IBuilderProgressData
     {

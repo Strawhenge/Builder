@@ -1,4 +1,4 @@
-using Strawhenge.Builder.Unity;
+using Strawhenge.Builder.Unity.Camera;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 

@@ -1,10 +1,8 @@
-using Strawhenge.Builder.Unity.BuildItems.Snapping;
-using Strawhenge.Builder.Unity.Monobehaviours;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     class SnapSlotToggle
     {

@@ -1,30 +1,37 @@
 ﻿using Strawhenge.Builder.Menu;
+using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.Blueprints.Repository;
 using Strawhenge.Builder.Unity.BuildItems;
-using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.Package.Runtime.UI;
+using Strawhenge.Builder.Unity.BuildItems.Controller;
+using Strawhenge.Builder.Unity.BuildItems.Controls;
+using Strawhenge.Builder.Unity.BuildItems.DefaultPosition;
+using Strawhenge.Builder.Unity.BuildItems.Existing;
+using Strawhenge.Builder.Unity.BuildItems.New;
+using Strawhenge.Builder.Unity.BuildItems.Selector;
+using Strawhenge.Builder.Unity.Camera;
+using Strawhenge.Builder.Unity.Layers;
 using Strawhenge.Builder.Unity.Progress;
-using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Builder.Unity.UI;
 using System;
-using UnityEngine;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
         readonly MarkersToggle _markers;
         readonly BuildableItemFactory _buildableItemFactory;
-        readonly SelectingExistingItem _selectingExistingItem;
-        readonly ManagingExistingBlueprint _managingExistingBlueprint;
-        readonly ManagingNewBlueprint _managingNewBlueprint;
-        readonly MenuOpen _menuOpen;
+        readonly Manager.BuilderManager.SelectingExistingItem _selectingExistingItem;
+        readonly Manager.BuilderManager.ManagingExistingBlueprint _managingExistingBlueprint;
+        readonly Manager.BuilderManager.ManagingNewBlueprint _managingNewBlueprint;
+        readonly Manager.BuilderManager.MenuOpen _menuOpen;
 
         IState _currentState;
 
         public BuilderManager(
             ComponentInventory componentInventory,
             IBuildItemSelector buildItemSelector,
-            Camera camera,
+            UnityEngine.Camera camera,
             ICameraController cameraController,
             IDefaultPositionAccessor defaultPositionAccessor,
             UIContainer uiContainer,
@@ -43,7 +50,7 @@ namespace Strawhenge.Builder.Unity
                 progressTracker,
                 logger);
 
-            _selectingExistingItem = new SelectingExistingItem(
+            _selectingExistingItem = new Manager.BuilderManager.SelectingExistingItem(
                 uiContainer.BuilderManagerUI,
                 buildItemSelector,
                 OnExistingBuildItemSelected,
@@ -74,9 +81,9 @@ namespace Strawhenge.Builder.Unity
                 uiContainer.RecipeUI);
 
             _managingExistingBlueprint =
-                new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
-            _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
-            _menuOpen = new MenuOpen(scriptableObjectsMenu, OnBlueprintSelectedFromMenu, OnMenuClosed);
+                new Manager.BuilderManager.ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
+            _managingNewBlueprint = new Manager.BuilderManager.ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
+            _menuOpen = new Manager.BuilderManager.MenuOpen(scriptableObjectsMenu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
         public event Action TurningOn;

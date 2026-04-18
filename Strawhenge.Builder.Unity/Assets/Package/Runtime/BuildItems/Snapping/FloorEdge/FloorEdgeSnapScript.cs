@@ -1,6 +1,4 @@
-﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
-
-namespace Strawhenge.Builder.Unity.Monobehaviours
+﻿namespace Strawhenge.Builder.Unity.BuildItems.Snapping.FloorEdge
 {
     public class FloorEdgeSnapScript : BaseSnapScript<HorizontalSnap, FloorEdgeSlotScript>
     {

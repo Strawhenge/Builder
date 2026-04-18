@@ -1,4 +1,7 @@
-﻿namespace Strawhenge.Builder.Unity.BuildItems
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
+using Strawhenge.Builder.Unity.BuildItems.Existing;
+
+namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NullBuildItem : IExistingBuildItem
     {

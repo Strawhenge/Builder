@@ -1,14 +1,14 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.DefaultPosition
 {
     class InFrontOfCameraDefaultPosition : IDefaultPositionAccessor
     {
-        readonly Camera _camera;
+        readonly UnityEngine.Camera _camera;
         readonly float _distance;
         readonly LayerMask _collisionLayerMask;
 
-        public InFrontOfCameraDefaultPosition(Camera camera, float distance, LayerMask collisionLayerMask)
+        public InFrontOfCameraDefaultPosition(UnityEngine.Camera camera, float distance, LayerMask collisionLayerMask)
         {
             _camera = camera;
             _distance = distance;

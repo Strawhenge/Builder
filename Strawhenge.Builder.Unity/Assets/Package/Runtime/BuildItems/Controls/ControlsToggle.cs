@@ -1,7 +1,10 @@
-﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
+using Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem;
+using Strawhenge.Builder.Unity.BuildItems.Controls.HorizontalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap;
 using System;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls
 {
     class ControlsToggle
     {
@@ -55,7 +58,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             };
         }
 
-        internal void VerticalSnapControlsOn(VerticalSnap snap)
+        internal void VerticalSnapControlsOn(Snapping.VerticalSnap snap)
         {
             ControlsOff();
 
@@ -73,7 +76,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             };
         }
 
-        internal void HorizontalSnapControlsOn(HorizontalSnap snap)
+        internal void HorizontalSnapControlsOn(Snapping.HorizontalSnap snap)
         {
             ControlsOff();
 

@@ -1,7 +1,6 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
-using System;
+﻿using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.BuildItems.Selector
 {
     public interface IBuildItemSelector
     {

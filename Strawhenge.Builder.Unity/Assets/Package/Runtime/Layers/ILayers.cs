@@ -1,4 +1,4 @@
-﻿namespace Strawhenge.Builder.Unity
+﻿namespace Strawhenge.Builder.Unity.Layers
 {
     public interface ILayers
     {

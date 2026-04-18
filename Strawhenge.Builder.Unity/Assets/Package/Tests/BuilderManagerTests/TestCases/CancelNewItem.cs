@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Builder.Unity.Blueprints;
 using System.Collections.Generic;
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests.TestCases

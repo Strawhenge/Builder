@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Progress
+namespace Strawhenge.Builder.Unity.Progress.Data
 {
     public interface IBuildItemData
     {

@@ -1,4 +1,4 @@
-using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.DefaultPosition;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Tests.Fakes

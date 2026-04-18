@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.ScriptableObjects
+namespace Strawhenge.Builder.Unity.Components
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/Component")]
     public class ComponentScriptableObject : ScriptableObject

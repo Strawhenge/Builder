@@ -1,8 +1,7 @@
-﻿using Strawhenge.Builder.Unity.ScriptableObjects;
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Data
+namespace Strawhenge.Builder.Unity.Components
 {
     [Serializable]
     public class SerializableComponentQuantity

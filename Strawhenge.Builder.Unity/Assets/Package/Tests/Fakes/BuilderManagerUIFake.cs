@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Strawhenge.Builder.Unity.UI.Manager;
+using System;
 
 namespace Strawhenge.Builder.Unity.Tests.Fakes
 {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Strawhenge.Builder.Unity.UI
+namespace Strawhenge.Builder.Unity.UI.Recipe
 {
     public class RecipeUIComponentScript : MonoBehaviour
     {

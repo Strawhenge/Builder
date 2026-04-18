@@ -1,13 +1,13 @@
 ﻿using FunctionalUtilities;
 using Strawhenge.Builder.Menu;
-using Strawhenge.Builder.Unity.Data;
-using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Components;
 using Strawhenge.Common;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.ScriptableObjects
+namespace Strawhenge.Builder.Unity.Blueprints
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/Blueprint")]
     public class BlueprintScriptableObject : ScriptableObject, IBlueprint

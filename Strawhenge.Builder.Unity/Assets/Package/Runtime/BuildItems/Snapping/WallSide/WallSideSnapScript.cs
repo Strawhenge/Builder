@@ -1,6 +1,4 @@
-﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
-
-namespace Strawhenge.Builder.Unity.Monobehaviours
+﻿namespace Strawhenge.Builder.Unity.BuildItems.Snapping.WallSide
 {
     public class WallSideSnapScript : BaseSnapScript<VerticalSnap, WallSideSlotScript>
     {

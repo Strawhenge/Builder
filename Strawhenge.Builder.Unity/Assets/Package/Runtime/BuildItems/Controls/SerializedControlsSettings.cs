@@ -1,7 +1,10 @@
+using Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem;
+using Strawhenge.Builder.Unity.BuildItems.Controls.HorizontalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap;
 using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls
 {
     [Serializable]
     public class SerializedControlsSettings : IControlsSettings

@@ -1,8 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
-namespace Strawhenge.Builder.Unity.Manager.UI
+namespace Strawhenge.Builder.Unity.UI.Manager
 {
     public class StandardBuilderManagerUIScript : BaseBuilderManagerUIScript, IBuilderManagerUI
     {

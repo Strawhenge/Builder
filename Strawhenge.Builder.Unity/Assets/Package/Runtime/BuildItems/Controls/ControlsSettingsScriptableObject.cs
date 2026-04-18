@@ -1,6 +1,9 @@
+using Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem;
+using Strawhenge.Builder.Unity.BuildItems.Controls.HorizontalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/Controls Settings")]
     public class ControlsSettingsScriptableObject : ScriptableObject, IControlsSettings

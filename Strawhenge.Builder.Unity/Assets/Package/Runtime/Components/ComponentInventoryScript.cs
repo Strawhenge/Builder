@@ -1,8 +1,7 @@
-﻿using Strawhenge.Builder.Unity.Data;
-using Strawhenge.Common.Unity;
+﻿using Strawhenge.Common.Unity;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Monobehaviours
+namespace Strawhenge.Builder.Unity.Components
 {
     public class ComponentInventoryScript : MonoBehaviour
     {

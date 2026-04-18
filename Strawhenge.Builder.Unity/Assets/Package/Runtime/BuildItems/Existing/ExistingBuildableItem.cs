@@ -1,6 +1,4 @@
-﻿using Strawhenge.Builder.Unity.BuildItems;
-
-namespace Strawhenge.Builder.Unity
+﻿namespace Strawhenge.Builder.Unity.BuildItems.Existing
 {
     public class ExistingBuildableItem
     {

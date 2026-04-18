@@ -1,14 +1,13 @@
-﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
-using System;
+﻿using System;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap
 {
     public class VerticalSnapControls
     {
         readonly float _turnSpeed;
         readonly float _slideSpeed;
 
-        VerticalSnap _snap;
+        Snapping.VerticalSnap _snap;
 
         public VerticalSnapControls(IVerticalSnapControlsSettings settings)
         {
@@ -42,7 +41,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Slide(float input) => _snap.Slide(input * _slideSpeed);
 
-        internal void ControlOn(VerticalSnap snap)
+        internal void ControlOn(Snapping.VerticalSnap snap)
         {
             _snap = snap;
             Enabled?.Invoke();

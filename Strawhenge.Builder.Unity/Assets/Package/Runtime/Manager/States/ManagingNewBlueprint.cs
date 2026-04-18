@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Strawhenge.Builder.Unity.BuildItems.New;
+using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
-        class ManagingNewBlueprint : IState
+        class ManagingNewBlueprint : Manager.BuilderManager.IState
         {
             readonly NewBuildableItemManager _newBuildableItemManager;
             readonly Action _onEnded;

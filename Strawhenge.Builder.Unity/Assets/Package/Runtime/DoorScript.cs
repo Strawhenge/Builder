@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Monobehaviours
+namespace Strawhenge.Builder.Unity
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(HingeJoint))]

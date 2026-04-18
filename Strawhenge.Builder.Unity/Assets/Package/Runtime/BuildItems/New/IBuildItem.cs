@@ -1,4 +1,6 @@
-﻿namespace Strawhenge.Builder.Unity.BuildItems
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
+
+namespace Strawhenge.Builder.Unity.BuildItems.New
 {
     public interface IBuildItem
     {

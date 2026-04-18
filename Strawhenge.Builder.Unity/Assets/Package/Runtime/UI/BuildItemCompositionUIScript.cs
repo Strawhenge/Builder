@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Strawhenge.Builder.Unity.UI.Recipe;
+using Strawhenge.Builder.Unity.UI.Scrap;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 

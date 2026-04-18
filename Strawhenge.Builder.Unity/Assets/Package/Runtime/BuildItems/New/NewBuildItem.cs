@@ -1,9 +1,9 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.Package.Runtime;
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
+using Strawhenge.Builder.Unity.BuildItems.DefaultPosition;
 using Strawhenge.Builder.Unity.Progress;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.New
 {
     public class NewBuildItem : IBuildItem
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Collider))]

@@ -1,8 +1,8 @@
 ﻿using Strawhenge.Builder.Menu;
-using Strawhenge.Builder.Unity.ScriptableObjects;
+using Strawhenge.Builder.Unity.Blueprints.Repository;
 using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Blueprints
 {
     class BlueprintMenu
     {

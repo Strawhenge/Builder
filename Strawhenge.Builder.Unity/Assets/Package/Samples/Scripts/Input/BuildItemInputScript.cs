@@ -1,5 +1,5 @@
-using Strawhenge.Builder.Unity.BuildItems;
-using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem;
+using Strawhenge.Builder.Unity.Manager;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 

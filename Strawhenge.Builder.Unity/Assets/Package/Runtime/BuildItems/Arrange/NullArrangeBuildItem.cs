@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
     public class NullArrangeBuildItem : IArrangeBuildItem
     {

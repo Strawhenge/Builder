@@ -1,11 +1,11 @@
-﻿using Strawhenge.Builder.Unity.BuildItems;
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
 using Strawhenge.Builder.Unity.BuildItems.Snapping;
-using Strawhenge.Builder.Unity.Data;
+using Strawhenge.Builder.Unity.Components;
 using Strawhenge.Common;
 using System.Linq;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Monobehaviours
+namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class BuildItemScript : MonoBehaviour
     {

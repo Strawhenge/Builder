@@ -1,8 +1,8 @@
-﻿using Strawhenge.Builder.Unity.BuildItems;
-using Strawhenge.Builder.Unity.UI;
+﻿using Strawhenge.Builder.Unity.BuildItems.Controller;
+using Strawhenge.Builder.Unity.UI.Scrap;
 using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.BuildItems.Existing
 {
     public class ExistingBuildableItemManager
     {

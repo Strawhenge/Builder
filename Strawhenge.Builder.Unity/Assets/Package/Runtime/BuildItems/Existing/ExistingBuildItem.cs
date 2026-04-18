@@ -1,8 +1,8 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
 using Strawhenge.Builder.Unity.Progress;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Existing
 {
     public class ExistingBuildItem : IExistingBuildItem
     {

@@ -1,9 +1,11 @@
-using Strawhenge.Builder.Unity.Manager.UI;
-using Strawhenge.Builder.Unity.UI;
+using Strawhenge.Builder.Unity.UI.Manager;
+using Strawhenge.Builder.Unity.UI.Menu;
+using Strawhenge.Builder.Unity.UI.Recipe;
+using Strawhenge.Builder.Unity.UI.Scrap;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Package.Runtime.UI
+namespace Strawhenge.Builder.Unity.UI
 {
     public class UIContainerScript : MonoBehaviour
     {

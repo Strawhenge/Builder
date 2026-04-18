@@ -1,4 +1,5 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
+﻿using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Selector;
 using System;
 
 namespace Strawhenge.Builder.Unity.Tests.Fakes

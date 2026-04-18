@@ -1,6 +1,6 @@
 using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Layers
 {
     class NullLayers : ILayers
     {

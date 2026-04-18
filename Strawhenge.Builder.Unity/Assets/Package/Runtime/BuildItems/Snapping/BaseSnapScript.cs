@@ -1,8 +1,7 @@
-using Strawhenge.Builder.Unity.BuildItems.Snapping;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.Monobehaviours
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     public abstract class BaseSnapScript<TSnap> : MonoBehaviour
     {

@@ -1,10 +1,9 @@
 using Strawhenge.Builder.Unity.BuildItems.SlotSettings;
-using Strawhenge.Builder.Unity.ScriptableObjects;
 using Strawhenge.Common.Ranges;
 using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping.WallBottom
 {
     public class WallBottomSlotScript : BaseSlotScript
     {

@@ -1,4 +1,4 @@
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem
 {
     class DefaultBuildItemControlsSettings : IBuildItemControlsSettings
     {
