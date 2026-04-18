@@ -18,10 +18,8 @@ namespace Strawhenge.Builder.Unity.Progress
 
         public BuilderProgressData GetCurrentProgress()
         {
-            return new BuilderProgressData
-            {
-                BuildItems = _dataByScript.Values.ToArray()
-            };
+            return new BuilderProgressData(
+                _dataByScript.Values.ToArray());
         }
 
         public void Add(BuildItemScript script, string blueprintName)
@@ -34,12 +32,10 @@ namespace Strawhenge.Builder.Unity.Progress
             }
 
             var transform = script.transform;
-            var data = new BuildItemData
-            {
-                Name = blueprintName,
-                Position = transform.position,
-                Rotation = transform.rotation
-            };
+            var data = new BuildItemData(
+                blueprintName,
+                transform.position,
+                transform.rotation);
 
             _dataByScript.Add(script, data);
         }
@@ -54,8 +50,11 @@ namespace Strawhenge.Builder.Unity.Progress
 
             var transform = script.transform;
             var data = _dataByScript[script];
-            data.Position = transform.position;
-            data.Rotation = transform.rotation;
+
+            _dataByScript[script] = new BuildItemData(
+                data.Name,
+                transform.position,
+                transform.rotation);
         }
 
         public void Remove(BuildItemScript script)

@@ -4,10 +4,17 @@ namespace Strawhenge.Builder.Unity.Progress
 {
     public class BuildItemData
     {
-        public string Name { get; set; }
+        public BuildItemData(string name, Vector3 position, Quaternion rotation)
+        {
+            Name = name;
+            Position = position;
+            Rotation = rotation;
+        }
 
-        public Vector3 Position { get; set; }
+        public string Name { get; }
 
-        public Quaternion Rotation { get; set; }
+        public Vector3 Position { get; }
+
+        public Quaternion Rotation { get; }
     }
 }
