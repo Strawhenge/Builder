@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
-    public class ArrangeBuildItem : IArrangeBuildItem
+    class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
         readonly IReadOnlyList<Collider> _colliders;

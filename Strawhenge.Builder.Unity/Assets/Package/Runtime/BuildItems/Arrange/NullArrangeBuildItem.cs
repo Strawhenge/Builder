@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
-    public class NullArrangeBuildItem : IArrangeBuildItem
+    class NullArrangeBuildItem : IArrangeBuildItem
     {
         Transform _transform;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
-    public interface IArrangeBuildItem
+    interface IArrangeBuildItem
     {
         event Action ClippingChanged;
 

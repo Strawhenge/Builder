@@ -19,17 +19,17 @@ namespace Strawhenge.Builder.Unity.BuildItems
         BaseSnapScript<HorizontalSnap>[] _horizontalSnapPoints;
         BaseSlotScript[] _slotPoints;
 
-        public IArrangeBuildItem Arrange => _arrange ??= CreateArrangeBuildItem();
+        internal IArrangeBuildItem Arrange => _arrange ??= CreateArrangeBuildItem();
 
-        public ScrapValue ScrapValue => _scrapValue ??= CreateScrapValue();
+        internal ScrapValue ScrapValue => _scrapValue ??= CreateScrapValue();
 
-        public void SetArranging()
+        internal void SetArranging()
         {
             _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Snaps();
         }
 
-        public void SetPlaced()
+        internal void SetPlaced()
         {
             _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Slots();
