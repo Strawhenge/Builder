@@ -58,7 +58,7 @@ namespace Strawhenge.Builder.Unity
                 OnExitBuilder);
 
             var builderMenu = new BuilderMenu(menu);
-            var scriptableObjectsMenu = new BlueprintScriptableObjectMenu(
+            var scriptableObjectsMenu = new BlueprintMenu(
                 builderMenu,
                 blueprintRepository);
 

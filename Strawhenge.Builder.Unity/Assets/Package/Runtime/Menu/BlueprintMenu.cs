@@ -4,12 +4,12 @@ using System;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class BlueprintScriptableObjectMenu : IBlueprintScriptableObjectMenu
+    class BlueprintMenu
     {
         readonly BuilderMenu _menu;
         readonly Lazy<MainCategory> _mainCategory;
 
-        public BlueprintScriptableObjectMenu(
+        public BlueprintMenu(
             BuilderMenu menu,
             IBlueprintRepository blueprints)
         {
@@ -17,9 +17,8 @@ namespace Strawhenge.Builder.Unity
             _menu.Exited += () => Exit?.Invoke();
 
             var menuItemsFactory = new MenuItemsFactory<IBlueprint>();
-            _mainCategory = new Lazy<MainCategory>(
-                () => menuItemsFactory.CreateMainCategory(blueprints.GetAll(), 
-                    blueprint => Select?.Invoke(blueprint)));
+            _mainCategory = new Lazy<MainCategory>(() => menuItemsFactory.CreateMainCategory(blueprints.GetAll(),
+                blueprint => Select?.Invoke(blueprint)));
         }
 
         public event Action<IBlueprint> Select;
