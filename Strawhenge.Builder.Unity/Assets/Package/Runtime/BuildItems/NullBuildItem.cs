@@ -5,6 +5,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
 {
     public class NullBuildItem : IExistingBuildItem
     {
+        public static IExistingBuildItem Instance { get; } = new NullBuildItem();
+
+        NullBuildItem()
+        {
+        }
+
         public void Cancel()
         {
         }
@@ -13,7 +19,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
         }
 
-        public IArrangeBuildItem Arrange() => new NullArrangeBuildItem();
+        public IArrangeBuildItem Arrange() => NullArrangeBuildItem.Instance;
 
         public void Scrap()
         {

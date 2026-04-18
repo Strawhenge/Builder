@@ -8,7 +8,14 @@ namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
     public class NullArrangeBuildItem : IArrangeBuildItem
     {
-        static Transform _transform;
+        Transform _transform;
+
+        public static IArrangeBuildItem Instance { get; } = new NullArrangeBuildItem();
+        
+        NullArrangeBuildItem()
+        {
+            
+        }
 
 #pragma warning disable 67
         public event Action ClippingChanged;

@@ -45,7 +45,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             if (scriptableObject.BuildItem == null)
             {
                 _logger.LogError($"Missing build item on '{scriptableObject.Name}'.");
-                return new NullBuildItem();
+                return NullBuildItem.Instance;
             }
 
             return new NewBuildItem(
