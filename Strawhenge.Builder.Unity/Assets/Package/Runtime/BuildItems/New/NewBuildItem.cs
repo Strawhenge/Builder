@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.New
 {
-    public class NewBuildItem : IBuildItem
+    class NewBuildItem : IBuildItem
     {
         readonly BuilderProgressTracker _progressTracker;
         readonly IDefaultPositionAccessor _initialPosition;

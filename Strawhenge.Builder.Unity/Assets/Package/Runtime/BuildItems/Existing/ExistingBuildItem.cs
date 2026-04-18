@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Existing
 {
-    public class ExistingBuildItem : IExistingBuildItem
+    class ExistingBuildItem : IExistingBuildItem
     {
         readonly BuilderProgressTracker _progressTracker;
         readonly BuildItemScript _script;
