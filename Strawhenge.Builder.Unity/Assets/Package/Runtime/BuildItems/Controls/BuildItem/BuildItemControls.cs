@@ -26,6 +26,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public bool IsEnabled => _buildItem != null;
 
+        public bool CanScrap { get; private set; }
+
         public void Move(Vector3 moveInput) => _buildItem.Move(moveInput * _moveSpeed);
 
         public void Turn(float amount) => _buildItem.Turn(amount * _turnSpeed);
@@ -46,15 +48,17 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _buildItem.ClippingOff();
         }
 
-        internal void ControlOn(IArrangeBuildItem buildItem, bool canScrap) // TODO Why is canScrap needed here?
+        internal void ControlOn(IArrangeBuildItem buildItem, bool canScrap)
         {
             _buildItem = buildItem;
+            CanScrap = canScrap;
             Enabled?.Invoke();
         }
 
         internal void ControlOff()
         {
             _buildItem = null;
+            CanScrap = false;
             Disabled?.Invoke();
         }
     }
