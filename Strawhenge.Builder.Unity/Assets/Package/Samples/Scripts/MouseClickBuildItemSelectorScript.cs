@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sample
 {
-    public class MouseClickBuildItemSelectorScript : BaseBuildItemSelectorScript, IBuildItemSelector
+    public class MouseClickBuildItemSelectorScript : BuildItemSelectorScript, IBuildItemSelector
     {
         [SerializeField] Camera _camera;
 

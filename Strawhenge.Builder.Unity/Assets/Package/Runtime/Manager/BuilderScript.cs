@@ -15,13 +15,10 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     {
         [SerializeField] ComponentInventoryScript _inventory;
         [SerializeField] BlueprintsRepositoryScript _blueprintsRepository;
-        [SerializeField] UIContainerScript _ui;
-
-        [SerializeField] BaseBuildItemSelectorScript _buildItemScriptSelector;
+        [SerializeField] BuildItemSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
-
-
+        [SerializeField] UIContainerScript _ui;
         [SerializeField] Camera _camera;
 
         [SerializeField] SerializedSource<
