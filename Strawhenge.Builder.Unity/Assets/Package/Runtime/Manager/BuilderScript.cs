@@ -1,6 +1,7 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.Manager.UI;
 using Strawhenge.Builder.Unity.Package.Runtime.Blueprints;
+using Strawhenge.Builder.Unity.Package.Runtime.UI;
 using Strawhenge.Builder.Unity.UI;
 using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Helpers;
@@ -14,13 +15,14 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
     {
         [SerializeField] ComponentInventoryScript _inventory;
         [SerializeField] BlueprintsRepositoryScript _blueprintsRepository;
+        [SerializeField] UIContainerScript _ui;
 
         [SerializeField] BaseBuildItemSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
-        [SerializeField] StandardBuilderManagerUIScript _managerUI;
+
         [SerializeField] BuildItemCompositionUIScript _itemCompositionUI;
-        [SerializeField] MenuScript _menu;
+
 
         [SerializeField] Camera _camera;
 
@@ -77,8 +79,8 @@ namespace Strawhenge.Builder.Unity.Monobehaviours
                 _camera,
                 _cameraController.CameraController,
                 _defaultPosition.DefaultPositionAccessor,
-                _managerUI,
-                _menu,
+                _ui.BuilderManagerUI,
+                _ui.Menu,
                 _itemCompositionUI,
                 _itemCompositionUI,
                 _blueprintsRepository,

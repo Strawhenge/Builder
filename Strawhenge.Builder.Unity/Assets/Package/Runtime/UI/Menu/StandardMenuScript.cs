@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity
 {
-    public class MenuScript : MonoBehaviour, IMenuView
+    public class StandardMenuScript : BaseMenuScript, IMenuView
     {
         [SerializeField] Canvas _canvas;
         [SerializeField] Button _exitButton;
@@ -18,13 +18,15 @@ namespace Strawhenge.Builder.Unity
 
         readonly List<GameObject> _currentButtons = new List<GameObject>();
 
+        public override IMenuView MenuView => this;
+        
         void Awake()
         {
             _backButton.gameObject.SetActive(false);
             _backButton.onClick.AddListener(() => SelectBack?.Invoke());
 
             _exitButton.onClick.AddListener(() => SelectExit?.Invoke());
-            
+
             _canvas.enabled = false;
         }
 

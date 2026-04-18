@@ -1016,12 +1016,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventory: {fileID: 1692729551}
   _blueprintsRepository: {fileID: 1692729550}
+  _ui: {fileID: 1914762606}
   _buildItemScriptSelector: {fileID: 7374499}
   _cameraController: {fileID: 7374500}
   _defaultPosition: {fileID: 1692729552}
-  _managerUI: {fileID: 60753929}
   _itemCompositionUI: {fileID: 1227849172}
-  _menu: {fileID: 621259159}
   _camera: {fileID: 1332150398}
   _controlsSettings:
     _serialized:
@@ -1127,6 +1126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1914762605}
+  - component: {fileID: 1914762606}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -1152,6 +1152,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1914762606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914762604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5382b7a7b874ca898518ed3356575c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _builderManagerUI: {fileID: 60753929}
+  _menu: {fileID: 621259159}
 --- !u!65 &2002978846 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 3723808646042240179, guid: 7881bb26f599bed48b61a2a4f8681571, type: 3}
