@@ -11,18 +11,22 @@ namespace Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem
 
         IArrangeBuildItem _buildItem;
 
-        public BuildItemControls(IBuildItemControlsSettings settings)
+        internal BuildItemControls(IBuildItemControlsSettings settings)
         {
             _moveSpeed = settings.MoveSpeed;
             _turnSpeed = settings.TurnSpeed;
         }
 
         public event Action Enabled;
+
         public event Action Disabled;
 
         internal event Action Placed;
+
         internal event Action Snapped;
+
         internal event Action Cancelled;
+
         internal event Action Scrapped;
 
         public bool IsEnabled => _buildItem != null;
