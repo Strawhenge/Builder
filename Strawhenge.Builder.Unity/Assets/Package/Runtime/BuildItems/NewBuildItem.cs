@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.Package.Runtime;
 using Strawhenge.Builder.Unity.Progress;
 using UnityEngine;
 
@@ -56,12 +57,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             if (_current == null)
                 return;
 
-            // TODO
-# if UNITY_EDITOR
-            Object.DestroyImmediate(_current.gameObject);
-#else
-            Object.Destroy(_current.gameObject);
-#endif
+            ObjectHelper.Destroy(_current.gameObject);
             _current = null;
         }
     }

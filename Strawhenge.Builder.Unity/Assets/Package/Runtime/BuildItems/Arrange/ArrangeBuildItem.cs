@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
+using Strawhenge.Builder.Unity.Package.Runtime;
 using Strawhenge.Common.Unity;
 using System;
 using System.Collections.Generic;
@@ -61,12 +62,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Disable()
         {
-            // TODO
-#if UNITY_EDITOR
-            Object.DestroyImmediate(_script);
-#else
-            Object.Destroy(_script);
-#endif
+            ObjectHelper.Destroy(_script);
+
             _isEnabled = false;
 
             ToggleColliders(true);
