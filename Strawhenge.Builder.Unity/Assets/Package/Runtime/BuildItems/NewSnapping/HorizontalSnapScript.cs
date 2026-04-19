@@ -40,7 +40,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
                 snapPoint,
                 snapSlot.Anchor,
                 snapSlot.TiltRange,
-                FloatRange.Zero, // TODO SlideRangeHelper.GetRange(this, snapSlotScript),
+                SlideRangeHelper.GetRange(snapSlot.SlideLength, transform.lossyScale.x),
                 snapSlot.CanFlip);
     }
 }
