@@ -20,8 +20,6 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         Transform _root;
         SnapPoint _snapPoint;
 
-        protected Transform Transform;
-
         public override IEnumerable<TSnap> GetAvailableSnaps()
         {
             foreach (var collider in _collidingWith)
@@ -37,11 +35,10 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         void Awake()
         {
-            Transform = transform;
-            _root = Transform.root;
+            _root = transform.root;
 
             _snapPoint = _snapPointAnchor == null
-                ? new SnapPoint(Transform)
+                ? new SnapPoint(transform)
                 : new SnapPoint(_snapPointAnchor);
 
             var rigidbody = GetComponent<Rigidbody>();

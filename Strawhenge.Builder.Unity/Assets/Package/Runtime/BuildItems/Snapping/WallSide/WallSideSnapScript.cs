@@ -2,7 +2,7 @@
 {
     public class WallSideSnapScript : BaseSnapScript<VerticalSnap, WallSideSlotScript>
     {
-        internal override float? GetSlideLength() => Transform.lossyScale.y;
+        internal override float? GetSlideLength() => transform.lossyScale.y;
 
         protected override VerticalSnap Map(SnapPoint snapPoint, WallSideSlotScript snapSlotScript) =>
             new VerticalSnap(
