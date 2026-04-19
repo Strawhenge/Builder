@@ -1,20 +1,20 @@
 using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
-    public class VerticalSlotScript : MonoBehaviour
+    public class HorizontalSlotScript : MonoBehaviour
     {
         [SerializeField] Transform _snapSlotAnchor;
 
         [SerializeField] SerializedSource<
-            IVerticalSlotSettings,
-            SerializedVerticalSlotSettings,
-            VerticalSlotSettingsScriptableObject> _settings;
+            IHorizontalSlotSettings,
+            SerializedHorizontalSlotSettings,
+            HorizontalSlotSettingsScriptableObject> _settings;
 
-        VerticalSlot _slot;
+        HorizontalSlot _slot;
 
-        internal VerticalSlot Slot => _slot ??= Create();
+        internal HorizontalSlot Slot => _slot ??= Create();
 
         void Awake()
         {
@@ -27,21 +27,21 @@ namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
             _slot ??= Create();
         }
 
-        VerticalSlot Create()
+        HorizontalSlot Create()
         {
             var anchor = _snapSlotAnchor != null
                 ? _snapSlotAnchor
                 : transform;
 
-            var slideLength = transform.lossyScale.y;
+            var slideLength = transform.lossyScale.x;
 
             var settings = _settings.GetValue(); // TODO Handle missing.
 
-            return new VerticalSlot(
+            return new HorizontalSlot(
                 anchor,
                 slideLength,
-                settings.CanRotate,
-                settings.PresetAngles);
+                settings.CanFlip,
+                settings.TiltRange);
         }
     }
 }

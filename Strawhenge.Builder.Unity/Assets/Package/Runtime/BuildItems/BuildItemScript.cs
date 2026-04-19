@@ -15,9 +15,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
         ArrangeBuildItem _arrange;
         ScrapValue _scrapValue;
         SnapSlotToggle _snapSlotToggle;
-        BaseSnapScript<VerticalSnap>[] _verticalSnapPoints;
-        BaseSnapScript<HorizontalSnap>[] _horizontalSnapPoints;
-        BaseSlotScript[] _slotPoints;
+        VerticalSnapScript[] _verticalSnapPoints;
+        HorizontalSnapScript[] _horizontalSnapPoints;
+        VerticalSlotScript[] _verticalSlotPoints;
+        HorizontalSlotScript[] _horizontalSlotPoints;
 
         internal IArrangeBuildItem Arrange => _arrange ??= CreateArrangeBuildItem();
 
@@ -44,8 +45,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         ArrangeBuildItem CreateArrangeBuildItem()
         {
-            _verticalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<VerticalSnap>>(includeInactive: true);
-            _horizontalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>(includeInactive: true);
+            _verticalSnapPoints ??= GetComponentsInChildren<VerticalSnapScript>(includeInactive: true);
+            _horizontalSnapPoints ??= GetComponentsInChildren<HorizontalSnapScript>(includeInactive: true);
 
             return new ArrangeBuildItem(
                 transform,
@@ -56,11 +57,16 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         SnapSlotToggle CreateSnapSlotToggle()
         {
-            _verticalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<VerticalSnap>>(includeInactive: true);
-            _horizontalSnapPoints ??= GetComponentsInChildren<BaseSnapScript<HorizontalSnap>>(includeInactive: true);
-            _slotPoints ??= GetComponentsInChildren<BaseSlotScript>(includeInactive: true);
+            _verticalSnapPoints ??= GetComponentsInChildren<VerticalSnapScript>(includeInactive: true);
+            _horizontalSnapPoints ??= GetComponentsInChildren<HorizontalSnapScript>(includeInactive: true);
+            _verticalSlotPoints ??= GetComponentsInChildren<VerticalSlotScript>(includeInactive: true);
+            _horizontalSlotPoints ??= GetComponentsInChildren<HorizontalSlotScript>(includeInactive: true);
 
-            return new SnapSlotToggle(_verticalSnapPoints, _horizontalSnapPoints, _slotPoints);
+            return new SnapSlotToggle(
+                _verticalSnapPoints,
+                _horizontalSnapPoints,
+                _verticalSlotPoints,
+                _horizontalSlotPoints);
         }
 
         ScrapValue CreateScrapValue()

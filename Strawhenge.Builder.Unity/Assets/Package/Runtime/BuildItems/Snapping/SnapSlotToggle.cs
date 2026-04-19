@@ -10,16 +10,20 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         readonly GameObject[] _slotPoints;
 
         public SnapSlotToggle(
-            IEnumerable<BaseSnapScript<VerticalSnap>> verticalSnapPoints,
-            IEnumerable<BaseSnapScript<HorizontalSnap>> horizontalSnapPoints,
-            IEnumerable<BaseSlotScript> slotPoints)
+            IEnumerable<VerticalSnapScript> verticalSnapPoints,
+            IEnumerable<HorizontalSnapScript> horizontalSnapPoints,
+            IEnumerable<VerticalSlotScript> verticalSlotPoints,
+            IEnumerable<HorizontalSlotScript> horizontalSlotPoints)
         {
             _snapPoints = verticalSnapPoints
                 .Select(x => x.gameObject)
                 .Concat(horizontalSnapPoints.Select(x => x.gameObject))
                 .ToArray();
 
-            _slotPoints = slotPoints.Select(x => x.gameObject).ToArray();
+            _slotPoints = verticalSlotPoints
+                .Select(x => x.gameObject)
+                .Concat(horizontalSlotPoints.Select(x => x.gameObject))
+                .ToArray();
         }
 
         public void Snaps()

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VerticalSnap = Strawhenge.Builder.Unity.BuildItems.Snapping.VerticalSnap;
 
-namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     public class VerticalSnapScript : MonoBehaviour
     {

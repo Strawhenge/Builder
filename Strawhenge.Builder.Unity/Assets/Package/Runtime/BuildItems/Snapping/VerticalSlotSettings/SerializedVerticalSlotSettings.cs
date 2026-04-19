@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     [Serializable]
-    public class SerializedWallSideSlotSettings : IWallSideSlotSettings
+    public class SerializedVerticalSlotSettings : IVerticalSlotSettings
     {
         [SerializeField] bool _canRotate;
         [SerializeField] float[] _presetAngles;
@@ -15,3 +15,4 @@ namespace Strawhenge.Builder.Unity.BuildItems.SlotSettings
         public IEnumerable<float> PresetAngles => _presetAngles ?? Array.Empty<float>();
     }
 }
+

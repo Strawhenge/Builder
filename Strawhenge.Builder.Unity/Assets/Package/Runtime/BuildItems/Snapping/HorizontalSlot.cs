@@ -1,7 +1,7 @@
 using Strawhenge.Common.Ranges;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     class HorizontalSlot
     {

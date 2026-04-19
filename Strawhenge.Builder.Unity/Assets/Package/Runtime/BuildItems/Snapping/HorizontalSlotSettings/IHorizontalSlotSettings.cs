@@ -1,6 +1,6 @@
 using Strawhenge.Common.Ranges;
 
-namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     public interface IHorizontalSlotSettings
     {

@@ -2,7 +2,7 @@ using Strawhenge.Common.Ranges;
 using Strawhenge.Common.Unity.Serialization;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/SlotSettings/Horizontal")]
     public class HorizontalSlotSettingsScriptableObject : ScriptableObject, IHorizontalSlotSettings

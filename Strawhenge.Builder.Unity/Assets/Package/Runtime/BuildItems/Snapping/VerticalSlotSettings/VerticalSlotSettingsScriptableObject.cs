@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     [CreateAssetMenu(menuName = "Strawhenge/Builder/SlotSettings/Vertical")]
     public class VerticalSlotSettingsScriptableObject : ScriptableObject, IVerticalSlotSettings

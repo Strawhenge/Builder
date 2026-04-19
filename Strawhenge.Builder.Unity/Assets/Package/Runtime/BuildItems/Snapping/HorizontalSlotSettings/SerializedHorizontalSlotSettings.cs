@@ -3,7 +3,7 @@ using Strawhenge.Common.Unity.Serialization;
 using System;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
     [Serializable]
     public class SerializedHorizontalSlotSettings : IHorizontalSlotSettings
