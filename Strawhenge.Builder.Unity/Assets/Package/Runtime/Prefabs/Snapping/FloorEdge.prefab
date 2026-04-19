@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6084528174655542873}
   - {fileID: 735511964456204134}
@@ -150,6 +151,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4915391989875642487, guid: 1b9c1b29bca7d1d46bad25078501a0a3, type: 3}
+      propertyPath: _settings._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915391989875642487, guid: 1b9c1b29bca7d1d46bad25078501a0a3, type: 3}
+      propertyPath: _settings._serialized._canFlip
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915391989875642487, guid: 1b9c1b29bca7d1d46bad25078501a0a3, type: 3}
+      propertyPath: _settings._serialized._tiltRange._max
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915391989875642487, guid: 1b9c1b29bca7d1d46bad25078501a0a3, type: 3}
+      propertyPath: _settings._serialized._tiltRange._min
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 5029700111706170213, guid: 1b9c1b29bca7d1d46bad25078501a0a3, type: 3}
       propertyPath: _settings._type
       value: 1
@@ -180,6 +197,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5277080983023600394}
     m_Modifications:
+    - target: {fileID: 687566972181901937, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: _settings._type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 687566972181901937, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: _settings._serialized._tiltRange._max
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 687566972181901937, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
+      propertyPath: _settings._serialized._tiltRange._min
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 4271908362742918185, guid: 50e23e610b839ee47b2f58cbed3090ca, type: 3}
       propertyPath: m_Name
       value: FloorEdgeSlot

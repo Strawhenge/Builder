@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7516900589756957661}
   - component: {fileID: 6341787532907182267}
   - component: {fileID: 5139590045806656976}
-  - component: {fileID: 6116418668837389964}
+  - component: {fileID: 501897554107151503}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6116418668837389964
+--- !u!114 &501897554107151503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1870692793879170201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d50eb0ba40fe54aa5ea27bb9936d8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 56cd0245dd4d4bdfb2af5d3349d2c4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _snapSlotAnchor: {fileID: 3508313899639759246}
@@ -133,7 +133,7 @@ MonoBehaviour:
       _canRotate: 0
       _presetAngles: []
     _scriptableObject: {fileID: 0}
-    _type: 1
+    _type: 0
 --- !u!1 &6385069857467835908
 GameObject:
   m_ObjectHideFlags: 0

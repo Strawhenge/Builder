@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7837922031361590022}
   - component: {fileID: 6671537373463558240}
   - component: {fileID: 5304419873489651819}
-  - component: {fileID: 3834382791204965461}
+  - component: {fileID: 8964051665509533852}
+  - component: {fileID: 2063882145222631132}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -31,6 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.1}
   m_LocalScale: {x: 1, y: 0.01, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6407581895639833347}
   m_RootOrder: 0
@@ -54,6 +56,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -113,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3834382791204965461
+--- !u!114 &8964051665509533852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +125,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2117405281878690882}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96d247fb7e6a4e747a1a3113ab771493, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a6c82c2a8364830b659c9607e9cc29e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _snapPointAnchor: {fileID: 6407581895639833347}
+  _triggerCollisionTracker: {fileID: 2063882145222631132}
+--- !u!114 &2063882145222631132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117405281878690882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c94684321f4cdb8f67f7cab3a9d9b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidBody: {fileID: 5304419873489651819}
+  _collider: {fileID: 6671537373463558240}
 --- !u!1 &2720643633154423281
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +170,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2389178790540258599}
   m_Father: {fileID: 0}
