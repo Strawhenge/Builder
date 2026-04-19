@@ -12,14 +12,10 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
             ? transform
             : _snapSlotAnchor;
 
-        protected Transform Transform;
-
         internal abstract float? GetSlideLength();
 
         void Awake()
         {
-            Transform = transform;
-
             var rigidBody = GetComponent<Rigidbody>();
             rigidBody.isKinematic = true;
 

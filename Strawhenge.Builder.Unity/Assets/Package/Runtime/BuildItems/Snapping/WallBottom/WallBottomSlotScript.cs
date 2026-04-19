@@ -13,6 +13,6 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping.WallBottom
 
         internal FloatRange TiltRange => _settings.GetValue().TiltRange;
 
-        internal override float? GetSlideLength() => Transform.lossyScale.x;
+        internal override float? GetSlideLength() => transform.lossyScale.x;
     }
 }

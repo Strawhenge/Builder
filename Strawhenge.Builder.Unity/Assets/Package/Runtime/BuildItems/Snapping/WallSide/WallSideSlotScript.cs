@@ -14,6 +14,6 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping.WallSide
 
         internal IEnumerable<float> PresetAngles => _settings.GetValue().PresetAngles;
 
-        internal override float? GetSlideLength() => Transform.lossyScale.y;
+        internal override float? GetSlideLength() => transform.lossyScale.y;
     }
 }
