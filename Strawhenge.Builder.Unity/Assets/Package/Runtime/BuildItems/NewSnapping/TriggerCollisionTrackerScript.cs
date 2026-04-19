@@ -11,7 +11,14 @@ namespace Strawhenge.Builder.Unity.BuildItems.NewSnapping
 
         readonly List<Collider> _collidingWith = new();
 
-        public IEnumerable<Collider> CollidingWith => _collidingWith;
+        public IEnumerable<TScript> GetCollidingWith<TScript>() where TScript : MonoBehaviour
+        {
+            foreach (var collider in _collidingWith)
+            {
+                if (collider.TryGetComponent<TScript>(out var script))
+                    yield return script;
+            }
+        }
 
         void Awake()
         {
