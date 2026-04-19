@@ -1027,10 +1027,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventory: {fileID: 1692729551}
   _blueprintsRepository: {fileID: 1692729550}
-  _ui: {fileID: 1914762606}
   _buildItemScriptSelector: {fileID: 7374499}
   _cameraController: {fileID: 7374500}
   _defaultPosition: {fileID: 1692729552}
+  _ui: {fileID: 1914762606}
   _camera: {fileID: 1332150398}
   _controlsSettings:
     _serialized:
@@ -1038,13 +1038,13 @@ MonoBehaviour:
         _moveSpeed: 5
         _turnSpeed: 2
       _horizontalSnap:
-        _tiltSpeed: 1
-        _slideSpeed: 0.1
+        _tiltSpeed: 100
+        _slideSpeed: 1
       _verticalSnap:
-        _turnSpeed: 1
-        _slideSpeed: 0.1
+        _turnSpeed: 100
+        _slideSpeed: 1
     _scriptableObject: {fileID: 0}
-    _type: 0
+    _type: 1
   _layers:
     _serialized: {fileID: 0}
     _scriptableObject: {fileID: 11400000, guid: 45df18bb263f315408ce9183edb89458, type: 2}
