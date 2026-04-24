@@ -1,10 +1,7 @@
 using Strawhenge.Builder.Unity.BuildItems.Snapping.Triggers;
-using SnapPoint = Strawhenge.Builder.Unity.BuildItems.Snapping.SnapPoint;
-using Strawhenge.Common.Ranges;
 using Strawhenge.Common.Unity.Helpers;
 using System.Collections.Generic;
 using UnityEngine;
-using HorizontalSnap = Strawhenge.Builder.Unity.BuildItems.Snapping.HorizontalSnap;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
@@ -13,32 +10,23 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         [SerializeField] Transform _snapPointAnchor;
         [SerializeField] TriggerCollisionTrackerScript _triggerCollisionTracker;
 
-        SnapPoint _snapPoint;
+        HorizontalSnapContainer _container;
 
-        internal IEnumerable<HorizontalSnap> GetAvailableSnaps()
+        internal HorizontalSnapContainer Container => _container ??= CreateContainer();
+
+        HorizontalSnapContainer CreateContainer()
         {
-            // TODO Maybe change initialization?
-            _snapPoint ??= CreateSnapPoint();
+            var snapPoint = _snapPointAnchor != null
+                ? new SnapPoint(_snapPointAnchor)
+                : new SnapPoint(transform);
+
             ComponentRefHelper
                 .EnsureHierarchyComponent(ref _triggerCollisionTracker, nameof(_triggerCollisionTracker), this);
 
-            foreach (var snapSlotScript in _triggerCollisionTracker.Tracker.GetCollidingWith<HorizontalSlotScript>())
-                yield return Map(_snapPoint, snapSlotScript.Slot);
-        }
-
-        SnapPoint CreateSnapPoint()
-        {
-            return _snapPointAnchor != null
-                ? new SnapPoint(_snapPointAnchor)
-                : new SnapPoint(transform);
-        }
-
-        HorizontalSnap Map(SnapPoint snapPoint, HorizontalSlot snapSlot) =>
-            new(
+            return new HorizontalSnapContainer(
                 snapPoint,
-                snapSlot.Anchor,
-                snapSlot.TiltRange,
-                SlideRangeHelper.GetRange(snapSlot.SlideLength, transform.lossyScale.x),
-                snapSlot.CanFlip);
+                _triggerCollisionTracker.Tracker,
+                transform.lossyScale.x);
+        }
     }
 }

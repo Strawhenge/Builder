@@ -51,8 +51,10 @@ namespace Strawhenge.Builder.Unity.BuildItems
             return new ArrangeBuildItem(
                 transform,
                 _arrangeColliders.ExcludeNull().ToArray(),
-                getAvailableVerticalSnaps: () => _verticalSnapPoints.SelectMany(x => x.GetAvailableSnaps()).ToArray(),
-                getAvailableHorizontalSnaps: () => _horizontalSnapPoints.SelectMany(x => x.GetAvailableSnaps()));
+                getAvailableVerticalSnaps: () =>
+                    _verticalSnapPoints.SelectMany(x => x.Container.GetAvailableSnaps()).ToArray(),
+                getAvailableHorizontalSnaps: () =>
+                    _horizontalSnapPoints.SelectMany(x => x.Container.GetAvailableSnaps()));
         }
 
         SnapSlotToggle CreateSnapSlotToggle()
