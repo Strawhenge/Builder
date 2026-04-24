@@ -71,26 +71,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3998035774886422083}
+  - component: {fileID: 3315069079254662152}
   - component: {fileID: 2248303608002285938}
   - component: {fileID: 7839129224104203380}
   - component: {fileID: 2785306098028721147}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Build Item Composition UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3998035774886422083
-Transform:
+--- !u!224 &3315069079254662152
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2481004620245421512}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 736.7467, y: 293.0977, z: -44.531548}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -98,6 +98,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2248303608002285938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,20 +335,20 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6578935773433511727}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 44.531548}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.21718751, y: 0.21718751, z: 0.21718751}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6578935773205644645}
   - {fileID: 6578935772937188378}
   - {fileID: 291340295869111920}
-  m_Father: {fileID: 3998035774886422083}
+  m_Father: {fileID: 3315069079254662152}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -606.4342, y: -71.69769}
-  m_SizeDelta: {x: 1200, y: 2038.7913}
+  m_AnchoredPosition: {x: -236.6875, y: 0}
+  m_SizeDelta: {x: 1200, y: 1938.7913}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6578935773433511724
 CanvasRenderer:
