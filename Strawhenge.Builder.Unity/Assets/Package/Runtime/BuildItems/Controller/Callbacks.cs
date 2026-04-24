@@ -2,7 +2,7 @@
 
 namespace Strawhenge.Builder.Unity.BuildItems.Controller
 {
-    public partial class BuildItemController
+    partial class BuildItemController
     {
         class Callbacks
         {
