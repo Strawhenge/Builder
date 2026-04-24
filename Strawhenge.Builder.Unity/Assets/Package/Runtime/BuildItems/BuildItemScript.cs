@@ -4,6 +4,7 @@ using Strawhenge.Builder.Unity.Components;
 using Strawhenge.Common;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
@@ -11,6 +12,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         [SerializeField] SerializableComponentQuantity[] _scrapComponents;
         [SerializeField] Collider[] _arrangeColliders;
+        [SerializeField] UnityEvent _onArrange;
+        [SerializeField] UnityEvent _onPlace;
 
         ArrangeBuildItem _arrange;
         ScrapValue _scrapValue;
@@ -28,12 +31,14 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Snaps();
+            _onArrange.Invoke();
         }
 
         internal void SetPlaced()
         {
             _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Slots();
+            _onPlace.Invoke();
         }
 
         void Awake()
