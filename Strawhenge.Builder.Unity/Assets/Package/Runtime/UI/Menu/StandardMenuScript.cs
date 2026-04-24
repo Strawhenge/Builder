@@ -9,7 +9,7 @@ namespace Strawhenge.Builder.Unity.UI.Menu
 {
     public class StandardMenuScript : BaseMenuScript, IMenuView
     {
-        [SerializeField] Canvas _canvas;
+        [SerializeField] RectTransform _containerPanel;
         [SerializeField] Button _exitButton;
         [SerializeField] Button _backButton;
         [SerializeField] Transform _buttonParent;
@@ -27,7 +27,7 @@ namespace Strawhenge.Builder.Unity.UI.Menu
 
             _exitButton.onClick.AddListener(() => SelectExit?.Invoke());
 
-            _canvas.enabled = false;
+            _containerPanel.gameObject.SetActive(false);
         }
 
         public event Action<string> SelectCategory;
@@ -45,13 +45,13 @@ namespace Strawhenge.Builder.Unity.UI.Menu
             foreach (var item in items)
                 AddItem(item);
 
-            _canvas.enabled = true;
+            _containerPanel.gameObject.SetActive(true);
             _backButton.gameObject.SetActive(enableBack);
         }
 
         public void Hide()
         {
-            _canvas.enabled = false;
+            _containerPanel.gameObject.SetActive(false);
         }
 
         void AddItem(string itemName) =>

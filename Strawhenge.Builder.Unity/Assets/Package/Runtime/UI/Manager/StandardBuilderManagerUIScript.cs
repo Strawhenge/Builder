@@ -6,7 +6,7 @@ namespace Strawhenge.Builder.Unity.UI.Manager
 {
     public class StandardBuilderManagerUIScript : BaseBuilderManagerUIScript, IBuilderManagerUI
     {
-        [SerializeField] Canvas _canvas;
+        [SerializeField] RectTransform _containerPanel;
         [SerializeField] Button _menuButton;
         [SerializeField] Button _exitButton;
 
@@ -18,12 +18,12 @@ namespace Strawhenge.Builder.Unity.UI.Manager
 
         public void Show()
         {
-            _canvas.enabled = true;
+            _containerPanel.gameObject.SetActive(true);
         }
 
         public void Hide()
         {
-            _canvas.enabled = false;
+            _containerPanel.gameObject.SetActive(false);
         }
 
         void Awake()
@@ -31,7 +31,7 @@ namespace Strawhenge.Builder.Unity.UI.Manager
             _menuButton.onClick.AddListener(() => OpenedMenu?.Invoke());
             _exitButton.onClick.AddListener(() => ExitedBuilder?.Invoke());
 
-            _canvas.enabled = false;
+            _containerPanel.gameObject.SetActive(false);
         }
     }
 }
