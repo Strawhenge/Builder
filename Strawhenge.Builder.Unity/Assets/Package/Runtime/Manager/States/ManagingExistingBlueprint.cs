@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
-        class ManagingExistingBlueprint : Manager.BuilderManager.IState
+        class ManagingExistingBlueprint : IState
         {
             readonly ExistingBuildableItemManager _manager;
             readonly Action _onEnded;

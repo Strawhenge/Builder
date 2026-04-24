@@ -7,7 +7,7 @@ namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
-        class SelectingExistingItem : Manager.BuilderManager.IState
+        class SelectingExistingItem : IState
         {
             readonly IBuilderManagerUI _builderManagerUI;
             readonly IBuildItemSelector _buildItemScriptSelector;

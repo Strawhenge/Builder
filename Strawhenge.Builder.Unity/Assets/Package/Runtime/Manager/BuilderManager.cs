@@ -21,10 +21,10 @@ namespace Strawhenge.Builder.Unity.Manager
     {
         readonly MarkersToggle _markers;
         readonly BuildableItemFactory _buildableItemFactory;
-        readonly Manager.BuilderManager.SelectingExistingItem _selectingExistingItem;
-        readonly Manager.BuilderManager.ManagingExistingBlueprint _managingExistingBlueprint;
-        readonly Manager.BuilderManager.ManagingNewBlueprint _managingNewBlueprint;
-        readonly Manager.BuilderManager.MenuOpen _menuOpen;
+        readonly SelectingExistingItem _selectingExistingItem;
+        readonly ManagingExistingBlueprint _managingExistingBlueprint;
+        readonly ManagingNewBlueprint _managingNewBlueprint;
+        readonly MenuOpen _menuOpen;
 
         IState _currentState;
 
@@ -50,7 +50,7 @@ namespace Strawhenge.Builder.Unity.Manager
                 progressTracker,
                 logger);
 
-            _selectingExistingItem = new Manager.BuilderManager.SelectingExistingItem(
+            _selectingExistingItem = new SelectingExistingItem(
                 uiContainer.BuilderManagerUI,
                 buildItemSelector,
                 OnExistingBuildItemSelected,
@@ -81,9 +81,9 @@ namespace Strawhenge.Builder.Unity.Manager
                 uiContainer.RecipeUI);
 
             _managingExistingBlueprint =
-                new Manager.BuilderManager.ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
-            _managingNewBlueprint = new Manager.BuilderManager.ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
-            _menuOpen = new Manager.BuilderManager.MenuOpen(scriptableObjectsMenu, OnBlueprintSelectedFromMenu, OnMenuClosed);
+                new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
+            _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
+            _menuOpen = new MenuOpen(scriptableObjectsMenu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
         public event Action TurningOn;

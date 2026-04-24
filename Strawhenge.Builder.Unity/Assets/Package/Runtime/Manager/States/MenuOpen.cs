@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
-        class MenuOpen : Manager.BuilderManager.IState
+        class MenuOpen : IState
         {
             readonly BlueprintMenu _menu;
             readonly Action<IBlueprint> _onBlueprintSelected;
