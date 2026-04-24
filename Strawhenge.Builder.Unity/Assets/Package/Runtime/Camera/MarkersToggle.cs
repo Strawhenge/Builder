@@ -11,6 +11,7 @@ namespace Strawhenge.Builder.Unity.Camera
         {
             _camera = camera;
             _layers = layers;
+            Off();
         }
 
         public void On()
