@@ -1,24 +1,16 @@
 using Strawhenge.Common.Unity.Helpers;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems.Snapping
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping.Triggers
 {
     public class TriggerCollisionTrackerScript : MonoBehaviour
     {
         [SerializeField] Rigidbody _rigidBody;
         [SerializeField] Collider _collider;
 
-        readonly List<Collider> _collidingWith = new();
+        CollisionTracker _tracker;
 
-        public IEnumerable<TScript> GetCollidingWith<TScript>() where TScript : MonoBehaviour
-        {
-            foreach (var collider in _collidingWith)
-            {
-                if (collider.TryGetComponent<TScript>(out var script))
-                    yield return script;
-            }
-        }
+        internal CollisionTracker Tracker => _tracker ??= new CollisionTracker(transform);
 
         void Awake()
         {
@@ -31,19 +23,17 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
         void OnDisable()
         {
-            _collidingWith.Clear();
+            Tracker.Clear();
         }
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.transform.root != transform.root)
-                _collidingWith.Add(other);
+            Tracker.Add(other);
         }
 
         void OnTriggerExit(Collider other)
         {
-            if (_collidingWith.Contains(other))
-                _collidingWith.Remove(other);
+            Tracker.Remove(other);
         }
     }
 }

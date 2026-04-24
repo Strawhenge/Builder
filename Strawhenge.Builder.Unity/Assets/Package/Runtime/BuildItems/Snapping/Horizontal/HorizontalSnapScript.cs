@@ -1,3 +1,4 @@
+using Strawhenge.Builder.Unity.BuildItems.Snapping.Triggers;
 using SnapPoint = Strawhenge.Builder.Unity.BuildItems.Snapping.SnapPoint;
 using Strawhenge.Common.Ranges;
 using Strawhenge.Common.Unity.Helpers;
@@ -21,7 +22,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
             ComponentRefHelper
                 .EnsureHierarchyComponent(ref _triggerCollisionTracker, nameof(_triggerCollisionTracker), this);
 
-            foreach (var snapSlotScript in _triggerCollisionTracker.GetCollidingWith<HorizontalSlotScript>())
+            foreach (var snapSlotScript in _triggerCollisionTracker.Tracker.GetCollidingWith<HorizontalSlotScript>())
                 yield return Map(_snapPoint, snapSlotScript.Slot);
         }
 
