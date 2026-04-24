@@ -5,7 +5,7 @@ namespace Strawhenge.Builder.Unity.Progress.Data
 {
     public class BuilderProgressData : IBuilderProgressData
     {
-        public BuilderProgressData(IEnumerable<BuildItemData> buildItems)
+        public BuilderProgressData(IEnumerable<IBuildItemData> buildItems)
         {
             BuildItems = buildItems.ToArray();
         }

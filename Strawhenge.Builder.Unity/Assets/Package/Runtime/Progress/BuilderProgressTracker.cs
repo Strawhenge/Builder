@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Strawhenge.Builder.Unity.Progress
 {
-    public class BuilderProgressTracker
+    class BuilderProgressTracker
     {
         readonly ILogger _logger;
 
