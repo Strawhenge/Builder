@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7121e2565af24ed408832b58d5d4055b, type: 3}
-  m_Name: WallWithDoor
+  m_Name: Wall With Door
   m_EditorClassIdentifier: 
   _buildItem: {fileID: 2815715627842772492, guid: ea2730186ba667c4abf75c3175692aa2, type: 3}
   _recipe:
