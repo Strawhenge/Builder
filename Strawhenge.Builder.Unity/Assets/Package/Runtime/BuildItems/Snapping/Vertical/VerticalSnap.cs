@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
-    public class VerticalSnap
+    class VerticalSnap
     {
         readonly SnapPoint _snapPoint;
         readonly Transform _snappedTo;
@@ -31,7 +31,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
         }
 
         public bool CanRotate { get; }
-        
+
         public Transform GetSnappedToTransform() => _snappedTo;
 
         public void Snap()

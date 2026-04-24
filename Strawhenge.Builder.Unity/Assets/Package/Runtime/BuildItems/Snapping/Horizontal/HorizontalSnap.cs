@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
-    public class HorizontalSnap
+    class HorizontalSnap
     {
         readonly SnapPoint _snapPoint;
         readonly Transform _snappedTo;
