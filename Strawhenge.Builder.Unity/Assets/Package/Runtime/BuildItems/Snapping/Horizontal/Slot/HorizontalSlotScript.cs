@@ -35,7 +35,11 @@ namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 
             var slideLength = transform.lossyScale.x;
 
-            var settings = _settings.GetValue(); // TODO Handle missing.
+            if (!_settings.TryGetValue(out var settings))
+            {
+                Debug.LogWarning($"Missing '{nameof(_settings)}'.",this);
+                settings = NullHorizontalSlotSettings.Instance;
+            }
 
             return new HorizontalSlot(
                 anchor,
