@@ -5,9 +5,9 @@ using Strawhenge.Builder.Unity.UI.Scrap;
 
 namespace Strawhenge.Builder.Unity.UI
 {
-    public class UIContainer
+    public class BuilderUIContainer
     {
-        public UIContainer(
+        public BuilderUIContainer(
             IBuilderManagerUI builderManagerUI,
             IMenuView menuView,
             IRecipeUI recipeUI,

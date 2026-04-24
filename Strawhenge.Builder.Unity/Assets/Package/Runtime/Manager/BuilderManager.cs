@@ -34,7 +34,7 @@ namespace Strawhenge.Builder.Unity.Manager
             UnityEngine.Camera camera,
             ICameraController cameraController,
             IDefaultPositionAccessor defaultPositionAccessor,
-            UIContainer uiContainer,
+            BuilderUIContainer uiContainer,
             IBlueprintRepository blueprintRepository,
             IControlsSettings controlsSettings,
             ILayers layers,

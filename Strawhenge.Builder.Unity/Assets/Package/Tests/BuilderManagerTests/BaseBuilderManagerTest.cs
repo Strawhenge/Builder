@@ -52,7 +52,7 @@ namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
                 _camera,
                 new CameraControllerFake(),
                 new DefaultPositionAccessorFake(),
-                new UIContainer(_builderManagerUI,
+                new BuilderUIContainer(_builderManagerUI,
                     _menuView,
                     NullRecipeUI.Instance,
                     NullScrapUI.Instance),

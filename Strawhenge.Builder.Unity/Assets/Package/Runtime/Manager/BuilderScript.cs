@@ -21,7 +21,7 @@ namespace Strawhenge.Builder.Unity.Manager
         [SerializeField] BuildItemSelectorScript _buildItemScriptSelector;
         [SerializeField] CameraControllerScript _cameraController;
         [SerializeField] DefaultPositionAccessorScript _defaultPosition;
-        [SerializeField] UIContainerScript _ui;
+        [SerializeField] BuilderUIContainerScript _ui;
         [SerializeField] UnityEngine.Camera _camera;
 
         [SerializeField] SerializedSource<
