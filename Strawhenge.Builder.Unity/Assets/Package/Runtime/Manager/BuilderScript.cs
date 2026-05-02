@@ -1,4 +1,5 @@
 ﻿using Strawhenge.Builder.Unity.Blueprints.Repository;
+using Strawhenge.Builder.Unity.BuildItems;
 using Strawhenge.Builder.Unity.BuildItems.Controls;
 using Strawhenge.Builder.Unity.BuildItems.DefaultPosition;
 using Strawhenge.Builder.Unity.BuildItems.Selector;
@@ -71,12 +72,16 @@ namespace Strawhenge.Builder.Unity.Manager
             var controlsSettings = _controlsSettings
                 .GetValueOrDefault(() => DefaultControlsSettings.Instance);
 
+            var buildItemsParent = new GameObject(BuildItemsParent.Name).transform;
+            buildItemsParent.parent = transform;
+
             return new BuilderManager(
                 _inventory.Inventory,
                 _buildItemScriptSelector.BuildItemSelector,
                 _camera,
                 _cameraController.CameraController,
                 _defaultPosition.DefaultPositionAccessor,
+                buildItemsParent,
                 _ui.Container,
                 _blueprintsRepository,
                 controlsSettings,

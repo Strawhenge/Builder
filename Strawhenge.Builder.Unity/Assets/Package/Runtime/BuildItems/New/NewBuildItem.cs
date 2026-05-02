@@ -11,6 +11,7 @@ namespace Strawhenge.Builder.Unity.BuildItems.New
         readonly IDefaultPositionAccessor _initialPosition;
         readonly BuildItemScript _prefab;
         readonly string _blueprintName;
+        readonly Transform _buildItemsParent;
 
         BuildItemScript _current;
 
@@ -18,12 +19,14 @@ namespace Strawhenge.Builder.Unity.BuildItems.New
             BuilderProgressTracker progressTracker,
             IDefaultPositionAccessor initialPosition,
             BuildItemScript prefab,
-            string blueprintName)
+            string blueprintName,
+            Transform buildItemsParent)
         {
             _progressTracker = progressTracker;
             _initialPosition = initialPosition;
             _prefab = prefab;
             _blueprintName = blueprintName;
+            _buildItemsParent = buildItemsParent;
         }
 
         public IArrangeBuildItem Arrange()
@@ -36,7 +39,8 @@ namespace Strawhenge.Builder.Unity.BuildItems.New
             _current = Object.Instantiate(
                 _prefab,
                 _initialPosition.GetPosition(),
-                _initialPosition.GetRotation());
+                _initialPosition.GetRotation(),
+                _buildItemsParent);
 
             _current.SetArranging();
             return _current.Arrange;

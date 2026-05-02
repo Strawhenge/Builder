@@ -13,6 +13,7 @@ using Strawhenge.Builder.Unity.Layers;
 using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.UI;
 using System;
+using UnityEngine;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity.Manager
@@ -34,6 +35,7 @@ namespace Strawhenge.Builder.Unity.Manager
             UnityEngine.Camera camera,
             ICameraController cameraController,
             IDefaultPositionAccessor defaultPositionAccessor,
+            Transform buildItemsParent,
             BuilderUIContainer uiContainer,
             IBlueprintRepository blueprintRepository,
             IControlsSettings controlsSettings,
@@ -43,7 +45,11 @@ namespace Strawhenge.Builder.Unity.Manager
             _markers = new MarkersToggle(camera, layers);
 
             var progressTracker = new BuilderProgressTracker(logger);
-            _buildableItemFactory = new BuildableItemFactory(progressTracker, defaultPositionAccessor, logger);
+            _buildableItemFactory = new BuildableItemFactory(
+                progressTracker,
+                defaultPositionAccessor,
+                buildItemsParent,
+                logger);
             Progress = new ProgressManager(
                 blueprintRepository,
                 _buildableItemFactory,

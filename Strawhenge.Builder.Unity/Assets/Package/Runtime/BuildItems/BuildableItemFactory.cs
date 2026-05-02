@@ -3,8 +3,9 @@ using Strawhenge.Builder.Unity.BuildItems.DefaultPosition;
 using Strawhenge.Builder.Unity.BuildItems.Existing;
 using Strawhenge.Builder.Unity.BuildItems.New;
 using Strawhenge.Builder.Unity.Progress;
-using Strawhenge.Common.Logging;
 using System.Linq;
+using UnityEngine;
+using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity.BuildItems
 {
@@ -12,15 +13,18 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         readonly BuilderProgressTracker _builderProgressTracker;
         readonly IDefaultPositionAccessor _initialPositionAccessor;
+        readonly Transform _buildItemsParent;
         readonly ILogger _logger;
 
         public BuildableItemFactory(
             BuilderProgressTracker builderProgressTracker,
             IDefaultPositionAccessor initialPositionAccessor,
+            Transform buildItemsParent,
             ILogger logger)
         {
             _builderProgressTracker = builderProgressTracker;
             _initialPositionAccessor = initialPositionAccessor;
+            _buildItemsParent = buildItemsParent;
             _logger = logger;
         }
 
@@ -52,7 +56,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _builderProgressTracker,
                 _initialPositionAccessor,
                 scriptableObject.BuildItem,
-                scriptableObject.Name);
+                scriptableObject.Name,
+                _buildItemsParent);
         }
 
         static Recipe CreateRecipe(IBlueprint scriptableObject)
