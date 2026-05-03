@@ -31,11 +31,5 @@ namespace Strawhenge.Builder.Unity.Components
 
             return inventory;
         }
-
-        [ContextMenu("Infinite Components On")]
-        public void InfiniteComponentsOn() => Inventory.InfiniteComponents = true;
-
-        [ContextMenu("Infinite Components Off")]
-        public void InfiniteComponentsOff() => Inventory.InfiniteComponents = false;
     }
 }
