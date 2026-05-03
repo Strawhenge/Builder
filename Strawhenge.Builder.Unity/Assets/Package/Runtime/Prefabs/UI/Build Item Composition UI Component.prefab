@@ -28,14 +28,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5340146134228317292}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300, y: -80}
-  m_SizeDelta: {x: 600, y: 160}
+  m_AnchoredPosition: {x: 1200, y: -320}
+  m_SizeDelta: {x: 2400, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6449838288073883192
 CanvasRenderer:
@@ -67,11 +68,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 56
+    m_FontSize: 224
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 5
-    m_MaxSize: 56
+    m_MinSize: 2
+    m_MaxSize: 224
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -107,14 +108,15 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5340146134228317292}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -300, y: -80}
-  m_SizeDelta: {x: 600, y: 160}
+  m_AnchoredPosition: {x: -1200, y: -320}
+  m_SizeDelta: {x: 2400, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7903729202243569201
 CanvasRenderer:
@@ -146,11 +148,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 56
+    m_FontSize: 224
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 5
-    m_MaxSize: 56
+    m_MinSize: 2
+    m_MaxSize: 224
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -186,6 +188,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3360572737616493789}
   - {fileID: 690057128978905413}
@@ -195,7 +198,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 160}
+  m_SizeDelta: {x: 4800, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2062664628934885841
 MonoBehaviour:
