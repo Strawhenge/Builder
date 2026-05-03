@@ -48,7 +48,7 @@ namespace Sample.Input
             if (UnityEngine.Input.GetKey(KeyCode.LeftShift))
             {
                 _buildItemControls.Move(new Vector3(0, y, 0));
-                _buildItemControls.Turn(x * Time.deltaTime);
+                _buildItemControls.Turn(x);
                 return;
             }
 
