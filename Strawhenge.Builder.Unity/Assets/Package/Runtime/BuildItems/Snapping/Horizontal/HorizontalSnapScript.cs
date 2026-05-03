@@ -1,6 +1,5 @@
 using Strawhenge.Builder.Unity.BuildItems.Snapping.Triggers;
 using Strawhenge.Common.Unity.Helpers;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping

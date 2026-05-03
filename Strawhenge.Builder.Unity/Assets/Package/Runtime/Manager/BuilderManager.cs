@@ -13,7 +13,6 @@ using Strawhenge.Builder.Unity.Layers;
 using Strawhenge.Builder.Unity.Progress;
 using Strawhenge.Builder.Unity.UI;
 using System;
-using UnityEngine;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity.Manager

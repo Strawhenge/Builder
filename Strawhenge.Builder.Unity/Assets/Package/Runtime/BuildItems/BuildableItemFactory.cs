@@ -4,7 +4,6 @@ using Strawhenge.Builder.Unity.BuildItems.Existing;
 using Strawhenge.Builder.Unity.BuildItems.New;
 using Strawhenge.Builder.Unity.Progress;
 using System.Linq;
-using UnityEngine;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity.BuildItems

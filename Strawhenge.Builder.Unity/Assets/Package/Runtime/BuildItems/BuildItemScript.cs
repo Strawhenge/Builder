@@ -31,14 +31,14 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Snaps();
-            _onArrange?.Invoke(); // TODO Investigate null reference in tests.
+            _onArrange?.Invoke();
         }
 
         internal void SetPlaced()
         {
             _snapSlotToggle ??= CreateSnapSlotToggle();
             _snapSlotToggle.Slots();
-            _onPlace?.Invoke(); // TODO Investigate null reference in tests.
+            _onPlace?.Invoke();
         }
 
         void Awake()
