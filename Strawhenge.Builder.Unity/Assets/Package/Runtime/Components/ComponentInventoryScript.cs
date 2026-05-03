@@ -5,7 +5,6 @@ namespace Strawhenge.Builder.Unity.Components
 {
     public class ComponentInventoryScript : MonoBehaviour
     {
-        [SerializeField] SerializableComponentQuantity[] _components;
         [SerializeField] LoggerScript _logger;
 
         ComponentInventory _inventory;
@@ -23,13 +22,7 @@ namespace Strawhenge.Builder.Unity.Components
                 ? _logger.Logger
                 : new UnityLogger(gameObject);
 
-            var inventory = new ComponentInventory(logger);
-
-            foreach (var component in _components)
-                inventory.AddComponent(
-                    new Component(component.Component.Identifier), component.Quantity);
-
-            return inventory;
+            return new ComponentInventory(logger);
         }
     }
 }
