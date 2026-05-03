@@ -13,18 +13,15 @@ namespace Strawhenge.Builder.Unity.BuildItems
     {
         readonly BuilderProgressTracker _builderProgressTracker;
         readonly IDefaultPositionAccessor _initialPositionAccessor;
-        readonly Transform _buildItemsParent;
         readonly ILogger _logger;
 
         public BuildableItemFactory(
             BuilderProgressTracker builderProgressTracker,
             IDefaultPositionAccessor initialPositionAccessor,
-            Transform buildItemsParent,
             ILogger logger)
         {
             _builderProgressTracker = builderProgressTracker;
             _initialPositionAccessor = initialPositionAccessor;
-            _buildItemsParent = buildItemsParent;
             _logger = logger;
         }
 
@@ -56,8 +53,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
                 _builderProgressTracker,
                 _initialPositionAccessor,
                 scriptableObject.BuildItem,
-                scriptableObject.Name,
-                _buildItemsParent);
+                scriptableObject.Name);
         }
 
         static Recipe CreateRecipe(IBlueprint scriptableObject)

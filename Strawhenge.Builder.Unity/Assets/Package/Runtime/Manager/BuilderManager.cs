@@ -35,7 +35,6 @@ namespace Strawhenge.Builder.Unity.Manager
             UnityEngine.Camera camera,
             ICameraController cameraController,
             IDefaultPositionAccessor defaultPositionAccessor,
-            Transform buildItemsParent,
             BuilderUIContainer uiContainer,
             IBlueprintRepository blueprintRepository,
             IControlsSettings controlsSettings,
@@ -48,7 +47,6 @@ namespace Strawhenge.Builder.Unity.Manager
             _buildableItemFactory = new BuildableItemFactory(
                 progressTracker,
                 defaultPositionAccessor,
-                buildItemsParent,
                 logger);
             Progress = new ProgressManager(
                 blueprintRepository,
