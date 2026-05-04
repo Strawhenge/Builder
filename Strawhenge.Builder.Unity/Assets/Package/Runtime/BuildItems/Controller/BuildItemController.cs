@@ -1,9 +1,17 @@
-﻿using System;
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
+using Strawhenge.Builder.Unity.BuildItems.Controls;
+using Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem;
+using Strawhenge.Builder.Unity.BuildItems.Controls.HorizontalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Existing;
+using Strawhenge.Builder.Unity.BuildItems.New;
+using Strawhenge.Builder.Unity.Camera;
+using System;
 using System.Linq;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controller
 {
-    public partial class BuildItemController : IBuildItemController
+    partial class BuildItemController
     {
         readonly ICameraController _camera;
         readonly ControlsToggle _controls;
@@ -17,9 +25,9 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public BuildItemController(
             ICameraController camera,
-            IBuildItemControls buildItemControls,
-            IVerticalSnapControls verticalSnapControls,
-            IHorizontalSnapControls horizontalSnapControls)
+            BuildItemControls buildItemControls,
+            VerticalSnapControls verticalSnapControls,
+            HorizontalSnapControls horizontalSnapControls)
         {
             _camera = camera;
             _controls = new ControlsToggle(
@@ -36,9 +44,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _callbacks = new Callbacks();
         }
 
-        public UpdatablePosition LastPlacedPosition { get; } = new UpdatablePosition();
-
-        public void On(
+        internal void On(
             IBuildItem buildItem,
             Func<bool> canPlaceFinalItem = null,
             Action onPlacedFinalItem = null,
@@ -54,7 +60,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
             Begin(buildItem, false);
         }
 
-        public void On(
+        internal void On(
             IExistingBuildItem buildItem,
             Action onPlacedItem = null,
             Action onScrapped = null,
@@ -106,8 +112,6 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _camera.Unfocus();
             _controls.ControlsOff();
             _currentBuildItem.PlaceFinal();
-
-            LastPlacedPosition.Update(_arrangeCurrentBuildItem.Position, _arrangeCurrentBuildItem.Rotation);
 
             ResetCurrentBuildItem();
 

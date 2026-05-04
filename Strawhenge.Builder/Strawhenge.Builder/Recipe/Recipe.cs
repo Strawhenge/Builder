@@ -12,7 +12,7 @@ namespace Strawhenge.Builder
             _requiredComponents = requiredComponents.ToArray();
         }
 
-        public void DeductRequiredComponents(IComponentInventory inventory)
+        public void DeductRequiredComponents(ComponentInventory inventory)
         {
             foreach (var requiredComponent in _requiredComponents)
             {
@@ -22,7 +22,7 @@ namespace Strawhenge.Builder
             }
         }
 
-        public IEnumerable<RecipeRequirement> GetRequirements(IComponentInventory inventory)
+        public IEnumerable<RecipeRequirement> GetRequirements(ComponentInventory inventory)
         {
             return _requiredComponents
                 .Select(ConvertToRequirement)
@@ -39,7 +39,7 @@ namespace Strawhenge.Builder
             }
         }
 
-        public bool HasRequiredComponents(IComponentInventory inventory)
+        public bool HasRequiredComponents(ComponentInventory inventory)
         {
             return GetRequirements(inventory)
                 .All(x => x.HasRequiredAmount);

@@ -1,16 +1,16 @@
-using Strawhenge.Builder.Unity.Monobehaviours;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Progress.Data;
 using Strawhenge.Common.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Strawhenge.Builder.Unity.Progress
 {
-    public class BuilderProgressTracker : IBuilderProgressTracker, IBuilderProgressAccessor
+    class BuilderProgressTracker
     {
         readonly ILogger _logger;
 
-        readonly Dictionary<BuildItemScript, BuildItemData> _dataByScript =
-            new Dictionary<BuildItemScript, BuildItemData>();
+        readonly Dictionary<BuildItemScript, BuildItemData> _dataByScript = new();
 
         public BuilderProgressTracker(ILogger logger)
         {
@@ -19,10 +19,8 @@ namespace Strawhenge.Builder.Unity.Progress
 
         public BuilderProgressData GetCurrentProgress()
         {
-            return new BuilderProgressData
-            {
-                BuildItems = _dataByScript.Values.ToArray()
-            };
+            return new BuilderProgressData(
+                _dataByScript.Values.ToArray());
         }
 
         public void Add(BuildItemScript script, string blueprintName)
@@ -35,12 +33,10 @@ namespace Strawhenge.Builder.Unity.Progress
             }
 
             var transform = script.transform;
-            var data = new BuildItemData
-            {
-                Name = blueprintName,
-                Position = transform.position,
-                Rotation = transform.rotation
-            };
+            var data = new BuildItemData(
+                blueprintName,
+                transform.position,
+                transform.rotation);
 
             _dataByScript.Add(script, data);
         }
@@ -55,8 +51,11 @@ namespace Strawhenge.Builder.Unity.Progress
 
             var transform = script.transform;
             var data = _dataByScript[script];
-            data.Position = transform.position;
-            data.Rotation = transform.rotation;
+
+            _dataByScript[script] = new BuildItemData(
+                data.Name,
+                transform.position,
+                transform.rotation);
         }
 
         public void Remove(BuildItemScript script)

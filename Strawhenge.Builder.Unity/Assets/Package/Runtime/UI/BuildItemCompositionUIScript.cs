@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Strawhenge.Builder.Unity.UI.Recipe;
+using Strawhenge.Builder.Unity.UI.Scrap;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Strawhenge.Builder.Unity.UI
 {
-    public class BuildItemCompositionUIScript : MonoBehaviour
+    public class BuildItemCompositionUIScript : MonoBehaviour, IRecipeUI, IScrapUI
     {
-        [SerializeField] Canvas _canvas;
+        [SerializeField] RectTransform _containerPanel;
         [SerializeField] Text _title;
         [SerializeField] Text _subtitle;
         [SerializeField] string _recipeSubtitleText;
@@ -18,7 +19,7 @@ namespace Strawhenge.Builder.Unity.UI
 
         readonly List<GameObject> _currentComponents = new List<GameObject>();
 
-        public void ShowRecipe(string title, IEnumerable<RecipeRequirement> requirements)
+        public void Show(string title, IEnumerable<RecipeRequirement> requirements)
         {
             ClearComponents();
             SetTitle(title);
@@ -32,10 +33,10 @@ namespace Strawhenge.Builder.Unity.UI
                     requirement.QuantityInInventory);
             }
 
-            _canvas.enabled = true;
+            _containerPanel.gameObject.SetActive(true);
         }
 
-        public void ShowScrap(string title, IEnumerable<ScrapAddition> additions)
+        public void Show(string title, IEnumerable<ScrapAddition> additions)
         {
             ClearComponents();
             SetTitle(title);
@@ -49,12 +50,12 @@ namespace Strawhenge.Builder.Unity.UI
                     addition.QuantityInInventory);
             }
 
-            _canvas.enabled = true;
+            _containerPanel.gameObject.SetActive(true);
         }
 
         public void Hide()
         {
-            _canvas.enabled = false;
+            _containerPanel.gameObject.SetActive(false);
         }
 
         void SetTitle(string title) => _title.text = title;
@@ -90,7 +91,7 @@ namespace Strawhenge.Builder.Unity.UI
 
         void Awake()
         {
-            _canvas.enabled = false;
+            _containerPanel.gameObject.SetActive(false);
         }
     }
 }

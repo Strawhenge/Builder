@@ -1,25 +1,27 @@
-using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.Blueprints.Repository;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.Progress.Data;
 using ILogger = Strawhenge.Common.Logging.ILogger;
 
 namespace Strawhenge.Builder.Unity.Progress
 {
-    public class BuilderProgressLoader
+    class BuilderProgressLoader
     {
         readonly IBlueprintRepository _blueprintRepository;
-        readonly IBlueprintFactory _blueprintFactory;
+        readonly BuildableItemFactory _buildableItemFactory;
         readonly ILogger _logger;
 
         public BuilderProgressLoader(
             IBlueprintRepository blueprintRepository,
-            IBlueprintFactory blueprintFactory,
+            BuildableItemFactory buildableItemFactory,
             ILogger logger)
         {
             _blueprintRepository = blueprintRepository;
-            _blueprintFactory = blueprintFactory;
+            _buildableItemFactory = buildableItemFactory;
             _logger = logger;
         }
 
-        public void Load(BuilderProgressData data)
+        public void Load(IBuilderProgressData data)
         {
             _logger.LogInformation("Loading build progress.");
 
@@ -33,7 +35,7 @@ namespace Strawhenge.Builder.Unity.Progress
                     continue;
                 }
 
-                var buildItem = _blueprintFactory.Create(blueprint).BuildItem;
+                var buildItem = _buildableItemFactory.Create(blueprint).BuildItem;
 
                 buildItem
                     .Arrange()

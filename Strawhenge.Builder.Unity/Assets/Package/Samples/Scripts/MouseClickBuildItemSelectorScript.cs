@@ -1,0 +1,48 @@
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Selector;
+using System;
+using UnityEngine;
+
+namespace Sample
+{
+    public class MouseClickBuildItemSelectorScript : BuildItemSelectorScript, IBuildItemSelector
+    {
+        [SerializeField] Camera _camera;
+
+        public override IBuildItemSelector BuildItemSelector => this;
+
+        public event Action<BuildItemScript> Select;
+
+        public void Enable()
+        {
+            enabled = true;
+        }
+
+        public void Disable()
+        {
+            enabled = false;
+        }
+
+        void Awake()
+        {
+            enabled = false;
+        }
+
+        void Update()
+        {
+            HandleExistingItemClick();
+        }
+
+        void HandleExistingItemClick()
+        {
+            if (!UnityEngine.Input.GetMouseButtonDown(0) ||
+                !Physics.Raycast(_camera.ScreenPointToRay(UnityEngine.Input.mousePosition), out var hit))
+                return;
+
+            var buildItemScript = hit.transform.root.GetComponentInChildren<BuildItemScript>();
+
+            if (buildItemScript != null)
+                Select?.Invoke(buildItemScript);
+        }
+    }
+}

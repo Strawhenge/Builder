@@ -1,4 +1,4 @@
-﻿using FunctionalUtilities;
+using FunctionalUtilities;
 
 namespace Strawhenge.Builder.Menu
 {

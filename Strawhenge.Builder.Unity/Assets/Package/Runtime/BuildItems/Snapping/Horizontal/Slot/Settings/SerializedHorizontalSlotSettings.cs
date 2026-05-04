@@ -1,0 +1,19 @@
+using Strawhenge.Common.Ranges;
+using Strawhenge.Common.Unity.Serialization;
+using System;
+using UnityEngine;
+
+namespace Strawhenge.Builder.Unity.BuildItems.Snapping
+{
+    [Serializable]
+    public class SerializedHorizontalSlotSettings : IHorizontalSlotSettings
+    {
+        [SerializeField] bool _canFlip;
+        [SerializeField] SerializedFloatRange _tiltRange;
+
+        public bool CanFlip => _canFlip;
+
+        public FloatRange TiltRange => _tiltRange?.Value ?? FloatRange.Zero;
+    }
+}
+

@@ -1,108 +1,100 @@
 ﻿using NUnit.Framework;
-using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.ScriptableObjects;
-using Strawhenge.Builder.Unity.Tests.Fakes;
+using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Controls;
+using Strawhenge.Builder.Unity.Layers;
+using Strawhenge.Builder.Unity.Manager;
 using Strawhenge.Builder.Unity.UI;
-using Strawhenge.Common.Logging;
-using Strawhenge.Common.Unity.Camera;
+using Strawhenge.Builder.Unity.UI.Recipe;
+using Strawhenge.Builder.Unity.UI.Scrap;
+using Strawhenge.Builder.Unity.Tests.Fakes;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 namespace Strawhenge.Builder.Unity.Tests.BuilderManagerTests
 {
-    public abstract class BaseBuilderManagerTest
+    public abstract partial class BaseBuilderManagerTest
     {
         const int EnvironmentLayer = 1;
         static readonly int[] MarkerLayers = { 2, 3, 4 };
 
-        static readonly ILayersAccessor LayersAccessor = new LayersFake()
+        static readonly ILayers Layers = new LayersFake()
         {
             MarkerLayers = MarkerLayers
         };
 
-        readonly BuildItemScriptSelectorFake _existingBuildItemSelector;
-        readonly BuildItemControllerFake _buildItemController;
+        readonly BuildItemSelectorFake _existingBuildItemSelector;
         readonly BuilderManagerUIFake _builderManagerUI;
-        readonly BlueprintScriptableObjectMenuFake _menu;
-        readonly Camera _camera;
+
+        readonly UnityEngine.Camera _camera;
+        readonly MenuViewFake _menuView;
+        readonly BlueprintRepositoryFake _blueprintRepository;
+        readonly BuilderManager _builder;
 
         protected BaseBuilderManagerTest()
         {
-            _existingBuildItemSelector = new BuildItemScriptSelectorFake();
-            _buildItemController = new BuildItemControllerFake();
+            _existingBuildItemSelector = new BuildItemSelectorFake();
             _builderManagerUI = new BuilderManagerUIFake();
-            _menu = new BlueprintScriptableObjectMenuFake();
 
-            var logger = NullLogger.Instance;
+            var logger = new TestContextLogger();
             var inventory = new ComponentInventory(logger);
 
-            var existingBlueprintManager =
-                new ExistingBlueprintManager(inventory, _buildItemController, new NullScrapUI());
-
-            var blueprintManager = new BlueprintManager(inventory, _buildItemController, new NullRecipeUI());
-            var blueprintFactory = new BlueprintFactoryFake();
-
-            _camera = new GameObject().AddComponent<Camera>();
+            _camera = new GameObject().AddComponent<UnityEngine.Camera>();
             _camera.cullingMask = EnvironmentLayer;
 
-            var markers = new MarkersToggle(new CameraAccessor(_camera), LayersAccessor);
+            _menuView = new MenuViewFake();
+            _blueprintRepository = new BlueprintRepositoryFake();
 
-            Sut = new BuilderManager(
+            _builder = new BuilderManager(
+                inventory,
                 _existingBuildItemSelector,
-                markers,
-                existingBlueprintManager,
-                blueprintManager,
-                blueprintFactory,
-                _builderManagerUI,
-                _menu);
+                _camera,
+                new CameraControllerFake(),
+                new DefaultPositionAccessorFake(),
+                new BuilderUIContainer(_builderManagerUI,
+                    _menuView,
+                    NullRecipeUI.Instance,
+                    NullScrapUI.Instance),
+                _blueprintRepository,
+                DefaultControlsSettings.Instance,
+                Layers,
+                logger);
         }
 
-        protected BuilderManager Sut { get; }
-
         [OneTimeSetUp]
+        protected void SetUp()
+        {
+            _blueprintRepository.Blueprints.AddRange(GetBlueprints());
+            Act();
+        }
+
         protected abstract void Act();
 
-        protected bool AllMarkersVisible() => MarkerLayers
-            .All(layer => ((_camera.cullingMask & (1 << layer)) != 0));
+        protected virtual IEnumerable<IBlueprint> GetBlueprints() => Enumerable.Empty<BlueprintFake>();
 
-        protected bool AllMarkersNotVisible() => MarkerLayers
-            .All(layer => ((_camera.cullingMask & (1 << layer)) == 0));
+        protected void BuilderOn() => _builder.On();
 
-        protected bool IsExistingBuildItemSelectorEnabled() => _existingBuildItemSelector.IsEnabled;
-
-        protected bool IsBuilderManagerUIEnabled() => _builderManagerUI.IsEnabled;
+        protected void BuilderOff() => _builder.Off();
 
         protected void InvokeExistingItemSelected() => _existingBuildItemSelector.InvokeSelect(SetUpBuildItemScript());
 
-        protected bool IsBuildItemControllerEnabled() => _buildItemController.IsOn;
-
         protected void InvokeBuilderManagerUIExit() => _builderManagerUI.InvokeExitBuilder();
 
-        protected void InvokePlaceSelectedItem() => _buildItemController.InvokePlaceItem();
+        protected void InvokePlaceSelectedItem() => _builder.Controls.BuildItem.Place();
 
-        protected void InvokeCancelSelectedItem() => _buildItemController.InvokeCancel();
+        protected void InvokeCancelSelectedItem() => _builder.Controls.BuildItem.Cancel();
 
         protected void InvokeOpenMenu() => _builderManagerUI.InvokeOpenMenu();
 
-        protected void InvokeCloseMenu() => _menu.InvokeExit();
+        protected void InvokeCloseMenu() => _menuView.InvokeSelectExit();
 
-        protected void InvokeSelectFromMenu() =>
-            _menu.InvokeSelect(ScriptableObject.CreateInstance<BlueprintScriptableObject>());
+        protected void InvokeSelectFromMenu(string name) => _menuView.InvokeSelectItem(name);
 
-        protected bool IsMenuOpen() => _menu.IsOpen;
+        protected void InvokeSelectCategoryFromMenu(string name) => _menuView.InvokeSelectCategory(name);
+
+        protected void InvokeBackOnMenu() => _menuView.InvokeSelectBack();
 
         static BuildItemScript SetUpBuildItemScript() => new GameObject().AddComponent<BuildItemScript>();
-
-        class CameraAccessor : ICameraAccessor
-        {
-            readonly Camera _camera;
-
-            public CameraAccessor(Camera camera)
-            {
-                _camera = camera;
-            }
-
-            public Camera GetCamera() => _camera;
-        }
     }
 }

@@ -1,0 +1,20 @@
+using UnityEngine;
+
+namespace Strawhenge.Builder.Unity.Progress.Data
+{
+    public class BuildItemData : IBuildItemData
+    {
+        public BuildItemData(string name, Vector3 position, Quaternion rotation)
+        {
+            Name = name;
+            Position = position;
+            Rotation = rotation;
+        }
+
+        public string Name { get; }
+
+        public Vector3 Position { get; }
+
+        public Quaternion Rotation { get; }
+    }
+}

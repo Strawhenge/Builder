@@ -1,15 +1,26 @@
-﻿using Strawhenge.Builder.Unity.Blueprints;
-using Strawhenge.Builder.Unity.Monobehaviours;
-using Strawhenge.Builder.Unity.ScriptableObjects;
+﻿using Strawhenge.Builder.Menu;
+using Strawhenge.Builder.Unity.Blueprints;
+using Strawhenge.Builder.Unity.Blueprints.Repository;
+using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Controller;
+using Strawhenge.Builder.Unity.BuildItems.Controls;
+using Strawhenge.Builder.Unity.BuildItems.DefaultPosition;
+using Strawhenge.Builder.Unity.BuildItems.Existing;
+using Strawhenge.Builder.Unity.BuildItems.New;
+using Strawhenge.Builder.Unity.BuildItems.Selector;
+using Strawhenge.Builder.Unity.Camera;
+using Strawhenge.Builder.Unity.Layers;
+using Strawhenge.Builder.Unity.Progress;
+using Strawhenge.Builder.Unity.UI;
 using System;
+using ILogger = Strawhenge.Common.Logging.ILogger;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Manager
 {
-    public partial class BuilderManager : IBuilderManagerEvents
+    public partial class BuilderManager
     {
         readonly MarkersToggle _markers;
-        readonly IBlueprintFactory _blueprintFactory;
-
+        readonly BuildableItemFactory _buildableItemFactory;
         readonly SelectingExistingItem _selectingExistingItem;
         readonly ManagingExistingBlueprint _managingExistingBlueprint;
         readonly ManagingNewBlueprint _managingNewBlueprint;
@@ -18,29 +29,64 @@ namespace Strawhenge.Builder.Unity
         IState _currentState;
 
         public BuilderManager(
-            IBuildItemScriptSelector buildItemSelector,
-            MarkersToggle markers,
-            ExistingBlueprintManager existingBlueprintManager,
-            BlueprintManager blueprintManager,
-            IBlueprintFactory blueprintFactory,
-            IBuilderManagerUI builderManagerUI,
-            IBlueprintScriptableObjectMenu menu
-        )
+            ComponentInventory componentInventory,
+            IBuildItemSelector buildItemSelector,
+            UnityEngine.Camera camera,
+            ICameraController cameraController,
+            IDefaultPositionAccessor defaultPositionAccessor,
+            BuilderUIContainer uiContainer,
+            IBlueprintRepository blueprintRepository,
+            IControlsSettings controlsSettings,
+            ILayers layers,
+            ILogger logger)
         {
-            _markers = markers;
-            _blueprintFactory = blueprintFactory;
+            _markers = new MarkersToggle(camera, layers);
+
+            var progressTracker = new BuilderProgressTracker(logger);
+            _buildableItemFactory = new BuildableItemFactory(
+                progressTracker,
+                defaultPositionAccessor,
+                logger);
+            Progress = new ProgressManager(
+                blueprintRepository,
+                _buildableItemFactory,
+                progressTracker,
+                logger);
 
             _selectingExistingItem = new SelectingExistingItem(
-                builderManagerUI,
+                uiContainer.BuilderManagerUI,
                 buildItemSelector,
                 OnExistingBuildItemSelected,
                 OnMenuOpen,
                 OnExitBuilder);
 
+            var builderMenu = new BuilderMenu(uiContainer.MenuView);
+            var scriptableObjectsMenu = new BlueprintMenu(
+                builderMenu,
+                blueprintRepository);
+
+            Controls = new Controls(controlsSettings);
+
+            var buildItemController = new BuildItemController(
+                cameraController,
+                Controls.BuildItem,
+                Controls.VerticalSnap,
+                Controls.HorizontalSnap);
+
+            var existingBlueprintManager = new ExistingBuildableItemManager(
+                componentInventory,
+                buildItemController,
+                uiContainer.ScrapUI);
+
+            var blueprintManager = new NewBuildableItemManager(
+                componentInventory,
+                buildItemController,
+                uiContainer.RecipeUI);
+
             _managingExistingBlueprint =
                 new ManagingExistingBlueprint(existingBlueprintManager, OnManageExistingItemEnded);
             _managingNewBlueprint = new ManagingNewBlueprint(blueprintManager, OnManageNewItemEnded);
-            _menuOpen = new MenuOpen(menu, OnBlueprintSelectedFromMenu, OnMenuClosed);
+            _menuOpen = new MenuOpen(scriptableObjectsMenu, OnBlueprintSelectedFromMenu, OnMenuClosed);
         }
 
         public event Action TurningOn;
@@ -48,11 +94,15 @@ namespace Strawhenge.Builder.Unity
 
         public bool IsOn { get; private set; }
 
+        public Controls Controls { get; }
+
+        public ProgressManager Progress { get; }
+
         public void On()
         {
             if (IsOn) return;
             IsOn = true;
-            
+
             TurningOn?.Invoke();
             _markers.On();
             SetState(_selectingExistingItem);
@@ -77,13 +127,13 @@ namespace Strawhenge.Builder.Unity
 
         void OnExistingBuildItemSelected(BuildItemScript script)
         {
-            _managingExistingBlueprint.Blueprint = _blueprintFactory.Create(script);
+            _managingExistingBlueprint.BuildableItem = _buildableItemFactory.Create(script);
             SetState(_managingExistingBlueprint);
         }
 
-        void OnBlueprintSelectedFromMenu(BlueprintScriptableObject scriptableObject)
+        void OnBlueprintSelectedFromMenu(IBlueprint scriptableObject)
         {
-            _managingNewBlueprint.Blueprint = _blueprintFactory.Create(scriptableObject);
+            _managingNewBlueprint.NewBuildableItem = _buildableItemFactory.Create(scriptableObject);
             SetState(_managingNewBlueprint);
         }
 

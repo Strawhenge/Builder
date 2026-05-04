@@ -4,14 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
-    public class ArrangeBuildItem : IArrangeBuildItem
+    class ArrangeBuildItem : IArrangeBuildItem
     {
         readonly Transform _transform;
-        readonly IEnumerable<Collider> _colliders;
+        readonly IReadOnlyList<Collider> _colliders;
         readonly Func<IEnumerable<VerticalSnap>> _getAvailableVerticalSnaps;
         readonly Func<IEnumerable<HorizontalSnap>> _getAvailableHorizontalSnaps;
 
@@ -23,7 +22,7 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public ArrangeBuildItem(
             Transform transform,
-            IEnumerable<Collider> colliders,
+            IReadOnlyList<Collider> colliders,
             Func<IEnumerable<VerticalSnap>> getAvailableVerticalSnaps,
             Func<IEnumerable<HorizontalSnap>> getAvailableHorizontalSnaps)
         {
@@ -61,7 +60,8 @@ namespace Strawhenge.Builder.Unity.BuildItems
 
         public void Disable()
         {
-            Object.Destroy(_script);
+            ObjectHelper.Destroy(_script);
+
             _isEnabled = false;
 
             ToggleColliders(true);

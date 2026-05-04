@@ -1,19 +1,19 @@
-﻿using Strawhenge.Builder.Unity.ScriptableObjects;
+﻿using Strawhenge.Builder.Unity.Blueprints;
 using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
         class MenuOpen : IState
         {
-            readonly IBlueprintScriptableObjectMenu _menu;
-            readonly Action<BlueprintScriptableObject> _onBlueprintSelected;
+            readonly BlueprintMenu _menu;
+            readonly Action<IBlueprint> _onBlueprintSelected;
             readonly Action _onMenuClosed;
 
             public MenuOpen(
-                IBlueprintScriptableObjectMenu menu,
-                Action<BlueprintScriptableObject> onBlueprintSelected,
+                BlueprintMenu menu,
+                Action<IBlueprint> onBlueprintSelected,
                 Action onMenuClosed)
             {
                 _menu = menu;

@@ -2,7 +2,7 @@
 
 namespace Strawhenge.Builder.Unity.BuildItems.Snapping
 {
-    public class SnapPoint
+    class SnapPoint
     {
         readonly Transform _transform;
         readonly Transform _root;

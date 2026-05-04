@@ -2,7 +2,7 @@ using Strawhenge.Common.Unity;
 using Strawhenge.Common.Unity.Helpers;
 using UnityEngine;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Arrange
 {
     public class ArrangeBuildItemScript : MonoBehaviour
     {

@@ -1,20 +1,23 @@
-﻿using Strawhenge.Builder.Unity.BuildItems.Snapping;
+﻿using Strawhenge.Builder.Unity.BuildItems.Arrange;
+using Strawhenge.Builder.Unity.BuildItems.Controls.BuildItem;
+using Strawhenge.Builder.Unity.BuildItems.Controls.HorizontalSnap;
+using Strawhenge.Builder.Unity.BuildItems.Controls.VerticalSnap;
 using System;
 
-namespace Strawhenge.Builder.Unity.BuildItems
+namespace Strawhenge.Builder.Unity.BuildItems.Controls
 {
     class ControlsToggle
     {
-        readonly IBuildItemControls _buildItemControls;
-        readonly IVerticalSnapControls _verticalSnapControls;
-        readonly IHorizontalSnapControls _horizontalSnapControls;
+        readonly BuildItemControls _buildItemControls;
+        readonly VerticalSnapControls _verticalSnapControls;
+        readonly HorizontalSnapControls _horizontalSnapControls;
 
         Action _controlsOffStrategy = () => { };
 
         public ControlsToggle(
-            IBuildItemControls buildItemControls,
-            IVerticalSnapControls verticalSnapControls,
-            IHorizontalSnapControls horizontalSnapControls)
+            BuildItemControls buildItemControls,
+            VerticalSnapControls verticalSnapControls,
+            HorizontalSnapControls horizontalSnapControls)
         {
             _buildItemControls = buildItemControls;
             _verticalSnapControls = verticalSnapControls;
@@ -31,12 +34,12 @@ namespace Strawhenge.Builder.Unity.BuildItems
         {
             ControlsOff();
 
-            _buildItemControls.Place += InvokePlace;
-            _buildItemControls.Snap += InvokeSnap;
-            _buildItemControls.Cancel += InvokeCancel;
+            _buildItemControls.Placed += InvokePlace;
+            _buildItemControls.Snapped += InvokeSnap;
+            _buildItemControls.Cancelled += InvokeCancel;
 
             if (canScrap)
-                _buildItemControls.Scrap += InvokeScrap;
+                _buildItemControls.Scrapped += InvokeScrap;
 
             _buildItemControls.ControlOn(buildItem, canScrap);
             buildItem.Enable();
@@ -44,49 +47,49 @@ namespace Strawhenge.Builder.Unity.BuildItems
             _controlsOffStrategy = () =>
             {
                 buildItem.Disable();
-                _buildItemControls.Place -= InvokePlace;
-                _buildItemControls.Snap -= InvokeSnap;
-                _buildItemControls.Cancel -= InvokeCancel;
+                _buildItemControls.Placed -= InvokePlace;
+                _buildItemControls.Snapped -= InvokeSnap;
+                _buildItemControls.Cancelled -= InvokeCancel;
 
                 if (canScrap)
-                    _buildItemControls.Scrap -= InvokeScrap;
+                    _buildItemControls.Scrapped -= InvokeScrap;
 
                 _buildItemControls.ControlOff();
             };
         }
 
-        internal void VerticalSnapControlsOn(VerticalSnap snap)
+        internal void VerticalSnapControlsOn(Snapping.VerticalSnap snap)
         {
             ControlsOff();
 
-            _verticalSnapControls.Place += InvokePlace;
-            _verticalSnapControls.Release += InvokeReleaseSnap;
-            _verticalSnapControls.Cancel += InvokeCancel;
+            _verticalSnapControls.Placed += InvokePlace;
+            _verticalSnapControls.Released += InvokeReleaseSnap;
+            _verticalSnapControls.Cancelled += InvokeCancel;
             _verticalSnapControls.ControlOn(snap);
 
             _controlsOffStrategy = () =>
             {
-                _verticalSnapControls.Place -= InvokePlace;
-                _verticalSnapControls.Release -= InvokeReleaseSnap;
-                _verticalSnapControls.Cancel -= InvokeCancel;
+                _verticalSnapControls.Placed -= InvokePlace;
+                _verticalSnapControls.Released -= InvokeReleaseSnap;
+                _verticalSnapControls.Cancelled -= InvokeCancel;
                 _verticalSnapControls.ControlOff();
             };
         }
 
-        internal void HorizontalSnapControlsOn(HorizontalSnap snap)
+        internal void HorizontalSnapControlsOn(Snapping.HorizontalSnap snap)
         {
             ControlsOff();
 
-            _horizontalSnapControls.Place += InvokePlace;
-            _horizontalSnapControls.Release += InvokeReleaseSnap;
-            _horizontalSnapControls.Cancel += InvokeCancel;
+            _horizontalSnapControls.Placed += InvokePlace;
+            _horizontalSnapControls.Released += InvokeReleaseSnap;
+            _horizontalSnapControls.Cancelled += InvokeCancel;
             _horizontalSnapControls.ControlOn(snap);
 
             _controlsOffStrategy = () =>
             {
-                _horizontalSnapControls.Place -= InvokePlace;
-                _horizontalSnapControls.Release -= InvokeReleaseSnap;
-                _horizontalSnapControls.Cancel -= InvokeCancel;
+                _horizontalSnapControls.Placed -= InvokePlace;
+                _horizontalSnapControls.Released -= InvokeReleaseSnap;
+                _horizontalSnapControls.Cancelled -= InvokeCancel;
                 _horizontalSnapControls.ControlOff();
             };
         }

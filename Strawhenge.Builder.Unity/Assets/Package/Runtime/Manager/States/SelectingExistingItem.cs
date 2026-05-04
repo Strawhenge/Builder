@@ -1,21 +1,23 @@
-﻿using Strawhenge.Builder.Unity.Monobehaviours;
+﻿using Strawhenge.Builder.Unity.BuildItems;
+using Strawhenge.Builder.Unity.BuildItems.Selector;
+using Strawhenge.Builder.Unity.UI.Manager;
 using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
         class SelectingExistingItem : IState
         {
             readonly IBuilderManagerUI _builderManagerUI;
-            readonly IBuildItemScriptSelector _buildItemScriptSelector;
+            readonly IBuildItemSelector _buildItemScriptSelector;
             readonly Action<BuildItemScript> _onSelectedItem;
             readonly Action _onOpenMenu;
             readonly Action _onExitBuilder;
 
             public SelectingExistingItem(
                 IBuilderManagerUI builderManagerUI,
-                IBuildItemScriptSelector buildItemScriptSelector,
+                IBuildItemSelector buildItemScriptSelector,
                 Action<BuildItemScript> onSelectedItem,
                 Action onOpenMenu,
                 Action onExitBuilder)
@@ -29,22 +31,22 @@ namespace Strawhenge.Builder.Unity
 
             public void Begin()
             {
-                _builderManagerUI.Enable();
+                _builderManagerUI.Show();
                 _buildItemScriptSelector.Enable();
 
-                _builderManagerUI.OpenMenu += _onOpenMenu;
-                _builderManagerUI.ExitBuilder += _onExitBuilder;
+                _builderManagerUI.OpenedMenu += _onOpenMenu;
+                _builderManagerUI.ExitedBuilder += _onExitBuilder;
                 _buildItemScriptSelector.Select += _onSelectedItem;
             }
 
             public void End()
             {
                 _buildItemScriptSelector.Select -= _onSelectedItem;
-                _builderManagerUI.OpenMenu -= _onOpenMenu;
-                _builderManagerUI.ExitBuilder -= _onExitBuilder;
+                _builderManagerUI.OpenedMenu -= _onOpenMenu;
+                _builderManagerUI.ExitedBuilder -= _onExitBuilder;
 
                 _buildItemScriptSelector.Disable();
-                _builderManagerUI.Disable();
+                _builderManagerUI.Hide();
             }
         }
     }

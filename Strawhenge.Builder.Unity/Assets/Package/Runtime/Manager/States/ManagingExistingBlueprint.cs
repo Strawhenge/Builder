@@ -1,28 +1,29 @@
-﻿using System;
+﻿using Strawhenge.Builder.Unity.BuildItems.Existing;
+using System;
 
-namespace Strawhenge.Builder.Unity
+namespace Strawhenge.Builder.Unity.Manager
 {
     public partial class BuilderManager
     {
         class ManagingExistingBlueprint : IState
         {
-            readonly ExistingBlueprintManager _manager;
+            readonly ExistingBuildableItemManager _manager;
             readonly Action _onEnded;
 
             Action _callback = () => { };
 
-            public ManagingExistingBlueprint(ExistingBlueprintManager manager, Action onEnded)
+            public ManagingExistingBlueprint(ExistingBuildableItemManager manager, Action onEnded)
             {
                 _manager = manager;
                 _onEnded = onEnded;
             }
 
-            public ExistingBlueprint Blueprint { private get; set; }
+            public ExistingBuildableItem BuildableItem { private get; set; }
 
             public void Begin()
             {
                 _callback = _onEnded;
-                _manager.Set(Blueprint, () => _callback());
+                _manager.Set(BuildableItem, () => _callback());
             }
 
             public void End()
